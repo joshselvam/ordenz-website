@@ -2,7 +2,7 @@
 // Build command: node build.mjs   Deploy command: npx wrangler deploy
 // "name" must match the project name you type in the Cloudflare dashboard.
 {
-  "name": "starnest",
+  "name": "starnest-website",
   "compatibility_date": "2025-09-01",
   "assets": {
     "directory": "./dist",

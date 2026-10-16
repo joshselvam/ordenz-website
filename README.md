@@ -37,10 +37,10 @@ npx serve dist        # or open dist/index.html
 1. Create a free account at <https://dash.cloudflare.com>.
 2. Go to **Compute → Workers & Pages → Create application → Import a repository**, and pick `starnest-website` (private repos are fine).
 3. Use these settings:
-   - Project name: `starnest` (must match `"name"` in `wrangler.jsonc`)
+   - Project name: `starnest-website` (must match `"name"` in `wrangler.jsonc`)
    - Build command: `node build.mjs`
    - Deploy command: `npx wrangler deploy`
-4. Click **Deploy**. The site goes live at `https://starnest.<your-subdomain>.workers.dev`. Put that address in `siteUrl` in `site.config.json`.
+4. Click **Deploy**. The site goes live at `https://starnest-website.<your-subdomain>.workers.dev`. Put that address in `siteUrl` in `site.config.json`.
 5. Every push to `main` rebuilds the site automatically.
 
 `wrangler.jsonc` tells Cloudflare to serve the built `dist` folder as a static site, with `_headers`, `_redirects` and the 404 page.
@@ -48,5 +48,5 @@ npx serve dist        # or open dist/index.html
 **Add your own domain later** (e.g. `starnest.in`): go to the Pages project → **Custom domains → Set up a domain**, and follow the steps. Then update `siteUrl` in `site.config.json`.
 
 **Google Play links** once it's live:
-- Privacy policy: `https://starnest.iamjoshuaselvam.workers.dev/privacy/`
-- Account deletion: `https://starnest.iamjoshuaselvam.workers.dev/delete-account/`
+- Privacy policy: `https://starnest-website.iamjoshuaselvam.workers.dev/privacy/`
+- Account deletion: `https://starnest-website.iamjoshuaselvam.workers.dev/delete-account/`
