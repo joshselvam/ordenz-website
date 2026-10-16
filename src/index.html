@@ -1,0 +1,72 @@
+{{> head}}
+{{> header}}
+<main id="main">
+<section class="hero" style="padding:0"><div class="wrap">
+  <div>
+    <div class="eyebrow">Made in {{city}}</div>
+    <h1>Simple apps that help small businesses grow.</h1>
+    <p class="lead" style="margin-top:20px">{{company}} builds affordable software for cafes, shops and local businesses in India. It works on budget Android tablets, in English and Tamil, at prices small businesses can afford.</p>
+    <div class="actions">
+      <a class="btn btn-cta" href="/ordernest/">Meet OrderNest</a>
+      <a class="btn btn-ghost" href="/ordernest/demo/">Try the live demo</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="device"><img src="/assets/img/kiosk-menu.webp" width="1440" height="810" alt="OrderNest self-order kiosk showing a cafe menu"></div>
+    <div class="phone"><img src="/assets/img/phone-tamil.webp" width="585" height="1266" alt="OrderNest kiosk menu in Tamil on a phone"></div>
+  </div>
+</div></section>
+
+<section id="products"><div class="wrap">
+  <div class="center"><div class="eyebrow">Our apps</div><h2 style="margin-top:10px">One family of apps for your business</h2>
+    <p class="lead">Every {{company}} app has the same look, works on the same tablets, and is built for how Indian businesses really work.</p></div>
+  <div class="grid g2">
+    <article class="card product">
+      <img class="logo" src="/assets/brand/ordernest-icon.svg" alt="OrderNest icon">
+      <div><span class="tag">Available now</span></div>
+      <h3>OrderNest</h3>
+      <p>Self-order kiosk and POS for cafes and quick-service restaurants. Customers order on a tablet or by voice, pay by UPI, and get a token. The kitchen sees it at once, and stock updates itself.</p>
+      <a class="more" href="/ordernest/">See OrderNest →</a>
+    </article>
+    <article class="card product soon">
+      <div class="logo" style="display:grid;place-items:center;background:var(--soft);color:var(--green);font:800 30px var(--display)">+</div>
+      <div><span class="tag" style="background:transparent;border:1px solid var(--line);color:var(--muted)">Coming soon</span></div>
+      <h3>More apps on the way</h3>
+      <p>We're building more simple tools for small businesses, with the same idea: affordable, easy to learn, and working on low-cost Android devices. Tell us what your business needs.</p>
+      <a class="more" href="#contact">Suggest an app →</a>
+    </article>
+  </div>
+</div></section>
+
+<section class="band" id="about"><div class="wrap">
+  <div class="center"><div class="eyebrow">Why {{company}}</div><h2 style="margin-top:10px">Built for small businesses, not big chains</h2></div>
+  <div class="grid g3">
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+      <h3>Runs on budget tablets</h3><p>No expensive kiosks or special hardware. A ₹12,000 Android tablet and an optional thermal printer are enough.</p></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h7"/><path d="M17 15l3 3-3 3"/></svg></div>
+      <h3>English and Tamil</h3><p>Screens, voice ordering and menus in English and Tamil, so every customer and every staff member is comfortable.</p></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <h3>Fair, simple pricing</h3><p>Start free. Upgrade only when the app is paying for itself, with no long contracts.</p></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l3-8 4 16 3-8h7"/></svg></div>
+      <h3>Keeps working offline</h3><p>Billing doesn't stop when the internet does. Bills sync on their own when you're back online.</p></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <h3>Your data stays yours</h3><p>No ads, no tracking, no selling data. Customers don't need to give personal details to order.</p></div>
+    <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <h3>Local support</h3><p>Real help from people in {{city}} who understand how your business runs.</p></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="cta">
+    <h2>Let's talk about your business</h2>
+    <p class="lead">Want a demo of OrderNest at your cafe, or have an idea for an app? We'd love to hear from you.</p>
+    <div class="actions">
+      {{#if email}}<a class="btn btn-cta" href="mailto:{{email}}?subject=Hello%20{{company}}">Email {{email}}</a>{{/if}}
+      {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}">WhatsApp us</a>{{/if}}
+      {{#unless emailOrWhatsapp}}<span class="btn btn-ghost" style="cursor:default">Contact details coming soon</span>{{/unless}}
+      <a class="btn btn-ghost" href="/ordernest/demo/">Try the live demo</a>
+    </div>
+  </div>
+</div></section>
+</main>
+{{> footer}}
