@@ -1,0 +1,12 @@
+// Cloudflare Workers settings for the StarNest website (static files only, no server code).
+// Build command: node build.mjs   Deploy command: npx wrangler deploy
+// "name" must match the project name you type in the Cloudflare dashboard.
+{
+  "name": "starnest",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
