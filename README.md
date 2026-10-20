@@ -12,6 +12,20 @@ starnest-website/
 
 The live demo is `src/demo/index.html`, a copy of `docs/index.html` from the OrderNest repo. When the demo changes there, copy it over again.
 
+## What's on the site
+
+| Page | Source | What it shows |
+|---|---|---|
+| Home | `src/index.html` | StarNest and its products |
+| OrderNest | `src/ordernest.html` | Features (kiosk, voice, UPI, kitchen, printing, offline, recipes & stock, owner dashboard, bulk & catering, marketing), plans, FAQ, contact |
+| Live demo | `src/demo/index.html` | The browser demo, copied from `docs/index.html` in the OrderNest repo |
+| Privacy | `src/privacy.html` | What the app handles, including item photos and bulk-order customer details. Update the "Last updated" date when it changes |
+| Delete account | `src/delete-account.html` | The Play Store account-deletion page |
+
+Keep the OrderNest page in step with the app: the trial is 30 days of Pro from the first real bill; Starter adds bulk & catering orders; Pro adds voice/AI ordering, unlimited devices and managing the cafe from any browser. Prices come from `priceStarter` and `pricePro` (the app charges ₹999 and ₹1,999 a month).
+
+Images in `src/assets/img/` are 1440 × 810 WebP screenshots of the app.
+
 ## Change the details
 
 Edit `site.config.json` and push. Empty settings are left out of the pages.

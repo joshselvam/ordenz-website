@@ -45,7 +45,7 @@ fs.mkdirSync(out, { recursive: true });
 // Pages: src/<name>.html  ->  dist/<name>/index.html  (index.html and 404.html stay at the root)
 const pages = [
   { file: "index.html", out: "index.html", path: "/", title: `${cfg.company}: ${cfg.tagline}`, desc: `${cfg.company} builds affordable apps for cafes, shops and small businesses in India, starting with OrderNest.` },
-  { file: "ordernest.html", out: "ordernest/index.html", path: "/ordernest/", title: "OrderNest: self-order kiosk & POS for cafes", desc: "Self-order kiosk, voice ordering in English and Tamil, UPI, kitchen display, GST billing, offline counter, recipes and stock for cafes, on a budget Android tablet." },
+  { file: "ordernest.html", out: "ordernest/index.html", path: "/ordernest/", title: "OrderNest: self-order kiosk & POS for cafes", desc: "Cafe kiosk and POS with English and Tamil voice ordering, UPI, GST billing, offline sales, Excel menu setup, item photos, loyalty, offers and referrals." },
   { file: "privacy.html", out: "privacy/index.html", path: "/privacy/", title: "Privacy policy", desc: "What OrderNest handles, why, and who sees it." },
   { file: "delete-account.html", out: "delete-account/index.html", path: "/delete-account/", title: "Delete your account", desc: "How to delete your OrderNest cafe account and data." },
   { file: "404.html", out: "404.html", path: "/404", title: "Page not found", desc: "" },
