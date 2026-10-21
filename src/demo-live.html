@@ -1,0 +1,36 @@
+{{> head}}
+{{> header}}
+<main id="main">
+<section class="hero" style="padding:0"><div class="wrap" style="grid-template-columns:1fr">
+  <div>
+    <span class="eyebrow">OrderNest live demo</span>
+    <h1 style="margin-top:14px">A real cafe, running right now.</h1>
+    <p class="lead" style="margin-top:18px">This is the real OrderNest app with a sample cafe that never closes. New orders, table bookings, clean-ups, supplier deliveries and staff stars arrive every few minutes. Pick who you want to be and try anything: the demo cafe is reset every night.</p>
+    {{#unless demoUrl}}<p class="lead" style="margin-top:14px;color:var(--gold)">The live demo server is being set up. Until then, try the quick browser preview below, or <a href="{{contactLink}}">ask us for a walk-through</a>.</p>{{/unless}}
+  </div>
+</div></section>
+
+<section style="padding-top:56px"><div class="wrap">
+  <div class="center"><div class="eyebrow">Choose a screen</div><h2 style="margin-top:10px">Open the demo as…</h2>
+    <p class="lead">Each role sees only what its job needs, just like in your cafe. Open two at once (say, the kiosk and the kitchen) to watch an order travel.</p></div>
+  <div class="grid g3 demo-grid">
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=kiosk#kiosk" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/kiosk-menu.webp" width="1440" height="810" alt="" loading="lazy"><h3>Self-order kiosk</h3><p>What your customers see: photo menu, six languages, voice ordering, UPI.</p></a>
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=owner#owner" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/owner.webp" width="1440" height="810" alt="" loading="lazy"><h3>Owner</h3><p>Today's sales, top items, stock alerts, team, suppliers and every setting.</p></a>
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=cashier#counter" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/counter.webp" width="1440" height="810" alt="" loading="lazy"><h3>Cashier</h3><p>Fast counter billing with GST receipts, cash, UPI and card.</p></a>
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=chef#kitchen" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/chef.webp" width="1440" height="810" alt="" loading="lazy"><h3>Chef</h3><p>Live kitchen tickets, recipes and batch cooking, bulk orders to cook.</p></a>
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=captain#tables" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/tableturn.webp" width="1200" height="675" alt="" loading="lazy"><h3>Captain</h3><p>Every table at a glance, bookings and the waiting list.</p></a>
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=store#purchases" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/suppliers.webp" width="1440" height="810" alt="" loading="lazy"><h3>Store keeper</h3><p>Supplier bills with GST, stock counts and wastage.</p></a>
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=manager#menu" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/team.webp" width="1440" height="810" alt="" loading="lazy"><h3>Manager</h3><p>Runs the day: menu, team, offers, reports. Not the plan or billing.</p></a>
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=cleaning#tables" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/tableturn.webp" width="1200" height="675" alt="" loading="lazy"><h3>Cleaning</h3><p>Their clean-up jobs, with a photo of the clean table.</p></a>
+    <a class="card demo-card" {{#if demoUrl}}href="{{demoUrl}}/?demo=board#board" target="_blank" rel="noopener"{{/if}}{{#unless demoUrl}}href="/ordernest/demo/preview/"{{/unless}}><img src="/assets/img/token-screen.webp" width="1440" height="810" alt="" loading="lazy"><h3>Token TV</h3><p>Order numbers on the TV as they're ready, with a chime.</p></a>
+  </div>
+  {{#if demoUrl}}<p style="text-align:center;color:var(--muted);margin-top:20px">Payments in the demo are simulated, and nothing reaches real customers. Passwords, the plan and WhatsApp sending are switched off.</p>{{/if}}
+</div></section>
+
+<section class="band" style="padding:56px 0"><div class="wrap">
+  <div class="center"><div class="eyebrow">Quick browser preview</div><h2 style="margin-top:10px">Try the kiosk and counter without a server</h2>
+    <p class="lead">A lighter, offline copy of the kiosk, counter, kitchen and token screen that runs in your browser. For everything else, use the live demo{{#unless demoUrl}} when it's online{{/unless}} or read the <a href="/ordernest/help/">step-by-step guide</a>.</p>
+    <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/ordernest/demo/preview/">Open the browser preview</a><a class="btn btn-soft" href="/ordernest/help/">Read the guide</a></div></div>
+</div></section>
+</main>
+{{> footer}}

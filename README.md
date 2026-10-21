@@ -10,15 +10,19 @@ starnest-website/
 └── src/               pages, shared header/footer, styles, images and logos
 ```
 
-The live demo is `src/demo/index.html`, a copy of `docs/index.html` from the OrderNest repo. When the demo changes there, copy it over again.
+The live demo page (`/ordernest/demo/`) opens the real OrderNest app on the demo server set in `demoUrl`, as any role (owner, manager, cashier, captain, chef, store keeper, cleaning, kiosk, token TV). That server runs with `DEMO_PUBLIC=true` and `DEMO_LIVE=true`, so its data is live and it's rebuilt every night; see "Public live demo server" in the OrderNest README. Each push to the OrderNest repo redeploys it, so the demo always has the latest features.
+
+The quick browser preview (`/ordernest/demo/preview/`) is `src/demo/index.html`, a copy of `docs/index.html` from the OrderNest repo that runs without a server.
 
 ## What's on the site
 
 | Page | Source | What it shows |
 |---|---|---|
 | Home | `src/index.html` | StarNest and its products |
-| OrderNest | `src/ordernest.html` | Features (kiosk, voice, UPI, kitchen, printing, offline, recipes & stock, owner dashboard, bulk & catering, marketing), plans, FAQ, contact |
-| Live demo | `src/demo/index.html` | The browser demo, copied from `docs/index.html` in the OrderNest repo |
+| OrderNest | `src/ordernest.html` | Features (kiosk in six languages, voice, UPI, kitchen, printing, offline, recipes & stock, owner dashboard, bulk & catering, TableTurn, team roles, supplier invoices, marketing), plans, FAQ, contact |
+| Live demo | `src/demo-live.html` | Opens the live demo server as any role (or the browser preview until `demoUrl` is set) |
+| Browser preview | `src/demo/index.html` | The server-free kiosk and counter preview, copied from `docs/index.html` in the OrderNest repo |
+| Guide | `src/help.html` | Step-by-step help with pictures, filtered by role and searchable. Update it with every new feature |
 | Privacy | `src/privacy.html` | What the app handles, including item photos and bulk-order customer details. Update the "Last updated" date when it changes |
 | Delete account | `src/delete-account.html` | The Play Store account-deletion page |
 
@@ -36,6 +40,7 @@ Edit `site.config.json` and push. Empty settings are left out of the pages.
 | `priceStarter`, `pricePro` | Prices on the OrderNest page, for example `"₹499 / month"`. Empty shows "Ask us" |
 | `playUrl` | Shows a "Get it on Google Play" button once the app is live |
 | `appUrl` | Your OrderNest server address, for "Sign in" and the in-app delete page |
+| `demoUrl` | The live demo server, for example `https://ordernest-demo.onrender.com`. Empty: the demo page sends visitors to the browser preview |
 | `siteUrl` | The site's address (used for search engines and link previews) |
 | `legalName` | Who is responsible in the privacy policy. Change to the registered company name when you have it |
 

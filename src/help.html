@@ -1,0 +1,188 @@
+{{> head}}
+{{> header}}
+<main id="main" class="guide">
+<section class="hero" style="padding:0"><div class="wrap" style="grid-template-columns:1fr;padding:56px 0 48px">
+  <div><span class="eyebrow">OrderNest guide</span>
+    <h1 style="margin-top:12px;font-size:clamp(36px,5vw,56px)">How to run your cafe on OrderNest</h1>
+    <p class="lead" style="margin-top:14px">Short, step-by-step help with pictures. Pick your role to see what matters to you, or search.</p></div>
+</div></section>
+
+<section style="padding:32px 0 88px"><div class="wrap g-layout">
+  <aside class="g-side">
+    <label class="sr" for="gq">Search the guide</label>
+    <input id="gq" type="search" placeholder="Search: printer, GST, PIN, booking…" autocomplete="off">
+    <div class="g-roles" role="group" aria-label="Show help for">
+      <button type="button" data-role="all" aria-pressed="true">Everyone</button>
+      <button type="button" data-role="owner" aria-pressed="false">Owner</button>
+      <button type="button" data-role="manager" aria-pressed="false">Manager</button>
+      <button type="button" data-role="cashier" aria-pressed="false">Cashier</button>
+      <button type="button" data-role="captain" aria-pressed="false">Captain</button>
+      <button type="button" data-role="chef" aria-pressed="false">Chef</button>
+      <button type="button" data-role="store" aria-pressed="false">Store keeper</button>
+      <button type="button" data-role="cleaning" aria-pressed="false">Cleaning</button>
+    </div>
+    <nav class="g-toc" aria-label="Topics" id="gtoc"></nav>
+    <a class="btn btn-cta" style="margin-top:14px;width:100%" href="/ordernest/demo/">Try it in the live demo</a>
+  </aside>
+
+  <div class="g-body" id="gbody">
+
+  <article class="g-topic" id="start" data-roles="owner" data-keys="sign up register trial account first bill setup start">
+    <h2>1. Set up your cafe</h2>
+    <p>You can be selling in an afternoon. The 30-day Pro trial only starts with your first real bill, so setting up is free.</p>
+    <ol><li>Open OrderNest, choose <b>New cafe</b>, and enter your cafe name, your name, email and a password.</li>
+      <li>Go to <b>Menu &amp; settings</b> and fill in your cafe name, address, GSTIN, FSSAI number, UPI ID and GST rate. These print on every bill.</li>
+      <li>Add your menu: type items one by one, upload the <b>Excel template</b>, or take a photo of your printed menu and let AI read it (Pro).</li>
+      <li>Add item photos from the Menu page. They're cropped and shrunk on your phone, so they load fast on the kiosk.</li></ol>
+    <figure><img src="/assets/img/menu-import.webp" width="1440" height="810" alt="Importing a menu from a photo" loading="lazy"><figcaption>AI menu import: check the items it found, then save.</figcaption></figure>
+  </article>
+
+  <article class="g-topic" id="devices" data-roles="owner manager" data-keys="tablet kiosk tv token screen pair device key printer bluetooth">
+    <h2>2. Connect the kiosk, TV and printer</h2>
+    <ol><li>In <b>Menu &amp; settings</b>, find <b>Kiosk and TV devices</b>. It shows your cafe code and device key.</li>
+      <li>On the kiosk tablet or TV, open OrderNest, choose <b>Kiosk / TV</b>, enter the cafe code and device key, and pick <b>Self-order kiosk</b> or <b>Token screen (TV)</b>.</li>
+      <li>Tap <b>Printer</b> on the counter or kitchen screen to connect a Bluetooth, Wi-Fi or USB thermal printer (58 mm or 80 mm).</li>
+      <li>If a tablet is lost, tap <b>Create a new device key</b>. Tablets already signed in stay signed in; you can lock them from the owner screen.</li></ol>
+  </article>
+
+  <article class="g-topic" id="team" data-roles="owner manager" data-keys="staff team role pin manager captain chef cashier store cleaning switch off access">
+    <h2>3. Add your team and give everyone a role</h2>
+    <p>Each person signs in with their own PIN and sees only the screens their job needs.</p>
+    <ol><li>Go to <b>Menu &amp; settings → Team</b>.</li>
+      <li>Type the name, a 4–6 digit PIN, choose the <b>Role</b> and tap <b>Add team member</b>.</li>
+      <li>On the tablet, they choose <b>Staff PIN</b> and type their PIN.</li>
+      <li>To change a role or a PIN, or stop someone signing in, tap <b>Edit</b> next to their name. It works within seconds, even on a tablet that's already signed in.</li></ol>
+    <div class="g-table"><table><thead><tr><th>Role</th><th>Sees</th></tr></thead><tbody>
+      <tr><td>Manager</td><td>Everything day to day: reports, menu and prices, stock, suppliers, offers, tables and the team. Not the plan, billing, or other managers.</td></tr>
+      <tr><td>Captain</td><td>Tables, bookings, the waiting list, taking orders, the kitchen and the token TV.</td></tr>
+      <tr><td>Chef</td><td>Kitchen screen, recipes and batch cooking, stock, bulk orders to cook.</td></tr>
+      <tr><td>Cashier</td><td>Counter billing, payments, loyalty, tables and the token TV.</td></tr>
+      <tr><td>Store keeper</td><td>Stock, supplier invoices, wastage, recipes and bulk orders.</td></tr>
+      <tr><td>Cleaning</td><td>The table floor and their own clean-up jobs.</td></tr>
+      <tr><td>All-rounder</td><td>Counter, tables, kitchen, stock and bulk orders (what staff had before roles).</td></tr></tbody></table></div>
+    <figure><img src="/assets/img/team.webp" width="1440" height="810" alt="The Team panel with roles" loading="lazy"><figcaption>Only the owner can make or change managers.</figcaption></figure>
+  </article>
+
+  <article class="g-topic" id="kiosk" data-roles="owner manager cashier" data-keys="kiosk customer self order language voice upi token qr hindi tamil telugu malayalam kannada">
+    <h2>4. How customers order on the kiosk</h2>
+    <ol><li>The customer taps the screen, chooses their language at the top, and picks <b>Eat here</b> or <b>Take away</b>.</li>
+      <li>They tap items, choose size, milk and extras, or tap <b>Order by voice</b> and just say it.</li>
+      <li>They pay with the UPI QR for the exact amount. The kiosk turns green by itself when the payment arrives; nobody has to check a phone.</li>
+      <li>They get a token number, and the TV calls it when the order is ready.</li></ol>
+    <figure><img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="The kiosk menu in Hindi" loading="lazy"><figcaption>The kiosk in Hindi. Item names show in English wherever you haven't added the translation yet.</figcaption></figure>
+  </article>
+
+  <article class="g-topic" id="languages" data-roles="owner manager" data-keys="language hindi telugu malayalam kannada tamil translate names kiosk">
+    <h2>5. Kiosk languages and menu names</h2>
+    <ol><li>In <b>Menu &amp; settings → Kiosk languages</b>, tick up to four languages and tap <b>Save languages</b>.</li>
+      <li>Under <b>Menu names in</b>, choose a language and type each item's name, then tap <b>Save names</b>.</li>
+      <li>On Pro, tap <b>Fill in the missing names with AI</b> to translate everything at once. Ask someone who reads the language to check them.</li></ol>
+    <figure><img src="/assets/img/names.webp" width="1440" height="810" alt="Kiosk languages and menu names" loading="lazy"></figure>
+  </article>
+
+  <article class="g-topic" id="counter" data-roles="cashier captain owner manager" data-keys="counter billing bill gst receipt discount cash card upi print collect">
+    <h2>6. Bill at the counter</h2>
+    <ol><li>Open <b>Counter</b>, tap the items (choose options if asked), and add a discount if you need one.</li>
+      <li>Choose cash, UPI or card. The GST receipt with CGST and SGST prints straight away.</li>
+      <li>For kiosk orders paid in cash, find the token and collect the money here.</li>
+      <li>Internet down? Keep billing. Bills are saved on the tablet with an offline number and sync by themselves, never twice.</li></ol>
+    <figure><img src="/assets/img/counter.webp" width="1440" height="810" alt="The counter billing screen" loading="lazy"></figure>
+  </article>
+
+  <article class="g-topic" id="kitchen" data-roles="chef captain cashier" data-keys="kitchen ticket preparing ready served token tv chime">
+    <h2>7. The kitchen screen and token TV</h2>
+    <ol><li>New orders appear on <b>Kitchen</b> at once. Tap <b>Start</b>, then <b>Ready</b>.</li>
+      <li>Orders waiting too long change colour, so nothing is forgotten.</li>
+      <li>When you tap <b>Ready</b>, the token moves to "Ready" on the TV with a chime.</li></ol>
+    <figure><img src="/assets/img/chef.webp" width="1440" height="810" alt="The chef's kitchen screen" loading="lazy"><figcaption>The chef only sees the kitchen, recipes, stock and bulk orders.</figcaption></figure>
+  </article>
+
+  <article class="g-topic" id="tables" data-roles="captain cleaning owner manager" data-keys="table booking reservation waiting list seat clean photo star tableturn">
+    <h2>8. Tables, bookings and clean-ups (TableTurn)</h2>
+    <ol><li>Open <b>TableTurn</b> to see every table: free, reserved, seated or needs cleaning.</li>
+      <li>Tap <b>New booking</b> for a reservation; OrderNest suggests the right-size table and never double-books. Walk-ins go on <b>Add to waiting list</b>.</li>
+      <li>When guests leave, tap the table. The clean-up job goes to the cleaning staff automatically.</li>
+      <li>The cleaner takes a photo of the clean table to finish; the table is free again. The owner or manager can check the photo or send it back.</li>
+      <li>Customers can give staff a star from the QR code on their bill.</li></ol>
+    <figure><img src="/assets/img/tableturn.webp" width="1200" height="675" alt="The TableTurn floor" loading="lazy"></figure>
+  </article>
+
+  <article class="g-topic" id="stock" data-roles="store chef owner manager" data-keys="stock ingredient receive count reorder low recipe batch cook wastage">
+    <h2>9. Stock, recipes and wastage</h2>
+    <ol><li>Every sale takes its ingredients out of stock using the item's recipe. Low items show an alert; sold-out items hide from the kiosk.</li>
+      <li>In <b>Recipes &amp; prep</b>, write a batch recipe once and tap <b>Cook batch</b>; the raw ingredients come off stock.</li>
+      <li>On <b>Stock</b>, tap <b>Count / edit</b> after a stock count.</li>
+      <li>Thrown something away? Tap <b>Wastage</b>, enter how much and why. Its cost shows on the Suppliers page.</li></ol>
+    <figure><img src="/assets/img/store.webp" width="1440" height="810" alt="The stock screen with Wastage buttons" loading="lazy"></figure>
+  </article>
+
+  <article class="g-topic" id="suppliers" data-roles="store owner manager" data-keys="supplier invoice bill purchase gst input credit pay owed overdue delivery photo">
+    <h2>10. Supplier invoices</h2>
+    <ol><li>When a delivery comes, open <b>Suppliers</b> and tap <b>Enter an invoice</b>.</li>
+      <li>Type or choose the supplier, the invoice number and date, and the pay-by date if they gave you credit.</li>
+      <li>Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
+      <li>Tap <b>Save and add to stock</b>. The stock goes up and recipe costs update.</li>
+      <li>The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and the GST you paid this month.</li></ol>
+    <figure><img src="/assets/img/invoice.webp" width="1440" height="810" alt="Entering a supplier invoice" loading="lazy"><figcaption>The same invoice number from the same supplier can't be entered twice.</figcaption></figure>
+  </article>
+
+  <article class="g-topic" id="owner" data-roles="owner manager" data-keys="report sales dashboard top items peak hour whatsapp summary activity log devices">
+    <h2>11. Reports and the activity log</h2>
+    <ol><li><b>Owner</b> shows today's sales, average bill, kiosk share, upsell revenue, sales by hour and top items. Pick a date to look back.</li>
+      <li>The daily WhatsApp summary is ready to send at closing time.</li>
+      <li><b>Activity</b> shows who changed prices, stock, refunds, settings and the team, and when.</li>
+      <li><b>Devices</b> lists your tablets; reload or lock one from here.</li></ol>
+    <figure><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard" loading="lazy"></figure>
+  </article>
+
+  <article class="g-topic" id="bulk" data-roles="owner manager chef store captain cashier" data-keys="bulk catering party wedding office lunch advance event">
+    <h2>12. Bulk and catering orders</h2>
+    <ol><li>Open <b>Bulk &amp; catering</b> and tap <b>New bulk order</b>: who ordered, where from, the event date, guests and venue.</li>
+      <li>Choose who is responsible and which chef cooks. OrderNest shows what stock to buy in time.</li>
+      <li>Record the advance; move the order to Confirmed, Cooking, Ready and Delivered; collect the balance.</li></ol>
+    <figure><img src="/assets/img/bulk.webp" width="1440" height="810" alt="Bulk and catering orders" loading="lazy"></figure>
+  </article>
+
+  <article class="g-topic" id="marketing" data-roles="owner manager" data-keys="loyalty points offer promo code campaign whatsapp banner referral">
+    <h2>13. Loyalty, offers and WhatsApp</h2>
+    <ol><li>Customers join loyalty with just a mobile number and earn points on every bill.</li>
+      <li>In <b>Offers</b>, create codes with a minimum order, a limit and an end date.</li>
+      <li>In <b>Campaigns</b>, write a message and send it to all loyalty members on WhatsApp (connect your WhatsApp Business account first).</li></ol>
+    <figure><img src="/assets/img/campaigns.webp" width="1440" height="810" alt="WhatsApp campaigns" loading="lazy"></figure>
+  </article>
+
+  <article class="g-topic" id="plans" data-roles="owner" data-keys="plan price trial starter pro free upgrade billing yearly promo referral">
+    <h2>14. Plans and billing</h2>
+    <ol><li>Open <b>Plan &amp; billing</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly (two months free).</li>
+      <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp for a free month.</li></ol>
+  </article>
+
+  <p class="g-none" id="gnone" hidden>Nothing matches. Try another word, or <a href="{{contactLink}}">ask us</a>.</p>
+  </div>
+</div></section>
+</main>
+<script>
+(() => {
+  const topics = [...document.querySelectorAll(".g-topic")], toc = document.getElementById("gtoc"), q = document.getElementById("gq");
+  let role = "all";
+  toc.innerHTML = topics.map((t) => `<a href="#${t.id}" data-for="${t.id}">${t.querySelector("h2").textContent.replace(/^\d+\.\s*/, "")}</a>`).join("");
+  const apply = () => {
+    const words = q.value.toLowerCase().split(/\s+/).filter(Boolean); let shown = 0;
+    for (const t of topics) {
+      const hay = (t.dataset.keys + " " + t.textContent).toLowerCase();
+      const ok = (role === "all" || t.dataset.roles.split(" ").includes(role)) && words.every((w) => hay.includes(w));
+      t.hidden = !ok; toc.querySelector(`[data-for="${t.id}"]`).hidden = !ok; if (ok) shown++;
+    }
+    document.getElementById("gnone").hidden = shown > 0;
+  };
+  q.addEventListener("input", apply);
+  document.querySelector(".g-roles").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-role]"); if (!b) return; role = b.dataset.role;
+    document.querySelectorAll(".g-roles button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); apply();
+  });
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) toc.querySelectorAll("a").forEach((a) => a.toggleAttribute("aria-current", a.dataset.for === e.target.id)); }), { rootMargin: "-30% 0px -60% 0px" });
+  topics.forEach((t) => io.observe(t));
+  document.querySelectorAll(".g-topic figure img").forEach((img) => img.addEventListener("click", () => img.closest("figure").classList.toggle("zoom")));
+})();
+</script>
+{{> footer}}
