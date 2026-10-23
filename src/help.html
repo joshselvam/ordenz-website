@@ -10,7 +10,7 @@
 <section style="padding:32px 0 88px"><div class="wrap g-layout">
   <aside class="g-side">
     <label class="sr" for="gq">Search the guide</label>
-    <input id="gq" type="search" placeholder="Search: printer, GST, PIN, booking…" autocomplete="off">
+    <input id="gq" type="search" placeholder="Search: printer, GST, SST, PIN, booking…" autocomplete="off">
     <div class="g-roles" role="group" aria-label="Show help for">
       <button type="button" data-role="all" aria-pressed="true">Everyone</button>
       <button type="button" data-role="owner" aria-pressed="false">Owner</button>
@@ -43,8 +43,19 @@
     <figure><img src="/assets/img/practice.webp" width="1280" height="720" alt="The kitchen screen in practice mode, with sample orders and the practice banner" loading="lazy"><figcaption>Practice mode: sample orders arriving on the kitchen screen.</figcaption></figure>
   </article>
 
+  <article class="g-topic" id="country" data-roles="owner manager" data-keys="country india malaysia currency rm ringgit rupee gst sst service charge rounding ssm duitnow tax nett">
+    <h2>2. Your country: India or Malaysia</h2>
+    <ol><li>When you sign up, choose your <b>Country</b>. It sets your currency, taxes, bill format, phone numbers and kiosk languages. You can change it in <b>Menu &amp; settings</b> until your first real bill.</li>
+      <li><b>India</b>: add your <b>GSTIN</b>, <b>FSSAI</b> number and <b>GST rate</b>. Menu prices include GST, and bills show CGST and SGST.</li>
+      <li><b>Malaysia</b>: add your <b>SSM registration no.</b>. If you're SST-registered, add your <b>SST registration no.</b> and set <b>SST rate</b> to 6%; otherwise leave it at 0%.</li>
+      <li>Choose <b>Menu prices</b>: <i>Service charge + SST on top</i> (set the <b>Service charge %</b>, usually 10%), or <i>Nett (all included)</i>. Tap <b>Save settings</b>.</li>
+      <li>Cash bills are rounded to the nearest 5 sen; card and DuitNow QR stay exact. The bill shows the service charge, SST and rounding.</li></ol>
+    <figure><img src="/assets/img/country-settings.webp" width="1440" height="810" alt="Cafe settings for Malaysia: SSM and SST numbers, SST rate, menu prices and service charge" loading="lazy"></figure>
+    <figure><img src="/assets/img/receipt-my.webp" width="1440" height="810" alt="A Malaysian bill with service charge, SST and rounding" loading="lazy"></figure>
+  </article>
+
   <article class="g-topic" id="devices" data-roles="owner manager" data-keys="tablet kiosk tv token screen pair device key printer bluetooth">
-    <h2>2. Connect the kiosk, TV and printer</h2>
+    <h2>3. Connect the kiosk, TV and printer</h2>
     <ol><li>In <b>Menu &amp; settings</b>, find <b>Kiosk and TV devices</b>. It shows your cafe code and device key.</li>
       <li>On the kiosk tablet or TV, open OrderNest, choose <b>Kiosk / TV</b>, enter the cafe code and device key, and pick <b>Self-order kiosk</b> or <b>Token screen (TV)</b>.</li>
       <li>Tap <b>Printer</b> on the counter or kitchen screen to connect a Bluetooth, Wi-Fi or USB thermal printer (58 mm or 80 mm).</li>
@@ -52,7 +63,7 @@
   </article>
 
   <article class="g-topic" id="team" data-roles="owner manager" data-keys="staff team role pin manager captain chef cashier store cleaning switch off access">
-    <h2>3. Add your team and give everyone a role</h2>
+    <h2>4. Add your team and give everyone a role</h2>
     <p>Each person signs in with their own PIN and sees only the screens their job needs.</p>
     <ol><li>Go to <b>Menu &amp; settings → Team</b>.</li>
       <li>Type the name, a 4–6 digit PIN, choose the <b>Role</b> and tap <b>Add team member</b>.</li>
@@ -69,8 +80,8 @@
     <figure><img src="/assets/img/team.webp" width="1440" height="810" alt="The Team panel with roles" loading="lazy"><figcaption>Only the owner can make or change managers.</figcaption></figure>
   </article>
 
-  <article class="g-topic" id="kiosk" data-roles="owner manager cashier" data-keys="kiosk customer self order language voice upi token qr hindi tamil telugu malayalam kannada">
-    <h2>4. How customers order on the kiosk</h2>
+  <article class="g-topic" id="kiosk" data-roles="owner manager cashier" data-keys="kiosk customer self order language voice upi duitnow token qr hindi tamil telugu malayalam kannada malay chinese">
+    <h2>5. How customers order on the kiosk</h2>
     <ol><li>The customer taps the screen, chooses their language at the top, and picks <b>Eat here</b> or <b>Take away</b>.</li>
       <li>They tap items, choose size, milk and extras, or tap <b>Order by voice</b> and just say it.</li>
       <li>They pay with the UPI QR for the exact amount. The kiosk turns green by itself when the payment arrives; nobody has to check a phone.</li>
@@ -78,8 +89,8 @@
     <figure><img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="The kiosk menu in Hindi" loading="lazy"><figcaption>The kiosk in Hindi. Item names show in English wherever you haven't added the translation yet.</figcaption></figure>
   </article>
 
-  <article class="g-topic" id="languages" data-roles="owner manager" data-keys="language hindi telugu malayalam kannada tamil translate names kiosk">
-    <h2>5. Kiosk languages and menu names</h2>
+  <article class="g-topic" id="languages" data-roles="owner manager" data-keys="language hindi telugu malayalam kannada tamil malay melayu chinese translate names kiosk">
+    <h2>6. Kiosk languages and menu names</h2>
     <ol><li>In <b>Menu &amp; settings → Kiosk languages</b>, tick up to four languages and tap <b>Save languages</b>.</li>
       <li>Under <b>Menu names in</b>, choose a language and type each item's name, then tap <b>Save names</b>.</li>
       <li>On Pro, tap <b>Fill in the missing names with AI</b> to translate everything at once. Ask someone who reads the language to check them.</li></ol>
@@ -87,16 +98,16 @@
   </article>
 
   <article class="g-topic" id="counter" data-roles="cashier captain owner manager" data-keys="counter billing bill gst receipt discount cash card upi print collect">
-    <h2>6. Bill at the counter</h2>
+    <h2>7. Bill at the counter</h2>
     <ol><li>Open <b>Counter</b>, tap the items (choose options if asked), and add a discount if you need one.</li>
-      <li>Choose cash, UPI or card. The GST receipt with CGST and SGST prints straight away.</li>
+      <li>Choose cash, UPI or card. The GST receipt with CGST and SGST prints straight away. In Malaysia the buttons say DuitNow QR, and the bill shows the service charge, SST and cash rounding.</li>
       <li>For kiosk orders paid in cash, find the token and collect the money here.</li>
       <li>Internet down? Keep billing. Bills are saved on the tablet with an offline number and sync by themselves, never twice.</li></ol>
     <figure><img src="/assets/img/counter.webp" width="1440" height="810" alt="The counter billing screen" loading="lazy"></figure>
   </article>
 
   <article class="g-topic" id="kitchen" data-roles="chef captain cashier" data-keys="kitchen ticket preparing ready served token tv chime">
-    <h2>7. The kitchen screen and token TV</h2>
+    <h2>8. The kitchen screen and token TV</h2>
     <ol><li>New orders appear on <b>Kitchen</b> at once. Tap <b>Start</b>, then <b>Ready</b>.</li>
       <li>Orders waiting too long change colour, so nothing is forgotten.</li>
       <li>When you tap <b>Ready</b>, the token moves to "Ready" on the TV with a chime.</li></ol>
@@ -104,7 +115,7 @@
   </article>
 
   <article class="g-topic" id="tables" data-roles="captain cleaning owner manager" data-keys="table booking reservation waiting list seat clean photo star tableturn">
-    <h2>8. Tables, bookings and clean-ups (TableTurn)</h2>
+    <h2>9. Tables, bookings and clean-ups (TableTurn)</h2>
     <ol><li>Open <b>TableTurn</b> to see every table: free, reserved, seated or needs cleaning.</li>
       <li>Tap <b>New booking</b> for a reservation; OrderNest suggests the right-size table and never double-books. Walk-ins go on <b>Add to waiting list</b>.</li>
       <li>When guests leave, tap the table. The clean-up job goes to the cleaning staff automatically.</li>
@@ -114,7 +125,7 @@
   </article>
 
   <article class="g-topic" id="stock" data-roles="store chef owner manager" data-keys="stock ingredient receive count reorder low recipe batch cook wastage">
-    <h2>9. Stock, recipes and wastage</h2>
+    <h2>10. Stock, recipes and wastage</h2>
     <ol><li>Every sale takes its ingredients out of stock using the item's recipe. Low items show an alert; sold-out items hide from the kiosk.</li>
       <li>In <b>Recipes &amp; prep</b>, write a batch recipe once and tap <b>Cook batch</b>; the raw ingredients come off stock.</li>
       <li>On <b>Stock</b>, tap <b>Count / edit</b> after a stock count.</li>
@@ -123,7 +134,7 @@
   </article>
 
   <article class="g-topic" id="suppliers" data-roles="store owner manager" data-keys="supplier invoice bill purchase gst input credit pay owed overdue delivery photo">
-    <h2>10. Supplier invoices</h2>
+    <h2>11. Supplier invoices</h2>
     <ol><li>When a delivery comes, open <b>Suppliers</b> and tap <b>Enter an invoice</b>.</li>
       <li>Type or choose the supplier, the invoice number and date, and the pay-by date if they gave you credit.</li>
       <li>Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
@@ -133,7 +144,7 @@
   </article>
 
   <article class="g-topic" id="owner" data-roles="owner manager" data-keys="report sales dashboard top items peak hour whatsapp summary activity log devices">
-    <h2>11. Reports and the activity log</h2>
+    <h2>12. Reports and the activity log</h2>
     <ol><li><b>Owner</b> shows today's sales, average bill, kiosk share, upsell revenue, sales by hour and top items. Pick a date to look back.</li>
       <li>The daily WhatsApp summary is ready to send at closing time.</li>
       <li><b>Activity</b> shows who changed prices, stock, refunds, settings and the team, and when.</li>
@@ -142,7 +153,7 @@
   </article>
 
   <article class="g-topic" id="bulk" data-roles="owner manager chef store captain cashier" data-keys="bulk catering party wedding office lunch advance event">
-    <h2>12. Bulk and catering orders</h2>
+    <h2>13. Bulk and catering orders</h2>
     <ol><li>Open <b>Bulk &amp; catering</b> and tap <b>New bulk order</b>: who ordered, where from, the event date, guests and venue.</li>
       <li>Choose who is responsible and which chef cooks. OrderNest shows what stock to buy in time.</li>
       <li>Record the advance; move the order to Confirmed, Cooking, Ready and Delivered; collect the balance.</li></ol>
@@ -150,7 +161,7 @@
   </article>
 
   <article class="g-topic" id="marketing" data-roles="owner manager" data-keys="loyalty points offer promo code campaign whatsapp banner referral">
-    <h2>13. Loyalty, offers and WhatsApp</h2>
+    <h2>14. Loyalty, offers and WhatsApp</h2>
     <ol><li>Customers join loyalty with just a mobile number and earn points on every bill.</li>
       <li>In <b>Offers</b>, create codes with a minimum order, a limit and an end date.</li>
       <li>In <b>Campaigns</b>, write a message and send it to all loyalty members on WhatsApp (connect your WhatsApp Business account first).</li></ol>
@@ -158,7 +169,7 @@
   </article>
 
   <article class="g-topic" id="plans" data-roles="owner" data-keys="plan price trial starter pro free upgrade billing yearly promo referral">
-    <h2>14. Plans and billing</h2>
+    <h2>15. Plans and billing</h2>
     <ol><li>Open <b>Plan &amp; billing</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly (two months free).</li>
       <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp for a free month.</li></ol>
   </article>
