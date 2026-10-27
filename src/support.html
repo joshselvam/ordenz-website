@@ -6,10 +6,14 @@
 <p class="lead" style="margin-top:14px">Stuck, found a problem or have an idea? Here's the quickest way to reach us.</p>
 
 <h2>1. In the app: Feedback</h2>
-<p>Tap <b>Feedback</b> at the top of any screen. Choose <i>Something's wrong</i>, <i>An idea</i> or <i>A question</i>, write what happened and tap Send. It reaches the OrdenZ team straight away, with the screen you were on, the app version and the kind of device, so you don't have to explain those.</p>
+<p>Tap <b>Help</b> at the top of any screen, then <b>Send feedback</b>. Choose <i>Something's wrong</i>, <i>An idea</i> or <i>A question</i>, write what happened and tap Send. It reaches the OrdenZ team straight away, with the screen you were on, the app version and the kind of device, so you don't have to explain those.</p>
 <p>Tick <i>OrdenZ can email me about this</i> if you'd like a reply. We answer at the cafe owner's email address.</p>
 
-<h2>2. By email</h2>
+<h2>2. On WhatsApp</h2>
+{{#if waLink}}<p><a class="btn btn-primary" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%20need%20help%20with%20my%20cafe." rel="noopener">Chat with us on WhatsApp</a></p>
+<p>Send photos, screenshots or voice notes. In the app, <b>Help → Chat with us on WhatsApp</b> also adds your cafe, the screen you're on and the app version to the message, so we can help faster.</p>{{/if}}
+
+<h2>3. By email</h2>
 <p>{{#if email}}<a href="mailto:{{email}}">{{email}}</a>{{/if}}. Please include your cafe code (shown under Menu &amp; settings), what you were doing, and a screenshot if you can. Never send passwords, PINs or card numbers.</p>
 
 <h2>When we reply</h2>
