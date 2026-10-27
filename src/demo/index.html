@@ -327,7 +327,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 </style>
 
 <div id="app">
-  <div class="sample-notice" role="note">Offline sample · Limited features and simulated payments. <a href="/ordernest/demo/">Back to demo options</a></div>
+  <div class="sample-notice" role="note">Offline sample · Limited features and simulated payments. <a href="/demo/">Back to demo options</a></div>
   <div class="bar" id="bar">
     <div class="brand"><b>OrdenZ</b><span>Demo</span></div>
     <nav class="tabs" id="tabs" aria-label="Screens"></nav>
@@ -401,7 +401,7 @@ const ICON = {
 /* =========================================================
    State, persistence and cross-tab sync
    ========================================================= */
-const LS_KEY = "ordernest-demo-v1";
+const LS_KEY = "ordenz-demo-v1";
 let S = null;
 const rupee = n => "₹" + Math.round(n).toLocaleString("en-IN");
 const clone = o => JSON.parse(JSON.stringify(o));
@@ -450,7 +450,7 @@ function load(){
   if(!st || st.day!==todayKey() || !st.ing || !st.menu) st = seedState();
   S = st; save(false);
 }
-let bc=null; try{ bc = new BroadcastChannel("ordernest-demo"); bc.onmessage = ()=>{ reloadFromStorage(); }; }catch(e){ bc=null; }
+let bc=null; try{ bc = new BroadcastChannel("ordenz-demo"); bc.onmessage = ()=>{ reloadFromStorage(); }; }catch(e){ bc=null; }
 function save(broadcast=true){
   try{ localStorage.setItem(LS_KEY, JSON.stringify(S)); }catch(e){}
   if(broadcast && bc){ try{ bc.postMessage("changed"); }catch(e){} }

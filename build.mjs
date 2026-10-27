@@ -48,9 +48,9 @@ fs.mkdirSync(out, { recursive: true });
 // Pages: src/<name>.html  ->  dist/<name>/index.html  (index.html and 404.html stay at the root)
 const pages = [
   { file: "index.html", out: "index.html", path: "/", title: `${cfg.company}: ${cfg.tagline}`, desc: `${cfg.company} connects cafe POS, self-order kiosks, kitchen tickets and owner reports. Try the live demo and compare plans.` },
-  { file: "ordernest.html", out: "ordernest/index.html", path: "/ordernest/", title: "OrdenZ features: kiosk, counter, kitchen, stock and reports for cafes", desc: "Cafe POS and kiosk with eight kiosk languages, kitchen tickets, stock, recipes, loyalty, split bills, cash closing and table QR ordering. Try the live demo." },
-  { file: "demo-live.html", out: "ordernest/demo/index.html", path: "/ordernest/demo/", title: "OrdenZ live demo", desc: "Open the real OrdenZ app with a sample cafe running live: kiosk, owner, cashier, chef, captain, store keeper and the token TV." },
-  { file: "help.html", out: "ordernest/help/index.html", path: "/ordernest/help/", title: "OrdenZ guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
+  { file: "features.html", out: "features/index.html", path: "/features/", title: "OrdenZ features: kiosk, counter, kitchen, stock and reports for cafes", desc: "Cafe POS and kiosk with eight kiosk languages, kitchen tickets, stock, recipes, loyalty, split bills, cash closing and table QR ordering. Try the live demo." },
+  { file: "demo.html", out: "demo/index.html", path: "/demo/", title: "OrdenZ live demo", desc: "Open the real OrdenZ app with a sample cafe running live: kiosk, owner, cashier, chef, captain, store keeper and the token TV." },
+  { file: "help.html", out: "guide/index.html", path: "/guide/", title: "OrdenZ guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
   { file: "start-a-cafe.html", out: "start-a-cafe/index.html", path: "/start-a-cafe/", title: "Start a cafe in India or Malaysia: licences, tax and equipment", desc: "A plain guide to opening a cafe: FSSAI, GST and trade licences in India; SSM, council licence, food handler course and SST in Malaysia; equipment, menu pricing and your first week." },
   { file: "terms.html", out: "terms/index.html", path: "/terms/", title: "Terms of service", desc: "The agreement between your cafe and OrdenZ: plans, payments, your data and your responsibilities." },
   { file: "support.html", out: "support/index.html", path: "/support/", title: "Help and support", desc: "How to reach the OrdenZ team: the Feedback button in the app, email, reply times and what to do if the internet is down." },
@@ -79,11 +79,11 @@ ${pages.filter((p) => p.path !== "/404").map((p) => `  <url><loc>${cfg.siteUrl}$
 `);
 
 // The quick browser preview (runs without a server): src/demo/index.html, a copy of docs/index.html from the OrdenZ repo.
-// The live demo page (/ordernest/demo/) links to the real app on the demo server set in "demoUrl".
+// The live demo page (/demo/) links to the real app on the demo server set in "demoUrl".
 const demo = path.join(src, "demo", "index.html");
 if (fs.existsSync(demo)) {
-  fs.mkdirSync(path.join(out, "ordernest", "demo", "preview"), { recursive: true });
-  fs.copyFileSync(demo, path.join(out, "ordernest", "demo", "preview", "index.html"));
+  fs.mkdirSync(path.join(out, "demo", "preview"), { recursive: true });
+  fs.copyFileSync(demo, path.join(out, "demo", "preview", "index.html"));
 }
 
 const warn = [];

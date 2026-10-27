@@ -1,4 +1,11 @@
 /privacy.html          /privacy/          301
 /delete-account.html   /delete-account/   301
-/demo                  /ordernest/demo/   301
-/demo/                 /ordernest/demo/   301
+# The site's old OrderNest addresses, kept working for old links and search results
+/ordernest                  /features/        301
+/ordernest/                 /features/        301
+/ordernest/demo             /demo/            301
+/ordernest/demo/            /demo/            301
+/ordernest/demo/preview     /demo/preview/    301
+/ordernest/demo/preview/    /demo/preview/    301
+/ordernest/help             /guide/           301
+/ordernest/help/            /guide/           301

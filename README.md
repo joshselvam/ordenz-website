@@ -10,17 +10,17 @@ ordenz-website/
 └── src/               pages, shared header/footer, styles, images and logos
 ```
 
-The live demo page (`/ordernest/demo/`) opens the real OrdenZ app on the demo server set in `demoUrl`, as any role (owner, manager, cashier, captain, chef, store keeper, cleaning, kiosk, token TV). That server runs with `DEMO_PUBLIC=true` and `DEMO_LIVE=true`, so its data is live and it's rebuilt every night; see "Public live demo server" in the OrdenZ README. Each push to the OrdenZ repo redeploys it, so the demo always has the latest features.
+The live demo page (`/demo/`) opens the real OrdenZ app on the demo server set in `demoUrl`, as any role (owner, manager, cashier, captain, chef, store keeper, cleaning, kiosk, token TV). That server runs with `DEMO_PUBLIC=true` and `DEMO_LIVE=true`, so its data is live and it's rebuilt every night; see "Public live demo server" in the OrdenZ README. Each push to the OrdenZ repo redeploys it, so the demo always has the latest features.
 
-The offline sample (`/ordernest/demo/preview/`) is `src/demo/index.html`, a limited standalone sample based on `docs/index.html`. It is separate from the current full app. The page explicitly labels its simulated payments, uses the current light workspace palette, and links back to demo options. Shared pages and the sample use a versioned OrdenZ SVG favicon to refresh cached tab icons.
+The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standalone sample based on `docs/index.html`. It is separate from the current full app. The page explicitly labels its simulated payments, uses the current light workspace palette, and links back to demo options. Shared pages and the sample use a versioned OrdenZ SVG favicon to refresh cached tab icons.
 
 ## What's on the site
 
 | Page | Source | What it shows |
 |---|---|---|
 | Home | `src/index.html` | OrdenZ and its products |
-| OrdenZ | `src/ordernest.html` | Features (kiosk in eight languages, voice, UPI, kitchen, printing, offline, recipes & stock, owner dashboard, bulk & catering, TableTurn, team roles, supplier invoices, marketing), plans, FAQ, contact |
-| Live demo | `src/demo-live.html` | Opens the live demo server as any role (or the browser preview until `demoUrl` is set) |
+| OrdenZ | `src/features.html` | Features (kiosk in eight languages, voice, UPI, kitchen, printing, offline, recipes & stock, owner dashboard, bulk & catering, TableTurn, team roles, supplier invoices, marketing), plans, FAQ, contact |
+| Live demo | `src/demo.html` | Opens the live demo server as any role (or the browser preview until `demoUrl` is set) |
 | Browser preview | `src/demo/index.html` | The server-free kiosk and counter preview, copied from `docs/index.html` in the OrdenZ repo |
 | Guide | `src/help.html` | Step-by-step help with pictures, filtered by role and searchable. Update it with every new feature |
 | Privacy | `src/privacy.html` | What the app handles, including item photos and bulk-order customer details. Update the "Last updated" date when it changes |
@@ -42,7 +42,7 @@ Edit `site.config.json` and push. Empty settings are left out of the pages.
 | `pricing.IN`, `pricing.MY` | Monthly and annual plan amounts, currency, locale and display status for each country |
 | `playUrl` | Shows a "Get it on Google Play" button once the app is live |
 | `appUrl` | Your OrdenZ server address, for "Sign in" and the in-app delete page |
-| `demoUrl` | The live demo server, for example `https://ordernest-demo.onrender.com`. Empty: the demo page sends visitors to the browser preview |
+| `demoUrl` | The live demo server, for example `https://demo.ordenz.com`. Empty: the demo page sends visitors to the browser preview |
 | `siteUrl` | The site's address (used for search engines and link previews) |
 | `legalName` | Who is responsible in the privacy policy. Change to the registered company name when you have it |
 
