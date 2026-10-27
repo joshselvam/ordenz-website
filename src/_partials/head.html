@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,9 @@
 <meta property="og:image" content="{{siteUrl}}/assets/og.jpg">
 <meta property="og:url" content="{{canonical}}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0E5B49">
+<meta name="theme-color" content="#F6F5EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B110F" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("ordenz.theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="icon" type="image/png" href="/assets/brand/favicon-32.png?v=crest-1">
 <link rel="alternate icon" href="/assets/brand/favicon-32.png?v=crest-1" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
@@ -19,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hind+Madurai:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/theme.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
