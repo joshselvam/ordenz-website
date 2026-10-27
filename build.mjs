@@ -8,6 +8,7 @@
 //   {{#if key}}…{{/if}}   keep the block only when the setting has a value
 //   {{#unless key}}…{{/unless}}  keep it only when the setting is empty
 import fs from "node:fs";
+import crypto from "node:crypto";
 import {renderPricing} from "./pricing.mjs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -50,19 +51,26 @@ const pages = [
   { file: "ordernest.html", out: "ordernest/index.html", path: "/ordernest/", title: "OrdenZ: self-order kiosk & POS for cafes", desc: "Cafe POS and kiosk with eight kiosk languages, kitchen tickets, stock, recipes, loyalty, split bills, cash closing and table QR ordering. Try the live demo." },
   { file: "demo-live.html", out: "ordernest/demo/index.html", path: "/ordernest/demo/", title: "OrdenZ live demo", desc: "Open the real OrdenZ app with a sample cafe running live: kiosk, owner, cashier, chef, captain, store keeper and the token TV." },
   { file: "help.html", out: "ordernest/help/index.html", path: "/ordernest/help/", title: "OrdenZ guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
+  { file: "terms.html", out: "terms/index.html", path: "/terms/", title: "Terms of service", desc: "The agreement between your cafe and OrdenZ: plans, payments, your data and your responsibilities." },
+  { file: "support.html", out: "support/index.html", path: "/support/", title: "Help and support", desc: "How to reach the OrdenZ team: the Feedback button in the app, email, reply times and what to do if the internet is down." },
   { file: "privacy.html", out: "privacy/index.html", path: "/privacy/", title: "Privacy policy", desc: "What OrdenZ handles, why, and who sees it." },
   { file: "delete-account.html", out: "delete-account/index.html", path: "/delete-account/", title: "Delete your account", desc: "How to delete your OrdenZ cafe account and data." },
   { file: "404.html", out: "404.html", path: "/404", title: "Page not found", desc: "" },
 ];
+// Inline scripts allowed by the Content-Security-Policy (see src/_headers): collected from the built pages
+const inlineScripts = new Set();
+const collectScripts = (html) => { for (const m of html.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)) if (m[1].trim()) inlineScripts.add(m[1]); };
 for (const p of pages) {
   const source=fs.readFileSync(path.join(src,p.file),"utf8").replace("<!-- REGIONAL_PRICING -->",renderPricing(cfg.pricing,cfg.contactLink));
   const html = render(source, { pageTitle: p.title, pageDesc: p.desc, pagePath: p.path, canonical: cfg.siteUrl + p.path });
   fs.mkdirSync(path.dirname(path.join(out, p.out)), { recursive: true });
   fs.writeFileSync(path.join(out, p.out), html);
+  collectScripts(html);
 }
+cfg.cspScriptHashes = [...inlineScripts].map((s) => `'sha256-${crypto.createHash("sha256").update(s).digest("base64")}'`).join(" ");
 
 copyDir(path.join(src, "assets"), path.join(out, "assets"));
-for (const f of ["_headers", "_redirects", "robots.txt"]) fs.writeFileSync(path.join(out, f), render(fs.readFileSync(path.join(src, f), "utf8"), {}));
+for (const f of ["_headers", "_redirects", "robots.txt"]) fs.writeFileSync(path.join(out, f), render(fs.readFileSync(path.join(src, f), "utf8"), {}).replace(/&#39;|&apos;/g, "'"));
 fs.writeFileSync(path.join(out, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.filter((p) => p.path !== "/404").map((p) => `  <url><loc>${cfg.siteUrl}${p.path}</loc></url>`).join("\n")}
