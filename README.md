@@ -4,7 +4,7 @@ The company website: OrdenZ home page, the OrdenZ product page, the OrdenZ live 
 the privacy policy and the delete-account page. Plain HTML and CSS, built by a tiny script with no dependencies.
 
 ```
-starnest-website/
+ordenz-website/
 ├── site.config.json   ← company name, contact email, WhatsApp, prices, Play Store link, site address
 ├── build.mjs          builds everything into dist
 └── src/               pages, shared header/footer, styles, images and logos
@@ -56,7 +56,7 @@ npx serve dist        # or open dist/index.html
 ## Publish free on Cloudflare
 
 1. Create a free account at <https://dash.cloudflare.com>.
-2. Go to **Compute → Workers & Pages → Create application → Import a repository**, and pick `starnest-website` (private repos are fine).
+2. Go to **Compute → Workers & Pages → Create application → Import a repository**, and pick `ordenz-website` (private repos are fine).
 3. Use these settings:
    - Project name: `www` (must match `"name"` in `wrangler.jsonc`)
    - Build command: `node build.mjs`
@@ -69,8 +69,8 @@ npx serve dist        # or open dist/index.html
 **Add your own domain later** (e.g. `ordenz.in`): go to the Pages project → **Custom domains → Set up a domain**, and follow the steps. Then update `siteUrl` in `site.config.json`.
 
 **Google Play links** once it's live:
-- Privacy policy: `https://www.starnest.workers.dev/privacy/`
-- Account deletion: `https://www.starnest.workers.dev/delete-account/`
+- Privacy policy: `https://www.ordenz.com/privacy/`
+- Account deletion: `https://www.ordenz.com/delete-account/`
 
 ## Cafe Crest brand refresh — 26 October 2026
 

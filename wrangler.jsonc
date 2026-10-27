@@ -4,6 +4,12 @@
 {
   "name": "www",
   "compatibility_date": "2025-09-01",
+  // The site answers on www.ordenz.com; ordenz.com is attached too and a Redirect Rule sends it to www.
+  // Wrangler creates these custom domains (DNS record + certificate) on deploy; the zone must be in this account.
+  "routes": [
+    { "pattern": "www.ordenz.com", "custom_domain": true },
+    { "pattern": "ordenz.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
