@@ -1,5 +1,14 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>OrderNest Kiosk</title>
+<!doctype html><html lang="en" data-theme="light"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<style>
+/* The standalone sample follows the current light workspace palette. */
+:root[data-theme="light"]{--bg:#F6F5EE;--surface:#FFFEFB;--surface-2:#EDF2E8;--line:#D8E1D5;--muted:#54665B;--accent-soft:#E1ECDF}
+.sample-notice{padding:8px 16px;background:#E9EEDF;color:#173C32;font-size:13px;border-bottom:1px solid #D8E1D5;flex-shrink:0}
+.sample-notice a{color:#0E5B49;font-weight:700}
+#app{min-height:0}
+.bar{flex-wrap:wrap;height:auto;flex-shrink:0}.tabs{flex-wrap:wrap}
+</style>
+<title>OrdenZ — Offline sample</title>
+<link rel="icon" type="image/png" href="/assets/brand/favicon-32.png?v=crest-1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hind+Madurai:wght@400;500;600;700&display=swap">
@@ -318,8 +327,9 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 </style>
 
 <div id="app">
+  <div class="sample-notice" role="note">Offline sample · Limited features and simulated payments. <a href="/ordernest/demo/">Back to demo options</a></div>
   <div class="bar" id="bar">
-    <div class="brand"><b>OrderNest</b><span>Demo</span></div>
+    <div class="brand"><b>OrdenZ</b><span>Demo</span></div>
     <nav class="tabs" id="tabs" aria-label="Screens"></nav>
     <button class="ghost" id="kioskMode" type="button">Full-screen kiosk</button>
     <button class="ghost" id="helpBtn" type="button">How to demo</button>
@@ -335,7 +345,7 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 /* =========================================================
    Sample data. Prices include 5% GST (CGST 2.5% + SGST 2.5%).
    ========================================================= */
-const CAFE = {name:"OrderNest Demo", addr:"Tamil Nadu, India",
+const CAFE = {name:"OrdenZ Demo", addr:"Tamil Nadu, India",
   gstin:"33ABCDE1234F1Z5 (sample)", fssai:"12426999000123 (sample)"};
 
 /* Menu laid out like international coffee chains: Small/Regular/Large, milk choices,
@@ -524,7 +534,7 @@ document.getElementById("resetBtn").addEventListener("click", ()=>{
 document.getElementById("helpBtn").addEventListener("click", showHelp);
 document.getElementById("kioskMode").addEventListener("click", ()=>{ document.body.classList.add("kiosk-only"); kioskReset(); go("kiosk"); try{ const r=document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); if(r&&r.catch) r.catch(()=>{}); }catch(e){} });
 function showHelp(){
-  modal(`<h3>How to demo OrderNest</h3><div class="help">
+  modal(`<h3>How to demo OrdenZ</h3><div class="help">
     <p>Everything here runs on sample data for D&#39;VIBEZ. Nothing is charged and no real payments happen.</p>
     <ol>
       <li><b>Kiosk:</b> order like a customer. Try the Tamil switch, add a Caffè Latte, pick Large and oat milk, and see the "Would you like to add?" pairing. Pay with the demo UPI QR to get a token.</li>

@@ -154,3 +154,49 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 .g-table td:first-child{font-weight:700;white-space:nowrap}
 .g-none{padding:40px;text-align:center;color:var(--muted)}
 @media (max-width:880px){.g-layout{grid-template-columns:1fr}.g-side{position:static}.g-toc{display:none}.g-topic{padding:22px 18px}}
+
+/* Indie Collage + Botanical Flow */
+:root[data-theme="light"]{color-scheme:light;--green:#0E5B49;--deep:#123E32;--ink:#173C32;--ink-2:#4D5E53;--muted:#5D6D61;--paper:#FAF7EF;--surface:#FFFEFA;--line:#DCE2D4;--soft:#E9EEDF;--display:Georgia,"Times New Roman",serif;--shadow:0 5px 24px #203D3010}
+body{background-color:var(--paper);background-image:radial-gradient(#897C5810 .6px,transparent .6px);background-size:5px 5px}
+.top{background:#FAF7EFF2;border-bottom:1px solid var(--line);box-shadow:none}
+.brand{font-size:28px;letter-spacing:-.04em}
+.hero{color:var(--ink);background:radial-gradient(ellipse at 95% 30%,#E4EBD8 0%,transparent 55%),#FAF7EF;border-bottom:1px solid var(--line)}
+.hero .wrap{padding:64px 0 72px;gap:42px;min-height:570px}
+.hero h1{font-weight:700;line-height:.98;letter-spacing:-.045em;font-size:clamp(44px,5.5vw,76px);position:relative;padding-bottom:18px}
+.hero h1:after{content:"";position:absolute;left:0;bottom:0;width:145px;height:5px;border-radius:50%;background:#C98566;transform:rotate(-2deg)}
+.hero .eyebrow,.eyebrow{color:#667C59}
+.hero .lead{color:var(--ink-2);font-size:20px;max-width:46ch}
+.hero .btn-ghost,.btn-ghost{color:var(--green);border:1px solid #83A08C;background:transparent}
+.btn{border-radius:8px}
+.btn-cta{background:var(--green);color:#FFF}
+.hero-art{min-height:410px;position:relative;isolation:isolate;padding-top:100px}
+.hero-art:before{content:"";position:absolute;z-index:-2;inset:-60px -30px -25px;background:url('/assets/img/botanical-cafe.webp') center top/contain no-repeat}
+.hero-art:after{content:"Cafe days, made brighter.";position:absolute;top:8px;left:6px;max-width:140px;padding:18px;color:#FFF9EB;background:#0E5B49;font:italic 23px/1.25 Georgia,serif;transform:rotate(-7deg);box-shadow:4px 5px 0 #D5DDC4;clip-path:polygon(2% 0,97% 3%,100% 95%,3% 100%,0 4%)}
+.device{position:relative;transform:rotate(3deg);margin-top:80px;border-radius:19px;padding:10px;background:#26332C;box-shadow:0 20px 35px #173C302B;border:1px solid #69766B}
+.device img{border-radius:10px}
+.phone{right:-8px;bottom:-10px;transform:rotate(-7deg);border-radius:19px;padding:6px;background:#28372E;border:1px solid #728072;box-shadow:0 12px 24px #173C3030}
+.phone img{border-radius:13px}
+.card{border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow)}
+.grid .card:nth-child(3n+2){background:#F3F0F8}.grid .card:nth-child(3n+3){background:#FBF0E8}
+.icon{background:#E0E7D5;border-radius:47% 53% 42% 58%;color:var(--green)}
+.grid .card:nth-child(3n+2) .icon{background:#DCD8EA}.grid .card:nth-child(3n+3) .icon{background:#EBC5B1}
+.band{background:#EEF1E6;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tag,.chips span{color:var(--green);background:#E4EBDB}
+.chips span:nth-child(3n+2){background:#EAE5F0;color:#5B4D73}.chips span:nth-child(3n+3){background:#F4E1D3;color:#784C38}
+.plan.best{border:2px solid #739B78;background:#F0F4E9}
+.cta{background:#E6ECDD;color:var(--ink);box-shadow:none;border:1px solid var(--line);border-radius:26px}
+.cta .lead{color:var(--ink-2)}
+footer{background:#F1F0E7}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #9D6145;outline-offset:4px}
+@media(max-width:880px){.hero .wrap{padding:42px 0 60px;gap:20px}.hero-art{width:min(560px,100%);margin:auto;min-height:400px}.hero .lead{font-size:19px}.hero-art:before{inset:-35px 0 -10px}.device{margin:80px 12px 0}.phone{right:6px;width:24%}}
+@media(max-width:640px){.top .wrap{height:auto;min-height:68px;flex-wrap:wrap;gap:4px;padding:10px 0}.nav{width:100%;margin:0;flex-wrap:wrap}.nav a:not(.btn){display:inline-flex}.nav a{padding:7px 9px;font-size:14px}.nav .btn{margin-left:auto}.hero h1{font-size:47px}.hero-art{min-height:320px;padding-top:70px}.hero-art:after{font-size:18px;max-width:120px;padding:12px}.hero-art:before{inset:0}.device{margin-top:70px}.hero .wrap{padding-bottom:48px}.cta{padding:32px 20px}section{padding:56px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Regional plan comparison */
+[hidden]{display:none!important}.pricing-controls{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:18px;margin:30px 0 12px}.pricing-tabs,.pricing-cycle{display:flex;gap:4px;flex-wrap:wrap;border:1px solid #C7D4BF;border-radius:14px;padding:5px;background:#FAF7EF}.pricing-controls button{font:600 16px var(--body);padding:12px 18px;border:0;border-radius:10px;color:var(--green);background:transparent;cursor:pointer;min-height:44px}.pricing-tabs [aria-selected="true"],.pricing-cycle [aria-pressed="true"]{background:var(--green);color:#FFF}.pricing-status{text-align:center;font-weight:600;color:var(--ink-2);margin:18px 0 0}.pricing-panel .grid{margin-top:22px}.pricing-panel .plan{display:flex;flex-direction:column;align-items:flex-start}.pricing-panel .plan ul{flex:1}.pricing-panel .plan .btn{margin-top:24px}.pricing-panel .price small{font:400 16px var(--body);color:var(--muted);white-space:nowrap}.price-unit{font-size:14px;color:var(--muted);margin-top:5px}.pricing-notice,.pricing-small{font-size:15px;line-height:1.6;max-width:900px;margin:24px auto 0;color:var(--ink-2)}.pricing-notice{padding:16px 20px;background:#FAF7EF;border-radius:12px}.pricing-panel .recipe{font-size:14px;color:var(--muted);margin-top:18px}.pricing-panel:focus-visible{outline:2px solid var(--green);outline-offset:5px}
+@media(max-width:640px){.pricing-controls{align-items:stretch;gap:12px}.pricing-tabs,.pricing-cycle{justify-content:center}.pricing-controls button{padding:11px 14px}.pricing-panel .price{font-size:31px}}
+
+#pricing{scroll-margin-top:85px}@media(max-width:640px){#pricing{scroll-margin-top:155px}}
+
+/* Cafe workflows and pilot checklist: native links, readable at every width. */
+.journey{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:32px 0}.journey li{padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:20px}.step-number{display:block;font:700 15px var(--body);letter-spacing:.05em;color:var(--green);margin-bottom:14px}.journey h3,.card .tag+h3{margin-top:16px}#workflow,#getting-started{scroll-margin-top:90px}@media(max-width:700px){.journey{grid-template-columns:1fr}#workflow,#getting-started{scroll-margin-top:160px}}

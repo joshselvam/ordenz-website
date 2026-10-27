@@ -1,7 +1,7 @@
 {
-  "company": "StarNest",
-  "tagline": "Apps for small businesses",
-  "legalName": "Joshua Selvam (StarNest)",
+  "company": "OrdenZ",
+  "tagline": "Cafe POS, kiosk and kitchen",
+  "legalName": "Joshua Selvam",
   "city": "India",
   "email": "iamjoshuaselvam@gmail.com",
   "whatsapp": "",
@@ -10,6 +10,38 @@
   "demoUrl": "",
   "playUrl": "",
   "year": "2026",
-  "priceStarter": "",
-  "pricePro": ""
+  "pricing": {
+    "IN": {
+      "currency": "INR",
+      "locale": "en-IN",
+      "label": "India",
+      "status": "Current app list prices",
+      "monthly": {
+        "free": 0,
+        "starter": 999,
+        "pro": 1999
+      },
+      "annual": {
+        "free": 0,
+        "starter": 9999,
+        "pro": 19999
+      }
+    },
+    "MY": {
+      "currency": "MYR",
+      "locale": "en-MY",
+      "label": "Malaysia",
+      "status": "Indicative pilot prices \u2014 final quote required",
+      "monthly": {
+        "free": 0,
+        "starter": 99,
+        "pro": 199
+      },
+      "annual": {
+        "free": 0,
+        "starter": 990,
+        "pro": 1990
+      }
+    }
+  }
 }
