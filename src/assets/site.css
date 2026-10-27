@@ -1,36 +1,44 @@
 /* Colours follow the OrdenZ app: light by default, dark when the visitor's system is dark, and the
    header button overrides either (saved in localStorage as "ordenz.theme"). Components use tokens only. */
+/* Colours are the OrdenZ app's own (server/public/css/app.css): the same light and dark palettes, and the same
+   colour for each part of the cafe (sales blue, floor green, kitchen terracotta, stock ochre, marketing purple,
+   devices teal, account slate). Light by default, dark when the visitor's system is dark, and the header button
+   overrides either (saved as "ordenz.theme", the same key the app uses). Components use these tokens only. */
 :root{
-  --green:#0E5B49; --deep:#08392E; --saffron:#E39A17; --gold:#F2C46D; --on-green:#FFFFFF;
-  --ink:#14211C; --ink-2:#46564F; --muted:#54665B; --paper:#F6F5EE; --surface:#FFFEFB; --line:#D8E1D5; --soft:#E1ECDF;
-  --line-strong:#B9CBB8; --eyebrow:#4F6544; --notice:#8A5A12; --hero-glow:#E4EBD8; --dots:#897C5812; --top:#F6F5EEF2;
-  --band:#EDF2E8; --footer:#EFEFE6; --cta:#E6ECDD; --tag:#E4EBDB; --focus:#9D6145;
-  --tint-2:#F3F0F8; --tint-3:#FBF0E8; --icon-1:#E0E7D5; --icon-2:#DCD8EA; --icon-3:#EBC5B1;
-  --chip-2:#EAE5F0; --chip-2-ink:#5B4D73; --chip-3:#F4E1D3; --chip-3-ink:#784C38;
-  --best:#F0F4E9; --best-line:#739B78;
+  --paper:#FFFCF5; --surface:#FFFFFF; --soft:#EEF5EF; --line:#D7E4DA; --line-strong:#B9CBB8;
+  --ink:#14211C; --ink-2:#46564F; --muted:#596E62;
+  --green:#0E5B49; --on-green:#FFFFFF; --green-soft:#DCEBE5; --deep:#08392E;
+  --saffron:#F0B13D; --saffron-ink:#2A1900; --gold:#F2C46D;
+  --eyebrow:#4F6544; --notice:#8A5A12; --focus:#9D6145;
+  --hero-glow:#E4EBD8; --dots:#897C5812; --top:#FFFCF5F2; --band:#F4F7F1; --footer:#F2F2EA; --cta:#E6ECDD;
+  --s-sales:#1F5FA8; --s-floor:#0E5B49; --s-kitchen:#A4431F; --s-stock:#7A5A12; --s-market:#6B3FA0; --s-devices:#0B6B7A; --s-account:#46564F;
+  --s-ink:#FFFFFF;
   --display:"Bricolage Grotesque","Hind Madurai",system-ui,sans-serif;
   --body:"Hind Madurai",system-ui,-apple-system,"Segoe UI",sans-serif;
   --r:20px; --shadow:0 2px 4px #173C300A,0 8px 24px #173C3010;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --green:#3DB291; --deep:#0B110F; --on-green:#04201A;
-  --ink:#E7EEEA; --ink-2:#B2C0B9; --muted:#A0B3A8; --paper:#0B110F; --surface:#18221E; --line:#3A4D43; --soft:#22312A;
-  --line-strong:#4B6356; --eyebrow:#9BC28E; --notice:#F2C46D; --hero-glow:#16352D; --dots:#FFFFFF08; --top:#0B110FF2;
-  --band:#121A17; --footer:#0F1714; --cta:#16352D; --tag:#1E3A31; --focus:#E8A07E;
-  --tint-2:#1D1C2A; --tint-3:#2A1F1A; --icon-1:#22312A; --icon-2:#2A2840; --icon-3:#3B2A22;
-  --chip-2:#2A2840; --chip-2-ink:#CBC1E6; --chip-3:#3B2A22; --chip-3-ink:#F0C9B4;
-  --best:#16352D; --best-line:#3DB291;
+  --paper:#0B110F; --surface:#18221E; --soft:#22312A; --line:#3A4D43; --line-strong:#4B6356;
+  --ink:#E7EEEA; --ink-2:#B2C0B9; --muted:#A0B3A8;
+  --green:#3DB291; --on-green:#04201A; --green-soft:#16352D; --deep:#0B110F;
+  --eyebrow:#9BC28E; --notice:#F2C46D; --focus:#E8A07E;
+  --hero-glow:#16352D; --dots:#FFFFFF08; --top:#0B110FF2; --band:#121A17; --footer:#0F1714; --cta:#16352D;
+  --s-sales:#7FB2F0; --s-floor:#3DB291; --s-kitchen:#F08C66; --s-stock:#E3B54F; --s-market:#BFA0EE; --s-devices:#5CC8D6; --s-account:#A9B8B1;
+  --s-ink:#0B110F;
   --shadow:0 2px 4px #0005,0 10px 26px #0004; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --green:#3DB291; --deep:#0B110F; --on-green:#04201A;
-  --ink:#E7EEEA; --ink-2:#B2C0B9; --muted:#A0B3A8; --paper:#0B110F; --surface:#18221E; --line:#3A4D43; --soft:#22312A;
-  --line-strong:#4B6356; --eyebrow:#9BC28E; --notice:#F2C46D; --hero-glow:#16352D; --dots:#FFFFFF08; --top:#0B110FF2;
-  --band:#121A17; --footer:#0F1714; --cta:#16352D; --tag:#1E3A31; --focus:#E8A07E;
-  --tint-2:#1D1C2A; --tint-3:#2A1F1A; --icon-1:#22312A; --icon-2:#2A2840; --icon-3:#3B2A22;
-  --chip-2:#2A2840; --chip-2-ink:#CBC1E6; --chip-3:#3B2A22; --chip-3-ink:#F0C9B4;
-  --best:#16352D; --best-line:#3DB291;
+  --paper:#0B110F; --surface:#18221E; --soft:#22312A; --line:#3A4D43; --line-strong:#4B6356;
+  --ink:#E7EEEA; --ink-2:#B2C0B9; --muted:#A0B3A8;
+  --green:#3DB291; --on-green:#04201A; --green-soft:#16352D; --deep:#0B110F;
+  --eyebrow:#9BC28E; --notice:#F2C46D; --focus:#E8A07E;
+  --hero-glow:#16352D; --dots:#FFFFFF08; --top:#0B110FF2; --band:#121A17; --footer:#0F1714; --cta:#16352D;
+  --s-sales:#7FB2F0; --s-floor:#3DB291; --s-kitchen:#F08C66; --s-stock:#E3B54F; --s-market:#BFA0EE; --s-devices:#5CC8D6; --s-account:#A9B8B1;
+  --s-ink:#0B110F;
   --shadow:0 2px 4px #0005,0 10px 26px #0004; color-scheme:dark}
+/* A part of the cafe, as in the app: set data-s on a block and it takes that colour */
+[data-s="sales"]{--s:var(--s-sales)}[data-s="floor"]{--s:var(--s-floor)}[data-s="kitchen"]{--s:var(--s-kitchen)}[data-s="stock"]{--s:var(--s-stock)}
+[data-s="market"]{--s:var(--s-market)}[data-s="devices"]{--s:var(--s-devices)}[data-s="account"]{--s:var(--s-account)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.6 var(--body);-webkit-font-smoothing:antialiased}
@@ -60,7 +68,7 @@ p{margin:0}
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 17px var(--body);text-decoration:none;padding:13px 22px;border-radius:12px;border:0;cursor:pointer}
 .btn-primary{background:var(--green);color:var(--on-green)}
-.btn-cta{background:var(--saffron);color:#2A1900}
+.btn-cta{background:var(--saffron);color:var(--saffron-ink)}
 .btn-soft{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
 .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28)}
 .btn:hover{filter:brightness(1.05)}
@@ -199,13 +207,15 @@ body{background-color:var(--paper);background-image:radial-gradient(var(--dots) 
 .phone{right:-8px;bottom:-10px;transform:rotate(-7deg);border-radius:19px;padding:6px;background:#28372E;border:1px solid #728072;box-shadow:0 12px 24px #173C3030}
 .phone img{border-radius:13px}
 .card{border:1px solid var(--line);border-radius:18px;background:var(--surface);box-shadow:var(--shadow)}
-.grid .card:nth-child(3n+2){background:var(--tint-2)}.grid .card:nth-child(3n+3){background:var(--tint-3)}
-.icon{background:var(--icon-1);border-radius:47% 53% 42% 58%;color:var(--green)}
-.grid .card:nth-child(3n+2) .icon{background:var(--icon-2)}.grid .card:nth-child(3n+3) .icon{background:var(--icon-3)}
+.icon{background:var(--green-soft);border-radius:47% 53% 42% 58%;color:var(--green)}
+.card[data-s]{border-top:4px solid var(--s)}
+.card[data-s] .icon{background:color-mix(in srgb,var(--s) 16%,var(--surface));color:var(--s)}
+.card[data-s] .tag,.card[data-s] .step-number{color:var(--s)}
+.card[data-s] .tag{background:color-mix(in srgb,var(--s) 13%,var(--surface))}
 .band{background:var(--band);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.tag,.chips span{color:var(--green);background:var(--tag)}
-.chips span:nth-child(3n+2){background:var(--chip-2);color:var(--chip-2-ink)}.chips span:nth-child(3n+3){background:var(--chip-3);color:var(--chip-3-ink)}
-.plan.best{border:2px solid var(--best-line);background:var(--best)}
+.tag,.chips span{color:var(--green);background:var(--green-soft)}
+.chips span[data-s]{color:var(--s);background:color-mix(in srgb,var(--s) 13%,var(--surface))}
+.plan.best{border:2px solid var(--saffron);background:color-mix(in srgb,var(--saffron) 7%,var(--surface))}
 .cta{background:var(--cta);color:var(--ink);box-shadow:none;border:1px solid var(--line);border-radius:26px}
 .cta .lead{color:var(--ink-2)}
 footer{background:var(--footer)}
@@ -229,3 +239,69 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .theme-btn svg{width:16px;height:16px}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero-art:before{opacity:.55}}
 :root[data-theme="dark"] .hero-art:before{opacity:.55}
+
+/* ---------- parts of the cafe (product page), the same colours as the app's tabs ---------- */
+.feature[data-s] .eyebrow{color:var(--s)}
+.feature[data-s] .shot{border-color:color-mix(in srgb,var(--s) 35%,var(--line))}
+.feature[data-s] li::marker{color:var(--s)}
+.group{margin-top:72px;padding:28px 30px;border-radius:22px;background:color-mix(in srgb,var(--s) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--s) 25%,var(--line));display:grid;grid-template-columns:auto 1fr;gap:6px 22px;align-items:center}
+.group:first-of-type{margin-top:40px}
+.group .pill{grid-row:span 2;display:inline-flex;align-items:center;justify-content:center;min-width:56px;height:56px;border-radius:16px;background:var(--s);color:var(--s-ink);font:800 22px var(--display)}
+.group h2{font-size:clamp(26px,3vw,36px)}
+.group p{color:var(--ink-2)}
+.group p b{color:var(--s)}
+.toc-parts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.toc-parts a{text-decoration:none;font-weight:700;font-size:15px;padding:8px 14px;border-radius:999px;color:var(--s);background:color-mix(in srgb,var(--s) 12%,var(--surface));border:1px solid color-mix(in srgb,var(--s) 30%,var(--line))}
+.toc-parts a:hover{background:var(--s);color:var(--s-ink)}
+@media(max-width:640px){.group{grid-template-columns:1fr;padding:22px}.group .pill{grid-row:auto;width:48px;min-width:48px;height:48px;font-size:19px}}
+
+/* ---------- a day at your cafe (home) ---------- */
+.day{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:14px;position:relative}
+.day:before{content:"";position:absolute;left:83px;top:10px;bottom:10px;width:3px;border-radius:3px;background:linear-gradient(var(--s-devices),var(--s-floor),var(--s-kitchen),var(--s-stock),var(--s-sales))}
+.day li{display:grid;grid-template-columns:70px 28px 1fr;gap:0 14px;align-items:start}
+.day time{font:800 18px var(--display);text-align:right;padding-top:16px;color:var(--ink)}
+.day .dot{width:18px;height:18px;border-radius:50%;margin:18px 0 0 5px;background:var(--s);box-shadow:0 0 0 5px var(--paper);position:relative;z-index:1}
+.day .moment{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--s);border-radius:16px;padding:16px 20px;box-shadow:var(--shadow)}
+.day .moment h3{font-size:20px}
+.day .moment p{color:var(--ink-2);margin-top:4px}
+.day .moment .who{display:inline-block;margin-top:8px;font-size:14px;font-weight:700;color:var(--s)}
+@media(max-width:640px){.day:before{left:63px}.day li{grid-template-columns:52px 26px 1fr;gap:0 8px}.day time{font-size:15px}.day .moment{padding:14px 16px}}
+
+/* ---------- numbers strip ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:14px;margin-top:36px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;text-align:center}
+.stat b{display:block;font:800 clamp(30px,4vw,42px)/1 var(--display);color:var(--green)}
+.stat span{display:block;margin-top:8px;color:var(--ink-2);font-size:16px}
+
+/* ---------- try-this list (demo page) ---------- */
+.tries{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:16px;margin-top:32px}
+.try{display:flex;gap:14px;align-items:flex-start;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--s);border-radius:16px;padding:16px 18px;transition:transform .15s}
+a.try:hover{transform:translateY(-2px);border-color:var(--s)}
+.try .n{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font:800 16px var(--display);background:var(--s);color:var(--s-ink)}
+.try h3{font-size:18px}
+.try p{color:var(--ink-2);font-size:16px;margin-top:4px}
+.try .as{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;color:var(--s)}
+.demo-card[data-s]{border-top:4px solid var(--s)}
+
+/* ---------- ways to get help (support) ---------- */
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px;margin-top:28px}
+.way{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.way.wa{border-color:#1F8A4C;background:color-mix(in srgb,#25D366 9%,var(--surface))}
+.way h3{font-size:20px}.way p{color:var(--ink-2);font-size:16px}
+.way .btn{margin-top:auto;align-self:flex-start}
+.btn-wa{background:#1A7F44;color:#fff}
+:root[data-theme="dark"] .btn-wa{background:#3CCB78;color:#04201A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn-wa{background:#3CCB78;color:#04201A}}
+
+/* ---------- start a cafe ---------- */
+.country-tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.country-tabs a{text-decoration:none;font-weight:700;padding:10px 18px;border-radius:12px;border:1px solid var(--line-strong);color:var(--green)}
+.country-tabs a:hover{background:var(--green);color:var(--on-green)}
+.steps-list{counter-reset:st;list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
+.steps-list li{counter-increment:st;position:relative;padding:14px 16px 14px 58px;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--ink-2)}
+.steps-list li:before{content:counter(st);position:absolute;left:14px;top:13px;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--green);color:var(--on-green);font:800 15px var(--display)}
+.steps-list li b{color:var(--ink)}
+.callout{margin-top:20px;padding:16px 20px;border-radius:14px;background:color-mix(in srgb,var(--saffron) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--saffron) 45%,var(--line));color:var(--ink)}
+.sources{font-size:15px;color:var(--muted)}.sources a{color:var(--ink-2)}
+.faq-group{margin-top:36px}.faq-group h3{font-size:24px}
+.doc a:not(.btn),.faq a,details a{color:var(--green);text-underline-offset:3px}

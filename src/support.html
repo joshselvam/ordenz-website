@@ -1,36 +1,37 @@
 {{> head}}
 {{> header}}
-<main id="main"><div class="wrap doc">
+<main id="main"><div class="wrap doc" style="max-width:960px">
 <div class="eyebrow">Help</div>
-<h1 style="margin-top:8px">Help and support</h1>
-<p class="lead" style="margin-top:14px">Stuck, found a problem or have an idea? Here's the quickest way to reach us.</p>
+<h1 style="margin-top:8px">We're here to help</h1>
+<p class="lead" style="margin-top:14px">Stuck on a screen, found a problem, or have an idea? Real people answer, and the app tells us which screen you were on so you don't have to explain.</p>
 
-<h2>1. In the app: Feedback</h2>
-<p>Tap <b>Help</b> at the top of any screen, then <b>Send feedback</b>. Choose <i>Something's wrong</i>, <i>An idea</i> or <i>A question</i>, write what happened and tap Send. It reaches the OrdenZ team straight away, with the screen you were on, the app version and the kind of device, so you don't have to explain those.</p>
-<p>Tick <i>OrdenZ can email me about this</i> if you'd like a reply. We answer at the cafe owner's email address.</p>
-
-<h2>2. On WhatsApp</h2>
-{{#if waLink}}<p><a class="btn btn-primary" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%20need%20help%20with%20my%20cafe." rel="noopener">Chat with us on WhatsApp</a></p>
-<p>Send photos, screenshots or voice notes. In the app, <b>Help → Chat with us on WhatsApp</b> also adds your cafe, the screen you're on and the app version to the message, so we can help faster.</p>{{/if}}
-
-<h2>3. By email</h2>
-<p>{{#if email}}<a href="mailto:{{email}}">{{email}}</a>{{/if}}. Please include your cafe code (shown under Menu &amp; settings), what you were doing, and a screenshot if you can. Never send passwords, PINs or card numbers.</p>
+<div class="ways">
+  {{#if waLink}}<div class="way wa"><h3>Chat on WhatsApp</h3><p>The quickest way. Send photos, screenshots or voice notes. From the app, tap <b>Help → Chat with us on WhatsApp</b> and your cafe, the screen and the app version are added for you.</p>
+    <a class="btn btn-wa" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%20need%20help%20with%20my%20cafe." rel="noopener">Open WhatsApp</a></div>{{/if}}
+  <div class="way"><h3>Send feedback in the app</h3><p>Tap <b>Help → Send feedback</b> on any screen. Choose <i>Something's wrong</i>, <i>An idea</i> or <i>A question</i>. It reaches the OrdenZ team straight away.</p></div>
+  {{#if email}}<div class="way"><h3>Email us</h3><p>Good for longer questions and anything with attachments. Include your cafe code from Menu &amp; settings.</p>
+    <a class="btn btn-soft" href="mailto:{{email}}?subject=Help%20with%20my%20cafe">{{email}}</a></div>{{/if}}
+  <div class="way"><h3>Read the guide</h3><p>Every screen explained, step by step, with pictures. Search it, or pick your role to see only what matters to you.</p>
+    <a class="btn btn-soft" href="/ordernest/help/">Open the guide</a></div>
+</div>
 
 <h2>When we reply</h2>
-<p>We aim to reply within one working day, India and Malaysia time. Messages marked <b>URGENT</b> in the subject (you can't take bills or payments) are looked at first.</p>
+<p>We aim to reply within one working day, India and Malaysia time, and usually much sooner on WhatsApp. If you can't take bills or payments, start your message with <b>URGENT</b> and we'll look at it first.</p>
 
 <h2>If the internet or OrdenZ is down</h2>
-<ul>
-<li>Keep billing at the counter: bills are saved on the tablet with an offline number and sent automatically, never twice, when the connection is back.</li>
-<li>Receipts still print on Bluetooth and network printers.</li>
-<li>UPI at the kiosk and table QR ordering need internet. Take those orders at the counter for now.</li>
-</ul>
+<ol class="steps-list">
+  <li><b>Keep billing at the counter.</b> Bills are saved on the tablet with an offline number and sent automatically, never twice, when the connection is back.</li>
+  <li><b>Receipts still print</b> on Bluetooth and network printers.</li>
+  <li><b>Take kiosk and table QR orders at the counter for now.</b> UPI at the kiosk and ordering from the table need internet.</li>
+  <li><b>Tell us on WhatsApp</b> if it lasts more than a few minutes, so we can check our side.</li>
+</ol>
 
 <h2>Common questions</h2>
-<details><summary>How do I set up my cafe?</summary><p>Sign in as the owner and follow <b>Get your cafe ready</b> on the Owner screen: your menu, the details on your bills, payments, your team, a printer and a kiosk. The <a href="/ordernest/help/">guide</a> shows each step with pictures.</p></details>
-<details><summary>Can I practise before opening?</summary><p>Yes. Ask us to turn on practice mode for your cafe: sample customers order every few minutes for a week, so your team can try the kiosk, kitchen and token screen. Practice bills are removed when you start selling for real.</p></details>
-<details><summary>A kiosk or token TV won't sign in</summary><p>On the tablet, choose <b>Kiosk / TV</b>, enter your cafe code and the device key from Menu &amp; settings. If the owner changed the device key or locked the device, pair it again.</p></details>
-<details><summary>I forgot my owner password</summary><p>Email us from the owner's email address with your cafe code and we'll help you reset it.</p></details>
+<details><summary>How do I set up my cafe?</summary><p>Sign in as the owner and follow <b>Get your cafe ready</b> on the Owner screen: your menu, the details on your bills, payments, your team, a printer and a kiosk. The <a href="/ordernest/help/">guide</a> shows each step with pictures, and the <a href="/start-a-cafe/">starter guide</a> covers licences and equipment.</p></details>
+<details><summary>Can my team practise before we open?</summary><p>Yes. Ask us to turn on practice mode for your cafe: sample customers order every few minutes for a week, so your team can try the kiosk, kitchen and token screen. Practice bills are removed when you tap <b>Start selling for real</b>.</p></details>
+<details><summary>A kiosk or token TV won't sign in</summary><p>On the tablet, choose <b>Kiosk / TV</b>, enter your cafe code and the device key from Menu &amp; settings. If the owner made a new device key or locked the device, pair it again.</p></details>
+<details><summary>The printer doesn't print</summary><p>Tap <b>Printer</b> at the top of the counter or kitchen screen and print a test page. For Bluetooth, pair the printer in the tablet's settings first; for a network printer, check its IP address. Still stuck? Send us a photo of the printer's label on WhatsApp.</p></details>
+<details><summary>I forgot my owner password</summary><p>Message us from the owner's email address or WhatsApp number with your cafe code, and we'll help you reset it.</p></details>
 <details><summary>How do I delete my account?</summary><p>See <a href="/delete-account/">how to delete your account</a>.</p></details>
 
 <p style="margin-top:28px">See also: <a href="/terms/">terms of service</a> · <a href="/privacy/">privacy policy</a></p>
