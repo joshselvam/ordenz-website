@@ -19,6 +19,7 @@ const out = path.join(here, "dist");
 const cfg = JSON.parse(fs.readFileSync(path.join(here, "site.config.json"), "utf8"));
 cfg.siteUrl = String(process.env.SITE_URL || cfg.siteUrl || "").replace(/\/+$/, "");
 if (!cfg.siteUrl) throw new Error("Set siteUrl in site.config.json (or SITE_URL) so canonical links, the sitemap and share images use the real address");
+const pricingApp=new URL(cfg.appUrl||'https://app.ordenz.com');if(pricingApp.protocol!=='https:'&&!(pricingApp.protocol==='http:'&&['localhost','127.0.0.1'].includes(pricingApp.hostname)))throw Error('Use an HTTPS app URL for public pricing');cfg.appOrigin=pricingApp.origin;
 cfg.emailOrWhatsapp = cfg.email || cfg.whatsapp;
 cfg.waLink = cfg.whatsapp ? `https://wa.me/${String(cfg.whatsapp).replace(/\D/g, "")}` : "";
 cfg.contactLink = cfg.email ? `mailto:${cfg.email}` : cfg.waLink || "#contact";
@@ -62,7 +63,7 @@ const pages = [
 const inlineScripts = new Set();
 const collectScripts = (html) => { for (const m of html.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)) if (m[1].trim()) inlineScripts.add(m[1]); };
 for (const p of pages) {
-  const source=fs.readFileSync(path.join(src,p.file),"utf8").replace("<!-- REGIONAL_PRICING -->",renderPricing(cfg.pricing,cfg.contactLink));
+  const source=fs.readFileSync(path.join(src,p.file),"utf8").replace("<!-- REGIONAL_PRICING -->",renderPricing(cfg.pricing,cfg.contactLink,cfg.appUrl));
   const html = render(source, { pageTitle: p.title, pageDesc: p.desc, pagePath: p.path, canonical: cfg.siteUrl + p.path });
   fs.mkdirSync(path.dirname(path.join(out, p.out)), { recursive: true });
   fs.writeFileSync(path.join(out, p.out), html);

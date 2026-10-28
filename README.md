@@ -26,7 +26,7 @@ The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standa
 | Privacy | `src/privacy.html` | What the app handles, including item photos and bulk-order customer details. Update the "Last updated" date when it changes |
 | Delete account | `src/delete-account.html` | The Play Store account-deletion page |
 
-Keep the OrdenZ page in step with the app: the trial is 30 days of Pro from the first real bill; Starter adds bulk & catering orders; Pro adds voice/AI ordering, unlimited devices and managing the cafe from any browser. Country prices come from `pricing.IN` and `pricing.MY` in `site.config.json`. India values match the app; Malaysia values are explicitly indicative quotes.
+Keep the OrdenZ page in step with the app: the trial is 30 days of Pro from the first real bill; Starter adds bulk & catering orders; Pro adds voice/AI ordering, unlimited devices and managing the cafe from any browser. Country prices come from `pricing.IN` and `pricing.MY` in `site.config.json`. India values match the app; Malaysia list prices are confirmed and settled by invoice.
 
 Images in `src/assets/img/` include real app screenshots and `botanical-cafe.webp`, a decorative illustration. The Indie Botanical design uses ivory paper, emerald serif headings, sage foliage, terracotta accents and collage layers. Actual app screenshots sit above the artwork as responsive HTML images; links and controls remain native HTML. All public navigation links stay available on small screens.
 
@@ -78,7 +78,7 @@ The selected Cafe Crest replaces the earlier OZ cup mark in the header, footer, 
 
 ## Regional pricing tabs — 27 October 2026
 
-`site.config.json` → `pricing` is the display data for the India and Malaysia panels. `pricing.mjs` validates and renders accessible server-built cards; `src/assets/pricing.js` switches country and billing cycle without contacting payment services. India values match the current app billing constants. MYR prices are indicative pilot quotes, not an activated subscription offer. Do not publish a quote as a guaranteed checkout price without matching billing configuration, regional readiness, tax/support terms and approval.
+`site.config.json` → `pricing` is the display data for the India and Malaysia panels. `pricing.mjs` validates and renders accessible server-built cards; `src/assets/pricing.js` switches country and billing cycle without contacting payment services. India values match the current app billing constants. MYR list prices are settled by invoice; online MYR subscription checkout is not enabled. Do not publish a quote as a guaranteed checkout price without matching billing configuration, regional readiness, tax/support terms and approval.
 
 Build: `node build.mjs`. Unit checks: `node --test test/pricing.test.mjs`. Local responsive/keyboard/no-JS tests and India billing-parity assertions: run the app repository’s `server/scripts/website-pricing-qa.mjs` with the local site at port 8088.
 
@@ -91,3 +91,7 @@ Reviewed StoreHub's homepage and F&B page (https://www.storehub.com/ and https:/
 Product FAQs explain migration limits, configured services, third-party costs, hardware checks and demo availability. Manual Malaysian DuitNow recording is distinguished from automatic payment integration; menu screenshot import is distinguished from live aggregator intake. No customer counts, testimonials, uptime guarantees or support SLA were invented. Collect consented pilot stories and measured results before adding social proof.
 
 Built since: table QR ordering, split and multiple-payment bills, day-end cash closing, delivery-app orders with payouts, Tally export, an all-outlets view and Malaysian e-invoice files (prepared, not submitted). Still pending: live delivery-platform order intake and automatic DuitNow payments.
+
+## Regional price update — 28 October 2026
+
+India Starter: ₹987 monthly / ₹9,870 yearly; Pro: ₹1,987 monthly / ₹19,870 yearly. Malaysia Starter: RM97 monthly / RM970 yearly; Pro: RM197 monthly / RM1,970 yearly. Annual prices equal ten monthly payments. The app's regional defaults match this configuration. Approved public catalog versions override website defaults; client-specific bundles and existing agreements are excluded from the public feed. India provider plan amounts must match before checkout; Malaysia remains invoiced. Deployment is required for these source changes to appear online.
