@@ -90,7 +90,7 @@ Reviewed StoreHub's homepage and F&B page (https://www.storehub.com/ and https:/
 
 Product FAQs explain migration limits, configured services, third-party costs, hardware checks and demo availability. Manual Malaysian DuitNow recording is distinguished from automatic payment integration; menu screenshot import is distinguished from live aggregator intake. No customer counts, testimonials, uptime guarantees or support SLA were invented. Collect consented pilot stories and measured results before adding social proof.
 
-Built since: table QR ordering, split and multiple-payment bills, day-end cash closing, delivery-app orders with payouts, Tally export, an all-outlets view and Malaysian e-invoice files (prepared, not submitted). Still pending: live delivery-platform order intake and automatic DuitNow payments.
+Built since: table QR ordering, guest waitlist QR with wait minutes, split and multiple-payment bills, day-end cash closing, delivery-app orders with payouts, purchase day book and GST/SST working sheets, Tally import (not a live push), linked outlets with date range, copy menu and stock transfers (cap 50), Malaysian e-invoice ZIP submitted via the cafe's provider (OrdenZ does not log in to MyInvois), and PIN clock-in with hours and EPF/SOCSO or PF/ESI working sheets (not government filing). Still pending: live delivery-platform order intake and automatic DuitNow payments.
 
 ## Regional price update — 28 October 2026
 

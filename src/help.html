@@ -10,7 +10,7 @@
 <section style="padding:32px 0 88px"><div class="wrap g-layout">
   <aside class="g-side">
     <label class="sr" for="gq">Search the guide</label>
-    <input id="gq" type="search" placeholder="Search: printer, GST, SST, PIN, booking…" autocomplete="off">
+    <input id="gq" type="search" placeholder="Search: waitlist, Tally, clock-in, e-invoice…" autocomplete="off">
     <div class="g-roles" role="group" aria-label="Show help for">
       <button type="button" data-role="all" aria-pressed="true">Everyone</button>
       <button type="button" data-role="owner" aria-pressed="false">Owner</button>
@@ -27,16 +27,17 @@
 
   <div class="g-body" id="gbody">
 
-  <article class="g-topic" id="start" data-roles="owner" data-keys="sign up register trial account first bill setup start practice sample customers test">
+  <article class="g-topic" id="start" data-roles="owner" data-keys="sign up register trial account first bill setup start practice sample customers test new cafe coach assistant">
     <h2>1. Set up your cafe</h2>
     <p>You can be selling in an afternoon. The 30-day Pro trial only starts with your first real bill, so setting up is free.</p>
-    <ol><li>Open OrdenZ, choose <b>New cafe</b>, and enter your cafe name, your name, email and a password.</li>
-      <li>Go to <b>Menu &amp; settings</b> and fill in your cafe name, address, GSTIN, FSSAI number, UPI ID and GST rate. These print on every bill.</li>
-      <li>Add your menu: type items one by one, upload the <b>Excel template</b>, or take a photo of your printed menu and let AI read it (Pro).</li>
-      <li>Follow <b>Get your cafe ready</b> on the Owner screen: it ticks off each step as you do it, and hides itself when you're done.</li>
-      <li>Add item photos from the Menu page. They're cropped and shrunk on your phone, so they load fast on the kiosk.</li></ol>
-    <figure><img src="/assets/img/menu-import.webp" width="1440" height="810" alt="Importing a menu from a photo" loading="lazy"><figcaption>AI menu import: check the items it found, then save.</figcaption></figure>
-    <figure><img src="/assets/img/setup.webp" width="1440" height="810" alt="The Get your cafe ready checklist on the owner screen" loading="lazy"><figcaption>Your set-up checklist, worked out from what you've already done.</figcaption></figure>
+    <ol><li>Open OrdenZ, choose <b>New cafe</b>, and enter your cafe name, <b>Country</b> (India or Malaysia), your name, email and a password (at least 8 characters). Country sets currency, tax and kiosk languages. You can change it until the first real bill.</li>
+      <li>You land on <b>Owner</b>. Follow <b>Get your cafe ready</b> in order: menu, address and phone on bills, then optional pay, team, printer and kiosk. Take the first real bill last.</li>
+      <li>Under the checklist, <b>Ask how to set this up</b> points at the next unfinished step. Tap a question or <b>Ask the assistant</b>. It will not refund, send a campaign, or delete anything.</li>
+      <li>Add your menu: type items, use the sample menu, upload the <b>Excel template</b>, or (Pro) photograph a printed menu and check the items before saving.</li>
+      <li>In <b>Menu &amp; settings</b> fill in the details that print on bills: India GSTIN, FSSAI and UPI; Malaysia SSM, SST if registered, and Fiuu for automatic DuitNow QR.</li></ol>
+    <figure><img src="/assets/img/setup.webp" width="1440" height="810" alt="Get your cafe ready and Ask how to set this up on the owner screen" loading="lazy"><figcaption>A new cafe: the first-day checklist, then the setup coach for this cafe.</figcaption></figure>
+    <figure><img src="/assets/img/help-menu-empty.webp" width="1440" height="810" alt="Empty menu and cafe settings on a new cafe" loading="lazy"><figcaption>No items yet. Add one, import Excel, or use the sample menu from the checklist.</figcaption></figure>
+    <p>The longer walkthrough with pictures (sign-in through first bill, then tables, Tally, e-invoice, outlets and attendance) is the <a href="https://joshselvam.github.io/ordenz-app/docs/GETTING-STARTED.html">getting started guide</a>.</p>
     <h3>Practice first, with sample customers</h3>
     <p>Want to see OrdenZ busy before your first real customer, or train your team? Ask us to turn on <b>practice mode</b> for your cafe. A sample customer then orders about every 5 minutes for a week, on the kiosk or at the counter, so you can watch the kitchen screen, token TV, stock and reports working. If your menu is still empty, we add a sample menu so there's something to order.</p>
     <ul><li>Practice bills print <b>PRACTICE BILL · NOT A TAX INVOICE</b>. They don't count for GST or the Free plan's daily limit, and they don't start your trial.</li>
@@ -72,13 +73,13 @@
       <li>On the tablet, they choose <b>Staff PIN</b> and type their PIN.</li>
       <li>To change a role or a PIN, or stop someone signing in, tap <b>Edit</b> next to their name. It works within seconds, even on a tablet that's already signed in.</li></ol>
     <div class="g-table"><table><thead><tr><th>Role</th><th>Sees</th></tr></thead><tbody>
-      <tr><td>Manager</td><td>Everything day to day: reports, menu and prices, stock, suppliers, offers, tables and the team. Not the plan, billing, or other managers.</td></tr>
-      <tr><td>Captain</td><td>Tables, bookings, the waiting list, taking orders, the kitchen and the token TV.</td></tr>
-      <tr><td>Chef</td><td>Kitchen screen, recipes and batch cooking, stock, bulk orders to cook.</td></tr>
-      <tr><td>Cashier</td><td>Counter billing, payments, loyalty, tables and the token TV.</td></tr>
-      <tr><td>Store keeper</td><td>Stock, supplier invoices, wastage, recipes and bulk orders.</td></tr>
-      <tr><td>Cleaning</td><td>The table floor and their own clean-up jobs.</td></tr>
-      <tr><td>All-rounder</td><td>Counter, tables, kitchen, stock and bulk orders (what staff had before roles).</td></tr></tbody></table></div>
+      <tr><td>Manager</td><td>Everything day to day: reports, menu and prices, stock, suppliers, offers, tables, Attendance hours and the team. Not the plan, billing, or other managers.</td></tr>
+      <tr><td>Captain</td><td>Tables, bookings, the waiting list, taking orders, the kitchen, the token TV and Attendance.</td></tr>
+      <tr><td>Chef</td><td>Kitchen screen, recipes and batch cooking, stock, bulk orders to cook, Attendance.</td></tr>
+      <tr><td>Cashier</td><td>Counter billing, payments, loyalty, tables, the token TV and Attendance.</td></tr>
+      <tr><td>Store keeper</td><td>Stock, supplier invoices, wastage, recipes, bulk orders and Attendance.</td></tr>
+      <tr><td>Cleaning</td><td>The table floor, their own clean-up jobs and Attendance.</td></tr>
+      <tr><td>All-rounder</td><td>Counter, tables, kitchen, stock, bulk orders and Attendance (what staff had before roles).</td></tr></tbody></table></div>
     <figure><img src="/assets/img/team.webp" width="1440" height="810" alt="The Team panel with roles" loading="lazy"><figcaption>Only the owner can make or change managers.</figcaption></figure>
   </article>
 
@@ -144,10 +145,11 @@
     <figure><img src="/assets/img/chef.webp" width="1440" height="810" alt="The chef's kitchen screen" loading="lazy"><figcaption>The chef only sees the kitchen, recipes, stock and bulk orders.</figcaption></figure>
   </article>
 
-  <article class="g-topic" id="tables" data-roles="captain cleaning owner manager" data-keys="table booking reservation waiting list seat clean photo star tableturn">
+  <article class="g-topic" id="tables" data-roles="captain cleaning owner manager" data-keys="table booking reservation waiting list waitlist qr wait minutes seat clean photo star tableturn">
     <h2>12. Tables, bookings and clean-ups (TableTurn)</h2>
     <ol><li>Open <b>TableTurn</b> to see every table: free, reserved, seated or needs cleaning.</li>
       <li>Tap <b>New booking</b> for a reservation; OrdenZ suggests the right-size table and never double-books. Walk-ins go on <b>Add to waiting list</b>.</li>
+      <li>Print the <b>Waiting list QR</b> and put it at the door. Guests scan, join and see the wait in minutes. No app.</li>
       <li>When guests leave, tap the table. The clean-up job goes to the cleaning staff automatically.</li>
       <li>The cleaner takes a photo of the clean table to finish; the table is free again. The owner or manager can check the photo or send it back.</li>
       <li>Customers can give staff a star from the QR code on their bill.</li></ol>
@@ -191,24 +193,32 @@
     <figure><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard" loading="lazy"></figure>
   </article>
 
-  <article class="g-topic" id="reports" data-roles="owner manager" data-keys="reports export tally day book csv gst summary accountant outlets branches link">
+  <article class="g-topic" id="reports" data-roles="owner manager" data-keys="reports export tally day book purchase gst sst working sheet csv accountant outlets branches link copy menu stock transfer">
     <h2>17. Exports for your accountant, and all your outlets</h2>
-    <ol><li><b>Reports → Accounting export</b>: choose the dates, then download the day book (opens in Excel), the tax summary, or Tally files (ledgers once, then the vouchers).</li>
-      <li><b>Reports → All outlets</b>: link another cafe you own with its owner email and password. Each keeps its own menu, team and stock; you see today's sales, bills and low stock for all of them, and switch with one tap (Pro).</li></ol>
+    <ol><li><b>Reports → Accounting export</b>: choose the dates, then download the sales day book, the purchase day book, the GST or SST working sheet (not a filed return), or Tally files. The accountant imports the Tally XML; OrdenZ does not push live.</li>
+      <li><b>Reports → All outlets</b> (Pro): link another cafe you own (up to 50) with its owner email and password. Pick a day or a date range. Copy a menu to a linked outlet (recipes and stock stay put). Send a stock transfer: draft, then send; the other outlet receives it. This is not a central warehouse.</li></ol>
     <figure><img src="/assets/img/accounting-export.webp" width="1440" height="810" alt="The GST summary and the day book and Tally downloads" loading="lazy"><figcaption>The tax summary and the downloads for your accountant.</figcaption></figure>
   </article>
 
-  <article class="g-topic" id="einvoice" data-roles="owner manager cashier" data-keys="malaysia e-invoice einvoice myinvois lhdn consolidated tin buyer">
+  <article class="g-topic" id="einvoice" data-roles="owner manager cashier" data-keys="malaysia e-invoice einvoice myinvois lhdn consolidated tin buyer zip submit provider">
     <h2>18. Malaysia: MyInvois e-invoices</h2>
     <ol><li>Owner: in <b>Reports → e-Invoice</b>, fill in your e-invoice details once (TIN, MSIC code, business activity).</li>
-      <li>Each month, download the <b>consolidated e-invoice</b> for all ordinary bills and give it to your e-invoice provider or accountant to submit.</li>
+      <li>Each month, download the <b>MyInvois ZIP</b> (JSON files plus a manifest) or tap <b>Submit month</b> to send it through the cafe's e-invoice provider. Tests use a mock provider.</li>
       <li>A customer wants their own e-invoice? At the counter, open their bill and tap <b>e-Invoice</b> to add their details; it's listed separately.</li></ol>
-    <p>From 1 September 2026, businesses with sales under RM3 million a year don't have to issue e-invoices, but may do so voluntarily.</p>
+    <p>Signing and filing stay with your provider. OrdenZ does not log in to MyInvois as the taxpayer. From 1 September 2026, businesses with sales under RM3 million a year don't have to issue e-invoices, but may do so voluntarily.</p>
     <figure><img src="/assets/img/myinvois.webp" width="1440" height="810" alt="The consolidated e-invoice for the month" loading="lazy"><figcaption>The month's consolidated e-invoice, ready for your provider.</figcaption></figure>
   </article>
 
+  <article class="g-topic" id="attendance" data-roles="owner manager cashier captain chef store cleaning" data-keys="attendance clock in clock-in pin hours csv payroll epf socso pf esi working sheet wage">
+    <h2>19. Clock in and payroll working sheets</h2>
+    <ol><li>Open <b>Attendance</b>. Clock in and out with the PIN you already signed in with. The owner can require a selfie. This is not a face terminal.</li>
+      <li>Owner or manager: pick the dates, then download the hours CSV and the working sheet — EPF / SOCSO / EIS in Malaysia, or PF / ESI in India.</li>
+      <li>Set a monthly wage on the same screen if you want the sheet to show contributions.</li></ol>
+    <p>The files are for your accountant. OrdenZ does not file with KWSP, EPFO, SOCSO or ESI.</p>
+  </article>
+
   <article class="g-topic" id="bulk" data-roles="owner manager chef store captain cashier" data-keys="bulk catering party wedding office lunch advance event">
-    <h2>19. Bulk and catering orders</h2>
+    <h2>20. Bulk and catering orders</h2>
     <ol><li>Open <b>Bulk &amp; catering</b> and tap <b>New bulk order</b>: who ordered, where from, the event date, guests and venue.</li>
       <li>Choose who is responsible and which chef cooks. OrdenZ shows what stock to buy in time.</li>
       <li>Record the advance; move the order to Confirmed, Cooking, Ready and Delivered; collect the balance.</li></ol>
@@ -216,7 +226,7 @@
   </article>
 
   <article class="g-topic" id="marketing" data-roles="owner manager" data-keys="loyalty points offer promo code campaign whatsapp banner referral">
-    <h2>20. Loyalty, offers and WhatsApp</h2>
+    <h2>21. Loyalty, offers and WhatsApp</h2>
     <ol><li>Customers join loyalty with just a mobile number and earn points on every bill.</li>
       <li>In <b>Offers</b>, create codes with a minimum order, a limit and an end date.</li>
       <li>In <b>Campaigns</b>, write a message and send it to all loyalty members on WhatsApp (connect your WhatsApp Business account first).</li></ol>
@@ -224,15 +234,16 @@
   </article>
 
   <article class="g-topic" id="help" data-roles="owner manager cashier captain chef store cleaning" data-keys="help support whatsapp feedback problem idea question contact">
-    <h2>21. Getting help</h2>
-    <ol><li>Tap <b>Help</b> at the top of any screen.</li>
+    <h2>22. Getting help</h2>
+    <ol><li>On Owner, <b>Ask how to set this up</b> answers first-day questions from this cafe's remaining steps.</li>
+      <li>Tap <b>Help</b> at the top of any screen for the same assistant, WhatsApp and the guide.</li>
       <li><b>Chat with us on WhatsApp</b> opens a chat with your cafe, the screen and the app version already filled in. Send photos, screenshots or voice notes.</li>
       <li><b>Send feedback</b> tells us about a problem or an idea from the screen you're on.</li></ol>
     <figure><img src="/assets/img/help-menu.webp" width="1440" height="810" alt="The Help menu with WhatsApp, feedback and the guide" loading="lazy"><figcaption>Help is one tap away on every screen.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="plans" data-roles="owner" data-keys="plan price trial starter pro free upgrade billing yearly promo referral">
-    <h2>22. Plans and billing</h2>
+    <h2>23. Plans and billing</h2>
     <ol><li>Open <b>Plan &amp; billing</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly (two months free).</li>
       <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp for a free month.</li></ol>
   </article>
