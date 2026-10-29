@@ -1,0 +1,8 @@
+// The home-page tour video and the scroll animations ship safely: muted silent autoplay, a poster,
+// captions burned in, a small file, no third-party frames unless a YouTube ID is set.
+import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
+const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
+test('the hero video is muted, inline and has a poster, so it can start silently on phones',()=>{const h=read('src/index.html');assert.match(h,/<video id="promoVideo" muted loop playsinline preload="metadata" poster="\/assets\/video\/ordenz-promo-v2\.jpg"/);assert.match(h,/src="\/assets\/video\/ordenz-promo-v2\.mp4" type="video\/mp4"/);assert.ok(!/<video[^>]*\bautoplay\b/.test(h),'autoplay is switched on by motion.js only when motion and data saving allow it');});
+test('video files exist and stay small enough for the host',()=>{for(const f of ['ordenz-promo-v2.mp4','ordenz-promo-v2.webm','ordenz-promo-v2.jpg']){const s=fs.statSync(new URL('../src/assets/video/'+f,import.meta.url)).size;assert.ok(s>1000&&s<20*1024*1024,f)}});
+test('the security policy allows our own video and only the privacy-enhanced YouTube player',()=>{const c=read('src/_headers');assert.match(c,/media-src 'self'/);assert.match(c,/frame-src https:\/\/www\.youtube-nocookie\.com;/);assert.ok(!/frame-src[^;]*\*/.test(c))});
+test('motion respects reduced-motion and data saving, and only accepts a real YouTube ID',()=>{const j=read('src/assets/motion.js');assert.match(j,/prefers-reduced-motion: reduce/);assert.match(j,/saveData/);assert.match(j,/\^\[A-Za-z0-9_-\]\{11\}\$/);assert.match(j,/youtube-nocookie\.com\/embed\//);assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|document\.write/.test(j),'builds no HTML from strings');});

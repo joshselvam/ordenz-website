@@ -12,9 +12,15 @@
     </div>
     <p style="margin-top:16px;color:var(--ink-2);font-size:15px">Free to start · 30-day Pro trial from your first bill · India &amp; Malaysia</p>
   </div>
-  <div class="hero-art">
-    <div class="device"><img src="/assets/img/kiosk-menu.webp" width="1440" height="810" alt="OrdenZ self-order kiosk showing a cafe menu"></div>
-    <div class="phone"><img src="/assets/img/phone-tamil.webp" width="585" height="1266" alt="OrdenZ kiosk menu in Tamil on a phone"></div>
+  <div class="hero-art has-video">
+    <figure class="promo" data-youtube="{{youtubeId}}">
+      <video id="promoVideo" muted loop playsinline preload="metadata" poster="/assets/video/ordenz-promo-v2.jpg" width="1280" height="720" aria-label="One-minute OrdenZ tour, with captions">
+        <source src="/assets/video/ordenz-promo-v2.mp4" type="video/mp4">
+        <source src="/assets/video/ordenz-promo-v2.webm" type="video/webm">
+      </video>
+      <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch with sound</button>
+      <span class="promo-badge">1-minute tour</span>
+    </figure>
   </div>
 </div></section>
 
@@ -90,5 +96,6 @@
     </div>
   </div>
 </div></section>
+{{#if youtubeId}}<dialog class="promo-dialog" id="promoDialog" aria-label="OrdenZ tour on YouTube"><button type="button" class="promo-close" id="promoClose" aria-label="Close">&times;</button><div class="promo-frame" id="promoFrame"></div></dialog>{{/if}}
 </main>
 {{> footer}}
