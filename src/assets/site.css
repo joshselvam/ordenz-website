@@ -40,7 +40,7 @@
 [data-s="sales"]{--s:var(--s-sales)}[data-s="floor"]{--s:var(--s-floor)}[data-s="kitchen"]{--s:var(--s-kitchen)}[data-s="stock"]{--s:var(--s-stock)}
 [data-s="market"]{--s:var(--s-market)}[data-s="devices"]{--s:var(--s-devices)}[data-s="account"]{--s:var(--s-account)}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-offset,84px)}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.6 var(--body);-webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
@@ -56,10 +56,10 @@ p{margin:0}
 
 /* header */
 .top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:16px;height:68px}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:68px;flex-wrap:wrap;padding:10px 0}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 22px var(--display);color:var(--ink)}
 .brand img{width:36px;height:36px;border-radius:9px}
-.nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.nav{margin-left:auto;display:flex;gap:4px;align-items:center;flex-wrap:wrap;max-width:100%}
 .nav a{text-decoration:none;font-weight:600;color:var(--ink-2);padding:8px 12px;border-radius:10px;font-size:16px}
 .nav a:hover,.nav a[aria-current]{color:var(--ink);background:var(--soft)}
 .nav a.btn,.nav a.btn:hover{color:var(--on-green);background:var(--green)}
@@ -329,3 +329,10 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .motion .reveal.in{opacity:1;transform:none}
 .motion .card.reveal.in:hover{transform:translateY(-3px);transition-delay:0ms}
 @media (prefers-reduced-motion:reduce){.motion .reveal{opacity:1;transform:none;transition:none}}
+
+/* Match anchor offsets to the actual wrapped header, including font/theme changes. */
+#pricing,#workflow,#getting-started,.g-topic{scroll-margin-top:0}
+@media(max-width:880px){
+  html{scroll-padding-top:var(--header-offset,220px)}
+  .nav a,.nav .theme-btn{min-height:44px;display:inline-flex;align-items:center}
+}

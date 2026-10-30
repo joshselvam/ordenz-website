@@ -95,3 +95,9 @@ Built since: table QR ordering, guest waitlist QR with wait minutes, split and m
 ## Regional price update — 28 October 2026
 
 India Starter: ₹987 monthly / ₹9,870 yearly; Pro: ₹1,987 monthly / ₹19,870 yearly. Malaysia Starter: RM97 monthly / RM970 yearly; Pro: RM197 monthly / RM1,970 yearly. Annual prices equal ten monthly payments. The app's regional defaults match this configuration. Approved public catalog versions override website defaults; client-specific bundles and existing agreements are excluded from the public feed. India provider plan amounts must match before checkout; Malaysia remains invoiced. Deployment is required for these source changes to appear online.
+
+## Responsive verification — 30 October 2026
+
+All ten built pages pass 140 Chromium layout cases: seven phone/tablet/desktop sizes, light and dark. Checks include navigation containment, horizontal overflow, theme switching, contact/pricing anchor visibility, regional pricing controls, reduced-motion video behaviour, JavaScript errors and local links/assets. Nine website source/pricing tests pass. The shared header now grows when navigation wraps, small-screen controls have 44px targets, and anchor spacing follows the measured header height.
+
+Build with `node build.mjs`, then run `node server/scripts/website-layout-qa.mjs` from the sibling app repository. `BROWSER_EXE` can override the default installed Playwright Chromium. Firefox selection is supported with `QA_BROWSER_ENGINE=firefox`, but the installed Firefox could not launch on this Windows test host; no Firefox pass is claimed. Results and screenshots are in the app's `artifacts/device-qa-20261030/website/`. These source changes have not been published.
