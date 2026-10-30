@@ -115,7 +115,8 @@
     <ol><li>Add the items, then tap <b>Split / more</b>.</li>
       <li>Choose <b>Equal split</b> and the number of people, <b>By amount</b>, or <b>By items</b> to give each person what they had.</li>
       <li>Pick how each share is paid: cash, UPI or card. For cash, type what was handed over and OrdenZ shows the change.</li>
-      <li>Not paying yet? Tap <b>Pay later</b>, name the tab (say "Table 4"), and add to it during the meal. Open bills are listed at the top of the counter.</li></ol>
+      <li>Not paying yet? The captain taps <b>Pay later</b> and picks a floor table. Rounds append to that table's open unpaid check. A typed name (Priya / takeaway) still works. The captain cannot collect cash, UPI or card.</li>
+      <li>The cashier opens <b>Open bills</b> and taps <b>Pay T4</b> (or Pay all) when the table is ready to settle.</li></ol>
     <figure><img src="/assets/img/split-bill.webp" width="1440" height="810" alt="Splitting a bill equally, part UPI and part cash" loading="lazy"><figcaption>One bill, two guests: ₹320 by UPI and the rest in cash.</figcaption></figure>
   </article>
 
@@ -161,7 +162,8 @@
     <ol><li>Owner: in <b>TableTurn → Settings</b>, turn on table QR ordering and print the codes, one for each table.</li>
       <li>Guests scan the code, choose from your menu and send the order. No app or sign-up.</li>
       <li>Staff see <b>Table orders to accept</b> at the top of the counter. Tap <b>Accept</b> to send it to the kitchen, or <b>Turn down</b>.</li>
-      <li>The order joins the table's open bill, paid at the counter as usual.</li></ol>
+      <li>After a captain or accepted check is open, extra phones add lines to that same unpaid check (group order).</li>
+      <li>The table's bill is paid at the counter. Guest online share-pay is not built yet.</li></ol>
     <figure><img src="/assets/img/table-qr-accept.webp" width="1440" height="810" alt="Table orders waiting to be accepted at the counter" loading="lazy"><figcaption>Table orders wait for a yes before they reach the kitchen.</figcaption></figure>
   </article>
 
@@ -180,7 +182,8 @@
       <li>Type or choose the supplier, the invoice number and date, and the pay-by date if they gave you credit.</li>
       <li>Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
       <li>Tap <b>Save and add to stock</b>. The stock goes up and recipe costs update.</li>
-      <li>The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and the GST you paid this month.</li></ol>
+      <li>The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and the GST you paid this month.</li>
+      <li>Store keeper: open <b>Drafts</b> and tap <b>New draft from stock</b>. Suggested qty is from stock vs reorder. Send or approve needs the owner or manager.</li></ol>
     <figure><img src="/assets/img/invoice.webp" width="1440" height="810" alt="Entering a supplier invoice" loading="lazy"><figcaption>The same invoice number from the same supplier can't be entered twice.</figcaption></figure>
   </article>
 
@@ -189,7 +192,9 @@
     <ol><li><b>Owner</b> shows today's sales, average bill, kiosk share, upsell revenue, sales by hour and top items. Pick a date to look back.</li>
       <li>The daily WhatsApp summary is ready to send at closing time.</li>
       <li><b>Activity</b> shows who changed prices, stock, refunds, settings and the team, and when.</li>
-      <li><b>Devices</b> lists your tablets; reload or lock one from here.</li></ol>
+      <li><b>Money Review</b> lists unusual money events (refunds, paid cancels, counter discounts, drawer events, Z variance) for the owner or a manager — for review, not a theft verdict. Kitchen and captain cannot open it. The WhatsApp digest is a preview only.</li>
+      <li><b>Pickup slots</b>: set slot length and an order limit per slot, then share the public link. Guests pick a time and pay when they collect. Tickets stay awaiting payment until the cashier collects.</li>
+      <li><b>Devices</b> lists your tablets; reload or lock one from here. <b>Create a new device key</b> signs kiosks and TVs out so a copied key stops working.</li></ol>
     <figure><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard" loading="lazy"></figure>
   </article>
 
@@ -233,8 +238,16 @@
     <figure><img src="/assets/img/campaigns.webp" width="1440" height="810" alt="WhatsApp campaigns" loading="lazy"></figure>
   </article>
 
+  <article class="g-topic" id="security" data-roles="owner cashier captain manager" data-keys="mfa authenticator recovery idle pin till lock device key">
+    <h2>22. Owner authenticator and till lock</h2>
+    <ol><li>Owner: on <b>Plan &amp; billing</b> (or cafe security), set up an optional 6-digit authenticator after your password. Save the recovery codes. The demo owner stays without MFA.</li>
+      <li>Staff stay on PIN. After two minutes with no tap, the till asks for that same person's PIN. The open bill stays on screen. A coworker's PIN will not unlock it.</li>
+      <li>A paid bill or a print fail shows a toast; the Android app also gives a short vibrate (off when reduced motion is on). Print fail does not mark the bill unpaid.</li></ol>
+    <p>Lost-phone recovery through account assistance clears cafe MFA so the owner can sign in and re-enrol. Manager MFA and SMS are not built yet.</p>
+  </article>
+
   <article class="g-topic" id="help" data-roles="owner manager cashier captain chef store cleaning" data-keys="help support whatsapp feedback problem idea question contact">
-    <h2>22. Getting help</h2>
+    <h2>23. Getting help</h2>
     <ol><li>On Owner, <b>Ask how to set this up</b> answers first-day questions from this cafe's remaining steps.</li>
       <li>Tap <b>Help</b> at the top of any screen for the same assistant, WhatsApp and the guide.</li>
       <li><b>Chat with us on WhatsApp</b> opens a chat with your cafe, the screen and the app version already filled in. Send photos, screenshots or voice notes.</li>
@@ -243,7 +256,7 @@
   </article>
 
   <article class="g-topic" id="plans" data-roles="owner" data-keys="plan price trial starter pro free upgrade billing yearly promo referral">
-    <h2>23. Plans and billing</h2>
+    <h2>24. Plans and billing</h2>
     <ol><li>Open <b>Plan &amp; billing</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly (two months free).</li>
       <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp for a free month.</li></ol>
   </article>
