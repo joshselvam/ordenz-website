@@ -7,3 +7,4 @@ test('contact links and text are escaped; non-mail links are preserved',()=>{con
 test('public price refresh uses the configured app and identifies plans without exposing private account data',()=>{const html=renderPricing(pricing,'#contact','https://app.example.invalid');assert.match(html,/data-pricing-api="https:\/\/app.example.invalid\/api\/plans\/public"/);assert.equal((html.match(/data-plan="starter"/g)||[]).length,2);});
 
 test('regional annual prices equal ten monthly payments',()=>{for(const region of ['IN','MY'])for(const tier of ['starter','pro'])assert.equal(pricing[region].annual[tier],pricing[region].monthly[tier]*10);assert.equal(pricing.MY.monthly.starter,97);assert.equal(pricing.MY.monthly.pro,197);});
+test('paid extras stay snack prices, not a fourth plan',()=>{const h=renderPricing(pricing,'#contact');assert.match(h,/₹49 \/ RM4\.90/);assert.match(h,/not a fourth plan/);assert.match(h,/Starter and Pro stay the plans/);});

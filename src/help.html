@@ -10,7 +10,7 @@
 <section style="padding:32px 0 88px"><div class="wrap g-layout">
   <aside class="g-side">
     <label class="sr" for="gq">Search the guide</label>
-    <input id="gq" type="search" placeholder="Search: waitlist, Tally, clock-in, e-invoice…" autocomplete="off">
+    <input id="gq" type="search" placeholder="Search: Today, paperless, clock-in, tablet…" autocomplete="off">
     <div class="g-roles" role="group" aria-label="Show help for">
       <button type="button" data-role="all" aria-pressed="true">Everyone</button>
       <button type="button" data-role="owner" aria-pressed="false">Owner</button>
@@ -61,7 +61,7 @@
     <h2>3. Connect the kiosk, TV and printer</h2>
     <ol><li>In <b>Menu &amp; settings</b>, find <b>Kiosk and TV devices</b>. It shows your cafe code and device key.</li>
       <li>On the kiosk tablet or TV, open OrdenZ, choose <b>Kiosk / TV</b>, enter the cafe code and device key, and pick <b>Self-order kiosk</b> or <b>Token screen (TV)</b>.</li>
-      <li>Tap <b>Printer</b> on the counter or kitchen screen to connect a Bluetooth, Wi-Fi or USB thermal printer (58 mm or 80 mm).</li>
+      <li>Tap <b>Printer</b> on the counter or kitchen screen to connect a Bluetooth, Wi-Fi or USB thermal printer (58 mm or 80 mm). Thermal slips use the English name. Stock lists, supplier bills and the kitchen sheet open the browser print dialog — no thermal needed. Failed jobs wait in the print queue.</li>
       <li>If a tablet is lost, tap <b>Create a new device key</b>. Tablets already signed in stay signed in; you can lock them from the owner screen.</li></ol>
   </article>
 
@@ -74,9 +74,9 @@
       <li>To change a role or a PIN, or stop someone signing in, tap <b>Edit</b> next to their name. It works within seconds, even on a tablet that's already signed in.</li></ol>
     <div class="g-table"><table><thead><tr><th>Role</th><th>Sees</th></tr></thead><tbody>
       <tr><td>Manager</td><td>Everything day to day: reports, menu and prices, stock, suppliers, offers, tables, Attendance hours and the team. Not the plan, billing, or other managers.</td></tr>
-      <tr><td>Captain</td><td>Tables, bookings, the waiting list, taking orders, the kitchen, the token TV and Attendance.</td></tr>
-      <tr><td>Chef</td><td>Kitchen screen, recipes and batch cooking, stock, bulk orders to cook, Attendance.</td></tr>
-      <tr><td>Cashier</td><td>Counter billing, payments, loyalty, tables, the token TV and Attendance.</td></tr>
+      <tr><td>Captain</td><td>Today, tables, bookings, the waiting list, taking orders, the kitchen, the token TV and Attendance.</td></tr>
+      <tr><td>Chef</td><td>Today, kitchen screen, recipes and batch cooking, stock, bulk orders to cook, Attendance.</td></tr>
+      <tr><td>Cashier</td><td>Today, counter billing, payments, loyalty, tables, the token TV and Attendance.</td></tr>
       <tr><td>Store keeper</td><td>Stock, supplier invoices, wastage, recipes, bulk orders and Attendance.</td></tr>
       <tr><td>Cleaning</td><td>The table floor, their own clean-up jobs and Attendance.</td></tr>
       <tr><td>All-rounder</td><td>Counter, tables, kitchen, stock, bulk orders and Attendance (what staff had before roles).</td></tr></tbody></table></div>
@@ -88,13 +88,14 @@
     <ol><li>The customer taps the screen, chooses their language at the top, and picks <b>Eat here</b> or <b>Take away</b>.</li>
       <li>They tap items, choose size, milk and extras, or tap <b>Order by voice</b> and just say it.</li>
       <li>They pay with the UPI QR for the exact amount. The kiosk turns green by itself when the payment arrives; nobody has to check a phone.</li>
+      <li>After a paid order they see a QR: <b>Scan for your bill · பில் பார்க்க ஸ்கேன் செய்யவும்</b>. It opens the English bill on their phone. Cash at the counter is token only — no bill QR until it is paid.</li>
       <li>They get a token number, and the TV calls it when the order is ready.</li></ol>
     <figure><img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="The kiosk menu in Hindi" loading="lazy"><figcaption>The kiosk in Hindi. Item names show in English wherever you haven't added the translation yet.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="languages" data-roles="owner manager" data-keys="language hindi telugu malayalam kannada tamil malay melayu chinese translate names kiosk">
     <h2>6. Kiosk languages and menu names</h2>
-    <ol><li>In <b>Menu &amp; settings → Kiosk languages</b>, tick up to four languages and tap <b>Save languages</b>.</li>
+    <ol><li>In <b>Menu &amp; settings → Kiosk languages</b>, tick up to six languages and tap <b>Save languages</b>.</li>
       <li>Under <b>Menu names in</b>, choose a language and type each item's name, then tap <b>Save names</b>.</li>
       <li>On Pro, tap <b>Fill in the missing names with AI</b> to translate everything at once. Ask someone who reads the language to check them.</li></ol>
     <figure><img src="/assets/img/names.webp" width="1440" height="810" alt="Kiosk languages and menu names" loading="lazy"></figure>
@@ -105,6 +106,8 @@
     <ol><li>Open <b>Counter</b>, tap the items (choose options if asked), and add a discount if you need one.</li>
       <li>Choose cash, UPI or card. The GST receipt with CGST and SGST prints straight away. In Malaysia the buttons say DuitNow QR, and the bill shows the service charge, SST and cash rounding.</li>
       <li>For kiosk orders paid in cash, find the token and collect the money here.</li>
+      <li>On a phone or a short landscape window, tap the cart to open the bill drawer so the menu stays full-width. Favourites start hidden on phone and tablet; tap to show them.</li>
+      <li><b>Send bill</b> on WhatsApp works even when paperless is off. Paperless itself is optional — see <a href="#paperless">paperless bills</a>.</li>
       <li>Internet down? Keep billing. Bills are saved on the tablet with an offline number and sync by themselves, never twice.</li></ol>
     <figure><img src="/assets/img/counter.webp" width="1440" height="810" alt="The counter billing screen" loading="lazy"></figure>
   </article>
@@ -130,9 +133,9 @@
     <figure><img src="/assets/img/cash-drawer.webp" width="1440" height="810" alt="The cash drawer with the expected cash and this shift's payments" loading="lazy"><figcaption>Expected cash, payments this shift, and a shift waiting for review.</figcaption></figure>
   </article>
 
-  <article class="g-topic" id="delivery" data-roles="cashier owner manager" data-keys="swiggy zomato grabfood foodpanda shopeefood delivery app commission payout settlement">
+  <article class="g-topic" id="delivery" data-roles="cashier owner manager" data-keys="swiggy zomato grabfood foodpanda shopeefood delivery app commission payout settlement menu settings">
     <h2>10. Delivery app orders</h2>
-    <ol><li>Owner: in <b>Reports → Delivery apps</b>, under <i>Delivery apps you use</i>, turn on your apps and set each one's commission and how much higher its prices are (for example menu +10%).</li>
+    <ol>      <li>Owner: in <b>Menu &amp; settings</b>, under <i>Delivery apps</i>, turn on the apps you use and set each one's commission and mark-up (for example menu +10%). This is not a live Swiggy or Zomato API.</li>
       <li>Cashier: choose <b>Delivery</b>, then the app. Prices switch to that app's prices. Type the app's order number and tap <b>Send to kitchen</b>.</li>
       <li>Owner: in <b>Reports → Delivery apps</b>, upload the app's settlement file or tick each payout, and see what's still owed.</li></ol>
     <figure><img src="/assets/img/delivery-payouts.webp" width="1440" height="810" alt="Delivery app sales, commission and payouts" loading="lazy"><figcaption>What each app sold, its commission, and the payouts still to come.</figcaption></figure>
@@ -170,7 +173,7 @@
   <article class="g-topic" id="stock" data-roles="store chef owner manager" data-keys="stock ingredient receive count reorder low recipe batch cook wastage">
     <h2>14. Stock, recipes and wastage</h2>
     <ol><li>Every sale takes its ingredients out of stock using the item's recipe. Low items show an alert; sold-out items hide from the kiosk.</li>
-      <li>In <b>Recipes &amp; prep</b>, write a batch recipe once and tap <b>Cook batch</b>; the raw ingredients come off stock.</li>
+      <li>In <b>Recipes &amp; prep</b>, write a batch recipe once and tap <b>Cook batch</b>; the raw ingredients come off stock. Owner or manager: <b>Ask chef</b> on Cook soon assigns a Today cook task. Done on that task does not cook a batch. Tap <b>Prep report</b> for a kitchen sheet (browser print, no thermal needed).</li>
       <li>On <b>Stock</b>, tap <b>Count / edit</b> after a stock count.</li>
       <li>Thrown something away? Tap <b>Wastage</b>, enter how much and why. Its cost shows on the Suppliers page.</li></ol>
     <figure><img src="/assets/img/store.webp" width="1440" height="810" alt="The stock screen with Wastage buttons" loading="lazy"></figure>
@@ -216,7 +219,8 @@
 
   <article class="g-topic" id="attendance" data-roles="owner manager cashier captain chef store cleaning" data-keys="attendance clock in clock-in pin hours csv payroll epf socso pf esi working sheet wage">
     <h2>19. Clock in and payroll working sheets</h2>
-    <ol><li>Open <b>Attendance</b>. Clock in and out with the PIN you already signed in with. The owner can require a selfie. This is not a face terminal.</li>
+    <ol><li>After PIN or email you land on <b>Today</b> first if you are not clocked in. Sign-in is not a clock. See <a href="#today">Today</a>.</li>
+      <li>Open <b>Attendance</b> to clock in and out with the PIN you already signed in with. The owner can require a selfie. This is not a face terminal.</li>
       <li>Owner or manager: pick the dates, then download the hours CSV and the working sheet — EPF / SOCSO / EIS in Malaysia, or PF / ESI in India.</li>
       <li>Set a monthly wage on the same screen if you want the sheet to show contributions.</li></ol>
     <p>The files are for your accountant. OrdenZ does not file with KWSP, EPFO, SOCSO or ESI.</p>
@@ -233,7 +237,7 @@
   <article class="g-topic" id="marketing" data-roles="owner manager" data-keys="loyalty points offer promo code campaign whatsapp banner referral">
     <h2>21. Loyalty, offers and WhatsApp</h2>
     <ol><li>Customers join loyalty with just a mobile number and earn points on every bill.</li>
-      <li>In <b>Offers</b>, create codes with a minimum order, a limit and an end date.</li>
+      <li>In <b>Offers</b>, create codes with a minimum order, a limit and an end date. Design a banner in botanical, saffron, leaf, story or square and download the PNG.</li>
       <li>In <b>Campaigns</b>, write a message and send it to all loyalty members on WhatsApp (connect your WhatsApp Business account first).</li></ol>
     <figure><img src="/assets/img/campaigns.webp" width="1440" height="810" alt="WhatsApp campaigns" loading="lazy"></figure>
   </article>
@@ -255,10 +259,38 @@
     <figure><img src="/assets/img/help-menu.webp" width="1440" height="810" alt="The Help menu with WhatsApp, feedback and the guide" loading="lazy"><figcaption>Help is one tap away on every screen.</figcaption></figure>
   </article>
 
-  <article class="g-topic" id="plans" data-roles="owner" data-keys="plan price trial starter pro free upgrade billing yearly promo referral">
+  <article class="g-topic" id="plans" data-roles="owner" data-keys="plan price trial starter pro free upgrade billing yearly promo referral add-on extra loyalty">
     <h2>24. Plans and billing</h2>
     <ol><li>Open <b>Plan &amp; billing</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly (two months free).</li>
+      <li>Paid extras (loyalty, campaigns, table QR, delivery pack and the rest) start around ₹49 / RM4.90 a month — snack prices, not a fourth plan. Yearly extras are ten months. New cafes start extras off; request them here.</li>
       <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp for a free month.</li></ol>
+  </article>
+
+  <article class="g-topic" id="paperless" data-roles="owner manager cashier" data-keys="paperless bill whatsapp send bill qr scan bill.html optional print">
+    <h2>25. Paperless bills (optional)</h2>
+    <p>Paperless billing is <b>off</b> unless you turn it on. OrdenZ does not force it.</p>
+    <ol><li>Owner: in <b>Menu &amp; settings</b>, tick <b>Paperless billing</b> if you want WhatsApp instead of an automatic print. Save settings.</li>
+      <li>A till can also tick paperless in <b>Printer</b> settings for that device only.</li>
+      <li><b>Send bill</b> on WhatsApp is always there after a paid bill, even when paperless is off. The customer opens the English bill on <b>/bill.html</b>.</li>
+      <li>On the kiosk, a paid thank-you shows a QR to scan that same bill (English names; Tamil on the kiosk: பில் பார்க்க ஸ்கேன் செய்யவும்). Unpaid cash-at-counter stays token only.</li></ol>
+  </article>
+
+  <article class="g-topic" id="today" data-roles="owner manager cashier captain chef store cleaning" data-keys="today clock in cook task ask chef skip later snooze can't done batch">
+    <h2>26. Today: clock in and cook tasks</h2>
+    <p>After PIN or email, staff land on <b>Today</b> if they are not clocked in or have a cook task due. Sign-in is not a clock. Kiosk and TV skip this screen.</p>
+    <ol><li>Clock in when you start work (selfie if the cafe asks). Or tap <b>Skip to work</b> to open your first job screen.</li>
+      <li>A cook card is a recipe the owner or manager assigned from <b>Ask chef</b> on Recipes Cook soon. One open task per recipe and person.</li>
+      <li><b>Later</b> hides it for about an hour, then the reminder returns.</li>
+      <li><b>Can't</b> needs a reason. That cancels the task so the owner can assign it again.</li>
+      <li><b>Done</b> only closes the card. It does not cook a batch. Cook from Recipes when the food is actually made.</li></ol>
+  </article>
+
+  <article class="g-topic" id="tablet" data-roles="cashier captain owner manager" data-keys="phone tablet desktop wide landscape cart drawer favourites till">
+    <h2>27. Phone, tablet and wide tills</h2>
+    <ol><li>The counter fits a phone, tablet, desktop or a wide screen.</li>
+      <li>A short landscape window (phone on its side, or a split window) opens the cart as a drawer so the menu stays full-width.</li>
+      <li>Favourites start hidden on phone and tablet. Tap to show or hide them.</li>
+      <li>After two idle minutes the till asks for that same person's PIN. The open bill stays on screen.</li></ol>
   </article>
 
   <p class="g-none" id="gnone" hidden>Nothing matches. Try another word, or <a href="{{contactLink}}">ask us</a>.</p>
