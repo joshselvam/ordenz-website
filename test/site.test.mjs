@@ -6,3 +6,16 @@ test('the hero video is muted, inline and has a poster, so it can start silently
 test('video files exist and stay small enough for the host',()=>{for(const f of ['ordenz-promo-v2.mp4','ordenz-promo-v2.webm','ordenz-promo-v2.jpg']){const s=fs.statSync(new URL('../src/assets/video/'+f,import.meta.url)).size;assert.ok(s>1000&&s<20*1024*1024,f)}});
 test('the security policy allows our own video and only the privacy-enhanced YouTube player',()=>{const c=read('src/_headers');assert.match(c,/media-src 'self'/);assert.match(c,/frame-src https:\/\/www\.youtube-nocookie\.com;/);assert.ok(!/frame-src[^;]*\*/.test(c))});
 test('motion respects reduced-motion and data saving, and only accepts a real YouTube ID',()=>{const j=read('src/assets/motion.js');assert.match(j,/prefers-reduced-motion: reduce/);assert.match(j,/saveData/);assert.match(j,/\^\[A-Za-z0-9_-\]\{11\}\$/);assert.match(j,/youtube-nocookie\.com\/embed\//);assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|document\.write/.test(j),'builds no HTML from strings');});
+test('features and FAQs match current DuitNow, delivery and referral behaviour',()=>{
+  const f=read('src/features.html');
+  assert.match(f,/approved Fiuu Offline Payment merchant/);
+  assert.match(f,/signed webhook/);
+  assert.match(f,/Tell a friend\. You both get a month/);
+  assert.match(f,/They pick 4:15/);
+  assert.doesNotMatch(f,/automatic DuitNow QR generation and payment confirmation are not currently included/);
+  assert.doesNotMatch(f,/Orders are typed in\. This is not a live Swiggy or Zomato partner API/);
+  assert.doesNotMatch(f,/Malaysian DuitNow recording is manual/);
+  const home=read('src/index.html');
+  assert.match(home,/Same Saturday, Kuala Lumpur/);
+  assert.match(home,/signed webhook/);
+});

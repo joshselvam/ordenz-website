@@ -133,10 +133,12 @@
     <figure><img src="/assets/img/cash-drawer.webp" width="1440" height="810" alt="The cash drawer with the expected cash and this shift's payments" loading="lazy"><figcaption>Expected cash, payments this shift, and a shift waiting for review.</figcaption></figure>
   </article>
 
-  <article class="g-topic" id="delivery" data-roles="cashier owner manager" data-keys="swiggy zomato grabfood foodpanda shopeefood delivery app commission payout settlement menu settings">
+  <article class="g-topic" id="delivery" data-roles="cashier owner manager" data-keys="swiggy zomato grabfood foodpanda shopeefood delivery app commission payout settlement webhook menu settings">
     <h2>10. Delivery app orders</h2>
-    <ol>      <li>Owner: in <b>Menu &amp; settings</b>, under <i>Delivery apps</i>, turn on the apps you use and set each one's commission and mark-up (for example menu +10%). This is not a live Swiggy or Zomato API.</li>
+    <ol>
+      <li>Owner: in <b>Menu &amp; settings</b>, under <i>Delivery apps</i>, turn on the apps you use and set each one's commission and mark-up (for example menu +10%).</li>
       <li>Cashier: choose <b>Delivery</b>, then the app. Prices switch to that app's prices. Type the app's order number and tap <b>Send to kitchen</b>.</li>
+      <li>If that partner is onboarded, a signed webhook can send the same order in. Live intake needs a signed secret; sandbox first. This is cafe intake, not a public Swiggy or Zomato listing by itself.</li>
       <li>Owner: in <b>Reports → Delivery apps</b>, upload the app's settlement file or tick each payout, and see what's still owed.</li></ol>
     <figure><img src="/assets/img/delivery-payouts.webp" width="1440" height="810" alt="Delivery app sales, commission and payouts" loading="lazy"><figcaption>What each app sold, its commission, and the payouts still to come.</figcaption></figure>
   </article>
@@ -168,6 +170,14 @@
       <li>After a captain or accepted check is open, extra phones add lines to that same unpaid check (group order).</li>
       <li>The table's bill is paid at the counter. Guest online share-pay is not built yet.</li></ol>
     <figure><img src="/assets/img/table-qr-accept.webp" width="1440" height="810" alt="Table orders waiting to be accepted at the counter" loading="lazy"><figcaption>Table orders wait for a yes before they reach the kitchen.</figcaption></figure>
+  </article>
+
+  <article class="g-topic" id="pickup" data-roles="owner manager cashier chef" data-keys="pickup slot collect public link cap kitchen">
+    <h2>Pickup slots</h2>
+    <ol><li>Owner: on <b>Owner</b>, set the slot length and how many orders each slot can take.</li>
+      <li>Share the public pickup link on WhatsApp. Guests pick items and a time. They pay when they collect.</li>
+      <li>The kitchen sees the cap for that slot. Online pickup payment is not available.</li></ol>
+    <figure><img src="/assets/img/cafe-ops/pickup-slots.png" width="1440" height="810" alt="Pickup slots on the owner screen" loading="lazy"><figcaption>Slot length and how many orders each time can take.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="stock" data-roles="store chef owner manager" data-keys="stock ingredient receive count reorder low recipe batch cook wastage">
@@ -238,7 +248,8 @@
     <h2>21. Loyalty, offers and WhatsApp</h2>
     <ol><li>Customers join loyalty with just a mobile number and earn points on every bill.</li>
       <li>In <b>Offers</b>, create codes with a minimum order, a limit and an end date. Design a banner in botanical, saffron, leaf, story or square and download the PNG.</li>
-      <li>In <b>Campaigns</b>, write a message and send it to all loyalty members on WhatsApp (connect your WhatsApp Business account first).</li></ol>
+      <li>In <b>Campaigns</b>, write a message and send it to all loyalty members on WhatsApp (connect your WhatsApp Business account first).</li>
+      <li>Share your referral link from <b>Plan &amp; billing</b>. The new cafe gets 30 extra Pro days; you get a free month when they first pay.</li></ol>
     <figure><img src="/assets/img/campaigns.webp" width="1440" height="810" alt="WhatsApp campaigns" loading="lazy"></figure>
   </article>
 
