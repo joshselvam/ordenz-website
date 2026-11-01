@@ -8,6 +8,7 @@
     <p class="lead" style="margin-top:20px">From the first coffee at 7 am to the cash count at closing, OrdenZ runs your counter, kiosk, kitchen and back office on the tablets you already have.</p>
     <div class="actions">
       <a class="btn btn-cta" href="/demo/">Try the live demo</a>
+      {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
       <a class="btn btn-ghost" href="/features/">See every feature</a>
     </div>
     <p style="margin-top:16px;color:var(--ink-2);font-size:15px">Free to start · 30-day Pro trial from your first bill · India &amp; Malaysia</p>
@@ -103,6 +104,7 @@
       {{#if whatsapp}}<a class="btn btn-wa" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Chat on WhatsApp</a>{{/if}}
       {{#if email}}<a class="btn btn-primary" href="mailto:{{email}}?subject=Hello%20{{company}}">Email us</a>{{/if}}
       {{#unless emailOrWhatsapp}}<span class="btn btn-ghost" style="cursor:default">Contact details coming soon</span>{{/unless}}
+      {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
       <a class="btn btn-ghost" href="/demo/">Try the live demo</a>
     </div>
   </div>
