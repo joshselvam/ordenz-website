@@ -9,9 +9,10 @@
     <div class="actions">
       <a class="btn btn-cta" href="/demo/">Try the live demo</a>
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
+      {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a walk-through</a>{{/if}}
       <a class="btn btn-ghost" href="/features/">See every feature</a>
     </div>
-    <p style="margin-top:16px;color:var(--ink-2);font-size:15px">Free to start · 30-day Pro trial from your first bill · India &amp; Malaysia</p>
+    <p style="margin-top:16px;color:var(--ink-2);font-size:15px">Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro.</p>
   </div>
   <div class="hero-art has-video">
     <figure class="promo" data-youtube="{{youtubeId}}">
@@ -28,37 +29,39 @@
 <section style="padding:44px 0 20px"><div class="wrap">
   <div class="stats">
     <div class="stat"><b>8</b><span>kiosk languages, from Tamil to Bahasa Melayu</span></div>
-    <div class="stat"><b>9</b><span>team roles, each with its own PIN and screens</span></div>
-    <div class="stat"><b>₹ &amp; RM</b><span>GST bills in India, SST bills in Malaysia</span></div>
-    <div class="stat"><b>30 days</b><span>of Pro free, counted from your first real bill</span></div>
+    <div class="stat"><b>8</b><span>ways to sign in: Owner plus 7 staff jobs, including All-rounder. Each staff job has its own PIN</span></div>
+    <div class="stat" data-for-country="IN"><b>₹</b><span>GST bills in India</span></div>
+    <div class="stat" data-for-country="MY"><b>RM</b><span>SST on bills only if you add an SST number</span></div>
+    <div class="stat"><b>30 days</b><span>of Pro from the first real bill, or from day 15 if you have not billed yet</span></div>
   </div>
 </div></section>
 
 <section id="day"><div class="wrap" style="max-width:900px">
   <div class="center"><div class="eyebrow">A day at your cafe</div><h2>One app, from opening to closing</h2>
     <p class="lead">Here's a normal Saturday with OrdenZ. Each colour is a part of the app, the same colour you'll see on its tab.</p></div>
-  <ol class="day">
+  <ol class="day" data-for-country="IN">
     <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Clock in, open the drawer</h3><p>After PIN, Today asks staff to clock in — sign-in is not a clock. Skip to work is allowed. The cashier counts ₹2,000 of float into the cash drawer.</p><span class="who">Today · Cash drawer · Cashier</span></div></li>
     <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The morning rush orders itself</h3><p>Office regulars order filter kaapi on the kiosk in Tamil or English and pay by UPI. The token TV calls their number when it's ready.</p><span class="who">Self-order kiosk · Token TV</span></div></li>
     <li data-s="kitchen"><time>9:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The kitchen sees everything at once</h3><p>Tickets from the kiosk, counter and tables arrive in a second. Orders waiting too long turn amber, then red.</p><span class="who">Kitchen screen · Chef</span></div></li>
     <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Lunch at the tables</h3><p>The captain seats table 4 and taps Pay later — no cash buttons. Extra phones add lines to that same open check. The cashier settles with Pay T4.</p><span class="who">Captain · Group order · Pay by table</span></div></li>
     <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The milk delivery arrives</h3><p>The store keeper saves a purchase draft from what's below reorder. The owner approves it, then the bill is entered and stock goes up.</p><span class="who">Purchases · Drafts · Store keeper</span></div></li>
     <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup before dinner</h3><p>A guest books a 4:15 slot on the public link. The kitchen sees the cap. The ticket stays unpaid until the cashier collects at the counter.</p><span class="who">Pickup slots · Kitchen · Cashier</span></div></li>
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A Swiggy order lands from a signed webhook, or the cashier types it. Prices switch to that app's menu. OrdenZ keeps the commission and what it still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A Swiggy order lands from a signed webhook, or the cashier types it. Prices switch to that app's menu. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
     <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close, count, go home</h3><p>The drawer is counted note by note and the Z report prints. The owner checks the day's sales from home and sends the day book to the accountant.</p><span class="who">Reports · Owner</span></div></li>
+  </ol>
+  <ol class="day" data-for-country="MY">
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Clock in, open the drawer</h3><p>After PIN, Today asks staff to clock in — sign-in is not a clock. Skip to work is allowed. The cashier counts RM200 of float into the cash drawer.</p><span class="who">Today · Cash drawer · Cashier</span></div></li>
+    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The morning rush orders itself</h3><p>Regulars order teh tarik on the kiosk in Bahasa Melayu or Chinese and pay by DuitNow QR. The token TV calls their number when it's ready.</p><span class="who">Self-order kiosk · Token TV</span></div></li>
+    <li data-s="kitchen"><time>9:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The kitchen sees everything at once</h3><p>Tickets from the kiosk, counter and tables arrive in a second. Orders waiting too long turn amber, then red.</p><span class="who">Kitchen screen · Chef</span></div></li>
+    <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Lunch at the tables</h3><p>The captain seats table 4 and taps Pay later — no cash buttons. Extra phones add lines to that same open check. The cashier settles with Pay T4, DuitNow or cash.</p><span class="who">Captain · Group order · Pay by table</span></div></li>
+    <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The milk delivery arrives</h3><p>The store keeper saves a purchase draft from what's below reorder. The owner approves it, then the bill is entered and stock goes up.</p><span class="who">Purchases · Drafts · Store keeper</span></div></li>
+    <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup before dinner</h3><p>A guest books a 4:15 slot on the public link. The kitchen sees the cap. The ticket stays unpaid until the cashier collects at the counter.</p><span class="who">Pickup slots · Kitchen · Cashier</span></div></li>
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A GrabFood or foodpanda order lands from a signed webhook, or the cashier types it. Prices switch to that app's menu. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
+    <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close, count, go home</h3><p>The drawer is counted note by note and the Z report prints. SST is on the bill only if the cafe added an SST number. Reports prepare the MyInvois ZIP; OrdenZ does not log in to LHDN.</p><span class="who">Reports · Owner</span></div></li>
   </ol>
   <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/demo/">Live the day in the demo</a><a class="btn btn-soft" href="/features/">How each part works</a></div>
 </div></section>
 
-<section class="band" id="kl-day"><div class="wrap">
-  <div class="center"><div class="eyebrow">Same Saturday, Kuala Lumpur</div><h2>The same app. Different money, different words.</h2>
-    <p class="lead">Teh Tarik on the kiosk in Bahasa Melayu. DuitNow QR for the exact ringgit. Pay later on table 4. A 4:15 pickup. MyInvois files at closing — prepared here, filed by your provider.</p></div>
-  <div class="grid g3">
-    <article class="card" data-s="devices"><span class="tag">8:30</span><h3>Kiosk in Malay or Chinese</h3><p>Customers tap their language. The kitchen still sees oat milk and less sugar in one ticket.</p><a class="more" href="/features/#customers">Eight kiosk languages →</a></article>
-    <article class="card" data-s="floor"><span class="tag">12:30</span><h3>DuitNow, then Pay T4</h3><p>Approved Fiuu merchants get an exact-MYR QR. The captain still cannot collect. The cashier settles the table.</p><a class="more" href="/features/#counter">Counter and DuitNow →</a></article>
-    <article class="card" data-s="sales"><span class="tag">4:00</span><h3>Pickup, then the ZIP</h3><p>Guests book a slot and pay when they collect. Reports prepare the MyInvois ZIP. OrdenZ does not log in to LHDN.</p><a class="more" href="/features/#business">Malaysia on Owner →</a></article>
-  </div>
-</div></section>
 
 <section class="band" id="products"><div class="wrap">
   <div class="center"><div class="eyebrow">Made for the way you serve</div><h2>Small cafe or busy kitchen</h2><p class="lead">Start with the counter. Add the kiosk, tables, stock and catering when you're ready. It's the same app.</p></div>
@@ -72,9 +75,11 @@
 <section id="new-cafe"><div class="wrap">
   <div class="cta" style="text-align:left;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center">
     <div><div class="eyebrow">Opening your first cafe?</div><h2 style="margin-top:8px">Start a cafe without the guesswork</h2>
-      <p class="lead" style="margin:14px 0 0">Which licences you need in India and Malaysia, when GST or SST applies, what equipment to buy, and how to price your menu. Plain answers, with links to the official sources.</p>
+      <p class="lead" style="margin:14px 0 0" data-for-country="IN">Which licences you need in India, when GST applies, what equipment to buy, and how to price your menu. Plain answers, with links to the official sources.</p>
+      <p class="lead" style="margin:14px 0 0" data-for-country="MY">Which licences you need in Malaysia, when SST applies, what equipment to buy, and how to price your menu. Plain answers, with links to the official sources.</p>
       <div class="actions"><a class="btn btn-primary" href="/start-a-cafe/">Read the starter guide</a></div></div>
-    <ul style="margin:0;padding-left:20px;color:var(--ink-2)"><li>FSSAI, GST and trade licence (India)</li><li>SSM, council licence, food handler course and SST (Malaysia)</li><li>Tablets, printer and payment set-up</li><li>Menu pricing and food cost</li><li>Your first week, step by step</li></ul>
+    <ul style="margin:0;padding-left:20px;color:var(--ink-2)" data-for-country="IN"><li>FSSAI, GST and trade licence</li><li>Tablets, printer and payment set-up</li><li>Menu pricing and food cost</li><li>Your first week, step by step</li></ul>
+    <ul style="margin:0;padding-left:20px;color:var(--ink-2)" data-for-country="MY"><li>SSM, council licence, food handler course and SST</li><li>Tablets, printer and payment set-up</li><li>Menu pricing and food cost</li><li>Your first week, step by step</li></ul>
   </div>
 </div></section>
 
@@ -88,7 +93,7 @@
     <div class="card" data-s="account"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
       <h3>Fair, simple pricing</h3><p>Free for one device and 50 orders a day. Starter and Pro when you grow, monthly or yearly with pricing confirmed before purchase. No card needed to start.</p></div>
     <div class="card" data-s="floor"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l3-8 4 16 3-8h7"/></svg></div>
-      <h3>Keeps billing offline</h3><p>Wi-Fi down at lunch? The counter saves bills on the tablet and sends them, never twice, when you're back online. Receipts still print.</p></div>
+      <h3>Offline billing on Starter and Pro</h3><p>Wi-Fi down at lunch? On Starter and Pro the counter saves bills on the tablet and sends them, never twice, when you're back online. Receipts still print. Free needs a connection. UPI, DuitNow and table QR always need internet.</p></div>
     <div class="card" data-s="sales"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
       <h3>Your data stays yours</h3><p>No ads, no selling data. Customers order without signing up. Download your sales any time, or delete your account and everything with it.</p></div>
     <div class="card" data-s="kitchen"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>

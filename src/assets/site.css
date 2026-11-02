@@ -219,7 +219,7 @@ body{background-color:var(--paper);background-image:radial-gradient(var(--dots) 
 .cta{background:var(--cta);color:var(--ink);box-shadow:none;border:1px solid var(--line);border-radius:26px}
 .cta .lead{color:var(--ink-2)}
 footer{background:var(--footer)}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
+a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
 @media(max-width:880px){.hero .wrap{padding:42px 0 60px;gap:20px}.hero-art{width:min(560px,100%);margin:auto;min-height:400px}.hero .lead{font-size:19px}.hero-art:before{inset:-35px 0 -10px}.device{margin:80px 12px 0}.phone{right:6px;width:24%}}
 @media(max-width:640px){.top .wrap{height:auto;min-height:68px;flex-wrap:wrap;gap:4px;padding:10px 0}.nav{width:100%;margin:0;flex-wrap:wrap}.nav a:not(.btn){display:inline-flex}.nav a{padding:7px 9px;font-size:14px}.nav .btn{margin-left:auto}.hero h1{font-size:47px}.hero-art{min-height:320px;padding-top:70px}.hero-art:after{font-size:18px;max-width:120px;padding:12px}.hero-art:before{inset:0}.device{margin-top:70px}.hero .wrap{padding-bottom:48px}.cta{padding:32px 20px}section{padding:56px 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -232,6 +232,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 
 /* Cafe workflows and pilot checklist: native links, readable at every width. */
 .journey{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:32px 0}.journey li{padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:20px}.step-number{display:block;font:700 15px var(--body);letter-spacing:.05em;color:var(--green);margin-bottom:14px}.journey h3,.card .tag+h3{margin-top:16px}#workflow,#getting-started{scroll-margin-top:90px}@media(max-width:700px){.journey{grid-template-columns:1fr}#workflow,#getting-started{scroll-margin-top:160px}}
+
+/* Country copy switch: hide the other country before paint. Malaysia if none is set. */
+html:not([data-country]) [data-for-country="IN"],
+[data-country="IN"] [data-for-country="MY"],
+[data-country="MY"] [data-for-country="IN"]{display:none!important}
+.country-sel{font:600 14px var(--body);color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 10px;cursor:pointer;min-height:36px;max-width:11.5rem}
+.country-sel:hover{color:var(--ink);background:var(--soft)}
+@media(prefers-reduced-motion:reduce){.country-sel{transition:none}}
 
 /* Theme switch in the header, same choice as the app */
 .theme-btn{font:600 14px var(--body);color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:36px}
@@ -334,5 +342,5 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 #pricing,#workflow,#getting-started,.g-topic{scroll-margin-top:0}
 @media(max-width:880px){
   html{scroll-padding-top:var(--header-offset,220px)}
-  .nav a,.nav .theme-btn{min-height:44px;display:inline-flex;align-items:center}
+  .nav a,.nav .theme-btn,.nav .country-sel{min-height:44px;display:inline-flex;align-items:center}
 }

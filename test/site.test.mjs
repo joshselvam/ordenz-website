@@ -16,6 +16,24 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.doesNotMatch(f,/Orders are typed in\. This is not a live Swiggy or Zomato partner API/);
   assert.doesNotMatch(f,/Malaysian DuitNow recording is manual/);
   const home=read('src/index.html');
-  assert.match(home,/Same Saturday, Kuala Lumpur/);
+  assert.match(home,/data-for-country="MY"/);
+  assert.match(home,/RM200 of float/);
+  assert.match(home,/records that app commission/);
+  assert.doesNotMatch(home,/keeps the commission/);
   assert.match(home,/signed webhook/);
+  assert.match(home,/Book a walk-through/);
+  assert.match(home,/ways to sign in/);
+  assert.match(home,/All-rounder/);
+});
+test('header country switcher is a native select with no geo lookup',()=>{
+  const header=read('src/_partials/header.html');
+  const js=read('src/assets/country.js');
+  assert.match(header,/id="countrySel"/);
+  assert.match(header,/aria-label="Country"/);
+  assert.match(js,/ordenz-country/);
+  assert.match(js,/Asia\/Kolkata/);
+  assert.match(js,/Asia\/Calcutta/);
+  assert.match(js,/Asia\/Kuala_Lumpur/);
+  assert.match(js,/Asia\/Kuching/);
+  assert.doesNotMatch(js,/geolocation|ipapi|geo\.json|Load Balancing/i);
 });
