@@ -50,7 +50,7 @@ fs.mkdirSync(out, { recursive: true });
 const pages = [
   { file: "index.html", out: "index.html", path: "/", title: `${cfg.company}: ${cfg.tagline}`, desc: `${cfg.company} connects cafe POS, self-order kiosks, kitchen tickets and owner reports. Try the live demo and compare plans.` },
   { file: "features.html", out: "features/index.html", path: "/features/", title: "OrdenZ features: kiosk, counter, kitchen, stock and reports for cafes", desc: "Cafe POS and kiosk with eight kiosk languages, kitchen tickets, stock, recipes, loyalty, split bills, cash closing and table QR ordering. Try the live demo." },
-  { file: "demo.html", out: "demo/index.html", path: "/demo/", title: "OrdenZ live demo", desc: "Open the real OrdenZ app with a sample cafe running live: kiosk, owner, cashier, chef, captain, store keeper and the token TV." },
+  { file: "demo.html", out: "demo/index.html", path: "/demo/", title: cfg.demoUrl ? "OrdenZ live demo" : "OrdenZ browser preview", desc: cfg.demoUrl ? "Explore real cafe workflows with an isolated sample account and role-specific screens." : "Try a limited kiosk, counter, kitchen and token browser preview with simulated payments." },
   { file: "help.html", out: "guide/index.html", path: "/guide/", title: "OrdenZ guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
   { file: "start-a-cafe.html", out: "start-a-cafe/index.html", path: "/start-a-cafe/", title: "Start a cafe in India or Malaysia: licences, tax and equipment", desc: "A plain guide to opening a cafe: FSSAI, GST and trade licences in India; SSM, council licence, food handler course and SST in Malaysia; equipment, menu pricing and your first week." },
   { file: "terms.html", out: "terms/index.html", path: "/terms/", title: "Terms of service", desc: "The agreement between your cafe and OrdenZ: plans, payments, your data and your responsibilities." },
@@ -61,14 +61,18 @@ const pages = [
 ];
 // Inline scripts allowed by the Content-Security-Policy (see src/_headers): collected from the built pages
 const inlineScripts = new Set();
-const collectScripts = (html) => { for (const m of html.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)) if (m[1].trim()) inlineScripts.add(m[1]); };
+const collectScripts = (html) => { for (const m of html.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)) if (m[1].trim()) inlineScripts.add(m[1].replace(/\r\n?/g,"\n")); };
 for (const p of pages) {
-  const source=fs.readFileSync(path.join(src,p.file),"utf8").replace("<!-- REGIONAL_PRICING -->",renderPricing(cfg.pricing,cfg.contactLink,cfg.appUrl));
+  const source=fs.readFileSync(path.join(src,p.file),"utf8")
+    .replace(/<!-- LIVE_DEMO_ONLY_START -->([\s\S]*?)<!-- LIVE_DEMO_ONLY_END -->/g, (_,body)=>cfg.demoUrl?body:"")
+    .replace("<!-- REGIONAL_PRICING -->",renderPricing(cfg.pricing,cfg.contactLink,cfg.appUrl));
   const html = render(source, { pageTitle: p.title, pageDesc: p.desc, pagePath: p.path, canonical: cfg.siteUrl + p.path });
   fs.mkdirSync(path.dirname(path.join(out, p.out)), { recursive: true });
   fs.writeFileSync(path.join(out, p.out), html);
   collectScripts(html);
 }
+const demo = path.join(src, "demo", "index.html");
+if (fs.existsSync(demo)) collectScripts(fs.readFileSync(demo, "utf8"));
 cfg.cspScriptHashes = [...inlineScripts].map((s) => `'sha256-${crypto.createHash("sha256").update(s).digest("base64")}'`).join(" ");
 
 copyDir(path.join(src, "assets"), path.join(out, "assets"));
@@ -81,7 +85,6 @@ ${pages.filter((p) => p.path !== "/404").map((p) => `  <url><loc>${cfg.siteUrl}$
 
 // The quick browser preview (runs without a server): src/demo/index.html, a copy of docs/index.html from the OrdenZ repo.
 // The live demo page (/demo/) links to the real app on the demo server set in "demoUrl".
-const demo = path.join(src, "demo", "index.html");
 if (fs.existsSync(demo)) {
   fs.mkdirSync(path.join(out, "demo", "preview"), { recursive: true });
   fs.copyFileSync(demo, path.join(out, "demo", "preview", "index.html"));

@@ -10,7 +10,7 @@ ordenz-website/
 └── src/               pages, shared header/footer, styles, images and logos
 ```
 
-The live demo page (`/demo/`) opens the real OrdenZ app on the demo server set in `demoUrl`, as any role (owner, manager, cashier, captain, chef, store keeper, cleaning, kiosk, token TV). That server runs with `DEMO_PUBLIC=true` and `DEMO_LIVE=true`, so its data is live and it's rebuilt every night; see "Public live demo server" in the OrdenZ README. Each push to the OrdenZ repo redeploys it, so the demo always has the latest features.
+The live demo page (`/demo/`) opens the real OrdenZ app on the demo server set in `demoUrl`, as any role (owner, manager, cashier, captain, chef, store keeper, cleaning, kiosk, token TV). That server runs with `DEMO_PUBLIC=true` and `DEMO_LIVE=true`, so its data is live and it's rebuilt every night; see "Public live demo server" in the OrdenZ README. The demo server is deployed separately. Verify its deployed version before using it with a client; a local build does not publish either service.
 
 The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standalone sample based on `docs/index.html`. It is separate from the current full app. The page explicitly labels its simulated payments, uses the current light workspace palette, and links back to demo options. Shared pages and the sample use a versioned OrdenZ SVG favicon to refresh cached tab icons.
 
@@ -26,7 +26,7 @@ The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standa
 | Privacy | `src/privacy.html` | What the app handles, including item photos and bulk-order customer details. Update the "Last updated" date when it changes |
 | Delete account | `src/delete-account.html` | The Play Store account-deletion page |
 
-Keep the OrdenZ page in step with the app: the trial is 30 days of Pro from the first real bill; Starter adds bulk & catering orders; Pro adds voice/AI ordering, unlimited devices and managing the cafe from any browser. Country prices come from `pricing.IN` and `pricing.MY` in `site.config.json`. India values match the app; Malaysia list prices are confirmed and settled by invoice.
+Keep the OrdenZ page in step with the app: the trial is 30 days of Pro from the first real bill, or starts after the 15-day setup window; Starter adds bulk & catering orders; Pro adds voice/AI ordering, unlimited devices and managing the cafe from any browser. Country prices come from `pricing.IN` and `pricing.MY` in `site.config.json`. India values match the app; Malaysia list prices are confirmed and settled by invoice.
 
 Images in `src/assets/img/` include real app screenshots and `botanical-cafe.webp`, a decorative illustration. The Indie Botanical design uses ivory paper, emerald serif headings, sage foliage, terracotta accents and collage layers. Actual app screenshots sit above the artwork as responsive HTML images; links and controls remain native HTML. All public navigation links stay available on small screens.
 
@@ -101,3 +101,7 @@ India Starter: ₹987 monthly / ₹9,870 yearly; Pro: ₹1,987 monthly / ₹19,8
 All ten built pages pass 140 Chromium layout cases: seven phone/tablet/desktop sizes, light and dark. Checks include navigation containment, horizontal overflow, theme switching, contact/pricing anchor visibility, regional pricing controls, reduced-motion video behaviour, JavaScript errors and local links/assets. Nine website source/pricing tests pass. The shared header now grows when navigation wraps, small-screen controls have 44px targets, and anchor spacing follows the measured header height.
 
 Build with `node build.mjs`, then run `node server/scripts/website-layout-qa.mjs` from the sibling app repository. `BROWSER_EXE` can override the default installed Playwright Chromium. Firefox selection is supported with `QA_BROWSER_ENGINE=firefox`, but the installed Firefox could not launch on this Windows test host; no Firefox pass is claimed. Results and screenshots are in the app's `artifacts/device-qa-20261030/website/`. These source changes have not been published.
+
+## Security and content alignment — 2 November 2026
+
+The demo page now distinguishes the limited browser preview from a configured full live demo. The preview retains the site CSP, with hashes normalised to browser line endings. Printing, Starter features, staff PIN/clock-in, optional support-AI disclosure and annual-price wording match the current app contracts. Run `node build.mjs` before `node --test test/*.test.mjs`; the app checkout also provides `node server/scripts/content-security-qa.mjs` for regional price, bundled privacy and CSP browser checks. No deployment is performed by these checks.
