@@ -10,6 +10,7 @@
     { "pattern": "www.ordenz.com", "custom_domain": true },
     { "pattern": "ordenz.com", "custom_domain": true }
   ],
+  // Security headers (CSP, HSTS, Permissions-Policy with geolocation disabled) ship in src/_headers → dist/_headers.
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
