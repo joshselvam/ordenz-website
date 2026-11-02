@@ -12,7 +12,7 @@ ordenz-website/
 
 The live demo page (`/demo/`) opens the real OrdenZ app on the demo server set in `demoUrl`, as any role (owner, manager, cashier, captain, chef, store keeper, cleaning, kiosk, token TV). That server runs with `DEMO_PUBLIC=true` and `DEMO_LIVE=true`, so its data is live and it's rebuilt every night; see "Public live demo server" in the OrdenZ README. The demo server is deployed separately. Verify its deployed version before using it with a client; a local build does not publish either service.
 
-The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standalone sample based on `docs/index.html`. It is separate from the current full app. The page explicitly labels its simulated payments, uses the current light workspace palette, and links back to demo options. Shared pages and the sample use a versioned OrdenZ SVG favicon to refresh cached tab icons.
+The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standalone sample based on `docs/index.html`. It is separate from the current full app. Tip copy names Brief, Crew desk, Board, House and Intake (the preview still does not implement those screens). Owner sales heading matches the app cafe name, not the old “Today at…” title. The page explicitly labels its simulated payments, uses the current light workspace palette, and links back to demo options. Shared pages and the sample use a versioned OrdenZ SVG favicon to refresh cached tab icons.
 
 ## What's on the site
 

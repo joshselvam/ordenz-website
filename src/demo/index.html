@@ -544,7 +544,7 @@ function showHelp(){
       <li><b>Stock:</b> every sale deducts ingredients by recipe. Items sell out on the kiosk automatically when stock runs out.</li>
       <li><b>Owner:</b> today's sales, peak hours, top items, upsell revenue and the WhatsApp summary.</li>
     </ol>
-    <p>Tip: open the Kitchen or Token screen in a second browser tab next to the Kiosk. Orders sync between tabs on the same device. The live demo also has Today (clock-in and cook tasks) and optional paperless bills — this browser sample does not.</p>
+    <p>Tip: open the Kitchen or Token screen in a second browser tab next to the Kiosk. Orders sync between tabs on the same device. The live demo also has Brief (clock-in and cook tasks), Crew desk, Board, House, Intake and optional paperless bills — this browser sample does not.</p>
   </div><div class="row-end"><button class="btn btn-primary" data-close type="button">Got it</button></div>`);
 }
 
@@ -873,7 +873,7 @@ Kiosk upsells added: ${rupee(ups)}
 Busiest hour: ${hh(peak.h)} (${rupee(peak.v)})
 Top item: ${top.length?itemDef(top[0][0]).en:"none"}
 ${lows.length?"Reorder: "+lows.map(i=>i.name).join(", "):"Stock: all good"}`;
-  main.innerHTML = `<div class="page"><div class="page-head"><div><h1>Today at ${esc(CAFE.name)}</h1><p>${new Date().toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long"})} · sample data plus orders placed in this demo</p></div></div>
+  main.innerHTML = `<div class="page"><div class="page-head"><div><h1>${esc(CAFE.name)}</h1><p>Sales for ${new Date().toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long"})} · sample data plus orders placed in this demo</p></div></div>
     <div class="tiles">
       <div class="kpi hl"><span class="label">Sales today</span><span class="v">${rupee(sales)}</span><span class="s">${n} orders · includes GST</span></div>
       <div class="kpi"><span class="label">Average bill</span><span class="v">${rupee(aov)}</span><span class="s">Kiosk ${rupee(kAov)} · Counter ${rupee(cAov)}</span></div>
