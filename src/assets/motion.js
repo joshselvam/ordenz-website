@@ -29,7 +29,7 @@
         }, { threshold: 0.25 }).observe(video);
       }
     } else {
-      sound.lastChild.textContent = " Play the 1-minute tour";
+      sound.lastChild.textContent = " Play the 50-second tour";
     }
 
     var dialog = document.getElementById("promoDialog");
