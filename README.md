@@ -105,3 +105,7 @@ Build with `node build.mjs`, then run `node server/scripts/website-layout-qa.mjs
 ## Security and content alignment — 2 November 2026
 
 The demo page now distinguishes the limited browser preview from a configured full live demo. The preview retains the site CSP, with hashes normalised to browser line endings. Printing, Starter features, staff PIN/clock-in, optional support-AI disclosure and annual-price wording match the current app contracts. Run `node build.mjs` before `node --test test/*.test.mjs`; the app checkout also provides `node server/scripts/content-security-qa.mjs` for regional price, bundled privacy and CSP browser checks. No deployment is performed by these checks.
+
+## IA / Playwright QA notes — 3 November 2026
+
+Marketing and demo copy use Brief, Crew desk, Board, House, Intake, Recipes, Bulk and Plan (Offers + Campaigns stay separate; TableTurn name stays). Full device/walk matrix lives in the sibling app `docs/playwright-all-devices.prompt.txt` and `docs/playwright-all-devices.REVIEW.md`. Short website mirror: `docs/qa-ia-playwright.notes.txt`. `/demo/preview/` remains a limited browser sample, not the live cafe.

@@ -4,7 +4,8 @@
 <section class="hero" style="padding:0"><div class="wrap" style="grid-template-columns:1fr;padding:56px 0 48px">
   <div><span class="eyebrow">OrdenZ guide</span>
     <h1 style="margin-top:12px;font-size:clamp(36px,5vw,56px)">How to run your cafe on OrdenZ</h1>
-    <p class="lead" style="margin-top:14px">Short, step-by-step help with pictures. Pick your role to see what matters to you, or search.</p></div>
+    <p class="lead" style="margin-top:14px">Short, step-by-step help with pictures. Pick your role to see what matters to you, or search.</p>
+    <p style="margin-top:12px;color:var(--ink-2);font-size:15px"><b>Board</b> = menu &amp; prices. <b>Token screen</b> = TV order numbers. Do not mix them up.</p></div>
 </div></section>
 
 <section style="padding:32px 0 88px"><div class="wrap g-layout">
@@ -34,7 +35,7 @@
       <li>You land on <b>Owner</b>. Follow <b>Get your cafe ready</b> in order: menu, address and phone on bills, then optional pay, team, printer and kiosk. Take the first real bill last.</li>
       <li>Under the checklist, <b>Ask how to set this up</b> points at the next unfinished step. Tap a question or <b>Ask the assistant</b>. It will not refund, send a campaign, or delete anything.</li>
       <li>Add your menu: type items, use the sample menu, upload the <b>Excel template</b>, or (Pro) photograph a printed menu and check the items before saving.</li>
-      <li>In <b>House</b> fill in the details that print on bills: India GSTIN, FSSAI and UPI; Malaysia SSM, SST if registered, and Fiuu for automatic DuitNow QR.</li></ol>
+      <li>In <b>House</b> (cafe settings) fill in the details that print on bills: India GSTIN, FSSAI and UPI; Malaysia SSM, SST if registered, and Fiuu for automatic DuitNow QR.</li></ol>
     <figure><img src="/assets/img/setup.webp" width="1440" height="810" alt="Get your cafe ready and Ask how to set this up on the owner screen" loading="lazy"><figcaption>A new cafe: the first-day checklist, then the setup coach for this cafe.</figcaption></figure>
     <figure><img src="/assets/img/help-menu-empty.webp" width="1440" height="810" alt="Empty menu and cafe settings on a new cafe" loading="lazy"><figcaption>No items yet. Add one, import Excel, or use the sample menu from the checklist.</figcaption></figure>
     <p>The longer walkthrough with pictures (sign-in through first bill, then tables, Tally, e-invoice, outlets and attendance) is the <a href="https://joshselvam.github.io/ordenz-app/docs/GETTING-STARTED.html">getting started guide</a>.</p>
@@ -69,18 +70,18 @@
   <article class="g-topic" id="team" data-roles="owner manager" data-keys="staff team role pin manager captain chef cashier store cleaning switch off access">
     <h2>4. Add your team and give everyone a role</h2>
     <p>Each person signs in with their own PIN and sees only the screens their job needs.</p>
-    <ol><li>Go to <b>Crew desk → Team</b>.</li>
+    <ol><li>Go to <b>Crew desk</b> (team, assign, hours) → <b>Team</b>.</li>
       <li>Type the name, a 4–6 digit PIN, choose the <b>Role</b> and tap <b>Add team member</b>.</li>
       <li>On the tablet, they choose <b>Staff PIN</b> and type their PIN.</li>
       <li>To change a role or a PIN, or stop someone signing in, tap <b>Edit</b> next to their name. It works within seconds, even on a tablet that's already signed in.</li></ol>
     <div class="g-table"><table><thead><tr><th>Role</th><th>Sees</th></tr></thead><tbody>
-      <tr><td>Manager</td><td>Everything day to day: reports, menu and prices, stock, suppliers, offers, tables, Attendance hours and the team. Not the plan, billing, or other managers.</td></tr>
-      <tr><td>Captain</td><td>Brief, tables, bookings, the waiting list, taking orders, the kitchen, the token TV and Attendance.</td></tr>
-      <tr><td>Chef</td><td>Brief, kitchen screen, recipes and batch cooking, stock, bulk orders to cook, Attendance.</td></tr>
-      <tr><td>Cashier</td><td>Brief, counter billing, payments, loyalty, tables, the token TV and Attendance.</td></tr>
-      <tr><td>Store keeper</td><td>Stock, supplier invoices, wastage, recipes, bulk orders and Attendance.</td></tr>
-      <tr><td>Cleaning</td><td>The table floor, their own clean-up jobs and Attendance.</td></tr>
-      <tr><td>All-rounder</td><td>Counter, tables, kitchen, stock, bulk orders and Attendance (what staff had before roles).</td></tr></tbody></table></div>
+      <tr><td>Manager</td><td><b>Brief</b> (clock-in and tasks), Owner, Reports, Counter, Cash drawer, <b>Crew desk</b>, TableTurn, Kitchen, Bulk, Recipes, Stock, Intake, Board, House, Offers, Campaigns, Kiosk and Token screen. Not Plan, billing, or other managers. Clock out and hours on Crew desk (no Attendance tab).</td></tr>
+      <tr><td>Captain</td><td>Brief, TableTurn, Counter, Kitchen, Token screen and Attendance.</td></tr>
+      <tr><td>Chef</td><td>Brief, Kitchen, Recipes, Stock, Bulk and Attendance.</td></tr>
+      <tr><td>Cashier</td><td>Brief, Counter, Cash drawer, TableTurn, Kitchen, Token screen and Attendance.</td></tr>
+      <tr><td>Store keeper</td><td>Brief, Stock, Intake, Recipes, Bulk and Attendance.</td></tr>
+      <tr><td>Cleaning</td><td>Brief, TableTurn and Attendance.</td></tr>
+      <tr><td>All-rounder</td><td>Brief, Counter, Cash drawer, TableTurn, Kitchen, Bulk, Recipes, Stock and Attendance (what staff had before roles).</td></tr></tbody></table></div>
     <figure><img src="/assets/img/team.webp" width="1440" height="810" alt="The Team panel with roles" loading="lazy"><figcaption>Only the owner can make or change managers.</figcaption></figure>
   </article>
 
@@ -139,14 +140,14 @@
     <ol>
       <li>Owner: in <b>House</b>, under <i>Delivery apps</i>, turn on the apps you use and set each one's commission and mark-up (for example menu +10%).</li>
       <li>Cashier: choose <b>Delivery</b>, then the app. Prices switch to that app's prices. Type the app's order number and tap <b>Send to kitchen</b>.</li>
-      <li>If that partner is onboarded, a signed webhook can send the same order in. Live intake needs a signed secret; sandbox first. This is cafe intake, not a public Swiggy or Zomato listing by itself.</li>
+      <li>If that partner is onboarded, a signed webhook can take the order in. Live delivery order entry needs a signed secret; sandbox first. This is taking the order in at the cafe, not a public Swiggy or Zomato listing by itself.</li>
       <li>Owner: in <b>Reports → Delivery apps</b>, upload the app's settlement file or tick each payout, and see what's still owed.</li></ol>
     <figure><img src="/assets/img/delivery-payouts.webp" width="1440" height="810" alt="Delivery app sales, commission and payouts" loading="lazy"><figcaption>What each app sold, its commission, and the payouts still to come.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="kitchen" data-roles="chef captain cashier" data-keys="kitchen ticket preparing ready served token tv chime">
     <h2>11. The kitchen screen and token TV</h2>
-    <ol><li>New orders appear on <b>Kitchen</b> at once. Tap <b>Start</b>, then <b>Ready</b>.</li>
+    <ol><li>New orders appear on <b>Kitchen</b> at once. Tap <b>Start</b>, then <b>Ready</b>, then <b>Served</b>.</li>
       <li>Orders waiting too long change colour, so nothing is forgotten.</li>
       <li>When you tap <b>Ready</b>, the token moves to "Ready" on the TV with a chime.</li></ol>
     <figure><img src="/assets/img/chef.webp" width="1440" height="810" alt="The chef's kitchen screen" loading="lazy"><figcaption>The chef only sees the kitchen, recipes, stock and bulk orders.</figcaption></figure>
@@ -193,7 +194,7 @@
 
   <article class="g-topic" id="suppliers" data-roles="store owner manager" data-keys="supplier invoice bill purchase gst input credit pay owed overdue delivery photo">
     <h2>15. Supplier invoices</h2>
-    <ol><li>When a delivery comes, open <b>Intake</b> and tap <b>Enter an invoice</b>.</li>
+    <ol><li>When a delivery comes, open <b>Intake</b> (supplier bills) and tap <b>Enter an invoice</b>.</li>
       <li>Type or choose the supplier, the invoice number and date, and the pay-by date if they gave you credit.</li>
       <li>Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
       <li>Tap <b>Save and add to stock</b>. The stock goes up and recipe costs update.</li>
@@ -231,10 +232,10 @@
 
   <article class="g-topic" id="attendance" data-roles="owner manager cashier captain chef store cleaning" data-keys="attendance clock in clock-in pin hours csv payroll epf socso pf esi working sheet wage">
     <h2>19. Clock in and payroll working sheets (Starter and Pro)</h2>
-    <ol><li>After PIN or email you land on <b>Brief</b> first if you are not clocked in. Sign-in is not a clock. See <a href="#today">Brief</a>.</li>
-      <li>Open <b>Attendance</b> to clock in and out with the PIN you already signed in with. The owner can require a selfie. This is not a face terminal.</li>
-      <li>Owner or manager: pick the dates, then download the hours CSV and the working sheet — EPF / SOCSO / EIS in Malaysia, or PF / ESI in India.</li>
-      <li>Set a monthly wage on the same screen if you want the sheet to show contributions.</li></ol>
+    <ol><li>Clock in on <b>Brief</b> after PIN or email (plus any cook tasks). Sign-in is not a clock. Skip to work is always there. See <a href="#today">Brief</a>.</li>
+      <li>Staff: open <b>Attendance</b> to <b>clock out</b> with the PIN you already signed in with. The owner can require a selfie. This is not a face terminal.</li>
+      <li>Managers: clock out and download hours on <b>Crew desk</b> (managers do not see the Attendance tab).</li>
+      <li>Owner or manager: pick the dates, then download the hours CSV and the working sheet — EPF / SOCSO / EIS in Malaysia, or PF / ESI in India. Set a monthly wage if you want the sheet to show contributions.</li></ol>
     <p>The files are for your accountant. OrdenZ does not file with KWSP, EPFO, SOCSO or ESI.</p>
   </article>
 
@@ -289,9 +290,9 @@
       <li>On the kiosk, a paid thank-you shows a QR to scan that same bill (English names; Tamil on the kiosk: பில் பார்க்க ஸ்கேன் செய்யவும்). Unpaid cash-at-counter stays token only.</li></ol>
   </article>
 
-  <article class="g-topic" id="today" data-roles="owner manager cashier captain chef store cleaning" data-keys="today clock in cook task ask chef skip later snooze can't done batch">
+  <article class="g-topic" id="today" data-roles="owner manager cashier captain chef store cleaning" data-keys="today brief clock in cook task ask chef skip later snooze can't done batch">
     <h2>26. Brief: clock in and cook tasks</h2>
-    <p>After PIN or email, staff land on <b>Brief</b> if they are not clocked in or have a cook task due. Sign-in is not a clock. Kiosk and TV skip this screen.</p>
+    <p>After PIN or email, staff land on <b>Brief</b> (clock-in and tasks) if they are not clocked in or have a cook task due. Sign-in is not a clock. Kiosk and TV skip this screen.</p>
     <ol><li>Clock in when you start work (selfie if the cafe asks). Or tap <b>Skip to work</b> to open your first job screen.</li>
       <li>A cook card is a recipe the owner or manager assigned from <b>Crew desk</b> or Recipes <b>Assign</b>. One open task per recipe and person.</li>
       <li><b>Later</b> hides it for about an hour, then the reminder returns.</li>

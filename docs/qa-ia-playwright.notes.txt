@@ -1,0 +1,36 @@
+OrdenZ website — IA / Playwright notes (mirror)
+==============================================
+
+Full master prompt + review live in the sibling app repo:
+  Ordernest-pos-AI/docs/playwright-all-devices.prompt.txt
+  Ordernest-pos-AI/docs/playwright-all-devices.REVIEW.md
+
+When running website layout / content QA (build dist, then app
+`server/scripts/website-layout-qa.mjs` or walks 100–106):
+
+Shipped marketing copy should prefer these tab names:
+  Brief, Crew desk, Board, House, Intake, Recipes, Bulk, Plan, TableTurn
+  Offers and Campaigns stay separate (Boost not merged).
+  Counter / Kitchen / Cash drawer / Stock / Owner / Reports keep those labels
+  (aspirational Front / Line / Float / Pantry / Pulse / Books / Floor are NOT
+  shipped renames).
+
+Surfaces on this site:
+  /  /features/  /demo/  /demo/preview/  /guide/  /start-a-cafe/  /support/
+  /privacy/  /terms/  /delete-account/  /404.html
+
+/demo/preview/ is browser-only sample data — not the live cafe app. Tip text
+may mention Brief / Crew / Board / House / Intake even though the sample does
+not implement those screens. Do not treat preview as app.ordenz.com.
+
+Assert (marketing):
+  - Trial: first real bill or day 15; Free 1 paired device / 50 orders
+  - MY SST only with registration number; no invented MyInvois taxpayer login
+  - Features/demo/guide copy not stuck on “Today” / “Menu & settings” /
+    “Suppliers” as primary tab names where Brief / Board / Intake apply
+  - Fit: MUST phone/tablet/desktop portrait + landscape; no overflow; sticky
+    header must not cover #contact / #pricing
+
+Build: node build.mjs
+Tests: node --test test/*.test.mjs
+Layout runner: from app repo after dist exists.

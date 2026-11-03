@@ -32,9 +32,33 @@ test('client claims match current printing, stock and optional support AI behavi
  const features=read('src/features.html'),privacy=read('src/privacy.html'),support=read('src/support.html');
  assert.match(features,/supported stock, supplier, offer and kitchen documents print as compact 58\/80 mm slips/);
  assert.match(features,/sold-out items are marked and cannot be added/);
- assert.match(features,/Each staff member has their own PIN/);
+ assert.match(features,/Each staff job has its own PIN/);
  assert.match(privacy,/configured AI service may receive your question/);
  assert.match(privacy,/browser’s local storage/);
  assert.match(privacy,/privacy-enhanced player/);
- assert.match(support,/Support tickets &amp; chat/);
+ assert.match(support,/Send feedback in the app/);
+ assert.match(support,/cafe code from House/);
+});
+
+test('features, guide and demo use shipped tab names from the app',()=>{
+ const features=read('src/features.html'),help=read('src/help.html'),demo=read('src/demo.html');
+ for(const page of [features,help]){
+  assert.match(page,/Board<\/b> = menu/);
+  assert.match(page,/Token screen<\/b> = TV order numbers/);
+  assert.doesNotMatch(page,/Recipes &amp; stock|Recipes & stock/);
+  assert.doesNotMatch(page,/Stock &amp; suppliers|Stock & suppliers/);
+  assert.doesNotMatch(page,/Menu &amp; settings|Menu & settings/);
+  assert.doesNotMatch(page,/Open <b>Attendance<\/b> to clock in/);
+ }
+ assert.match(features,/New → Preparing → Ready → Served/);
+ assert.match(features,/Stock &amp; Intake/);
+ assert.match(features,/eyebrow">Recipes</);
+ assert.match(features,/delivery order entry/);
+ assert.match(help,/Clock in on <b>Brief<\/b>/);
+ assert.match(help,/Attendance<\/b> to <b>clock out<\/b>/);
+ assert.match(help,/Crew desk<\/b> \(managers do not see the Attendance tab\)/);
+ assert.match(help,/Board, House, Offers, Campaigns, Kiosk and Token screen/);
+ assert.match(help,/Brief, Stock, Intake, Recipes, Bulk and Attendance/);
+ assert.match(demo,/Open <b>Intake<\/b>/);
+ assert.match(demo,/<b>Intake<\/b>, <b>Bulk<\/b>/);
 });
