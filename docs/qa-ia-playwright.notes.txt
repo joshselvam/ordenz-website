@@ -31,6 +31,13 @@ Assert (marketing):
   - Fit: MUST phone/tablet/desktop portrait + landscape; no overflow; sticky
     header must not cover #contact / #pricing
 
+External checklist (mirror of app prompt; skip with reason OK):
+  Play Console pre-launch · BrowserStack/LambdaTest · Lighthouse/PSI ·
+  securityheaders · ZAP staging-only · k6/Artillery light · CI npm test +
+  fit lane · real cafe pilot. Do not invent live Play / Fiuu / MyInvois filing.
+
 Build: node build.mjs
 Tests: node --test test/*.test.mjs
 Layout runner: from app repo after dist exists.
+App master: Ordernest-pos-AI/docs/playwright-all-devices.prompt.txt (expanded
+Maestro Windows + external checklists, 3 Nov 2026 Stream A).
