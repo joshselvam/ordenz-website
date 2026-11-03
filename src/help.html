@@ -35,9 +35,9 @@
       <li>You land on <b>Owner</b>. Follow <b>Get your cafe ready</b> in order: menu, address and phone on bills, then optional pay, team, printer and kiosk. Take the first real bill last.</li>
       <li>Under the checklist, <b>Ask how to set this up</b> points at the next unfinished step. Tap a question or <b>Ask the assistant</b>. It will not refund, send a campaign, or delete anything.</li>
       <li>Add your menu: type items, use the sample menu, upload the <b>Excel template</b>, or (Pro) photograph a printed menu and check the items before saving.</li>
-      <li>In <b>House</b> (cafe settings) fill in the details that print on bills: India GSTIN, FSSAI and UPI; Malaysia SSM, SST if registered, and Fiuu for automatic DuitNow QR.</li></ol>
+      <li>In <b>House</b> fill in the details that print on bills: India GSTIN, FSSAI and UPI; Malaysia SSM, SST if registered, and Fiuu for automatic DuitNow QR.</li></ol>
     <figure><img src="/assets/img/setup.webp" width="1440" height="810" alt="Get your cafe ready and Ask how to set this up on the owner screen" loading="lazy"><figcaption>A new cafe: the first-day checklist, then the setup coach for this cafe.</figcaption></figure>
-    <figure><img src="/assets/img/help-menu-empty.webp" width="1440" height="810" alt="Empty menu and cafe settings on a new cafe" loading="lazy"><figcaption>No items yet. Add one, import Excel, or use the sample menu from the checklist.</figcaption></figure>
+    <figure><img src="/assets/img/help-menu-empty.webp" width="1440" height="810" alt="Empty Board and House on a new cafe" loading="lazy"><figcaption>No items yet. Add one, import Excel, or use the sample menu from the checklist.</figcaption></figure>
     <p>The longer walkthrough with pictures (sign-in through first bill, then tables, Tally, e-invoice, outlets and attendance) is the <a href="https://joshselvam.github.io/ordenz-app/docs/GETTING-STARTED.html">getting started guide</a>.</p>
     <h3>Practice first, with sample customers</h3>
     <p>Want to see OrdenZ busy before your first real customer, or train your team? Ask us to turn on <b>practice mode</b> for your cafe. A sample customer then orders about every 5 minutes for a week, on the kiosk or at the counter, so you can watch the kitchen screen, token TV, stock and reports working. If your menu is still empty, we add a sample menu so there's something to order.</p>
@@ -54,7 +54,7 @@
       <li><b>Malaysia</b>: add your <b>SSM registration no.</b>. If you're SST-registered, add your <b>SST registration no.</b> and set <b>SST rate</b> to 6%; otherwise leave it at 0%.</li>
       <li>Choose <b>Menu prices</b>: <i>Service charge + SST on top</i> (set the <b>Service charge %</b>, usually 10%), or <i>Nett (all included)</i>. Tap <b>Save settings</b>.</li>
       <li>Cash bills are rounded to the nearest 5 sen; card and DuitNow QR stay exact. The bill shows the service charge, SST and rounding.</li></ol>
-    <figure><img src="/assets/img/country-settings.webp" width="1440" height="810" alt="Cafe settings for Malaysia: SSM and SST numbers, SST rate, menu prices and service charge" loading="lazy"></figure>
+    <figure><img src="/assets/img/country-settings.webp" width="1440" height="810" alt="House for Malaysia: SSM and SST numbers, SST rate, menu prices and service charge" loading="lazy"></figure>
     <figure><img src="/assets/img/receipt-my.webp" width="1440" height="810" alt="A Malaysian bill with service charge, SST and rounding" loading="lazy"></figure>
   </article>
 
@@ -72,7 +72,7 @@
     <p>Each person signs in with their own PIN and sees only the screens their job needs.</p>
     <ol><li>Go to <b>Crew desk</b> (team, assign, hours) → <b>Team</b>.</li>
       <li>Type the name, a 4–6 digit PIN, choose the <b>Role</b> and tap <b>Add team member</b>.</li>
-      <li>On the tablet, they choose <b>Staff PIN</b> and type their PIN.</li>
+      <li>On the tablet, they choose <b>Staff PIN</b> and type their PIN. Staff PINs only work on the cafe's own devices — easiest is the owner signs in on that tablet once, or they enter the device key from <b>House</b> the first time.</li>
       <li>To change a role or a PIN, or stop someone signing in, tap <b>Edit</b> next to their name. It works within seconds, even on a tablet that's already signed in.</li></ol>
     <div class="g-table"><table><thead><tr><th>Role</th><th>Sees</th></tr></thead><tbody>
       <tr><td>Manager</td><td><b>Brief</b> (clock-in and tasks), Owner, Reports, Counter, Cash drawer, <b>Crew desk</b>, TableTurn, Kitchen, Bulk, Recipes, Stock, Intake, Board, House, Offers, Campaigns, Kiosk and Token screen. Not Plan, billing, or other managers. Clock out and hours on Crew desk (no Attendance tab).</td></tr>
@@ -256,10 +256,10 @@
     <figure><img src="/assets/img/campaigns.webp" width="1440" height="810" alt="WhatsApp campaigns" loading="lazy"></figure>
   </article>
 
-  <article class="g-topic" id="security" data-roles="owner cashier captain manager" data-keys="mfa authenticator recovery idle pin till lock device key">
+  <article class="g-topic" id="security" data-roles="owner cashier captain manager" data-keys="mfa authenticator recovery idle pin till lock device key staff pin">
     <h2>22. Owner authenticator and till lock</h2>
-    <ol><li>Owner: on <b>Plan</b> (or cafe security), set up an optional 6-digit authenticator after your password. Save the recovery codes. The demo owner stays without MFA.</li>
-      <li>Staff stay on PIN. After two minutes with no tap, the till asks for that same person's PIN. The open bill stays on screen. A coworker's PIN will not unlock it.</li>
+    <ol><li>Owner: on <b>Plan</b>, set up an optional 6-digit authenticator after your password. Save the recovery codes. The demo owner stays without MFA.</li>
+      <li>Staff stay on PIN, and only on devices the cafe has set up (owner signed in once, or the House device key). After two minutes with no tap, the till asks for that same person's PIN. The open bill stays on screen. A coworker's PIN will not unlock it.</li>
       <li>A paid bill or a print fail shows a toast; the Android app also gives a short vibrate (off when reduced motion is on). Print fail does not mark the bill unpaid.</li></ol>
     <p>Lost the phone? Contact us from the owner email or WhatsApp on the account. The team checks you are the owner. A second operator approves. You get a private one-time 30-minute link that sets a new password and turns MFA off. There is no automatic email. Manager MFA and SMS are not built yet.</p>
   </article>
