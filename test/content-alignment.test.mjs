@@ -42,6 +42,8 @@ test('client claims match current printing, stock and optional support AI behavi
 
 test('features, guide and demo use shipped tab names from the app',()=>{
  const features=read('src/features.html'),help=read('src/help.html'),demo=read('src/demo.html');
+ // Labels must match server/public/js/app.js SCREENS (Brief, Crew desk, Board, House, Intake, Plan, Token screen…).
+ const screens=['Brief','Kiosk','Counter','Kitchen','Token screen','Recipes','Stock','Owner','Board','House','Crew desk','Offers','Campaigns','TableTurn','Bulk','Plan','Intake','Cash drawer','Attendance','Reports'];
  for(const page of [features,help]){
   assert.match(page,/Board<\/b> = menu/);
   assert.match(page,/Token screen<\/b> = TV order numbers/);
@@ -49,11 +51,14 @@ test('features, guide and demo use shipped tab names from the app',()=>{
   assert.doesNotMatch(page,/Stock &amp; suppliers|Stock & suppliers/);
   assert.doesNotMatch(page,/Menu &amp; settings|Menu & settings/);
   assert.doesNotMatch(page,/Open <b>Attendance<\/b> to clock in/);
+  assert.doesNotMatch(page,/Cafe settings|Purchases tab|Billing tab|Today tab/);
  }
+ for(const label of screens)assert.match(features,new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
  assert.match(features,/New → Preparing → Ready → Served/);
  assert.match(features,/Stock &amp; Intake/);
  assert.match(features,/eyebrow">Recipes</);
  assert.match(features,/delivery order entry/);
+ assert.match(features,/Brief<\/b>, <b>Counter<\/b>, <b>Cash drawer<\/b>, <b>Attendance<\/b>, <b>Crew desk<\/b> and <b>TableTurn<\/b>/);
  assert.match(help,/Clock in on <b>Brief<\/b>/);
  assert.match(help,/Attendance<\/b> to <b>clock out<\/b>/);
  assert.match(help,/Crew desk<\/b> \(managers do not see the Attendance tab\)/);
