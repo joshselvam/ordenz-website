@@ -62,6 +62,9 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.match(help,/Staff PINs only work on the cafe's own devices/);
  assert.doesNotMatch(help,/Cafe settings|cafe security/);
  assert.match(features,/only on devices the cafe has set up/);
+ assert.match(features,/After staff sign-in, <b>Brief<\/b>/);
+ assert.match(features,/Owners use <b>Crew desk<\/b> to manage the team/);
+ assert.doesNotMatch(features,/After PIN or email, <b>Brief<\/b>/);
  assert.match(demo,/Open <b>Intake<\/b>/);
  assert.match(demo,/<b>Intake<\/b>, <b>Bulk<\/b>/);
 });
