@@ -64,6 +64,8 @@ npx serve dist        # or open dist/index.html
 4. Click **Deploy**. The site goes live at `https://www.<your-subdomain>.workers.dev`. Put that address in `siteUrl` in `site.config.json`.
 5. Every push to `main` rebuilds the site automatically.
 
+GitHub Actions runs the same checks. The **Website** workflow is test, then build, then deploy. A pull request stops before deploy. A push to `main` or `master` publishes the built `dist` folder with Wrangler when `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are set under Settings → Secrets and variables → Actions. Until both secrets exist, Cloudflare's Git connection remains the publisher.
+
 `wrangler.jsonc` tells Cloudflare to serve the built `dist` folder as a static site, with `_headers`, `_redirects` and the 404 page.
 
 **Add your own domain later** (e.g. `ordenz.in`): go to the Pages project → **Custom domains → Set up a domain**, and follow the steps. Then update `siteUrl` in `site.config.json`.

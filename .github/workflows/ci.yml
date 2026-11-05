@@ -1,0 +1,51 @@
+# OrdenZ website. Thin entry: triggers and stage order only.
+#
+#   test  →  build  →  deploy
+#
+# Pull requests run test and build, then stop.
+# Deploy runs only on a push to main or master. A cancelled run does not deploy.
+# Cloudflare's own Git connection can still publish until CLOUDFLARE_API_TOKEN
+# and CLOUDFLARE_ACCOUNT_ID are set (Settings → Secrets and variables → Actions).
+name: Website
+
+on:
+  pull_request:
+  push:
+    branches: [main, master, develop, 'release/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: website-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    uses: ./.github/workflows/website-test.yml
+
+  build:
+    needs: test
+    uses: ./.github/workflows/website-build.yml
+
+  summary:
+    needs: [test, build]
+    if: ${{ !cancelled() && needs.test.result == 'success' && needs.build.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build summary
+        run: |
+          echo "===================================================="
+          echo "                   Build summary                     "
+          echo "===================================================="
+          echo "Test:  ${{ needs.test.result }}"
+          echo "Build: ${{ needs.build.result }}"
+          echo "Deploy runs next only for a push to main or master."
+
+  deploy:
+    needs: [build, summary]
+    if: ${{ !cancelled() && needs.build.result == 'success' && needs.summary.result == 'success' && github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') }}
+    uses: ./.github/workflows/website-deploy.yml
+    secrets: inherit
