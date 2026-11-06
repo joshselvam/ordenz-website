@@ -2,7 +2,7 @@
   <a class="brand" href="/"><img src="/assets/brand/ordenz-mark.svg" alt="">{{company}}</a>
   <nav class="nav" aria-label="Main">
     <a href="/features/" class="keep">Features</a>
-    <a href="/demo/">Live demo</a>
+    <a href="/demo/">{{#if demoUrl}}Live demo{{/if}}{{#unless demoUrl}}Try demo{{/unless}}</a>
     <a href="/features/#pricing">Pricing</a>
     <a href="/start-a-cafe/">Start a cafe</a>
     <a href="/guide/">Guide</a>

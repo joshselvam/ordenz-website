@@ -10,12 +10,11 @@
     <p class="lead" style="margin-top:12px" data-home-lead="country" data-for-country="MY">OrdenZ is a cafe POS in Malaysia for small cafes, with a self-order kiosk and a kitchen screen. Prices are in ringgit. SST is added only when you set an SST number.</p>
     <p class="lead" style="margin-top:12px">It also runs the counter, a guest tablet and the token screen. The guest tablet, Showcase and token screen are cheap Android tablets.</p>
     <div class="actions">
-      <a class="btn btn-cta" href="/demo/">Try the live demo</a>
-      {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
+      <a class="btn btn-cta" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
       {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a walk-through</a>{{/if}}
-      <a class="btn btn-ghost" href="/features/">See every feature</a>
     </div>
-    <p style="margin-top:10px;color:var(--ink-2);font-size:15px">Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro.</p>
+    <p class="hero-more"><a href="/features/">See every feature</a></p>
+    <p style="margin-top:10px;color:var(--ink-2);font-size:15px">Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro. <a class="quiet-link" href="/features/#pricing">See plans</a></p>
   </div>
   <div class="hero-art has-video">
     <div class="cafe-photo" role="img" aria-label="Plant-filled cafe interior"></div>
@@ -124,7 +123,7 @@
     <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A GrabFood or foodpanda order lands from a signed webhook only when that partner's secret is set, or the cashier types it. OrdenZ prices the order from the cafe menu. The partner's price is not used. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
     <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close, count, go home</h3><p>The drawer is counted note by note and the Z report prints. SST is on the bill only if the cafe added an SST number. Reports prepare the MyInvois ZIP; OrdenZ does not log in to LHDN.</p><span class="who">Reports · Owner</span></div></li>
   </ol>
-  <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/demo/">Live the day in the demo</a><a class="btn btn-soft" href="/features/">How each part works</a></div>
+  <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/demo/">{{#if demoUrl}}Live the day in the demo{{/if}}{{#unless demoUrl}}Walk through a day in the demo{{/unless}}</a><a class="btn btn-soft" href="/features/">How each part works</a></div>
 </div></section>
 
 
@@ -175,7 +174,7 @@
       {{#if email}}<a class="btn btn-primary" href="mailto:{{email}}?subject=Hello%20{{company}}">Email us</a>{{/if}}
       {{#unless emailOrWhatsapp}}<span class="btn btn-ghost" style="cursor:default">Contact details coming soon</span>{{/unless}}
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
-      <a class="btn btn-ghost" href="/demo/">Try the live demo</a>
+      <a class="btn btn-ghost" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
     </div>
   </div>
 </div></section>

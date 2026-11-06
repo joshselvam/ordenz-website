@@ -3,7 +3,7 @@
   <span>© {{year}} {{company}} · Made in India</span>
   <nav aria-label="Footer">
     <a href="/features/">Features</a>
-    <a href="/demo/">Live demo</a>
+    <a href="/demo/">{{#if demoUrl}}Live demo{{/if}}{{#unless demoUrl}}Try demo{{/unless}}</a>
     {{#if appUrl}}<a href="{{appUrl}}">Sign in</a>{{/if}}
     <a href="/start-a-cafe/">Start a cafe</a>
     <a href="/guide/">Guide</a>

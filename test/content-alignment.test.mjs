@@ -7,10 +7,11 @@ test('a preview-only deployment does not promise role-specific live screens',()=
  const config=JSON.parse(read('site.config.json'));
  const demo=read('dist/demo/index.html');
  if(!config.demoUrl){
-  assert.match(demo,/Try a small browser preview/);
+  assert.match(demo,/Cafe POS demo \(browser preview\)/);
   assert.match(demo,/limited preview uses simulated payments/);
   assert.doesNotMatch(demo,/id="roles"|id="tour"|A real cafe, open right now/);
   assert.match(demo,/Book a full walkthrough/);
+  assert.match(demo,/>Try demo</);
  }
 });
 

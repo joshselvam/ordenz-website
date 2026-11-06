@@ -34,13 +34,19 @@
     MY: "OrdenZ is a cafe POS in Malaysia for small cafes, with a self-order kiosk, a kitchen screen, ringgit prices, and SST only when an SST number is set."
   };
 
+  function setMeta(sel, content) {
+    var el = document.querySelector(sel);
+    if (el) el.setAttribute("content", content);
+  }
+
   function applyHomeSeo(code) {
     var path = location.pathname;
     if (path !== "/" && path !== "/index.html") return;
     if (!HOME_TITLE[code]) return;
     document.title = HOME_TITLE[code];
-    var md = document.querySelector('meta[name="description"]');
-    if (md) md.setAttribute("content", HOME_DESC[code]);
+    setMeta('meta[name="description"]', HOME_DESC[code]);
+    setMeta('meta[property="og:title"]', HOME_TITLE[code]);
+    setMeta('meta[property="og:description"]', HOME_DESC[code]);
   }
 
   function apply(code, persist) {

@@ -324,6 +324,9 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero h1{font-size:clamp(40px,4.2vw,60px)}
 .hero .lead{font-size:17px;line-height:1.45}
 .hero .actions{margin-top:16px;gap:8px}
+.hero-more{margin-top:12px;font-size:15px}
+.hero-more a,.quiet-link{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.hero-more a:hover,.quiet-link:hover{color:var(--ink)}
 .hero-art.has-video{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:8px;align-content:stretch;padding-top:0;min-height:0;height:100%;overflow:hidden}
 .hero-art.has-video:before{content:none}
 .hero-art.has-video:after{content:none}

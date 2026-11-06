@@ -50,8 +50,8 @@ fs.mkdirSync(out, { recursive: true });
 const pages = [
   { file: "index.html", out: "index.html", path: "/", title: "Cafe POS for India and Malaysia | OrdenZ", desc: "OrdenZ is a cafe POS with a self-order kiosk and a kitchen screen for small cafes in India and Malaysia." },
   { file: "features.html", out: "features/index.html", path: "/features/", title: "Cafe POS and self-order kiosk features | OrdenZ", desc: "OrdenZ is a cafe POS with a self-order kiosk, counter, kitchen, stock and reports for small cafes in India and Malaysia." },
-  { file: "demo.html", out: "demo/index.html", path: "/demo/", title: cfg.demoUrl ? "OrdenZ live demo" : "OrdenZ browser preview", desc: cfg.demoUrl ? "Explore real cafe workflows with an isolated sample account and role-specific screens." : "Try a limited kiosk, counter, kitchen and token browser preview with simulated payments." },
-  { file: "help.html", out: "guide/index.html", path: "/guide/", title: "OrdenZ guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
+  { file: "demo.html", out: "demo/index.html", path: "/demo/", title: cfg.demoUrl ? "Cafe POS live demo | OrdenZ" : "Cafe POS demo (browser preview) | OrdenZ", desc: cfg.demoUrl ? "Explore real cafe workflows with an isolated sample account and role-specific screens." : "Try a limited kiosk, counter, kitchen and token browser preview with simulated payments." },
+  { file: "help.html", out: "guide/index.html", path: "/guide/", title: "OrdenZ cafe POS guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
   { file: "start-a-cafe.html", out: "start-a-cafe/index.html", path: "/start-a-cafe/", title: "Start a cafe in India or Malaysia: licences, tax and equipment", desc: "A plain guide to opening a cafe: FSSAI, GST and trade licences in India; SSM, council licence, food handler course and SST in Malaysia; equipment, menu pricing and your first week." },
   { file: "terms.html", out: "terms/index.html", path: "/terms/", title: "Terms of service", desc: "The agreement between your cafe and OrdenZ: plans, payments, your data and your responsibilities." },
   { file: "support.html", out: "support/index.html", path: "/support/", title: "Help and support", desc: "How to reach the OrdenZ team: the Feedback button in the app, email, reply times and what to do if the internet is down." },
@@ -59,6 +59,64 @@ const pages = [
   { file: "delete-account.html", out: "delete-account/index.html", path: "/delete-account/", title: "Delete your account", desc: "How to delete your OrdenZ cafe account and data." },
   { file: "404.html", out: "404.html", path: "/404", title: "Page not found", desc: "" },
 ];
+function stripTags(s) {
+  return String(s)
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<\/p>/gi, " ")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function siteJsonLd() {
+  const org = {
+    "@type": "Organization",
+    "name": cfg.company,
+    "url": cfg.siteUrl,
+    "founder": { "@type": "Person", "name": cfg.legalName },
+    "areaServed": ["IN", "MY"],
+  };
+  if (cfg.email) org.email = cfg.email;
+  if (cfg.waLink) org.sameAs = [cfg.waLink];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      org,
+      {
+        "@type": "SoftwareApplication",
+        "name": cfg.company,
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Android, Web",
+        "url": cfg.siteUrl,
+        "description": "Cafe POS with a self-order kiosk and a kitchen screen for small cafes in India and Malaysia.",
+      },
+    ],
+  };
+}
+
+function faqJsonLd(html) {
+  const mainEntity = [];
+  for (const m of html.matchAll(/<details>\s*<summary>([\s\S]*?)<\/summary>\s*<p>([\s\S]*?)<\/p>\s*<\/details>/gi)) {
+    const name = stripTags(m[1]);
+    const text = stripTags(m[2]);
+    if (name && text) mainEntity.push({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } });
+  }
+  if (!mainEntity.length) return null;
+  return { "@context": "https://schema.org", "@type": "FAQPage", mainEntity };
+}
+
+function withJsonLd(html, extra) {
+  const blocks = [`<script type="application/ld+json">${JSON.stringify(siteJsonLd())}</script>`];
+  if (extra) blocks.push(`<script type="application/ld+json">${JSON.stringify(extra)}</script>`);
+  return html.replace("</head>", `${blocks.join("\n")}\n</head>`);
+}
+
 // Inline scripts allowed by the Content-Security-Policy (see src/_headers): collected from the built pages
 const inlineScripts = new Set();
 const collectScripts = (html) => { for (const m of html.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)) if (m[1].trim()) inlineScripts.add(m[1].replace(/\r\n?/g,"\n")); };
@@ -66,7 +124,9 @@ for (const p of pages) {
   const source=fs.readFileSync(path.join(src,p.file),"utf8")
     .replace(/<!-- LIVE_DEMO_ONLY_START -->([\s\S]*?)<!-- LIVE_DEMO_ONLY_END -->/g, (_,body)=>cfg.demoUrl?body:"")
     .replace("<!-- REGIONAL_PRICING -->",renderPricing(cfg.pricing,cfg.contactLink,cfg.appUrl));
-  const html = render(source, { pageTitle: p.title, pageDesc: p.desc, pagePath: p.path, canonical: cfg.siteUrl + p.path });
+  let html = render(source, { pageTitle: p.title, pageDesc: p.desc, pagePath: p.path, canonical: cfg.siteUrl + p.path });
+  const faq = (p.file === "features.html" || p.file === "start-a-cafe.html") ? faqJsonLd(html) : null;
+  html = withJsonLd(html, faq);
   fs.mkdirSync(path.dirname(path.join(out, p.out)), { recursive: true });
   fs.writeFileSync(path.join(out, p.out), html);
   collectScripts(html);
