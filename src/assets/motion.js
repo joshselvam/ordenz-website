@@ -1,4 +1,4 @@
-// Home-page tour video and gentle scroll animations.
+// Home-page tour video, hero slideshow and gentle scroll animations.
 // - The tour plays muted and looped when the page opens (browsers only allow silent autoplay).
 //   It doesn't autoplay for people who asked for less motion or to save data, and it pauses off screen.
 // - "Watch with sound" restarts it with sound and controls, or opens YouTube when a video ID is set.
@@ -54,6 +54,9 @@
       tryPlay();
       figure.classList.add("playing");
     });
+    video.addEventListener("ended", function () {
+      if (figure) figure.classList.remove("playing");
+    });
     if (dialog) {
       var close = function () { if (frame) frame.replaceChildren(); if (dialog.open) dialog.close(); };
       var btn = document.getElementById("promoClose");
@@ -61,6 +64,89 @@
       dialog.addEventListener("close", function () { if (frame) frame.replaceChildren(); });
       dialog.addEventListener("click", function (e) { if (e.target === dialog) close(); });
     }
+  }
+
+  // ---------- hero slideshow ----------
+  // Four scenes. Advances about every 5 seconds unless the visitor asked for less motion,
+  // is pointing at the slideshow, or is focused on a control.
+  var show = document.getElementById("heroShow");
+  if (show) {
+    var slides = Array.prototype.slice.call(show.querySelectorAll(".show-slide"));
+    var dots = Array.prototype.slice.call(show.querySelectorAll(".show-dot"));
+    var index = 0;
+    var timer = 0;
+    var hovering = false;
+    var focused = false;
+    if (!reduce) show.classList.add("show-motion");
+    var showSlide = function (n) {
+      if (!slides.length) return;
+      index = (n + slides.length) % slides.length;
+      var clip = document.getElementById("promoVideo");
+      slides.forEach(function (slide, i) {
+        var on = i === index;
+        slide.hidden = !on;
+        slide.classList.toggle("is-on", on);
+      });
+      dots.forEach(function (dot, i) {
+        if (i === index) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+      if (clip && !slides[index].contains(clip)) {
+        clip.pause();
+        var promo = clip.closest(".promo");
+        if (promo) promo.classList.remove("playing");
+      } else if (clip && clip.autoplay && clip.muted && clip.paused) {
+        var play = clip.play();
+        if (play && play.catch) play.catch(function () {});
+      }
+    };
+    var held = function () {
+      var dialog = document.getElementById("promoDialog");
+      var active = document.activeElement;
+      return hovering || focused || !!show.querySelector(".show-slide.is-on .promo.playing") || !!(dialog && dialog.open) || !!(active && show.contains(active) && active.closest("button"));
+    };
+    var stop = function () { if (timer) { clearInterval(timer); timer = 0; } };
+    var arm = function () {
+      if (reduce || held() || timer || slides.length < 2) return;
+      timer = setInterval(function () { if (!held()) showSlide(index + 1); }, 5000);
+    };
+    show.addEventListener("pointerenter", function (e) {
+      if (e.pointerType === "touch") return;
+      hovering = true;
+      stop();
+    });
+    show.addEventListener("pointerleave", function (e) {
+      if (e.pointerType === "touch") return;
+      hovering = false;
+      arm();
+    });
+    show.addEventListener("focusin", function (e) {
+      if (e.target && e.target.closest && e.target.closest("button")) { focused = true; stop(); }
+    });
+    show.addEventListener("focusout", function () {
+      setTimeout(function () {
+        var active = document.activeElement;
+        focused = !!(active && show.contains(active) && active.closest && active.closest("button"));
+        arm();
+      }, 0);
+    });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () { showSlide(i); });
+    });
+    show.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      var i = dots.indexOf(e.target);
+      if (i < 0) return;
+      e.preventDefault();
+      var next = e.key === "ArrowRight" ? (i + 1) % dots.length : (i - 1 + dots.length) % dots.length;
+      showSlide(next);
+      dots[next].focus();
+    });
+    var dialogEl = document.getElementById("promoDialog");
+    if (dialogEl) dialogEl.addEventListener("close", arm);
+    var tour = document.getElementById("promoVideo");
+    if (tour) tour.addEventListener("ended", arm);
+    arm();
   }
 
   // ---------- scroll reveals and counting numbers ----------

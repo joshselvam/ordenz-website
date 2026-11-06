@@ -314,10 +314,12 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .faq-group{margin-top:36px}.faq-group h3{font-size:24px}
 .doc a:not(.btn),.faq a,details a{color:var(--green);text-underline-offset:3px}
 
-/* home-page tour video */
-.hero-art.has-video{padding-top:205px;min-height:0}
-.hero-art.has-video .promo{width:70%;margin-right:auto;transform:rotate(-1.5deg)}
-.hero-art.has-video:before{inset:-70px -50px 18% 30%}
+/* Cafe photo stays fully in view. The slideshow is a frame under it, not a cover. */
+.hero-art.has-video{display:grid;grid-template-rows:auto auto;gap:18px;align-content:start;padding-top:0;min-height:0}
+.hero-art.has-video:before{content:none}
+.cafe-photo{grid-row:1;width:100%;aspect-ratio:3/2;background:url('/assets/img/botanical-cafe.webp') center/contain no-repeat}
+.hero-art.has-video .show{grid-row:2;position:relative;z-index:auto;margin:0}
+.hero-art.has-video .promo{width:100%;margin:0;transform:none;border:0;border-radius:0;box-shadow:none}
 .promo{position:relative;margin:0;border-radius:18px;overflow:hidden;background:#0B110F;border:1px solid var(--line-strong);box-shadow:0 26px 50px #173C3033;aspect-ratio:16/9}
 .promo video{display:block;width:100%;height:100%;object-fit:cover;background:#0B110F}
 .promo-sound{position:absolute;right:14px;top:14px;display:inline-flex;gap:8px;align-items:center;border:0;border-radius:999px;padding:11px 18px;font:700 15px/1 var(--body);background:#F0B23B;color:#1d1400;cursor:pointer;box-shadow:0 6px 18px #0000003d}
@@ -330,7 +332,40 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .promo-frame{aspect-ratio:16/9}
 .promo-frame iframe{width:100%;height:100%;border:0;border-radius:16px}
 .promo-close{position:absolute;right:-12px;top:-44px;width:38px;height:38px;border-radius:50%;border:0;background:#fff;color:#000;font-size:24px;cursor:pointer}
-@media (max-width:880px){.hero-art.has-video{padding-top:min(64vw,520px)}.hero-art.has-video:before{inset:0 0 auto 0;height:min(62vw,500px);background-position:center top}.hero-art.has-video:after{display:none}.hero-art.has-video .promo{width:100%;transform:none}.promo-badge{display:none}.promo-sound{padding:9px 14px;font-size:14px;top:10px;right:10px}}
+@media (max-width:880px){.hero-art.has-video{padding-top:0}.hero-art.has-video .promo{width:100%;transform:none}.promo-badge{display:none}.promo-sound{padding:9px 14px;font-size:14px;top:10px;right:10px}}
+
+/* Hero slideshow: counter tour, guest tablet, Showcase, token screen */
+.show{position:relative;z-index:1;background:var(--surface);border:1px solid var(--line-strong);border-radius:22px;box-shadow:0 26px 50px #173C3033;overflow:hidden}
+.show-stage{display:grid;background:#0B110F}
+.show-slide{grid-area:1/1}
+.show-slide[hidden]{display:none!important}
+.scene{position:relative;aspect-ratio:16/9;display:grid;place-items:center;padding:16px;background:radial-gradient(420px 180px at 90% 0%,color-mix(in srgb,var(--s,var(--green)) 28%,transparent),transparent 70%),var(--soft)}
+.scene-cap{margin:0;padding:10px 14px 2px;min-height:5.6em;color:var(--ink-2);background:var(--surface);font:600 14px/1.35 var(--body)}
+.tablet{width:min(100%,440px);background:#26332C;border-radius:18px;padding:14px 10px 10px;border:1px solid #69766B;box-shadow:0 16px 28px #173C302B;position:relative}
+.tablet:before{content:"";position:absolute;top:5px;left:50%;width:7px;height:7px;margin-left:-3px;border-radius:50%;background:#1a2420}
+.tablet-screen{background:var(--paper);color:var(--ink);border-radius:10px;padding:10px 12px;min-height:0}
+.bill-top{display:flex;justify-content:space-between;font:700 13px var(--body);color:var(--green);letter-spacing:.04em;text-transform:uppercase}
+.bill-row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid var(--line);font-size:15px}
+.bill-row.total{border-bottom:0;font-weight:800}
+.bill-tax{margin:0;font-size:13px;color:var(--ink-2)}
+.loyalty{display:flex;gap:8px;align-items:center;margin-top:6px;font-size:13px;line-height:1.3;color:var(--ink-2)}
+.qr{width:34px;height:34px;flex:none;border:2px solid var(--ink);background:linear-gradient(var(--ink),var(--ink)) 0 0/8px 8px,linear-gradient(var(--ink),var(--ink)) 100% 0/8px 8px,linear-gradient(var(--ink),var(--ink)) 0 100%/8px 8px,repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 5px),repeating-linear-gradient(var(--ink) 0 2px,transparent 2px 5px);background-repeat:no-repeat;background-color:var(--paper)}
+.showcase{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center}
+.food-photo{width:96px;height:96px;border-radius:14px;background:radial-gradient(circle at 50% 46%,#F0B13D 0 22%,transparent 23%),radial-gradient(circle at 50% 58%,#A4431F 0 42%,transparent 43%),radial-gradient(circle at 50% 68%,#FFFCF5 0 54%,#C98566 55% 68%,#0E5B49 69%);box-shadow:inset 0 0 0 1px #173C3026}
+.scene-kicker{font:700 12px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--eyebrow)}
+.dish{font:800 22px/1.1 var(--display);margin-top:2px}
+.scene-meta{font-size:14px;color:var(--ink-2)}
+.token-face{background:#0B110F;color:#fff;text-align:center;padding:8px 8px 4px}
+.token-num{margin:0;font:800 clamp(56px,8vw,84px)/.9 var(--display);letter-spacing:-.04em}
+.token-ready{margin:0;font:700 14px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.show-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:10px;background:var(--surface)}
+.show-dot{min-height:44px;padding:8px 4px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;color:var(--ink-2);font:700 14px/1.2 var(--body);cursor:pointer}
+.show-dot[aria-current="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.show-dot:focus-visible,.show .promo-sound:focus-visible{outline-offset:-3px}
+.show-motion .show-slide.is-on{animation:show-in .35s ease}
+@keyframes show-in{from{opacity:.4}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.show-motion .show-slide.is-on{animation:none}}
+@media (max-width:640px){.showcase{grid-template-columns:72px 1fr}.food-photo{width:72px;height:72px}.dish{font-size:18px}.scene-cap{min-height:7.4em;font-size:13px}}
 
 /* scroll reveals (only when motion is allowed; motion.js adds .motion) */
 .motion .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease var(--d,0ms),transform .6s cubic-bezier(.2,.7,.2,1) var(--d,0ms)}
