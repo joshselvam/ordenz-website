@@ -24,6 +24,15 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.match(home,/Book a walk-through/);
   assert.match(home,/ways to sign in/);
   assert.match(home,/All-rounder/);
+  assert.match(home,/Speak the token is on in House/);
+  assert.doesNotMatch(home,/The token TV calls their number/);
+  assert.match(f,/second tablet signed in as Guest/);
+  assert.match(f,/says the token number only, such as "Token 1 4"/);
+  assert.match(f,/does not read the dish names/);
+  assert.match(f,/A sold-out dish is not the photo on a menu slide/);
+  assert.match(f,/About N min/);
+  assert.match(f,/kiosk refuses card/);
+  assert.match(f,/Included GST is labelled as included/);
 });
 test('header country switcher is a native select with no geo lookup',()=>{
   const header=read('src/_partials/header.html');
