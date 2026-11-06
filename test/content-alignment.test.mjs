@@ -32,8 +32,11 @@ test('client claims match current printing, stock and optional support AI behavi
  const features=read('src/features.html'),privacy=read('src/privacy.html'),support=read('src/support.html');
  assert.match(features,/supported stock, supplier, offer and kitchen documents print as compact 58\/80 mm slips/);
  assert.match(features,/sold-out items are marked and cannot be added/);
- assert.match(features,/Each staff job has its own PIN/);
+ assert.match(features,/Each staff member has their own PIN/);
  assert.match(privacy,/configured AI service may receive your question/);
+ assert.match(privacy,/DuitNow QR payments in Malaysia use the cafe's approved Fiuu merchant connection/);
+ assert.match(read('src/terms.html'),/supported Fiuu merchant connections/);
+ assert.doesNotMatch(features + read('src/index.html'),/Each staff job has its own PIN/);
  assert.match(privacy,/browser’s local storage/);
  assert.match(privacy,/privacy-enhanced player/);
  assert.match(support,/Send feedback in the app/);

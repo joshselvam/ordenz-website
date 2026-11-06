@@ -1,0 +1,17 @@
+---
+description: After each task, review with Bugbot, test the change, update test scripts, report status, and keep interrupted work moving in parallel
+alwaysApply: true
+---
+
+# Working loop
+
+After you finish a task:
+
+1. Review the change with Bugbot. Whenever Bugbot reviews, wait for its findings. If that review is stopped before it reports, run Bugbot again. A stopped review is not a pass. Fix what it finds, then review again until Bugbot reports no blocking bug. Do not package, deploy, or start the next feature while the Bugbot review of the current change has not finished.
+2. Test the functionality that was implemented. Check the real behaviour, not only that the code reads correctly.
+3. Update the testing scripts that cover that functionality so the new behaviour stays checked.
+4. Whenever Bugbot reviews, also review the code by testing end-to-end functionality that generates real-time data, and validate the logics. Use the existing server integration tests, which insert real cafes and orders. Do not run demo-countries.test.js or demo-public.test.js against the live ordernest database. Do not start a second server on a port that is already in use.
+
+In every reply, include a table of the tasks given and the status of each one (done, in progress, or not started).
+
+When a task is interrupted by a question, answer the question and, in the same turn, use subagents in parallel to keep the interrupted tasks moving. Do not drop the current work just to answer.
