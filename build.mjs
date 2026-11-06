@@ -48,8 +48,8 @@ fs.mkdirSync(out, { recursive: true });
 
 // Pages: src/<name>.html  ->  dist/<name>/index.html  (index.html and 404.html stay at the root)
 const pages = [
-  { file: "index.html", out: "index.html", path: "/", title: `${cfg.company}: ${cfg.tagline}`, desc: `${cfg.company} connects cafe POS, self-order kiosks, kitchen tickets and owner reports. Try the live demo and compare plans.` },
-  { file: "features.html", out: "features/index.html", path: "/features/", title: "OrdenZ features: kiosk, counter, kitchen, stock and reports for cafes", desc: "Cafe POS and kiosk with eight kiosk languages, kitchen tickets, stock, recipes, loyalty, split bills, cash closing and table QR ordering. Try the live demo." },
+  { file: "index.html", out: "index.html", path: "/", title: "Cafe POS for India and Malaysia | OrdenZ", desc: "OrdenZ is a cafe POS with a self-order kiosk and a kitchen screen for small cafes in India and Malaysia." },
+  { file: "features.html", out: "features/index.html", path: "/features/", title: "Cafe POS and self-order kiosk features | OrdenZ", desc: "OrdenZ is a cafe POS with a self-order kiosk, counter, kitchen, stock and reports for small cafes in India and Malaysia." },
   { file: "demo.html", out: "demo/index.html", path: "/demo/", title: cfg.demoUrl ? "OrdenZ live demo" : "OrdenZ browser preview", desc: cfg.demoUrl ? "Explore real cafe workflows with an isolated sample account and role-specific screens." : "Try a limited kiosk, counter, kitchen and token browser preview with simulated payments." },
   { file: "help.html", out: "guide/index.html", path: "/guide/", title: "OrdenZ guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
   { file: "start-a-cafe.html", out: "start-a-cafe/index.html", path: "/start-a-cafe/", title: "Start a cafe in India or Malaysia: licences, tax and equipment", desc: "A plain guide to opening a cafe: FSSAI, GST and trade licences in India; SSM, council licence, food handler course and SST in Malaysia; equipment, menu pricing and your first week." },

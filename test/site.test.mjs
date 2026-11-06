@@ -34,6 +34,33 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.match(f,/kiosk hides card payment when no terminal is saved/);
   assert.match(f,/Included GST is labelled as included/);
 });
+test('homepage and features say cafe POS in the title and opening copy',()=>{
+  const home=read('src/index.html');
+  const features=read('src/features.html');
+  const build=read('build.mjs');
+  const head=read('src/_partials/head.html');
+  const country=read('src/assets/country.js');
+  assert.match(home,/<h1>Cafe POS and<br>self-order kiosk<\/h1>/);
+  assert.match(home,/class="hero-line">Good orders\. Great days\./);
+  assert.doesNotMatch(home,/<h1>Good orders/);
+  assert.match(home,/data-home-lead="both"[^>]*>OrdenZ is a cafe POS with a self-order kiosk and a kitchen screen for small cafes in India and Malaysia\./);
+  assert.match(home,/data-for-country="IN"[^>]*>OrdenZ is a cafe POS in India for small cafes, with a self-order kiosk and a kitchen screen\. Bills show GST once you add your GSTIN\./);
+  assert.match(home,/data-for-country="MY"[^>]*>OrdenZ is a cafe POS in Malaysia for small cafes, with a self-order kiosk and a kitchen screen\. Prices are in ringgit\. SST is added only when you set an SST number\./);
+  assert.match(build,/title: "Cafe POS for India and Malaysia \| OrdenZ"/);
+  assert.match(build,/OrdenZ is a cafe POS with a self-order kiosk and a kitchen screen for small cafes in India and Malaysia\./);
+  assert.match(build,/title: "Cafe POS and self-order kiosk features \| OrdenZ"/);
+  assert.match(features,/OrdenZ is a cafe POS with a self-order kiosk\. Customers order at the kiosk/);
+  assert.match(head,/Cafe POS India \| self-order kiosk \| OrdenZ/);
+  assert.match(head,/Cafe POS Malaysia \| self-order kiosk \| OrdenZ/);
+  assert.match(head,/GST once you add a GSTIN/);
+  assert.match(head,/SST only when an SST number is set/);
+  assert.match(country,/IN: "Cafe POS India \| self-order kiosk \| OrdenZ"/);
+  assert.match(country,/MY: "Cafe POS Malaysia \| self-order kiosk \| OrdenZ"/);
+  assert.match(country,/document\.title = HOME_TITLE\[code\]/);
+  assert.match(country,/path !== "\/" && path !== "\/index\.html"/);
+  assert.doesNotMatch(home,/<h2>[^<]*cafe POS/i);
+  assert.doesNotMatch(features,/<h2>[^<]*cafe POS/i);
+});
 test('header country switcher is a native select with no geo lookup',()=>{
   const header=read('src/_partials/header.html');
   const js=read('src/assets/country.js');

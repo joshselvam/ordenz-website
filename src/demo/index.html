@@ -542,7 +542,7 @@ function showHelp(){
       <li><b>Token screen:</b> the ready token flashes, like at KFC. Put this on a TV.</li>
       <li><b>Counter:</b> fast billing for walk-in customers, and kiosk orders paid in cash.</li>
       <li><b>Stock:</b> every sale deducts ingredients by recipe. Items sell out on the kiosk automatically when stock runs out.</li>
-      <li><b>Owner:</b> today's sales, peak hours, top items, upsell revenue and the WhatsApp summary.</li>
+      <li><b>Owner:</b> today's sales, peak hours, top items, upsell revenue and the daily WhatsApp summary, which is a preview and is not sent.</li>
     </ol>
     <p>Tip: open the Kitchen or Token screen in a second browser tab next to the Kiosk. Orders sync between tabs on the same device. The live demo also has Brief (clock-in and cook tasks), Crew desk, Board, House, Intake and optional paperless bills — this browser sample does not.</p>
   </div><div class="row-end"><button class="btn btn-primary" data-close type="button">Got it</button></div>`);
@@ -892,7 +892,7 @@ ${lows.length?"Reorder: "+lows.map(i=>i.name).join(", "):"Stock: all good"}`;
         <h2 style="margin-top:22px">Stock alerts</h2>
         ${lows.length?lows.map(i=>`<div class="alert-row"><span class="nm">${esc(i.name)}</span><span class="num" style="color:var(--muted)">${fmtQty(i.stock,i.unit)} left</span>${statusPill(stockStatus(i))}</div>`).join(""):'<p style="color:var(--muted);margin:0">All ingredients above reorder level.</p>'}
       </div>
-      <div class="panel"><h2>Daily WhatsApp summary</h2><p style="margin:-6px 0 10px;color:var(--muted);font-size:14px">Sent to the owner's phone at closing time.</p><div class="wa num">${esc(wa).replace(/\*(.+?)\*/g,"<b>$1</b>")}</div></div>
+      <div class="panel"><h2>Daily WhatsApp summary</h2><p style="margin:-6px 0 10px;color:var(--muted);font-size:14px">A preview of the closing-time message. It is not sent.</p><div class="wa num">${esc(wa).replace(/\*(.+?)\*/g,"<b>$1</b>")}</div></div>
     </div></div>`;
   drawHourChart(hours.filter(h=>h.h<=Math.max(new Date().getHours(), 12)));
 }

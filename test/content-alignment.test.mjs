@@ -34,7 +34,7 @@ test('client claims match current printing, stock and optional support AI behavi
  assert.match(features,/sold-out items are marked and cannot be added/);
  assert.match(features,/Each staff member has their own PIN/);
  assert.match(privacy,/configured AI service may receive your question/);
- assert.match(privacy,/DuitNow QR payments in Malaysia use the cafe's approved Fiuu merchant connection/);
+ assert.match(privacy,/DuitNow QR in Malaysia uses the cafe's approved Fiuu connection/);
  assert.match(read('src/terms.html'),/supported Fiuu merchant connections/);
  assert.doesNotMatch(features + read('src/index.html'),/Each staff job has its own PIN/);
  assert.match(privacy,/browser’s local storage/);

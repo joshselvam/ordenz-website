@@ -25,6 +25,24 @@
     return readSaved() || guess();
   }
 
+  var HOME_TITLE = {
+    IN: "Cafe POS India | self-order kiosk | OrdenZ",
+    MY: "Cafe POS Malaysia | self-order kiosk | OrdenZ"
+  };
+  var HOME_DESC = {
+    IN: "OrdenZ is a cafe POS in India for small cafes, with a self-order kiosk, a kitchen screen and GST once you add a GSTIN.",
+    MY: "OrdenZ is a cafe POS in Malaysia for small cafes, with a self-order kiosk, a kitchen screen, ringgit prices, and SST only when an SST number is set."
+  };
+
+  function applyHomeSeo(code) {
+    var path = location.pathname;
+    if (path !== "/" && path !== "/index.html") return;
+    if (!HOME_TITLE[code]) return;
+    document.title = HOME_TITLE[code];
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute("content", HOME_DESC[code]);
+  }
+
   function apply(code, persist) {
     if (code !== "IN" && code !== "MY") return;
     document.documentElement.dataset.country = code;
@@ -33,6 +51,7 @@
     }
     var sel = document.getElementById("countrySel");
     if (sel && sel.value !== code) sel.value = code;
+    applyHomeSeo(code);
     document.dispatchEvent(new CustomEvent(EVENT, { detail: { country: code } }));
   }
 

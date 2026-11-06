@@ -193,6 +193,7 @@ body{background-color:var(--paper);background-image:radial-gradient(var(--dots) 
 .hero{color:var(--ink);background:radial-gradient(ellipse at 95% 30%,var(--hero-glow) 0%,transparent 55%),var(--paper);border-bottom:1px solid var(--line)}
 .hero .wrap{padding:64px 0 72px;gap:42px;min-height:570px}
 .hero h1{font-weight:700;line-height:.98;letter-spacing:-.045em;font-size:clamp(44px,5.5vw,76px);position:relative;padding-bottom:18px}
+.hero-line{margin:14px 0 0;font:700 clamp(22px,2.4vw,30px)/1.15 var(--display);letter-spacing:-.03em;color:var(--ink)}
 .hero h1:after{content:"";position:absolute;left:0;bottom:0;width:145px;height:5px;border-radius:50%;background:#C98566;transform:rotate(-2deg)}
 .hero .eyebrow,.eyebrow{color:var(--eyebrow)}
 .hero .lead{color:var(--ink-2);font-size:20px;max-width:46ch}
@@ -237,6 +238,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{
 html:not([data-country]) [data-for-country="IN"],
 [data-country="IN"] [data-for-country="MY"],
 [data-country="MY"] [data-for-country="IN"]{display:none!important}
+/* Homepage lead: both countries until a country is set. Then only that country. */
+html:not([data-country]) [data-for-country][data-home-lead],
+[data-country] [data-home-lead="both"]{display:none!important}
 .country-sel{font:600 14px var(--body);color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 10px;cursor:pointer;min-height:36px;max-width:11.5rem}
 .country-sel:hover{color:var(--ink);background:var(--soft)}
 @media(prefers-reduced-motion:reduce){.country-sel{transition:none}}
