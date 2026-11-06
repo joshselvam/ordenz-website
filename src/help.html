@@ -109,7 +109,7 @@
     <h2>7. Bill at the counter</h2>
     <ol><li>Open <b>Counter</b>, tap the items (choose options if asked), and add a discount if you need one.</li>
       <li><b>India:</b> choose cash, UPI or card. The receipt prints straight away, with CGST and SGST once your GSTIN is saved. Included GST is labelled as included and is not added on top of the total. <b>Malaysia:</b> choose cash, card or DuitNow QR. Cash rounds to 5 sen. Card and DuitNow stay the exact amount. Service charge is dine-in only. SST shows only after you save an SST number.</li>
-      <li>There is no House screen to save a card terminal. When a terminal is already saved, it can take the kiosk or counter card payment. The kiosk hides card payment when no terminal is saved. The counter can still record a card payment already taken.</li>
+      <li>In <b>House → Card terminal</b>, the owner chooses India card terminal or Malaysia Fiuu card, enters the terminal reference, and saves. Turn off clears it. The screen does not ask for a card number. The payment keys stay on the server. A saved usable terminal lets the kiosk offer card. The kiosk hides card payment when no terminal is saved. The counter can still record a card payment already taken.</li>
       <li>A successful card sale is a normal payment. It is not copied again into the error log.</li>
       <li>If the terminal times out, the network drops, or the terminal rejects the charge, OrdenZ records one redacted attempt: cafe, bill, amount, provider, and the reason (timeout, network, or rejected). No card number. The bill stays open and the stock stays taken. The counter says "The card terminal has not answered yet." A later matching approval can still pay that bill. Platform admin shows the attempt under Errors &amp; payments.</li>
       <li>Cancel does not close a bill while the terminal is still waiting.</li>
@@ -136,7 +136,7 @@
   <article class="g-topic" id="drawer" data-roles="cashier owner manager" data-keys="cash drawer float shift count close z report difference cash in cash out review">
     <h2>9. The cash drawer</h2>
     <p>Know at the end of every shift that the cash adds up.</p>
-    <ol><li>At the start of the shift, open <b>Cash drawer</b> and count the float into it.</li>
+    <ol><li>At the start of the shift, open <b>Cash drawer</b> and count the float into it. One card for today shows the opening till, who is on, and the shift note. It is the till, not a bank card.</li>
       <li>Took money out to pay a delivery, or added change from the bank? Tap <b>Cash out</b> or <b>Cash in</b> and give a reason.</li>
       <li>At closing, tap <b>Count and close</b> and type how many notes and coins of each kind you have. OrdenZ shows what should be there and the difference.</li>
       <li>A difference above your limit goes to the owner or a manager to review. Print the Z report for your records.</li></ol>
@@ -147,8 +147,8 @@
     <h2>10. Delivery app orders (paid extra)</h2>
     <ol>
       <li>Owner: in <b>House</b>, under <i>Delivery apps</i>, turn on the apps you use and set each one's commission and mark-up (for example menu +10%).</li>
-      <li>Cashier: choose <b>Delivery</b>, then the app. Prices switch to that app's prices. Type the app's order number and tap <b>Send to kitchen</b>.</li>
-      <li>If that partner is onboarded, a signed webhook can take the order in. Live delivery order entry needs a signed secret; sandbox first. This is taking the order in at the cafe, not a public Swiggy or Zomato listing by itself.</li>
+      <li>Cashier: choose <b>Delivery</b>, then the app. The bill uses the cafe menu, plus that app's mark-up when you set one. Type the app's order number and tap <b>Send to kitchen</b>.</li>
+      <li>A signed webhook brings an automatic live order only when that partner's webhook secret is set on the server. India uses Swiggy and Zomato. Malaysia uses Grab and foodpanda. When those secrets are absent, House, Reports and the counter say "Automatic live orders are not connected." OrdenZ prices the live order from the cafe menu. The partner's price is not used. An item that is not on the menu is held for the cashier and does not become a bill. The same partner order does not create a second bill. This is taking the order in at the cafe, not a public Swiggy or Zomato listing by itself.</li>
       <li>Owner: in <b>Reports → Delivery apps</b>, upload the app's settlement file or tick each payout, and see what's still owed.</li></ol>
     <figure><img src="/assets/img/delivery-payouts.webp" width="1440" height="810" alt="Delivery app sales, commission and payouts" loading="lazy"><figcaption>What each app sold, its commission, and the payouts still to come.</figcaption></figure>
   </article>
@@ -179,6 +179,7 @@
     <h2>13. Ordering from the table (QR) — Starter and Pro</h2>
     <ol><li>Owner: in <b>TableTurn → Settings</b>, turn on table QR ordering and print the codes, one for each table.</li>
       <li>Guests scan the code, choose from your menu and send the order. No app or sign-up.</li>
+      <li>On the table phone page, a customer enters the mobile number from a paid bill in the last 30 days and reorders that set. The server sets the price.</li>
       <li>Staff see <b>Table orders to accept</b> at the top of the counter. Tap <b>Accept</b> to send it to the kitchen, or <b>Turn down</b>.</li>
       <li>After a captain or accepted check is open, extra phones add lines to that same unpaid check (group order).</li>
       <li>The table's bill is paid at the counter. Guest online share-pay is not built yet.</li></ol>
@@ -188,8 +189,8 @@
   <article class="g-topic" id="pickup" data-roles="owner manager cashier chef" data-keys="pickup slot collect public link cap kitchen">
     <h2>Pickup slots (Starter and Pro)</h2>
     <ol><li>Owner: on <b>Owner</b>, set the slot length and how many orders each slot can take.</li>
-      <li>Share the public pickup link on WhatsApp. Guests pick items and a time. They pay when they collect.</li>
-      <li>The kitchen sees the cap for that slot. Online pickup payment is not available.</li></ol>
+      <li>Share the public pickup link on WhatsApp. Guests pick items and a time. A takeaway stays unpaid until the customer collects it. The cashier records the payment then. Paying online for pickup stays off.</li>
+      <li>The kitchen sees the cap for that slot.</li></ol>
     <figure><img src="/assets/img/cafe-ops/pickup-slots.png" width="1440" height="810" alt="Pickup slots on the owner screen" loading="lazy"><figcaption>Slot length and how many orders each time can take.</figcaption></figure>
   </article>
 
@@ -219,7 +220,7 @@
       <li>The daily WhatsApp summary is ready to send at closing time.</li>
       <li><b>Activity</b> shows who changed prices, stock, refunds, settings and the team, and when.</li>
       <li><b>Money Review</b> lists unusual money events (refunds, paid cancels, counter discounts, drawer events, Z variance) for the owner or a manager — for review, not a theft verdict. Kitchen and captain cannot open it. The WhatsApp digest is a preview only.</li>
-      <li><b>Pickup slots</b>: set slot length and an order limit per slot, then share the public link. Guests pick a time and pay when they collect. Tickets stay awaiting payment until the cashier collects.</li>
+      <li><b>Pickup slots</b>: set slot length and an order limit per slot, then share the public link. A takeaway stays unpaid until the customer collects it. The cashier records the payment then. Paying online for pickup stays off.</li>
       <li><b>Devices</b> lists your tablets; reload or lock one from here. <b>Create a new device key</b> signs every kiosk and TV out so a copied key stops working. Pair them again with the new key.</li></ol>
     <figure><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard" loading="lazy"></figure>
   </article>
