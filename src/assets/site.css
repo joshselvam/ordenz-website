@@ -314,12 +314,36 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .faq-group{margin-top:36px}.faq-group h3{font-size:24px}
 .doc a:not(.btn),.faq a,details a{color:var(--green);text-underline-offset:3px}
 
-/* Cafe photo stays fully in view. The slideshow is a frame under it, not a cover. */
-.hero-art.has-video{display:grid;grid-template-rows:auto auto;gap:18px;align-content:start;padding-top:0;min-height:0}
+/* Business hero: readable slideshow and the whole shopfront share the first screen. */
+.hero .wrap{grid-template-columns:minmax(240px,.78fr) minmax(0,1.28fr);gap:24px;align-items:stretch;min-height:0;height:calc(100vh - var(--header-offset,96px));height:calc(100svh - var(--header-offset,96px));max-height:calc(100svh - var(--header-offset,96px));padding:8px 0 10px;box-sizing:border-box}
+.hero .wrap>*{min-height:0}
+.hero h1{font-size:clamp(40px,4.2vw,60px)}
+.hero .lead{font-size:17px;line-height:1.45}
+.hero .actions{margin-top:16px;gap:8px}
+.hero-art.has-video{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:8px;align-content:stretch;padding-top:0;min-height:0;height:100%;overflow:hidden}
 .hero-art.has-video:before{content:none}
-.cafe-photo{grid-row:1;width:100%;aspect-ratio:3/2;background:url('/assets/img/botanical-cafe.webp') center/contain no-repeat}
-.hero-art.has-video .show{grid-row:2;position:relative;z-index:auto;margin:0}
-.hero-art.has-video .promo{width:100%;margin:0;transform:none;border:0;border-radius:0;box-shadow:none}
+.hero-art.has-video:after{content:none}
+.cafe-photo{grid-row:2;height:clamp(260px,32vh,300px);aspect-ratio:3/2;width:auto;max-width:100%;justify-self:center;align-self:end;background:url('/assets/img/botanical-cafe.webp') center/contain no-repeat}
+.hero-art.has-video .show{grid-row:1;position:relative;z-index:auto;margin:0;min-height:0;height:100%;display:flex;flex-direction:column;background:#07110E;border-color:#3A4D43}
+.hero-art.has-video .promo{width:100%;margin:0;transform:none;border:0;border-radius:0;box-shadow:none;aspect-ratio:auto;flex:1;min-height:0;height:auto}
+.hero-art.has-video .show-stage{flex:1;min-height:0;display:grid;grid-template-rows:minmax(0,1fr);background:#07110E}
+.hero-art.has-video .show-slide.is-on{display:flex;flex-direction:column;min-height:0;height:100%}
+.hero-art.has-video .scene{aspect-ratio:auto;flex:1;min-height:0;height:auto;background:#07110E;color:#FFF8EA}
+.hero-art.has-video .scene-cap{min-height:0;padding:8px 14px 10px;background:#07110E;color:#FFF8EA;font-size:15px;line-height:1.35}
+.hero-art.has-video .token-face{background:#07110E;color:#FFF8EA}
+.hero-art.has-video .token-num{color:#F0B13D;font-size:clamp(72px,8vw,120px)}
+.hero-art.has-video .token-ready{color:#FFE7A3;font-size:18px}
+.hero-art.has-video .show-nav{background:#07110E;padding:8px}
+.hero-art.has-video .show-dot{color:rgba(255,248,234,.72);border-color:rgba(255,248,234,.28);min-height:46px;font-size:16px}
+.hero-art.has-video .show-dot[aria-current="true"]{background:#2EE6C7;color:#04221C;border-color:#2EE6C7}
+.hero-art.has-video .tablet{width:min(100%,520px)}
+.hero-art.has-video .tablet-screen{background:#10241C;color:#FFF8EA}
+.hero-art.has-video .bill-top{color:#2EE6C7}
+.hero-art.has-video .bill-row,.hero-art.has-video .bill-tax,.hero-art.has-video .loyalty,.hero-art.has-video .scene-meta,.hero-art.has-video .scene-kicker{color:#FFF8EA}
+.hero-art.has-video .bill-row{font-size:18px}
+.hero-art.has-video .bill-row b{color:#F0B13D}
+.hero-art.has-video .dish{color:#FFF8EA;font-size:28px}
+.hero-art.has-video .food-photo{width:88px;height:88px}
 .promo{position:relative;margin:0;border-radius:18px;overflow:hidden;background:#0B110F;border:1px solid var(--line-strong);box-shadow:0 26px 50px #173C3033;aspect-ratio:16/9}
 .promo video{display:block;width:100%;height:100%;object-fit:cover;background:#0B110F}
 .promo-sound{position:absolute;right:14px;top:14px;display:inline-flex;gap:8px;align-items:center;border:0;border-radius:999px;padding:11px 18px;font:700 15px/1 var(--body);background:#F0B23B;color:#1d1400;cursor:pointer;box-shadow:0 6px 18px #0000003d}
@@ -332,7 +356,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .promo-frame{aspect-ratio:16/9}
 .promo-frame iframe{width:100%;height:100%;border:0;border-radius:16px}
 .promo-close{position:absolute;right:-12px;top:-44px;width:38px;height:38px;border-radius:50%;border:0;background:#fff;color:#000;font-size:24px;cursor:pointer}
-@media (max-width:880px){.hero-art.has-video{padding-top:0}.hero-art.has-video .promo{width:100%;transform:none}.promo-badge{display:none}.promo-sound{padding:9px 14px;font-size:14px;top:10px;right:10px}}
+@media (max-width:880px){.hero .wrap{height:auto;max-height:none;padding:28px 0 36px}.hero-art.has-video{height:auto;overflow:visible}.cafe-photo{height:clamp(220px,42vw,280px)}.hero-art.has-video .show{min-height:280px}.promo-badge{display:none}.promo-sound{padding:9px 14px;font-size:14px;top:10px;right:10px}}
 
 /* Hero slideshow: counter tour, guest tablet, Showcase, token screen */
 .show{position:relative;z-index:1;background:var(--surface);border:1px solid var(--line-strong);border-radius:22px;box-shadow:0 26px 50px #173C3033;overflow:hidden}

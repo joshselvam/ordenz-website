@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>OrdenZ</title>
+<meta name="description" content="OrdenZ connects cafe POS, self-order kiosks, kitchen tickets and owner reports.">
+<meta name="theme-color" content="#FFFCF5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B110F" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("ordenz.theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}try{var c=localStorage.getItem("ordenz-country");if(c!=="IN"&&c!=="MY"){var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";c=(tz==="Asia/Kolkata"||tz==="Asia/Calcutta")?"IN":"MY"}document.documentElement.dataset.country=c}catch(e){document.documentElement.dataset.country="MY"}</script>
+<link rel="icon" type="image/png" href="/assets/brand/favicon-32.png?v=crest-1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hind+Madurai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><img src="/assets/brand/ordenz-mark.svg" alt="">OrdenZ</a>
+  <nav class="nav" aria-label="Main">
+    <a href="/features/" class="keep">Features</a>
+    <a href="/demo/">Live demo</a>
+    <a href="/features/#pricing">Pricing</a>
+    <a href="/start-a-cafe/">Start a cafe</a>
+    <a href="/guide/">Guide</a>
+    <a href="/support/">Help</a>
+    <label class="sr" for="countrySel">Country</label>
+    <select id="countrySel" class="country-sel" aria-label="Country">
+      <option value="IN">India</option>
+      <option value="MY">Malaysia</option>
+    </select>
+    <button type="button" class="theme-btn" id="themeBtn" aria-pressed="false">Dark theme</button>
+    <a class="btn btn-ghost" href="https://app.ordenz.com" style="padding:9px 16px;font-size:16px;margin-left:6px">Sign in</a>
+    <a class="btn btn-primary" href="/#contact" style="padding:9px 16px;font-size:16px;margin-left:6px">Contact</a>
+  </nav>
+</div></header>
+<main id="main">
+<section class="hero" style="padding:0"><div class="wrap">
+  <div>
+    <div class="eyebrow">Cafe POS · self-order kiosk · kitchen screen</div>
+    <h1>Good orders.<br>Great days.</h1>
+    <p class="lead" style="margin-top:12px">From the first coffee at 7 am to the cash count at closing, OrdenZ runs your counter, a guest tablet, the kitchen and the token screen. The guest tablet, Showcase and token screen are cheap Android tablets.</p>
+    <div class="actions">
+      <a class="btn btn-cta" href="/demo/">Try the live demo</a>
+      <a class="btn btn-ghost" href="https://app.ordenz.com">Sign in</a>
+      <a class="btn btn-ghost" href="https://wa.me/917358507977?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a walk-through</a>
+      <a class="btn btn-ghost" href="/features/">See every feature</a>
+    </div>
+    <p style="margin-top:10px;color:var(--ink-2);font-size:15px">Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro.</p>
+  </div>
+  <div class="hero-art has-video">
+    <div class="cafe-photo" role="img" aria-label="Plant-filled cafe interior"></div>
+    <div class="show" id="heroShow" aria-roledescription="carousel" aria-label="Four screens in the cafe">
+      <div class="show-stage">
+        <div class="show-slide is-on" id="show-counter" aria-label="Counter tablet, 1 of 4">
+          <figure class="promo">
+            <video id="promoVideo" muted loop playsinline preload="metadata" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 50-second tour with captions">
+              <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
+              <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
+            </video>
+            <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch with sound</button>
+            <span class="promo-badge">50-second tour</span>
+          </figure>
+          <p class="scene-cap">Counter tablet. The cashier stays here.</p>
+        </div>
+        <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
+          <div class="scene" data-s="floor">
+            <div class="tablet">
+              <div class="tablet-screen bill">
+                <div class="bill-top"><span>Guest</span><span>English</span></div>
+                <div data-for-country="IN">
+                  <div class="bill-row"><span>Filter kaapi</span><b>₹40</b></div>
+                  <div class="bill-row total"><span>Total</span><b>₹40</b></div>
+                  <p class="bill-tax">GST included</p>
+                </div>
+                <div data-for-country="MY">
+                  <div class="bill-row"><span>Teh tarik</span><b>RM5</b></div>
+                  <div class="bill-row total"><span>Total</span><b>RM5</b></div>
+                </div>
+                <div class="loyalty"><span class="qr"></span><span>Loyalty QR after payment, for their own phone</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="scene-cap">A second tablet signed in as Guest. The bill in one language. After payment, a loyalty QR for their own phone. The cashier stays on the counter.</p>
+        </div>
+        <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
+          <div class="scene" data-s="market">
+            <div class="tablet">
+              <div class="tablet-screen showcase">
+                <div class="food-photo" role="img" aria-label="Food photo of today's special"></div>
+                <div>
+                  <p class="scene-kicker">Today's special</p>
+                  <p class="dish" data-for-country="IN">Filter kaapi</p>
+                  <p class="dish" data-for-country="MY">Teh tarik</p>
+                  <p class="scene-meta">English</p>
+                  <p class="scene-meta">About 6 min · estimate</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="scene-cap">Shows one language, and a food photo when one is stored. About 6 min is an estimate, not the clock.</p>
+        </div>
+        <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
+          <div class="scene scene-token" data-s="kitchen">
+            <div class="tablet">
+              <div class="tablet-screen token-face">
+                <p class="token-num">14</p>
+                <p class="token-ready">Ready</p>
+              </div>
+            </div>
+          </div>
+          <p class="scene-cap">Shows the number. Speaks only when Speak the token is on in House. It does not read the dish names.</p>
+        </div>
+      </div>
+      <div class="show-nav">
+        <button class="show-dot" type="button" data-scene="counter" aria-controls="show-counter" aria-current="true">Counter</button>
+        <button class="show-dot" type="button" data-scene="guest" aria-controls="show-guest">Guest</button>
+        <button class="show-dot" type="button" data-scene="showcase" aria-controls="show-showcase">Showcase</button>
+        <button class="show-dot" type="button" data-scene="token" aria-controls="show-token">Token</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+</main>
+<script src="/assets/theme.js"></script>
+<script src="/assets/country.js"></script>
+<script src="/assets/motion.js"></script>
+</body>
+</html>

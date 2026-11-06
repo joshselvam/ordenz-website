@@ -1,0 +1,96 @@
+/* Preview-only placements for the home hero. The live home page does not use this file. */
+.layout-switch{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0}
+.layout-kicker{margin:0 0 8px;font:700 13px/1.3 var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--eyebrow)}
+.layout-nav{display:flex;flex-wrap:wrap;gap:8px}
+.layout-nav a{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 12px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);text-decoration:none;font:700 15px/1 var(--body)}
+.layout-nav a[aria-current="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.layout-now{margin:8px 0 0;color:var(--ink-2);font:600 15px/1.4 var(--body)}
+.hero-pick{padding:28px 0 64px}
+.hero-pick h1{font-weight:700;line-height:.98;letter-spacing:-.045em;font-size:clamp(40px,4vw,64px);position:relative;padding-bottom:16px}
+.hero-pick h1:after{content:"";position:absolute;left:0;bottom:0;width:120px;height:5px;border-radius:50%;background:#C98566;transform:rotate(-2deg)}
+.hero-pick .lead{margin-top:16px}
+.hero-pick .btn-ghost{color:var(--green);border:1px solid var(--line-strong);background:transparent}
+.pick-board{display:grid;align-items:stretch;gap:28px}
+.pick-visual{display:contents}
+.pick-copy{grid-area:copy;min-width:0}
+.pick-photo{grid-area:photo;display:block;width:100%;height:100%;min-height:300px;object-fit:contain;object-position:center;background:color-mix(in srgb,var(--hero-glow) 70%,var(--paper));border-radius:18px;border:1px solid var(--line)}
+.hero-pick .show{grid-area:show;min-width:0;margin:0}
+.hero-pick .show-stage{min-height:0;overflow:hidden}
+.hero-pick .scene-cap{min-height:0;overflow-wrap:anywhere}
+.hero-pick .pick-bar{display:block}
+.strip-thumb{display:none}
+
+/* 1. Side by side. Headline left. Photo and slideshow are equal columns. */
+.hero-pick[data-layout="1"] .pick-board{grid-template-columns:minmax(220px,.85fr) minmax(0,1fr) minmax(0,1fr);grid-template-areas:"copy photo show"}
+.hero-pick[data-layout="1"] .pick-photo{min-height:340px}
+
+/* 2. Photo first, then a short filmstrip, then a slim player. */
+.hero-pick[data-layout="2"] .pick-board{grid-template-columns:1fr;grid-template-areas:"copy" "photo" "show"}
+.hero-pick[data-layout="2"] .pick-photo{height:auto;aspect-ratio:3/2;min-height:0;object-fit:contain}
+.hero-pick[data-layout="2"] .show{display:flex;flex-direction:column;gap:12px;background:transparent;border:0;box-shadow:none;overflow:visible}
+.hero-pick[data-layout="2"] .pick-bar{display:contents}
+.hero-pick[data-layout="2"] .show-nav{order:1;padding:0;background:transparent}
+.hero-pick[data-layout="2"] .show-stage{order:2;height:120px;border-radius:14px;border:1px solid var(--line-strong)}
+.hero-pick[data-layout="2"] .scene-cap{order:3;padding:0;background:transparent}
+.hero-pick[data-layout="2"] .promo,.hero-pick[data-layout="2"] .scene{height:100%;aspect-ratio:auto}
+.hero-pick[data-layout="2"] .show-dot{display:flex;flex-direction:column;align-items:stretch;gap:6px;height:auto;padding:6px;border-radius:12px;text-align:left}
+.hero-pick[data-layout="2"] .strip-thumb{display:block;height:64px;border-radius:8px;background:#0B110F center/cover no-repeat}
+.hero-pick[data-layout="2"] .strip-counter{background:radial-gradient(circle at 50% 45%,#F0B23B 0 7px,transparent 8px),linear-gradient(#16352D,#0B110F)}
+.hero-pick[data-layout="2"] .strip-guest{background:linear-gradient(#FFFCF5,#E7F0EA)}
+.hero-pick[data-layout="2"] .strip-showcase{background:radial-gradient(circle at 30% 50%,#F0B13D 0 10px,transparent 11px),radial-gradient(circle at 30% 58%,#A4431F 0 16px,transparent 17px),linear-gradient(#F4F7F1,#E6ECDD)}
+.hero-pick[data-layout="2"] .strip-token{background:linear-gradient(#0B110F,#0B110F);box-shadow:inset 0 0 0 1px #3A4D43}
+.hero-pick[data-layout="2"] .strip-token:before{content:"14";display:grid;place-items:center;height:100%;color:#fff;font:800 22px/1 var(--display)}
+.hero-pick[data-layout="2"] .show-dot[aria-current="true"]{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 3px var(--green)}
+.hero-pick[data-layout="2"] .promo-sound{padding:6px 10px;font-size:12px;top:8px;right:8px}
+.hero-pick[data-layout="2"] .promo-badge{top:36px;right:8px;font-size:11px}
+.hero-pick[data-layout="2"] .tablet{width:70%}
+.hero-pick[data-layout="2"] .token-num{font-size:40px}
+.hero-pick[data-layout="2"] .food-photo{width:48px;height:48px}
+
+/* 3. Docked card. Photo is the hero. The card overlaps only the empty bottom rim. */
+.hero-pick[data-layout="3"] .pick-board{grid-template-columns:1fr;grid-template-areas:"copy" "photo" "show";gap:22px}
+.hero-pick[data-layout="3"] .pick-photo{height:auto;aspect-ratio:3/2.25;min-height:0;object-fit:contain;object-position:center top}
+.hero-pick[data-layout="3"] .show{width:min(520px,68%);margin:clamp(-48px,-4%,-12px) auto 0;position:relative;z-index:2}
+
+/* 4. Demo left, photo right. Nothing sits on the photograph. */
+.hero-pick[data-layout="4"] .pick-board{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"copy photo" "show photo";gap:22px 28px}
+.hero-pick[data-layout="4"] .pick-photo{min-height:680px;object-fit:contain;object-position:center}
+
+/* 5. Photo dominant. The photograph is twice the slideshow, with a clear gap. */
+.hero-pick[data-layout="5"] .pick-board{grid-template-columns:1fr;grid-template-areas:"copy" "photo" "show";grid-template-rows:auto 560px 280px;gap:32px}
+.hero-pick[data-layout="5"] .pick-photo{min-height:0;height:100%}
+.hero-pick[data-layout="5"] .show{height:100%;min-height:0;display:flex;flex-direction:column}
+.hero-pick[data-layout="5"] .show-stage{flex:1;min-height:0}
+.hero-pick[data-layout="5"] .promo,.hero-pick[data-layout="5"] .scene{height:100%;aspect-ratio:auto}
+.hero-pick[data-layout="5"] .scene-cap{flex:none}
+.hero-pick[data-layout="5"] .show-nav{flex:none}
+
+/* 6. Picture in picture. Full-width photo. Tour sits in the lower-right margin, off the artwork. */
+.hero-pick[data-layout="6"] .pick-board{grid-template-columns:1fr;grid-template-areas:"copy" "visual";gap:22px}
+.hero-pick[data-layout="6"] .pick-visual{display:grid;grid-area:visual;grid-template-rows:500px auto;position:relative}
+.hero-pick[data-layout="6"] .pick-photo{grid-area:auto;grid-row:1;grid-column:1;height:500px;min-height:0;padding-right:min(270px,34%);box-sizing:border-box;object-fit:contain;object-position:center}
+.hero-pick[data-layout="6"] .show{grid-area:auto;grid-row:1 / span 2;grid-column:1;display:grid;grid-template-rows:500px auto;background:transparent;border:0;box-shadow:none;overflow:visible;pointer-events:none}
+.hero-pick[data-layout="6"] .show-stage{grid-row:1;justify-self:end;align-self:end;width:min(220px,30%);margin:0 14px 14px 0;border-radius:12px;pointer-events:auto;box-shadow:0 12px 28px #173C3033}
+.hero-pick[data-layout="6"] .pick-bar{grid-row:2;pointer-events:auto;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between;margin-top:14px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.hero-pick[data-layout="6"] .scene-cap{flex:1;min-width:min(100%,240px);padding:0;background:transparent}
+.hero-pick[data-layout="6"] .show-nav{width:min(440px,100%);padding:0;background:transparent}
+.hero-pick[data-layout="6"] .promo,.hero-pick[data-layout="6"] .scene{aspect-ratio:16/9}
+.hero-pick[data-layout="6"] .promo-sound{padding:6px 10px;font-size:12px;top:8px;right:8px}
+.hero-pick[data-layout="6"] .promo-badge{display:none}
+.hero-pick[data-layout="6"] .tablet{width:92%}
+.hero-pick[data-layout="6"] .token-num{font-size:36px}
+.hero-pick[data-layout="6"] .food-photo{width:42px;height:42px}
+.hero-pick[data-layout="6"] .showcase{grid-template-columns:42px 1fr;gap:6px}
+.hero-pick[data-layout="6"] .dish{font-size:14px}
+
+@media (max-width:900px){
+  .hero-pick[data-layout="1"] .pick-board,.hero-pick[data-layout="4"] .pick-board{grid-template-columns:1fr;grid-template-areas:"copy" "photo" "show"}
+  .hero-pick[data-layout="4"] .pick-photo{min-height:420px;height:auto;aspect-ratio:3/2}
+  .hero-pick[data-layout="5"] .pick-board{grid-template-rows:auto minmax(320px,56vw) minmax(200px,28vw)}
+  .hero-pick[data-layout="6"] .pick-visual,.hero-pick[data-layout="6"] .show{grid-template-rows:minmax(280px,70vw) auto}
+  .hero-pick[data-layout="6"] .pick-photo{height:100%}
+  .layout-nav a span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-pick .show-slide{animation:none}
+}

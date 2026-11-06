@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Hero layouts · OrdenZ</title>
+<meta name="description" content="Preview six ways to place the cafe photograph and the four-scene tour. The live home page is unchanged.">
+<meta name="theme-color" content="#FFFCF5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B110F" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("ordenz.theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}try{var c=localStorage.getItem("ordenz-country");if(c!=="IN"&&c!=="MY"){var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";c=(tz==="Asia/Kolkata"||tz==="Asia/Calcutta")?"IN":"MY"}document.documentElement.dataset.country=c}catch(e){document.documentElement.dataset.country="MY"}</script>
+<link rel="icon" type="image/png" href="/assets/brand/favicon-32.png?v=crest-1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hind+Madurai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/hero-layouts.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="layout-switch">
+  <div class="wrap">
+    <p class="layout-kicker">Preview only. The live home page is unchanged.</p>
+    <nav class="layout-nav" aria-label="Hero layouts">
+      <a href="?layout=1" data-pick="1">1 <span>Side by side</span></a>
+      <a href="?layout=2" data-pick="2">2 <span>Filmstrip</span></a>
+      <a href="?layout=3" data-pick="3">3 <span>Docked card</span></a>
+      <a href="?layout=4" data-pick="4">4 <span>Demo left</span></a>
+      <a href="?layout=5" data-pick="5">5 <span>Photo dominant</span></a>
+      <a href="?layout=6" data-pick="6">6 <span>Picture in picture</span></a>
+    </nav>
+    <p class="layout-now" id="layoutNow">1. Side by side. Headline on the left. Cafe photo and slideshow are two equal columns.</p>
+  </div>
+</header>
+<main id="main">
+<section class="hero-pick" data-hero-layouts data-layout="1">
+  <div class="pick-board wrap">
+    <div class="pick-copy">
+      <div class="eyebrow">Cafe POS · self-order kiosk · kitchen screen</div>
+      <h1>Good orders.<br>Great days.</h1>
+      <p class="lead">From the first coffee at 7 am to the cash count at closing, OrdenZ runs your counter, a guest tablet, the kitchen and the token screen. The guest tablet, Showcase and token screen are cheap Android tablets.</p>
+      <div class="actions">
+        <a class="btn btn-cta" href="/demo/">Try the live demo</a>
+        <a class="btn btn-ghost" href="/features/">See every feature</a>
+      </div>
+    </div>
+    <div class="pick-visual">
+      <img class="pick-photo" src="/assets/img/botanical-cafe.webp" width="900" height="600" alt="Plant-filled cafe interior">
+      <div class="show" id="heroShow" aria-roledescription="carousel" aria-label="Four screens in the cafe">
+        <div class="show-stage">
+          <div class="show-slide is-on" id="show-counter" aria-label="Counter tablet, 1 of 4">
+            <figure class="promo">
+              <video id="promoVideo" muted loop playsinline preload="metadata" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 50-second tour with captions">
+                <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
+                <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
+              </video>
+              <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch with sound</button>
+              <span class="promo-badge">50-second tour</span>
+            </figure>
+          </div>
+          <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
+            <div class="scene" data-s="floor">
+              <div class="tablet">
+                <div class="tablet-screen bill">
+                  <div class="bill-top"><span>Guest</span><span>English</span></div>
+                  <div data-for-country="IN">
+                    <div class="bill-row"><span>Filter kaapi</span><b>₹40</b></div>
+                    <div class="bill-row total"><span>Total</span><b>₹40</b></div>
+                    <p class="bill-tax">GST included</p>
+                  </div>
+                  <div data-for-country="MY">
+                    <div class="bill-row"><span>Teh tarik</span><b>RM5</b></div>
+                    <div class="bill-row total"><span>Total</span><b>RM5</b></div>
+                  </div>
+                  <div class="loyalty"><span class="qr"></span><span>Loyalty QR after payment, for their own phone</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
+            <div class="scene" data-s="market">
+              <div class="tablet">
+                <div class="tablet-screen showcase">
+                  <div class="food-photo" role="img" aria-label="Food photo of today's special"></div>
+                  <div>
+                    <p class="scene-kicker">Today's special</p>
+                    <p class="dish" data-for-country="IN">Filter kaapi</p>
+                    <p class="dish" data-for-country="MY">Teh tarik</p>
+                    <p class="scene-meta">English</p>
+                    <p class="scene-meta">About 6 min · estimate</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
+            <div class="scene scene-token" data-s="kitchen">
+              <div class="tablet">
+                <div class="tablet-screen token-face">
+                  <p class="token-num">14</p>
+                  <p class="token-ready">Ready</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pick-bar">
+          <p class="scene-cap" id="sceneCap">Counter tablet. The cashier stays here.</p>
+          <div class="show-nav">
+            <button class="show-dot" type="button" data-scene="counter" aria-controls="show-counter" aria-current="true"><span class="strip-thumb strip-counter" aria-hidden="true"></span>Counter</button>
+            <button class="show-dot" type="button" data-scene="guest" aria-controls="show-guest"><span class="strip-thumb strip-guest" aria-hidden="true"></span>Guest</button>
+            <button class="show-dot" type="button" data-scene="showcase" aria-controls="show-showcase"><span class="strip-thumb strip-showcase" aria-hidden="true"></span>Showcase</button>
+            <button class="show-dot" type="button" data-scene="token" aria-controls="show-token"><span class="strip-thumb strip-token" aria-hidden="true"></span>Token</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<script src="/assets/theme.js"></script>
+<script src="/assets/country.js"></script>
+<script src="/assets/motion.js"></script>
+<script src="/assets/hero-layouts.js"></script>
+</body>
+</html>
