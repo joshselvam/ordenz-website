@@ -9,7 +9,7 @@
     counter: "Counter tablet. The cashier stays here.",
     guest: "A second tablet signed in as Guest. The bill in one language. After payment, a loyalty QR for their own phone. The cashier stays on the counter.",
     showcase: "Shows one language, and a food photo when one is stored. About 6 min is an estimate, not the clock.",
-    token: "Shows the number. Speaks only when Speak the token is on in House. It does not read the dish names."
+    token: "Shows the number. Speaks only when Speak the token is on in House. It does not read the dish names. When it speaks, it uses the device's natural voice and says Token 1 4."
   };
 
   var video = document.getElementById("promoVideo");

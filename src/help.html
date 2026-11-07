@@ -64,7 +64,7 @@
     <ol><li>In <b>House</b>, find <b>Kiosk and TV devices</b>. It shows your cafe code and device key.</li>
       <li>On the kiosk tablet or TV, open OrdenZ, choose <b>Kiosk / TV</b>, enter the cafe code and device key, and pick <b>Self-order kiosk</b>, <b>Token screen (TV)</b>, <b>Showcase</b> or <b>Guest</b>. Showcase and Guest are not their own tabs. Showcase shows one language. Edit slides on <b>Offers</b>: Today's special, Menu list, or Offer slide. A dish with a stored photo shows that photo. A dish with no photo shows the name and price. A sold-out dish is not the photo on a menu slide. Hidden or sold-out dishes drop off a special or a menu list. Promo codes stay at checkout. Kitchen wait shows as "About N min" once there are enough real ready tickets. It is an estimate, not the clock.</li>
       <li>The token screen, Showcase and Guest follow the app's light or dark theme.</li>
-      <li>Tap <b>Printer</b> on the counter or kitchen screen to connect a Bluetooth, Wi-Fi or USB thermal printer (58 mm or 80 mm). Thermal slips use the English name. Stock, supplier, offer and kitchen documents print as compact 58/80 mm slips when a thermal printer is set. Failed jobs wait in the print queue.</li>
+      <li>Tap <b>Printer</b> on the counter or kitchen screen to connect a Bluetooth, Wi-Fi or USB thermal printer (58 mm or 80 mm). Thermal slips use the English name. Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet. Stock, supplier, offer and kitchen documents print as compact 58/80 mm slips when a thermal printer is set. Failed jobs wait in the print queue.</li>
       <li>If a tablet is lost, tap <b>Create a new device key</b>. A new key signs every kiosk and TV out. Pair them again with the new key. Staff PIN sign-in then works only on devices you sign in to again as the owner.</li></ol>
   </article>
 
@@ -92,7 +92,7 @@
       <li>They tap items, choose size, milk and extras, or tap <b>Order by voice</b> (Pro) and just say it. "Would you like to add?" suggests a matching item.</li>
       <li><b>India:</b> they pay with a UPI QR for the exact amount (Razorpay or PhonePe), or with cash or card at the counter. <b>Malaysia:</b> they pay with a DuitNow QR. Payment confirms itself. Nobody has to check a phone.</li>
       <li>They see the token number. If the bill is paid, they also see a QR to the English bill on their phone. The caption above the QR follows the languages you ticked in House, for example "Scan for your bill". Cash at the counter stays token only until the bill is paid. If the kiosk shows a wait, it says "About N min" once there are enough real ready tickets. That is an estimate, not the clock.</li>
-      <li>The TV always chimes when the order is ready. It says the number only when <b>Speak the token</b> is on in House. That switch is off until you turn it on. It does not speak on every cafe by default. When it is on, it says the token number only, such as "Token 1 4". It does not read the dish names.</li></ol>
+      <li>The TV always chimes when the order is ready. It says the number only when <b>Speak the token</b> is on in House. That switch is off until you turn it on. It does not speak on every cafe by default. When it is on, it uses the device's natural voice and says the token number only, in the language that guest chose on the kiosk (or the cafe's first language), such as "Token 1 4". It does not read the dish names. Guest does not speak.</li></ol>
     <figure><img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="The kiosk menu in Hindi" loading="lazy"><figcaption>The kiosk in Hindi. Item names show in English wherever you haven't added the translation yet.</figcaption></figure>
   </article>
 
@@ -115,7 +115,7 @@
       <li>Cancel does not close a bill while the terminal is still waiting.</li>
       <li><b>Guest</b> is a second tablet signed in as Guest. It shows the public bill: names, quantity and total, in one language. It does not speak. After payment it can show that bill's loyalty QR for the guest to scan on their own phone. A paid token stays until the order is served or cancelled. The cashier tablet stays on the counter. On a desktop browser (PC), Counter can still open a Guest window. A phone or tablet does not open customer-bill.html.</li>
       <li>For kiosk orders paid in cash, find the token and collect the money here.</li>
-      <li>Owner or manager: a customer complains after the food went out? Tap <b>Cash back on a served bill</b>, pick today's cash bill and write the reason. Give the cash from the drawer. The bill leaves sales; stock isn't put back. Bills still in the kitchen are cancelled on <b>Kitchen</b> instead. UPI and card refunds go through the payment provider.</li>
+      <li>Owner or manager: a customer complains after the food went out? Tap <b>Refund</b> on Counter. The dialog is <b>Cash back on a served bill</b>. Pick today's cash bill and write the reason. Give the cash from the drawer. The bill leaves sales; stock isn't put back. Bills still in the kitchen are cancelled on <b>Kitchen</b> instead. UPI and card refunds go through the payment provider.</li>
       <li>On a phone or a short landscape window, tap the cart to open the bill drawer so the menu stays full-width. Favourites start hidden on phone and tablet; tap to show them.</li>
       <li><b>Send bill</b> on WhatsApp works even when paperless is off. Paperless itself is optional — see <a href="#paperless">paperless bills</a>.</li>
       <li>Internet down? Offline counter billing is on Starter and Pro. Free needs a connection. Bills are saved on the tablet with an offline number and sync by themselves, never twice. UPI, DuitNow and table QR always need internet.</li></ol>
@@ -148,7 +148,7 @@
     <ol>
       <li>Owner: in <b>House</b>, under <i>Delivery apps</i>, turn on the apps you use and set each one's commission and mark-up (for example menu +10%).</li>
       <li>Cashier: choose <b>Delivery</b>, then the app. The bill uses the cafe menu, plus that app's mark-up when you set one. Type the app's order number and tap <b>Send to kitchen</b>.</li>
-      <li>A signed webhook brings an automatic live order only when that partner's webhook secret is set on the server. India uses Swiggy and Zomato. Malaysia uses Grab and foodpanda. When those secrets are absent, House, Reports and the counter say "Automatic live orders are not connected." OrdenZ prices the live order from the cafe menu. The partner's price is not used. An item that is not on the menu is held for the cashier and does not become a bill. The same partner order does not create a second bill. This is taking the order in at the cafe, not a public Swiggy or Zomato listing by itself.</li>
+      <li>A signed webhook brings an automatic live order only when that partner's webhook secret is set on the server. India uses Swiggy and Zomato. Malaysia uses Grab and foodpanda. When those secrets are absent, House, Reports and the counter say "Automatic live orders are not connected." OrdenZ prices the live order from the cafe menu, plus that app's mark-up. The partner's price is not used. An item that is not on the menu is held for the cashier and does not become a bill. The same partner order does not create a second bill. This is taking the order in at the cafe, not a public Swiggy or Zomato listing by itself.</li>
       <li>Owner: in <b>Reports → Delivery apps</b>, upload the app's settlement file or tick each payout, and see what's still owed.</li></ol>
     <figure><img src="/assets/img/delivery-payouts.webp" width="1440" height="810" alt="Delivery app sales, commission and payouts" loading="lazy"><figcaption>What each app sold, its commission, and the payouts still to come.</figcaption></figure>
   </article>
@@ -159,7 +159,7 @@
       <li>Orders waiting too long change colour, so nothing is forgotten.</li>
       <li>When the chef has an open cook task from Brief, the kitchen shows one line with Done and Can't. Done does not cook a batch.</li>
       <li>When you tap <b>Ready</b>, the token moves to "Ready" on the TV. The TV always chimes. The numbers use the languages you ticked in House.</li>
-      <li><b>Speak the token</b> is a switch in House, off until you turn it on. It does not speak on every cafe by default. A cashier cannot change it. When it is on, the TV says the token number only, such as "Token 1 4". It does not read the dish names.</li></ol>
+      <li><b>Speak the token</b> is a switch in House, off until you turn it on. It does not speak on every cafe by default. A cashier cannot change it. When it is on, the TV uses the device's natural voice and says the token number only, in the language that guest chose on the kiosk (or the cafe's first language), such as "Token 1 4". It does not read the dish names. Guest does not speak.</li></ol>
     <figure><img src="/assets/img/chef.webp" width="1440" height="810" alt="The chef's kitchen screen" loading="lazy"><figcaption>The chef only sees the kitchen, recipes, stock and bulk orders.</figcaption></figure>
   </article>
 
@@ -196,7 +196,7 @@
 
   <article class="g-topic" id="stock" data-roles="store chef owner manager" data-keys="stock ingredient receive count reorder low recipe batch cook wastage">
     <h2>14. Stock, recipes (Pro) and wastage</h2>
-    <ol><li>Every sale takes its ingredients out of stock using the item's recipe. Low items show an alert; sold-out items hide from the kiosk.</li>
+    <ol><li>Every sale takes its ingredients out of stock using the item's recipe. Low items show an alert; sold-out items are marked and cannot be added on the kiosk or the counter. Hiding an item is a separate Board switch.</li>
       <li>In <b>Recipes</b>, write a batch recipe once and tap <b>Cook batch</b>; the raw ingredients come off stock. Owner or manager: <b>Assign</b> on Cook soon assigns a Brief cook task. Done on that task does not cook a batch. Tap <b>Prep report</b> for a kitchen sheet. With a thermal printer set, it prints as a compact 58/80 mm slip.</li>
       <li>On <b>Stock</b>, tap <b>Count / edit</b> after a stock count.</li>
       <li>Thrown something away? Tap <b>Wastage</b>, enter how much and why. Its cost shows on the Intake page.</li></ol>
@@ -261,10 +261,10 @@
 
   <article class="g-topic" id="marketing" data-roles="owner manager" data-keys="loyalty points offer promo code campaign whatsapp banner referral">
     <h2>21. Loyalty, offers and WhatsApp (paid extras)</h2>
-    <ol><li>Customers join loyalty with just a mobile number and earn points on every bill. If a bill is cancelled or refunded, its points are taken back (never below zero), and points spent on it are returned.</li>
+    <ol><li>Customers join loyalty with just a mobile number and earn points on every bill: 1 point per ₹1 in India, or 1 point per RM1 in Malaysia (100 points = ₹10 or RM10 off). If a bill is cancelled or refunded, its points are taken back (never below zero), and points spent on it are returned.</li>
       <li>In <b>Offers</b>, create codes with a minimum order, a limit and an end date. Design a banner in botanical, saffron, leaf, story or square and download the PNG.</li>
       <li>In <b>Campaigns</b>, send an approved WhatsApp template only to members who have marketing consent. Connect your WhatsApp Business account first.</li>
-      <li>Share your referral link from <b>Plan</b>. The new cafe gets 30 extra Pro days; you get a free month when they first pay.</li></ol>
+      <li>Share your referral link from <b>Plan</b>. The new cafe gets 30 extra Pro days. When they first pay for a subscription, you earn 1 free month (added to access now if you are not yet paying, or banked if you already are). Up to 6 unused banked credits; unused credits expire after 12 months. While credits remain, billing alternates pay → free one.</li></ol>
     <figure><img src="/assets/img/campaigns.webp" width="1440" height="810" alt="WhatsApp campaigns" loading="lazy"></figure>
   </article>
 
@@ -287,10 +287,10 @@
 
   <article class="g-topic" id="plans" data-roles="owner" data-keys="plan price trial starter pro free upgrade billing yearly promo referral add-on extra loyalty">
     <h2>24. Plans and billing</h2>
-    <ol><li>Open <b>Plan</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly. Yearly is 12 months for the price of 10 (two months free). The number on the card is what you pay once for the year. Same for extras.</li>
+    <ol><li>Open <b>Plan</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly. Yearly is 12 months for the price of 10 (two months free). The number on the card is what you pay once for the year. Same for extras. In India the buttons are <b>Subscribe monthly</b> and <b>Subscribe yearly</b>. In Malaysia, or when billing is a manual invoice, the buttons are <b>Request Starter invoice</b> and <b>Request Pro invoice</b> (DuitNow when that channel is open). A running trial is not labelled Current plan. The paid plan and cycle you already have is a disabled <b>Current plan</b>. The Android app opens this plan page in the browser and does not buy the plan inside the app.</li>
       <li>Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro.</li>
       <li>Starter is counter billing, stock, paired devices and offline bills. Pro tools (Voice &amp; AI, Recipes, Intake, Bulk, TableTurn, table QR, pickup, day book/Tally, browser management) use <b>Request</b> — not a paid Add. Paid extras (loyalty, campaigns, delivery pack, linked outlets, Malaysia e-invoice and the rest) are billed yearly only, starting around ₹490 / RM49 a year (12 months for the price of 10). On Plan the button is Add yearly.</li>
-      <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp for a free month.</li></ol>
+      <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp. Plan shows banked referral credits (up to 6 unused; unused expire after 12 months) and when the next bill can be free.</li></ol>
   </article>
 
   <article class="g-topic" id="paperless" data-roles="owner manager cashier" data-keys="paperless bill whatsapp send bill qr scan bill.html optional print">

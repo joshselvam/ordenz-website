@@ -33,6 +33,8 @@ test('client claims match current printing, stock and optional support AI behavi
  const features=read('src/features.html'),privacy=read('src/privacy.html'),support=read('src/support.html');
  assert.match(features,/supported stock, supplier, offer and kitchen documents print as compact 58\/80 mm slips/);
  assert.match(features,/sold-out items are marked and cannot be added/);
+ assert.match(read('src/help.html'),/sold-out items are marked and cannot be added/);
+ assert.doesNotMatch(read('src/help.html'),/sold-out items hide from the kiosk/);
  assert.match(features,/Each staff member has their own PIN/);
  assert.match(privacy,/configured AI service may receive your question/);
  assert.match(privacy,/Supported DuitNow QR payments in Malaysia use the cafe's approved Fiuu merchant connection/);
@@ -82,6 +84,18 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.match(features,/It does not speak/);
  assert.match(features,/does not open customer-bill\.html/);
  assert.match(help,/It does not speak/);
+ assert.match(read('src/index.html'),/second tablet signed in as Guest/);
+ assert.match(read('src/index.html'),/It does not speak/);
+ assert.match(read('src/index.html'),/not an overlay on the till/);
+ // Referral bank matches growth.js: cap 6 unused, 12-month expiry, alternate pay → free.
+ assert.match(features,/Up to 6 unused banked credits/);
+ assert.match(features,/expire after 12 months/);
+ assert.match(features,/alternates pay → free one/);
+ assert.match(help,/Up to 6 unused banked credits/);
+ assert.match(help,/expire after 12 months/);
+ assert.match(help,/alternates pay → free one/);
+ assert.doesNotMatch(features,/You get one free month when they make their first real payment<\/li><li>Already paying\? You get a one-month credit instead of extra days/);
+ assert.doesNotMatch(help,/you get a free month when they first pay\./);
  assert.match(help,/Ordering from the table \(QR\) — Pro/);
  assert.match(help,/Stock, recipes \(Pro\) and wastage/);
  assert.match(help,/Intake: supplier invoices \(Pro\)/);
@@ -108,5 +122,23 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.doesNotMatch(features,/After PIN or email, <b>Brief<\/b>/);
  assert.match(demo,/Open <b>Intake<\/b>/);
  assert.match(demo,/<b>Intake<\/b>, <b>Bulk<\/b>/);
+ assert.match(demo,/1 point per RM1/);
+ assert.match(features,/Subscribe monthly/);
+ assert.match(features,/Request Starter invoice/);
+ assert.match(features,/natural voice/);
+ assert.match(features,/>Refund</);
+ assert.match(help,/Subscribe monthly/);
+ assert.match(help,/Subscribe yearly/);
+ assert.match(help,/Request Starter invoice/);
+ assert.match(help,/Request Pro invoice/);
+ assert.match(help,/not labelled Current plan/);
+ assert.match(help,/>Refund</);
+ assert.match(help,/natural voice/);
+ assert.match(help,/language that guest chose on the kiosk/);
+ assert.match(features,/language that guest chose on the kiosk/);
+ assert.match(help,/1 point per RM1/);
+ assert.match(help,/Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet/);
+ assert.match(features,/Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet/);
+ assert.doesNotMatch(read('README.md'),/one free month when they first pay\)/);
 });
 

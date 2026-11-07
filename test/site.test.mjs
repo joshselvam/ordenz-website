@@ -10,7 +10,12 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   const f=read('src/features.html');
   assert.match(f,/approved Fiuu Offline Payment merchant/);
   assert.match(f,/signed webhook/);
+  assert.match(f,/plus that app's mark-up/);
+  assert.match(read('src/help.html'),/plus that app's mark-up/);
+  assert.match(read('src/privacy.html'),/plus that app's mark-up/);
   assert.match(f,/Tell a friend\. You both get a month/);
+  assert.match(f,/Up to 6 unused banked credits/);
+  assert.match(f,/expire after 12 months/);
   assert.match(f,/They pick 4:15/);
   assert.doesNotMatch(f,/automatic DuitNow QR generation and payment confirmation are not currently included/);
   assert.doesNotMatch(f,/Orders are typed in\. This is not a live Swiggy or Zomato partner API/);
@@ -27,7 +32,8 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.match(home,/Speak the token is on in House/);
   assert.doesNotMatch(home,/The token TV calls their number/);
   assert.match(f,/second tablet signed in as Guest/);
-  assert.match(f,/says the token number only, such as "Token 1 4"/);
+  assert.match(f,/natural voice/);
+  assert.match(f,/says the token number only, in the language that guest chose on the kiosk \(or the cafe's first language\), such as "Token 1 4"/);
   assert.match(f,/does not read the dish names/);
   assert.match(f,/A sold-out dish is not the photo on a menu slide/);
   assert.match(f,/About N min/);
@@ -58,6 +64,8 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/data-scene="showcase"[^>]*>Showcase</);
   assert.match(h,/data-scene="token"[^>]*>Token</);
   assert.match(h,/A second tablet signed in as Guest/);
+  assert.match(h,/not an overlay on the till/);
+  assert.match(h,/It does not speak/);
   assert.match(h,/one language/);
   assert.match(h,/food photo/);
   assert.match(h,/Speak the token is on in House/);
