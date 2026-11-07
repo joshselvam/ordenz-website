@@ -23,7 +23,7 @@
       <button type="button" data-role="cleaning" aria-pressed="false">Cleaning</button>
     </div>
     <nav class="g-toc" aria-label="Topics" id="gtoc"></nav>
-    <a class="btn btn-cta" style="margin-top:14px;width:100%" href="/demo/">{{#if demoUrl}}Try it in the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
+    <a class="btn btn-cta" style="margin-top:14px;width:100%" href="/demo/">Try it in the live demo</a>
   </aside>
 
   <div class="g-body" id="gbody">
@@ -76,20 +76,20 @@
       <li>On the tablet, they choose <b>Staff PIN</b> and type their PIN. Staff PINs only work on the cafe's own devices — easiest is the owner signs in on that tablet once, or they enter the device key from <b>House</b> the first time.</li>
       <li>To change a role or a PIN, or stop someone signing in, tap <b>Edit</b> next to their name. It works within seconds, even on a tablet that's already signed in.</li></ol>
     <div class="g-table"><table><thead><tr><th>Role</th><th>Sees</th></tr></thead><tbody>
-      <tr><td>Manager</td><td><b>Brief</b> (clock-in and tasks), Owner, Reports, Counter, Cash drawer, <b>Crew desk</b>, TableTurn, Kitchen, Bulk, Recipes, Stock, Intake, Board, House, Offers, Campaigns, Kiosk and Token screen. Not Plan, billing, or other managers. Clock out and hours on Crew desk (no Attendance tab).</td></tr>
-      <tr><td>Captain</td><td>Brief, TableTurn, Counter, Kitchen, Token screen and Attendance.</td></tr>
-      <tr><td>Chef</td><td>Brief, Kitchen, Recipes, Stock, Bulk and Attendance.</td></tr>
-      <tr><td>Cashier</td><td>Brief, Counter, Cash drawer, TableTurn, Kitchen, Token screen and Attendance.</td></tr>
-      <tr><td>Store keeper</td><td>Brief, Stock, Intake, Recipes, Bulk and Attendance.</td></tr>
-      <tr><td>Cleaning</td><td>Brief, TableTurn and Attendance.</td></tr>
-      <tr><td>All-rounder</td><td>Brief, Counter, Cash drawer, TableTurn, Kitchen, Bulk, Recipes, Stock and Attendance (what staff had before roles).</td></tr></tbody></table></div>
+      <tr><td>Manager</td><td><b>Brief</b> (clock-in and tasks), Owner, Reports, Counter, Cash drawer, <b>Crew desk</b>, TableTurn, Kitchen, Bulk, Recipes, Stock, Intake, Board, House, Offers, Campaigns, Kiosk and Token screen. TableTurn, Recipes, Intake and Bulk need Pro. Not Plan, billing, or other managers. Clock out and hours on Crew desk (no Attendance tab).</td></tr>
+      <tr><td>Captain</td><td>Brief, TableTurn, Counter, Kitchen, Token screen and Attendance. TableTurn needs Pro.</td></tr>
+      <tr><td>Chef</td><td>Brief, Kitchen, Recipes, Stock, Bulk and Attendance. Recipes and Bulk need Pro.</td></tr>
+      <tr><td>Cashier</td><td>Brief, Counter, Cash drawer, TableTurn, Kitchen, Token screen and Attendance. TableTurn needs Pro.</td></tr>
+      <tr><td>Store keeper</td><td>Brief, Stock, Intake, Recipes, Bulk and Attendance. Recipes, Intake and Bulk need Pro.</td></tr>
+      <tr><td>Cleaning</td><td>Brief, TableTurn and Attendance. TableTurn needs Pro.</td></tr>
+      <tr><td>All-rounder</td><td>Brief, Counter, Cash drawer, TableTurn, Kitchen, Bulk, Recipes, Stock and Attendance (what staff had before roles). TableTurn, Recipes and Bulk need Pro.</td></tr></tbody></table></div>
     <figure><img src="/assets/img/team.webp" width="1440" height="810" alt="The Team panel with roles" loading="lazy"><figcaption>Only the owner can make or change managers.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="kiosk" data-roles="owner manager cashier" data-keys="kiosk customer self order language voice upi duitnow token qr hindi tamil telugu malayalam kannada malay chinese speak the token about min card terminal">
     <h2>5. How customers order on the kiosk</h2>
     <ol><li>The customer taps the screen, chooses their language at the top, and picks <b>Eat here</b> or <b>Take away</b>.</li>
-      <li>They tap items, choose size, milk and extras, or tap <b>Order by voice</b> and just say it. "Would you like to add?" suggests a matching item.</li>
+      <li>They tap items, choose size, milk and extras, or tap <b>Order by voice</b> (Pro) and just say it. "Would you like to add?" suggests a matching item.</li>
       <li><b>India:</b> they pay with a UPI QR for the exact amount (Razorpay or PhonePe), or with cash or card at the counter. <b>Malaysia:</b> they pay with a DuitNow QR. Payment confirms itself. Nobody has to check a phone.</li>
       <li>They see the token number. If the bill is paid, they also see a QR to the English bill on their phone. The caption above the QR follows the languages you ticked in House, for example "Scan for your bill". Cash at the counter stays token only until the bill is paid. If the kiosk shows a wait, it says "About N min" once there are enough real ready tickets. That is an estimate, not the clock.</li>
       <li>The TV always chimes when the order is ready. It says the number only when <b>Speak the token</b> is on in House. That switch is off until you turn it on. It does not speak on every cafe by default. When it is on, it says the token number only, such as "Token 1 4". It does not read the dish names.</li></ol>
@@ -98,7 +98,7 @@
 
   <article class="g-topic" id="languages" data-roles="owner manager" data-keys="language hindi telugu malayalam kannada tamil malay melayu chinese translate names kiosk">
     <h2>6. Kiosk languages and menu names</h2>
-    <p>Tick the languages guests can use, up to six. English stays available as the fallback. Tamil is not required. India: English, Tamil, Hindi, Malayalam, Telugu and Kannada. Malaysia: English, Malay, Chinese, Tamil and Hindi. A new Malaysia cafe starts with those five until you untick them. Voice without AI understands English, Tamil and Tanglish. With AI in India it also understands Hindi, Telugu, Malayalam and Kannada. With AI in Malaysia it understands English, Malay, Manglish, Chinese, Tamil or Hindi.</p>
+    <p>Tick the languages guests can use, up to six. English stays available as the fallback. Tamil is not required. India: English, Tamil, Hindi, Malayalam, Telugu and Kannada. Malaysia: English, Malay, Chinese, Tamil and Hindi. A new Malaysia cafe starts with those five until you untick them. On Pro, voice without AI understands English, Tamil and Tanglish. With AI in India it also understands Hindi, Telugu, Malayalam and Kannada. With AI in Malaysia it understands English, Malay, Manglish, Chinese, Tamil or Hindi.</p>
     <ol><li>In <b>House → Kiosk languages</b>, tick up to six languages and tap <b>Save languages</b>.</li>
       <li>Under <b>Menu names in</b>, choose a language and type each item's name, then tap <b>Save names</b>.</li>
       <li>On Pro, tap <b>Fill in the missing names with AI</b> to translate everything at once. Ask someone who reads the language to check them.</li></ol>
@@ -113,9 +113,9 @@
       <li>A successful card sale is a normal payment. It is not copied again into the error log.</li>
       <li>If the terminal times out, the network drops, or the terminal rejects the charge, OrdenZ records one redacted attempt: cafe, bill, amount, provider, and the reason (timeout, network, or rejected). No card number. The bill stays open and the stock stays taken. The counter says "The card terminal has not answered yet." A later matching approval can still pay that bill. Platform admin shows the attempt under Errors &amp; payments.</li>
       <li>Cancel does not close a bill while the terminal is still waiting.</li>
-      <li><b>Guest</b> is a second tablet signed in as Guest. It shows the public bill: names, quantity and total, in one language. After payment it can show that bill's loyalty QR for the guest to scan on their own phone. A paid token stays until the order is served or cancelled. The cashier tablet stays on the counter. On a desktop browser, Counter can still open a Guest window. A phone or tablet does not open customer-bill.html.</li>
+      <li><b>Guest</b> is a second tablet signed in as Guest. It shows the public bill: names, quantity and total, in one language. It does not speak. After payment it can show that bill's loyalty QR for the guest to scan on their own phone. A paid token stays until the order is served or cancelled. The cashier tablet stays on the counter. On a desktop browser (PC), Counter can still open a Guest window. A phone or tablet does not open customer-bill.html.</li>
       <li>For kiosk orders paid in cash, find the token and collect the money here.</li>
-      <li>Owner or manager: a customer complains after the food went out? Tap <b>Refund</b> on the Counter header (next to Guest and the cart), pick today's cash bill and write the reason. Give the cash from the drawer. The bill leaves sales; stock isn't put back. Bills still in the kitchen are cancelled on <b>Kitchen</b> instead. UPI and card refunds go through the payment provider.</li>
+      <li>Owner or manager: a customer complains after the food went out? Tap <b>Cash back on a served bill</b>, pick today's cash bill and write the reason. Give the cash from the drawer. The bill leaves sales; stock isn't put back. Bills still in the kitchen are cancelled on <b>Kitchen</b> instead. UPI and card refunds go through the payment provider.</li>
       <li>On a phone or a short landscape window, tap the cart to open the bill drawer so the menu stays full-width. Favourites start hidden on phone and tablet; tap to show them.</li>
       <li><b>Send bill</b> on WhatsApp works even when paperless is off. Paperless itself is optional — see <a href="#paperless">paperless bills</a>.</li>
       <li>Internet down? Offline counter billing is on Starter and Pro. Free needs a connection. Bills are saved on the tablet with an offline number and sync by themselves, never twice. UPI, DuitNow and table QR always need internet.</li></ol>
@@ -144,7 +144,7 @@
   </article>
 
   <article class="g-topic" id="delivery" data-roles="cashier owner manager" data-keys="swiggy zomato grabfood foodpanda shopeefood delivery app commission payout settlement webhook menu settings">
-    <h2>10. Delivery app orders (paid extra)</h2>
+    <h2>10. Delivery app orders (delivery pack — paid extra)</h2>
     <ol>
       <li>Owner: in <b>House</b>, under <i>Delivery apps</i>, turn on the apps you use and set each one's commission and mark-up (for example menu +10%).</li>
       <li>Cashier: choose <b>Delivery</b>, then the app. The bill uses the cafe menu, plus that app's mark-up when you set one. Type the app's order number and tap <b>Send to kitchen</b>.</li>
@@ -164,10 +164,10 @@
   </article>
 
   <article class="g-topic" id="tables" data-roles="captain cleaning owner manager" data-keys="table booking reservation waiting list waitlist qr wait minutes seat clean photo star tableturn">
-    <h2>12. Tables, bookings and clean-ups (TableTurn)</h2>
-    <p>Bookings and the waitlist QR are on Starter and Pro. Clean-up photos and staff stars are on Pro.</p>
+    <h2>12. Tables, bookings and clean-ups (TableTurn) — Pro</h2>
+    <p>TableTurn (bookings, waitlist QR, table QR and pickup slots) is on Pro. You can also Request it from Plan. Clean-up photos and staff stars stay on Pro.</p>
     <ol><li>Open <b>TableTurn</b> to see every table: free, reserved, seated or needs cleaning.</li>
-      <li>On Starter and Pro, tap <b>New booking</b> for a reservation; OrdenZ suggests the right-size table and never double-books. Walk-ins go on <b>Add to waiting list</b>.</li>
+      <li>On Pro, tap <b>New booking</b> for a reservation; OrdenZ suggests the right-size table and never double-books. Walk-ins go on <b>Add to waiting list</b>.</li>
       <li>Print the <b>Waiting list QR</b> and put it at the door. Guests scan, join and see the wait in minutes. No app.</li>
       <li>On Pro, when guests leave, tap the table. The clean-up job goes to the cleaning staff automatically.</li>
       <li>On Pro, the cleaner takes a photo of the clean table to finish; the table is free again. The owner or manager can check the photo or send it back.</li>
@@ -176,18 +176,18 @@
   </article>
 
   <article class="g-topic" id="tableqr" data-roles="captain cashier owner manager" data-keys="table qr code order from phone guest accept turn down print codes">
-    <h2>13. Ordering from the table (QR) — Starter and Pro</h2>
+    <h2>13. Ordering from the table (QR) — Pro</h2>
     <ol><li>Owner: in <b>TableTurn → Settings</b>, turn on table QR ordering and print the codes, one for each table.</li>
       <li>Guests scan the code, choose from your menu and send the order. No app or sign-up.</li>
       <li>Usual reorder from the table phone stays off until the owner turns it on, and the page does not show a previous bill or say whether that mobile has ordered here. A typed phone alone does not place the order: the table also needs the secret from that customer's paid bill.</li>
       <li>Staff see <b>Table orders to accept</b> at the top of the counter. Tap <b>Accept</b> to send it to the kitchen, or <b>Turn down</b>.</li>
-      <li>After a captain or accepted check is open, extra phones add lines to that same unpaid check (group order).</li>
+      <li>After a captain check or an accepted table order is open, extra phones add lines to that same unpaid check (group order). Until then, each phone is its own bill.</li>
       <li>The table's bill is paid at the counter. Guest online share-pay is not built yet.</li></ol>
     <figure><img src="/assets/img/table-qr-accept.webp" width="1440" height="810" alt="Table orders waiting to be accepted at the counter" loading="lazy"><figcaption>Table orders wait for a yes before they reach the kitchen.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="pickup" data-roles="owner manager cashier chef" data-keys="pickup slot collect public link cap kitchen">
-    <h2>Pickup slots (Starter and Pro)</h2>
+    <h2>Pickup slots (Pro)</h2>
     <ol><li>Owner: on <b>Owner</b>, set the slot length and how many orders each slot can take.</li>
       <li>Share the public pickup link on WhatsApp. Guests pick items and a time. A takeaway stays unpaid until the customer collects it. The cashier records the payment then. Paying online for pickup stays off.</li>
       <li>The kitchen sees the cap for that slot.</li></ol>
@@ -195,7 +195,7 @@
   </article>
 
   <article class="g-topic" id="stock" data-roles="store chef owner manager" data-keys="stock ingredient receive count reorder low recipe batch cook wastage">
-    <h2>14. Stock, recipes and wastage</h2>
+    <h2>14. Stock, recipes (Pro) and wastage</h2>
     <ol><li>Every sale takes its ingredients out of stock using the item's recipe. Low items show an alert; sold-out items hide from the kiosk.</li>
       <li>In <b>Recipes</b>, write a batch recipe once and tap <b>Cook batch</b>; the raw ingredients come off stock. Owner or manager: <b>Assign</b> on Cook soon assigns a Brief cook task. Done on that task does not cook a batch. Tap <b>Prep report</b> for a kitchen sheet. With a thermal printer set, it prints as a compact 58/80 mm slip.</li>
       <li>On <b>Stock</b>, tap <b>Count / edit</b> after a stock count.</li>
@@ -204,7 +204,7 @@
   </article>
 
   <article class="g-topic" id="suppliers" data-roles="store owner manager" data-keys="supplier invoice bill purchase gst input credit pay owed overdue delivery photo">
-    <h2>15. Supplier invoices</h2>
+    <h2>15. Intake: supplier invoices (Pro)</h2>
     <ol><li>When a delivery comes, open <b>Intake</b> (supplier bills) and tap <b>Enter an invoice</b>.</li>
       <li>Type or choose the supplier, the invoice number and date, and the pay-by date if they gave you credit.</li>
       <li>Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
@@ -220,13 +220,13 @@
       <li>The daily WhatsApp summary is a preview. It is not sent.</li>
       <li><b>Activity</b> shows who changed prices, stock, refunds, settings and the team, and when.</li>
       <li><b>Money Review</b> lists unusual money events (refunds, paid cancels, counter discounts, drawer events, Z variance) for the owner or a manager — for review, not a theft verdict. Kitchen and captain cannot open it. The WhatsApp digest is a preview only.</li>
-      <li><b>Pickup slots</b>: set slot length and an order limit per slot, then share the public link. A takeaway stays unpaid until the customer collects it. The cashier records the payment then. Paying online for pickup stays off.</li>
+      <li><b>Pickup slots</b> (Pro): set slot length and an order limit per slot, then share the public link. A takeaway stays unpaid until the customer collects it. The cashier records the payment then. Paying online for pickup stays off.</li>
       <li><b>Devices</b> lists your tablets; reload or lock one from here. <b>Create a new device key</b> signs every kiosk and TV out so a copied key stops working. Pair them again with the new key.</li></ol>
     <figure><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard" loading="lazy"></figure>
   </article>
 
   <article class="g-topic" id="reports" data-roles="owner manager" data-keys="reports export tally day book purchase gst sst working sheet csv accountant outlets branches link copy menu stock transfer">
-    <h2>17. Exports for your accountant, and all your outlets</h2>
+    <h2>17. Day book exports (Pro), and all your outlets</h2>
     <ol><li><b>Reports → Accounting export</b>: choose the dates, then download the sales day book, the purchase day book, the GST or SST working sheet (not a filed return), or Tally files. The accountant imports the Tally XML; OrdenZ does not push live.</li>
       <li><b>Reports → All outlets</b> (Pro plus the outlets extra): prove it once with that cafe's owner email, password and authenticator code if MFA is on. We do not keep that password (hash check only). If they change the password, link again. Pick a day or a date range. Copy a menu to a linked outlet (recipes and stock stay put). Send a stock transfer: draft, then send; the other outlet receives it. This is not a central warehouse.</li></ol>
     <figure><img src="/assets/img/accounting-export.webp" width="1440" height="810" alt="The GST summary and the day book and Tally downloads" loading="lazy"><figcaption>The tax summary and the downloads for your accountant.</figcaption></figure>
@@ -252,7 +252,7 @@
   </article>
 
   <article class="g-topic" id="bulk" data-roles="owner manager chef store captain cashier" data-keys="bulk catering party wedding office lunch advance event">
-    <h2>20. Bulk and catering orders</h2>
+    <h2>20. Bulk and catering orders — Pro</h2>
     <ol><li>Open <b>Bulk</b> and tap <b>New bulk order</b>: who ordered, where from, the event date, guests and venue.</li>
       <li>Choose who is responsible and which chef cooks. OrdenZ shows what stock to buy in time.</li>
       <li>Record the advance; move the order to Confirmed, Cooking, Ready and Delivered; collect the balance.</li></ol>
@@ -289,7 +289,7 @@
     <h2>24. Plans and billing</h2>
     <ol><li>Open <b>Plan</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly. Yearly is 12 months for the price of 10 (two months free). The number on the card is what you pay once for the year. Same for extras.</li>
       <li>Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro.</li>
-      <li>Paid extras (loyalty, campaigns, delivery pack, linked outlets, Malaysia e-invoice and the rest) start around ₹49 / RM4.90 a month — snack prices, not a fourth plan. Table QR is on Starter and Pro, not an extra. New cafes start extras off; request them here.</li>
+      <li>Starter is counter billing, stock, paired devices and offline bills. Pro tools (Voice &amp; AI, Recipes, Intake, Bulk, TableTurn, table QR, pickup, day book/Tally, browser management) use <b>Request</b> — not a paid Add. Paid extras (loyalty, campaigns, delivery pack, linked outlets, Malaysia e-invoice and the rest) are billed yearly only, starting around ₹490 / RM49 a year (12 months for the price of 10). On Plan the button is Add yearly.</li>
       <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp for a free month.</li></ol>
   </article>
 

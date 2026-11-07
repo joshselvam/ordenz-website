@@ -123,6 +123,8 @@ section{padding:88px 0}
 .plan li::before{content:"";position:absolute;left:4px;top:15px;width:12px;height:7px;border-left:3px solid var(--green);border-bottom:3px solid var(--green);transform:rotate(-45deg)}
 .plan li.no{opacity:.5}.plan li.no::before{border:0;background:var(--muted);height:3px;top:18px;transform:none}
 .plan.best{border:2px solid var(--saffron)}
+.plan-flag{display:inline-block;font:700 12px/1.2 var(--body);letter-spacing:.04em;text-transform:uppercase;color:var(--on-green);background:var(--green);padding:6px 10px;border-radius:999px;margin:0 0 8px}
+.pricing-cycle-note{width:100%;text-align:center;margin:4px 0 0;font-size:14px;color:var(--ink-2)}
 
 /* faq */
 details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-top:12px}
@@ -193,7 +195,6 @@ body{background-color:var(--paper);background-image:radial-gradient(var(--dots) 
 .hero{color:var(--ink);background:radial-gradient(ellipse at 95% 30%,var(--hero-glow) 0%,transparent 55%),var(--paper);border-bottom:1px solid var(--line)}
 .hero .wrap{padding:64px 0 72px;gap:42px;min-height:570px}
 .hero h1{font-weight:700;line-height:.98;letter-spacing:-.045em;font-size:clamp(44px,5.5vw,76px);position:relative;padding-bottom:18px}
-.hero-line{margin:14px 0 0;font:700 clamp(22px,2.4vw,30px)/1.15 var(--display);letter-spacing:-.03em;color:var(--ink)}
 .hero h1:after{content:"";position:absolute;left:0;bottom:0;width:145px;height:5px;border-radius:50%;background:#C98566;transform:rotate(-2deg)}
 .hero .eyebrow,.eyebrow{color:var(--eyebrow)}
 .hero .lead{color:var(--ink-2);font-size:20px;max-width:46ch}
@@ -238,9 +239,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{
 html:not([data-country]) [data-for-country="IN"],
 [data-country="IN"] [data-for-country="MY"],
 [data-country="MY"] [data-for-country="IN"]{display:none!important}
-/* Homepage lead: both countries until a country is set. Then only that country. */
-html:not([data-country]) [data-for-country][data-home-lead],
-[data-country] [data-home-lead="both"]{display:none!important}
 .country-sel{font:600 14px var(--body);color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 10px;cursor:pointer;min-height:36px;max-width:11.5rem}
 .country-sel:hover{color:var(--ink);background:var(--soft)}
 @media(prefers-reduced-motion:reduce){.country-sel{transition:none}}
@@ -324,9 +322,6 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero h1{font-size:clamp(40px,4.2vw,60px)}
 .hero .lead{font-size:17px;line-height:1.45}
 .hero .actions{margin-top:16px;gap:8px}
-.hero-more{margin-top:12px;font-size:15px}
-.hero-more a,.quiet-link{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
-.hero-more a:hover,.quiet-link:hover{color:var(--ink)}
 .hero-art.has-video{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:8px;align-content:stretch;padding-top:0;min-height:0;height:100%;overflow:hidden}
 .hero-art.has-video:before{content:none}
 .hero-art.has-video:after{content:none}

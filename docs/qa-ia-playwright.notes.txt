@@ -23,9 +23,16 @@ Surfaces on this site:
 may mention Brief / Crew / Board / House / Intake even though the sample does
 not implement those screens. Do not treat preview as app.ordenz.com.
 
-Assert (marketing):
+Assert (marketing), matching the app:
   - Trial: first real bill or day 15; Free 1 paired device / 50 orders
+  - Slim Starter is counter ops: UPI/offline, basic stock, receipts, kiosk, kitchen, token, up to 5 devices
+  - Not on slim Starter: Recipes, Intake, Bulk, TableTurn / table QR, pickup, day book/Tally, browser management, voice/AI (Pro, or Request)
+  - table QR and bulk are not sold add-ons; they are on Pro
+  - Paid add-ons are yearly only (Add yearly, / year). Plan subscribe in the Android app opens the browser
+  - Guest is a second paired tablet, or a desktop Guest window. No Counter overlay on phone or tablet
+  - Delivery prices are the cafe menu plus that app's mark-up, not the partner's listed price
   - MY SST only with registration number; no invented MyInvois taxpayer login
+  - Malaysia demo money uses the country scale (1 point per RM; delivery gaps within RM1; catering advances to RM10)
   - Features/demo/guide copy not stuck on “Today” / “Menu & settings” /
     “Suppliers” as primary tab names where Brief / Board / Intake apply
   - Fit: MUST phone/tablet/desktop portrait + landscape; no overflow; sticky

@@ -19,14 +19,14 @@ The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standa
 | Page | Source | What it shows |
 |---|---|---|
 | Home | `src/index.html` | OrdenZ and its products |
-| OrdenZ | `src/features.html` | Features (kiosk in eight languages, voice, UPI, kitchen, printing, offline, recipes & stock, owner dashboard, bulk & catering, TableTurn, team roles, supplier invoices, marketing), plans, FAQ, contact |
+| OrdenZ | `src/features.html` | Features (kiosk in eight languages, voice, UPI, kitchen, printing, offline, stock, owner dashboard, team roles, marketing; Pro: recipes, Intake, bulk & catering, TableTurn, day book), plans, FAQ, contact |
 | Live demo | `src/demo.html` | Opens the live demo server as any role (or the browser preview until `demoUrl` is set) |
 | Browser preview | `src/demo/index.html` | The server-free kiosk and counter preview, copied from `docs/index.html` in the OrdenZ repo |
 | Guide | `src/help.html` | Step-by-step help with pictures, filtered by role and searchable. Update it with every new feature |
 | Privacy | `src/privacy.html` | What the app handles, including item photos and bulk-order customer details. Update the "Last updated" date when it changes |
 | Delete account | `src/delete-account.html` | The Play Store account-deletion page |
 
-Keep the OrdenZ page in step with the app: the trial is 30 days of Pro from the first real bill, or starts after the 15-day setup window; Starter adds bulk & catering orders; Pro adds voice/AI ordering, unlimited devices and managing the cafe from any browser. Country prices come from `pricing.IN` and `pricing.MY` in `site.config.json`. India values match the app; Malaysia list prices are confirmed and settled by invoice.
+Keep the OrdenZ page in step with the app: the trial is 30 days of Pro from the first real bill, or starts after the 15-day setup window; Starter is slim counter ops (UPI/offline, stock, up to 5 devices); Pro adds recipes, Intake, bulk & catering, TableTurn/table QR, day book/Tally, voice/AI, unlimited devices and managing the cafe from any browser. Country prices come from `pricing.IN` and `pricing.MY` in `site.config.json`. India values match the app; Malaysia list prices are confirmed and settled by invoice.
 
 Images in `src/assets/img/` include real app screenshots and `botanical-cafe.webp`, a decorative illustration. The Indie Botanical design uses ivory paper, emerald serif headings, sage foliage, terracotta accents and collage layers. Actual app screenshots sit above the artwork as responsive HTML images; links and controls remain native HTML. All public navigation links stay available on small screens.
 
@@ -106,7 +106,7 @@ Build with `node build.mjs`, then run `node server/scripts/website-layout-qa.mjs
 
 ## Security and content alignment — 2 November 2026
 
-The demo page now distinguishes the limited browser preview from a configured full live demo. The preview retains the site CSP, with hashes normalised to browser line endings. Printing, Starter features, staff PIN/clock-in, optional support-AI disclosure and annual-price wording match the current app contracts. Run `node build.mjs` before `node --test test/*.test.mjs`; the app checkout also provides `node server/scripts/content-security-qa.mjs` for regional price, bundled privacy and CSP browser checks. No deployment is performed by these checks.
+The demo page now distinguishes the limited browser preview from a configured full live demo. The preview retains the site CSP, with hashes normalised to browser line endings. Printing, slim Starter vs Pro (bulk & catering on Pro), staff PIN/clock-in, optional support-AI disclosure and annual-price wording match the current app contracts. Run `node build.mjs` before `node --test test/*.test.mjs`; the app checkout also provides `node server/scripts/content-security-qa.mjs` for regional price, bundled privacy and CSP browser checks. No deployment is performed by these checks.
 
 ## IA / Playwright QA notes — 3 November 2026
 

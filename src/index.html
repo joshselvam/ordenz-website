@@ -3,18 +3,16 @@
 <main id="main">
 <section class="hero" style="padding:0"><div class="wrap">
   <div>
-    <h1>Cafe POS and<br>self-order kiosk</h1>
-    <p class="hero-line">Good orders. Great days.</p>
-    <p class="lead" style="margin-top:12px" data-home-lead="both">OrdenZ is a cafe POS with a self-order kiosk and a kitchen screen for small cafes in India and Malaysia.</p>
-    <p class="lead" style="margin-top:12px" data-home-lead="country" data-for-country="IN">OrdenZ is a cafe POS in India for small cafes, with a self-order kiosk and a kitchen screen. Bills show GST once you add your GSTIN.</p>
-    <p class="lead" style="margin-top:12px" data-home-lead="country" data-for-country="MY">OrdenZ is a cafe POS in Malaysia for small cafes, with a self-order kiosk and a kitchen screen. Prices are in ringgit. SST is added only when you set an SST number.</p>
-    <p class="lead" style="margin-top:12px">It also runs the counter, a guest tablet and the token screen. The guest tablet, Showcase and token screen are cheap Android tablets.</p>
+    <div class="eyebrow">Cafe POS · self-order kiosk · kitchen screen</div>
+    <h1>Good orders.<br>Great days.</h1>
+    <p class="lead" style="margin-top:12px">From the first coffee at 7 am to the cash count at closing, OrdenZ runs your counter, a guest tablet, the kitchen and the token screen. The guest tablet, Showcase and token screen are cheap Android tablets.</p>
     <div class="actions">
-      <a class="btn btn-cta" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
+      <a class="btn btn-cta" href="/demo/">Try the live demo</a>
+      {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
       {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a walk-through</a>{{/if}}
+      <a class="btn btn-ghost" href="/features/">See every feature</a>
     </div>
-    <p class="hero-more"><a href="/features/">See every feature</a></p>
-    <p style="margin-top:10px;color:var(--ink-2);font-size:15px">Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro. <a class="quiet-link" href="/features/#pricing">See plans</a></p>
+    <p style="margin-top:10px;color:var(--ink-2);font-size:15px">Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro.</p>
   </div>
   <div class="hero-art has-video">
     <div class="cafe-photo" role="img" aria-label="Plant-filled cafe interior"></div>
@@ -110,7 +108,7 @@
     <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Lunch at the tables</h3><p>The captain seats table 4 and taps Pay later — no cash buttons. Extra phones add lines to that same open check. The cashier settles with Pay T4.</p><span class="who">Captain · Group order · Pay by table</span></div></li>
     <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The milk delivery arrives</h3><p>The store keeper saves a purchase draft from what's below reorder. The owner approves it, then the bill is entered and stock goes up.</p><span class="who">Intake · Drafts · Store keeper</span></div></li>
     <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup before dinner</h3><p>A guest books a 4:15 slot on the public link. The kitchen sees the cap. The ticket stays unpaid until the cashier collects at the counter.</p><span class="who">Pickup slots · Kitchen · Cashier</span></div></li>
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A Swiggy order lands from a signed webhook only when that partner's secret is set, or the cashier types it. OrdenZ prices the order from the cafe menu. The partner's price is not used. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A Swiggy order lands from a signed webhook, or the cashier types it. Prices come from your cafe menu (with that app's mark-up) — not the partner app's listed prices. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
     <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close, count, go home</h3><p>The drawer is counted note by note and the Z report prints. The owner checks the day's sales from home and sends the day book to the accountant.</p><span class="who">Reports · Owner</span></div></li>
   </ol>
   <ol class="day" data-for-country="MY">
@@ -120,10 +118,10 @@
     <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Lunch at the tables</h3><p>The captain seats table 4 and taps Pay later — no cash buttons. Extra phones add lines to that same open check. The cashier settles with Pay T4, DuitNow or cash.</p><span class="who">Captain · Group order · Pay by table</span></div></li>
     <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The milk delivery arrives</h3><p>The store keeper saves a purchase draft from what's below reorder. The owner approves it, then the bill is entered and stock goes up.</p><span class="who">Intake · Drafts · Store keeper</span></div></li>
     <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup before dinner</h3><p>A guest books a 4:15 slot on the public link. The kitchen sees the cap. The ticket stays unpaid until the cashier collects at the counter.</p><span class="who">Pickup slots · Kitchen · Cashier</span></div></li>
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A GrabFood or foodpanda order lands from a signed webhook only when that partner's secret is set, or the cashier types it. OrdenZ prices the order from the cafe menu. The partner's price is not used. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A GrabFood or foodpanda order lands from a signed webhook, or the cashier types it. Prices come from your cafe menu (with that app's mark-up) — not the partner app's listed prices. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
     <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close, count, go home</h3><p>The drawer is counted note by note and the Z report prints. SST is on the bill only if the cafe added an SST number. Reports prepare the MyInvois ZIP; OrdenZ does not log in to LHDN.</p><span class="who">Reports · Owner</span></div></li>
   </ol>
-  <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/demo/">{{#if demoUrl}}Live the day in the demo{{/if}}{{#unless demoUrl}}Walk through a day in the demo{{/unless}}</a><a class="btn btn-soft" href="/features/">How each part works</a></div>
+  <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/demo/">Live the day in the demo</a><a class="btn btn-soft" href="/features/">How each part works</a></div>
 </div></section>
 
 
@@ -174,7 +172,7 @@
       {{#if email}}<a class="btn btn-primary" href="mailto:{{email}}?subject=Hello%20{{company}}">Email us</a>{{/if}}
       {{#unless emailOrWhatsapp}}<span class="btn btn-ghost" style="cursor:default">Contact details coming soon</span>{{/unless}}
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
-      <a class="btn btn-ghost" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
+      <a class="btn btn-ghost" href="/demo/">Try the live demo</a>
     </div>
   </div>
 </div></section>

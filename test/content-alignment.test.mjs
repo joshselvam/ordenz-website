@@ -35,7 +35,7 @@ test('client claims match current printing, stock and optional support AI behavi
  assert.match(features,/sold-out items are marked and cannot be added/);
  assert.match(features,/Each staff member has their own PIN/);
  assert.match(privacy,/configured AI service may receive your question/);
- assert.match(privacy,/DuitNow QR in Malaysia uses the cafe's approved Fiuu connection/);
+ assert.match(privacy,/Supported DuitNow QR payments in Malaysia use the cafe's approved Fiuu merchant connection/);
  assert.match(read('src/terms.html'),/supported Fiuu merchant connections/);
  assert.doesNotMatch(features + read('src/index.html'),/Each staff job has its own PIN/);
  assert.match(privacy,/browser’s local storage/);
@@ -60,7 +60,39 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  for(const label of screens)assert.match(features,new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
  assert.match(features,/New → Preparing → Ready → Served/);
  assert.match(features,/Stock &amp; Intake/);
- assert.match(features,/eyebrow">Recipes</);
+ assert.match(features,/eyebrow">Voice &amp; AI ordering · Pro</);
+ assert.match(features,/eyebrow">Marketing · paid extras</);
+ assert.match(features,/Voice &amp; AI, Recipes, Intake, Bulk, TableTurn/);
+ assert.match(help,/Pro tools \(Voice &amp; AI, Recipes, Intake, Bulk, TableTurn/);
+ // Photo/Swiggy menu import is Pro voiceAi, not a yearly paid Marketing add-on.
+ {
+  const mkt = features.match(/eyebrow">Marketing · paid extras[\s\S]*?<\/ul>/);
+  assert.ok(mkt, 'Marketing · paid extras block');
+  assert.doesNotMatch(mkt[0], /Import menu items from a photo|Swiggy\/Zomato screenshot/);
+  const voice = features.match(/eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
+  assert.ok(voice, 'Voice & AI ordering · Pro block');
+  assert.match(voice[0], /Import menu items from a photo or a Swiggy\/Zomato screenshot/);
+  assert.match(voice[0], /not a paid extra/);
+ }
+ assert.match(features,/eyebrow">Recipes · Pro</);
+ assert.match(features,/eyebrow">Bulk · Pro</);
+ assert.match(features,/eyebrow">Intake · Pro</);
+ assert.match(features,/eyebrow">Accounts · Pro</);
+ assert.match(features,/eyebrow">TableTurn · Pro</);
+ assert.match(features,/It does not speak/);
+ assert.match(features,/does not open customer-bill\.html/);
+ assert.match(help,/It does not speak/);
+ assert.match(help,/Ordering from the table \(QR\) — Pro/);
+ assert.match(help,/Stock, recipes \(Pro\) and wastage/);
+ assert.match(help,/Intake: supplier invoices \(Pro\)/);
+ assert.match(help,/Day book exports \(Pro\)/);
+ assert.match(help,/Bulk and catering orders — Pro/);
+ assert.match(help,/delivery pack — paid extra/);
+ assert.match(features,/delivery pack — paid extra/);
+ assert.match(features,/On Pro, a QR at the door/);
+ assert.doesNotMatch(features,/Bookings and a guest waitlist QR on Starter and Pro/);
+ assert.doesNotMatch(help,/Bookings and the waitlist QR are on Starter and Pro/);
+ assert.doesNotMatch(read('README.md'),/Starter adds bulk/);
  assert.match(features,/delivery order entry/);
  assert.match(features,/Brief<\/b>, <b>Counter<\/b>, <b>Cash drawer<\/b>, <b>Attendance<\/b>, <b>Crew desk<\/b> and <b>TableTurn<\/b>/);
  assert.match(help,/Clock in on <b>Brief<\/b>/);
