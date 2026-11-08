@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ads and Showcase layouts · OrdenZ</title>
+<meta name="description" content="Preview Guest ads layouts and picture options. The live home page stays a labeled placeholder until you pick.">
+<meta name="theme-color" content="#FFFCF5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B110F" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("ordenz.theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}try{var c=localStorage.getItem("ordenz-country");if(c!=="IN"&&c!=="MY"){var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";c=(tz==="Asia/Kolkata"||tz==="Asia/Calcutta")?"IN":"MY"}document.documentElement.dataset.country=c}catch(e){document.documentElement.dataset.country="MY"}</script>
+<link rel="icon" type="image/png" href="/assets/brand/favicon-32.png?v=crest-1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hind+Madurai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/ads-layouts.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="layout-switch">
+  <div class="wrap">
+    <p class="layout-kicker">Preview only. The live home page stays a labeled placeholder until you pick.</p>
+    <nav class="layout-nav" aria-label="Guest ads layouts">
+      <a href="?layout=1&amp;shot=b" data-pick="1">L1 <span>Ads beside bill</span></a>
+      <a href="?layout=2&amp;shot=b" data-pick="2">L2 <span>Photo above bill</span></a>
+      <a href="?layout=3&amp;shot=b" data-pick="3">L3 <span>Stacked for phone</span></a>
+    </nav>
+    <p class="layout-now" id="layoutNow">L1. Ads on the left, bill on the right. This is the live Guest slide.</p>
+    <nav class="shot-nav" aria-label="Picture options">
+      <button type="button" data-shot="a"><img src="/assets/img/showcase/option-a-counter.jpg" width="160" height="120" alt="">A Counter</button>
+      <button type="button" data-shot="b" aria-current="true"><img src="/assets/img/showcase/option-b-drink.jpg" width="160" height="120" alt="">B Drink</button>
+      <button type="button" data-shot="c"><img src="/assets/img/showcase/option-c-kitchen.jpg" width="160" height="120" alt="">C Kitchen</button>
+      <button type="button" data-shot="d"><img src="/assets/img/showcase/option-d-guest.jpg" width="160" height="120" alt="">D Guest tablet</button>
+      <button type="button" data-shot="e"><img src="/assets/img/showcase/option-e-pastry.jpg" width="160" height="120" alt="">E Pastry</button>
+      <button type="button" data-shot="f"><img src="/assets/img/showcase/option-f-till.jpg" width="160" height="120" alt="">F Busy till</button>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="ad-hero wrap">
+  <div class="ad-pick" data-ads-layouts data-layout="1" data-shot="b">
+    <div class="ad-stage">
+      <div class="guest-face">
+        <aside class="guest-ads">
+          <p class="guest-ads-flag">Ads on · House</p>
+          <img class="food-shot" id="adShot" src="/assets/img/showcase/option-b-drink.jpg" width="1152" height="864" alt="Latte with mint in a sage cup">
+          <p class="ad-dots" aria-hidden="true"><i></i><i class="is-on"></i><i></i></p>
+          <p class="scene-kicker">Today's special</p>
+          <p class="guest-ads-line" data-for-country="IN">Filter kaapi · ₹40</p>
+          <p class="guest-ads-line" data-for-country="MY">Teh tarik · RM5</p>
+          <p class="guest-ads-note">Owner turns ads on in House and adds the picture.</p>
+        </aside>
+        <div class="guest-bill">
+          <div class="bill-top"><span>Table 4 · Guest</span><span>English</span></div>
+          <div data-for-country="IN">
+            <div class="bill-row"><span>1 × Filter kaapi</span><b>₹40</b></div>
+            <p class="bill-opts">Takeaway · Less sugar</p>
+            <p class="bill-tax">GST included</p>
+            <div class="bill-row total"><span>Total</span><b>₹40</b></div>
+          </div>
+          <div data-for-country="MY">
+            <div class="bill-row"><span>1 × Teh tarik</span><b>RM5</b></div>
+            <p class="bill-opts">Takeaway · Less sugar</p>
+            <div class="bill-row"><span>Rounding</span><b>RM0.00</b></div>
+            <div class="bill-row total"><span>Total</span><b>RM5</b></div>
+          </div>
+          <div class="loyalty"><span class="qr"></span><span>Loyalty QR after payment, for their own phone</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="ad-cap" id="adCap">Guest tablet. Ads on the left if the owner turns them on in House. The bill in one language. It does not speak.</p>
+  </div>
+</section>
+</main>
+<script src="/assets/theme.js"></script>
+<script src="/assets/country.js"></script>
+<script src="/assets/ads-layouts.js"></script>
+</body>
+</html>

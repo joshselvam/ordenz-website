@@ -112,6 +112,7 @@ test("Showcase options A to D exist and the live slide stays a labeled placehold
   assert.ok(fs.existsSync(new URL("option-c-kitchen.jpg", dir)));
   assert.ok(fs.existsSync(new URL("option-d-guest.jpg", dir)));
   assert.match(home, /id="show-showcase"[\s\S]*swap after pick/);
+  assert.match(home, /id="show-guest"[\s\S]*swap after pick/);
   assert.doesNotMatch(home, /\/assets\/img\/showcase\/option-[abcd]-/);
 });
 
