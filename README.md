@@ -28,7 +28,7 @@ The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standa
 
 Keep the OrdenZ page in step with the app: the trial is 30 days of Pro from the first real bill, or starts after the 15-day setup window; Starter is slim counter ops (UPI/offline, stock, up to 5 devices); Pro adds recipes, Intake, bulk & catering, TableTurn/table QR, day book/Tally, voice/AI, unlimited devices and managing the cafe from any browser. Country prices come from `pricing.IN` and `pricing.MY` in `site.config.json`. India values match the app; Malaysia list prices are confirmed and settled by invoice.
 
-Images in `src/assets/img/` include real app screenshots and `botanical-cafe.webp`, a decorative illustration. The Indie Botanical design uses ivory paper, emerald serif headings, sage foliage, terracotta accents and collage layers. Actual app screenshots sit above the artwork as responsive HTML images; links and controls remain native HTML. All public navigation links stay available on small screens.
+Images in `src/assets/img/` include real app screenshots, `botanical-cafe.webp` at the foot of the home slideshow (Guest and the other scenes), and `cafe-storefront.webp`, a 244×194 storefront crop that sits beside the home headline on phone and desktop. The Indie Botanical design uses ivory paper, emerald serif headings, sage foliage, terracotta accents and collage layers. Actual app screenshots sit above the artwork as responsive HTML images; links and controls remain native HTML. All public navigation links stay available on small screens.
 
 Build with `node build.mjs`, then preview at `http://localhost:8088` using the app repository's local Docker overlay. These changes do not publish the website or the Android app.
 
