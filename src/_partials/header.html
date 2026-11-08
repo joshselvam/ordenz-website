@@ -1,6 +1,10 @@
 <header class="top"><div class="wrap">
   <a class="brand" href="/"><img src="/assets/brand/ordenz-mark.svg" alt="">{{company}}</a>
-  <nav class="nav" aria-label="Main">
+  <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+    <span class="nav-toggle-bars" aria-hidden="true"></span>
+    <span class="nav-toggle-label">Menu</span>
+  </button>
+  <nav class="nav" id="siteNav" aria-label="Main">
     <a href="/features/" class="keep">Features</a>
     <a href="/demo/">{{#if demoUrl}}Live demo{{/if}}{{#unless demoUrl}}Try demo{{/unless}}</a>
     <a href="/features/#pricing">Pricing</a>

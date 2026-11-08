@@ -43,6 +43,8 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
 test('header country switcher is a native select with no geo lookup',()=>{
   const header=read('src/_partials/header.html');
   const js=read('src/assets/country.js');
+  assert.match(header,/id="navToggle"/);
+  assert.match(header,/id="siteNav"/);
   assert.match(header,/id="countrySel"/);
   assert.match(header,/aria-label="Country"/);
   assert.match(js,/ordenz-country/);
