@@ -86,7 +86,9 @@ test("Guest shows House ads on the left and a real bill on the right", () => {
   assert.match(home, /GST included/);
   assert.match(home, /Rounding/);
   assert.match(home, /Loyalty QR after payment/);
-  assert.match(home, /swap after pick/);
+  assert.match(home, /class="food-shot"[^>]*src="\/assets\/img\/showcase\/option-b-drink\.jpg"/);
+  assert.doesNotMatch(home, /swap after pick|shot-swap/);
+  assert.match(css, /\.food-shot\{[^}]*object-fit:cover/);
   assert.match(css, /\.guest-face\{[^}]*grid-template-columns:minmax\(0,1\.05fr\) minmax\(0,\.95fr\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.guest-face\{[^}]*grid-template-columns:1fr/);
   assert.doesNotMatch(home, /ZUS|AEON/i);
@@ -104,16 +106,19 @@ test("Token board has In preparation and Ready for collection in forest mint", (
   assert.match(css, /\.token-col li\.is-on\{[^}]*#0E5B49/);
 });
 
-test("Showcase options A to D exist and the live slide stays a labeled placeholder", () => {
+test("Showcase and Guest ads lock Option B as the featured creative", () => {
   const home = read("src/index.html");
+  const css = read("src/assets/site.css");
+  const js = read("src/assets/motion.js");
   const dir = new URL("../src/assets/img/showcase/", import.meta.url);
-  assert.ok(fs.existsSync(new URL("option-a-counter.jpg", dir)));
   assert.ok(fs.existsSync(new URL("option-b-drink.jpg", dir)));
-  assert.ok(fs.existsSync(new URL("option-c-kitchen.jpg", dir)));
-  assert.ok(fs.existsSync(new URL("option-d-guest.jpg", dir)));
-  assert.match(home, /id="show-showcase"[\s\S]*swap after pick/);
-  assert.match(home, /id="show-guest"[\s\S]*swap after pick/);
-  assert.doesNotMatch(home, /\/assets\/img\/showcase\/option-[abcd]-/);
+  assert.match(home, /id="show-guest"[\s\S]*\/assets\/img\/showcase\/option-b-drink\.jpg/);
+  assert.match(home, /id="show-showcase"[\s\S]*\/assets\/img\/showcase\/option-b-drink\.jpg/);
+  assert.doesNotMatch(home, /option-a-counter|option-c-kitchen|option-d-guest|swap after pick|shot-swap/);
+  assert.match(css, /\.food-shot\{[^}]*object-fit:cover/);
+  assert.match(css, /\.food-photo\{[^}]*object-fit:cover/);
+  assert.doesNotMatch(css, /shot-swap/);
+  assert.doesNotMatch(js, /option-[abcd]|shot-swap|swap after pick/);
 });
 
 test("homepage hero copy stays short and still names OrdenZ", () => {

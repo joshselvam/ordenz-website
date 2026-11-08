@@ -13,7 +13,7 @@ test("ads layout preview stays off the live home page and keeps forest-mint copy
   assert.match(page, /href="\/assets\/ads-layouts\.css"/);
   assert.match(page, /src="\/assets\/ads-layouts\.js"/);
   assert.match(page, /Preview only/);
-  assert.match(page, /live home page stays a labeled placeholder until you pick/);
+  assert.match(page, /live home page still uses layout L1 and picture B/);
   for (const n of ["1", "2", "3"]) {
     assert.match(page, new RegExp('data-pick="' + n + '"'));
     assert.match(css, new RegExp('data-layout="' + n + '"'));
@@ -23,7 +23,8 @@ test("ads layout preview stays off the live home page and keeps forest-mint copy
   assert.doesNotMatch(js, /innerHTML|outerHTML|insertAdjacentHTML|document\.write/);
   assert.doesNotMatch(page + css + js + home, /ZUS|AEON/i);
   assert.doesNotMatch(home, /ads-layouts/);
-  assert.doesNotMatch(home, /option-a-counter|option-b-drink|option-c-kitchen|option-d-guest|option-e-pastry|option-f-till/);
+  assert.match(home, /option-b-drink\.jpg/);
+  assert.doesNotMatch(home, /option-a-counter|option-c-kitchen|option-d-guest|option-e-pastry|option-f-till/);
 });
 
 test("six picture options exist and the preview can switch them without locking live home", () => {
@@ -43,6 +44,6 @@ test("six picture options exist and the preview can switch them without locking 
     assert.match(page, new RegExp("option-" + key));
     assert.match(js, new RegExp("/assets/img/showcase/" + name.replace(".", "\\.")));
   }
-  assert.match(page, /B Drink/);
+  assert.match(page, /B Drink · live/);
   assert.match(js, /if \(!shots\[shot\]\) shot = "b"/);
 });
