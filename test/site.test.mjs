@@ -69,7 +69,14 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/not an overlay on the till/);
   assert.match(h,/It does not speak/);
   assert.match(h,/one language/);
+  assert.match(h,/Ads on the left if the owner turns them on in House/);
+  assert.match(h,/class="guest-ads"/);
+  assert.match(h,/class="guest-bill"/);
+  assert.match(h,/class="token-board"/);
+  assert.match(h,/In preparation/);
+  assert.match(h,/Ready for collection/);
   assert.match(h,/food photo/);
+  assert.match(h,/swap after pick/);
   assert.match(h,/Speak the token is on in House/);
   assert.match(h,/It does not read the dish names/);
   assert.ok(!/<video[^>]*\bautoplay\b/.test(h),'the video tag has no autoplay attribute');

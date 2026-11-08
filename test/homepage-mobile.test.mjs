@@ -74,6 +74,47 @@ test("Guest scene card includes the cafe picture below the pills", () => {
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-art\.has-video \.show-cafe\{[^}]*width:min\(100%,280px\)/);
 });
 
+test("Guest shows House ads on the left and a real bill on the right", () => {
+  const home = read("src/index.html");
+  const css = read("src/assets/site.css");
+  assert.match(home, /class="guest-ads"/);
+  assert.match(home, /Ads on · House/);
+  assert.match(home, /Owner turns ads on in House and adds the picture/);
+  assert.match(home, /class="guest-bill"/);
+  assert.match(home, /Table 4 · Guest/);
+  assert.match(home, /Takeaway · Less sugar/);
+  assert.match(home, /GST included/);
+  assert.match(home, /Rounding/);
+  assert.match(home, /Loyalty QR after payment/);
+  assert.match(home, /swap after pick/);
+  assert.match(css, /\.guest-face\{[^}]*grid-template-columns:minmax\(0,1\.05fr\) minmax\(0,\.95fr\)/);
+  assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.guest-face\{[^}]*grid-template-columns:1fr/);
+  assert.doesNotMatch(home, /ZUS|AEON/i);
+});
+
+test("Token board has In preparation and Ready for collection in forest mint", () => {
+  const home = read("src/index.html");
+  const css = read("src/assets/site.css");
+  assert.match(home, /class="token-board"/);
+  assert.match(home, /In preparation/);
+  assert.match(home, /Ready for collection/);
+  assert.match(home, /class="token-num">14</);
+  assert.match(css, /\.token-board\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(0,1fr\)/);
+  assert.match(css, /\.token-col-h\{[^}]*#2EE6C7/);
+  assert.match(css, /\.token-col li\.is-on\{[^}]*#0E5B49/);
+});
+
+test("Showcase options A to D exist and the live slide stays a labeled placeholder", () => {
+  const home = read("src/index.html");
+  const dir = new URL("../src/assets/img/showcase/", import.meta.url);
+  assert.ok(fs.existsSync(new URL("option-a-counter.jpg", dir)));
+  assert.ok(fs.existsSync(new URL("option-b-drink.jpg", dir)));
+  assert.ok(fs.existsSync(new URL("option-c-kitchen.jpg", dir)));
+  assert.ok(fs.existsSync(new URL("option-d-guest.jpg", dir)));
+  assert.match(home, /id="show-showcase"[\s\S]*swap after pick/);
+  assert.doesNotMatch(home, /\/assets\/img\/showcase\/option-[abcd]-/);
+});
+
 test("homepage hero copy stays short and still names OrdenZ", () => {
   const home = read("src/index.html");
   assert.match(home, /Good orders\./);

@@ -32,30 +32,45 @@
           <p class="scene-cap">Counter tablet. The cashier stays here.</p>
         </div>
         <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
-          <div class="scene" data-s="floor">
-            <div class="tablet">
-              <div class="tablet-screen bill">
-                <div class="bill-top"><span>Guest</span><span>English</span></div>
+          <div class="scene scene-guest" data-s="floor">
+            <div class="guest-face">
+              <aside class="guest-ads">
+                <p class="guest-ads-flag">Ads on · House</p>
+                <div class="shot-swap" role="img" aria-label="Ad picture — swap after you pick">
+                  <span>Ad picture<br>swap after pick</span>
+                </div>
+                <p class="scene-kicker">Today's special</p>
+                <p class="guest-ads-line" data-for-country="IN">Filter kaapi · ₹40</p>
+                <p class="guest-ads-line" data-for-country="MY">Teh tarik · RM5</p>
+                <p class="guest-ads-note">Owner turns ads on in House and adds the picture.</p>
+              </aside>
+              <div class="guest-bill">
+                <div class="bill-top"><span>Table 4 · Guest</span><span>English</span></div>
                 <div data-for-country="IN">
-                  <div class="bill-row"><span>Filter kaapi</span><b>₹40</b></div>
-                  <div class="bill-row total"><span>Total</span><b>₹40</b></div>
+                  <div class="bill-row"><span>1 × Filter kaapi</span><b>₹40</b></div>
+                  <p class="bill-opts">Takeaway · Less sugar</p>
                   <p class="bill-tax">GST included</p>
+                  <div class="bill-row total"><span>Total</span><b>₹40</b></div>
                 </div>
                 <div data-for-country="MY">
-                  <div class="bill-row"><span>Teh tarik</span><b>RM5</b></div>
+                  <div class="bill-row"><span>1 × Teh tarik</span><b>RM5</b></div>
+                  <p class="bill-opts">Takeaway · Less sugar</p>
+                  <div class="bill-row"><span>Rounding</span><b>RM0.00</b></div>
                   <div class="bill-row total"><span>Total</span><b>RM5</b></div>
                 </div>
                 <div class="loyalty"><span class="qr"></span><span>Loyalty QR after payment, for their own phone</span></div>
               </div>
             </div>
           </div>
-          <p class="scene-cap">A second tablet signed in as Guest — not an overlay on the till. The bill in one language. It does not speak.</p>
+          <p class="scene-cap">A second tablet signed in as Guest — not an overlay on the till. Ads on the left if the owner turns them on in House. The bill in one language. It does not speak.</p>
         </div>
         <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
           <div class="scene" data-s="market">
             <div class="tablet">
               <div class="tablet-screen showcase">
-                <div class="food-photo" role="img" aria-label="Food photo of today's special"></div>
+                <div class="shot-swap" role="img" aria-label="Showcase picture — swap after you pick">
+                  <span>Showcase picture<br>swap after pick</span>
+                </div>
                 <div>
                   <p class="scene-kicker">Today's special</p>
                   <p class="dish" data-for-country="IN">Filter kaapi</p>
@@ -70,10 +85,22 @@
         </div>
         <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
           <div class="scene scene-token" data-s="kitchen">
-            <div class="tablet">
-              <div class="tablet-screen token-face">
-                <p class="token-num">14</p>
-                <p class="token-ready">Ready</p>
+            <div class="token-board">
+              <div class="token-col">
+                <p class="token-col-h">In preparation</p>
+                <ol>
+                  <li class="is-on"><b class="token-num">14</b></li>
+                  <li></li><li></li><li></li>
+                  <li></li><li></li><li></li><li></li>
+                </ol>
+              </div>
+              <div class="token-col token-col-ready">
+                <p class="token-col-h">Ready for collection</p>
+                <ol>
+                  <li class="is-on"><b>9</b></li>
+                  <li></li><li></li><li></li>
+                  <li></li><li></li><li></li><li></li>
+                </ol>
               </div>
             </div>
           </div>
