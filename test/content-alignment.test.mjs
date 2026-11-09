@@ -150,5 +150,11 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.match(help,/Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet/);
  assert.match(features,/Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet/);
  assert.doesNotMatch(read('README.md'),/one free month when they first pay\)/);
+ // Kitchen gallery: kitchen.webp must be full-width (flex:1 1 100%) so it fills
+ // its own row; token-screen and country-settings pair at 45% to avoid a black void.
+ assert.match(features,/kitchen\.webp[^>]+flex:1 1 100%/);
+ assert.match(features,/token-screen\.webp[^>]+flex:1 1 45%/);
+ // country-settings (MY) must have a matching 45% flex-basis so it pairs with token-screen
+ assert.match(features,/country-settings\.webp[^>]+flex:1 1 45%/);
 });
 
