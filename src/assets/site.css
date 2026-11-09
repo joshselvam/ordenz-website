@@ -165,6 +165,11 @@ footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 .demo-card:hover{transform:translateY(-3px);border-color:var(--green)}
 .demo-card img{border-radius:12px;border:1px solid var(--line);aspect-ratio:16/9;object-fit:cover;object-position:top}
 .demo-card p{color:var(--ink-2);font-size:16px}
+.demo-embed{margin-top:22px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface);box-shadow:0 10px 28px #14211C14}
+.demo-embed-frame{display:block;width:100%;height:min(72vh,720px);border:0;background:#F5F6F2}
+.demo-embed-cap{margin:0;padding:10px 14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.demo-embed-cap a{font-weight:700;color:var(--green)}
+@media (max-width:880px){.demo-embed-frame{height:min(68vh,560px)}}
 
 /* guide */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -323,8 +328,34 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .faq-group{margin-top:36px}.faq-group h3{font-size:24px}
 .doc a:not(.btn),.faq a,details a{color:var(--green);text-underline-offset:3px}
 
-/* Business hero: readable slideshow and the whole shopfront share the first screen. */
-.hero .wrap{grid-template-columns:minmax(280px,1.05fr) minmax(0,1.1fr);gap:24px;align-items:stretch;min-height:calc(100vh - var(--header-offset,96px));min-height:calc(100svh - var(--header-offset,96px));height:auto;max-height:none;padding:8px 0 10px;box-sizing:border-box}
+/* Cafe in motion — live homepage (Shift reel) */
+.cim-hero .brand-mark{margin:0 0 4px;font:800 clamp(28px,3.2vw,40px)/1 var(--display);letter-spacing:-.03em;color:#F0B13D}
+.cim-hero .eyebrow{letter-spacing:.12em}
+.cim-shift{padding:48px 0 28px}
+.cim-chapters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:28px 0 36px}
+.cim-chapter{min-width:0;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--s,var(--green));border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow)}
+.cim-chapter img{width:100%;height:140px;object-fit:cover;border-radius:12px;background:#0B110F}
+.cim-chapter h3{font-size:22px}
+.cim-chapter p{color:var(--ink-2);font-size:15px;line-height:1.35}
+.cim-token-flash{height:140px;border-radius:12px;display:grid;place-content:center;gap:4px;background:linear-gradient(160deg,#07110E,#10241C);color:#FFF8EA;text-align:center}
+.cim-token-flash span{font:800 56px/1 var(--display);color:#F0B13D}
+.cim-token-flash small{font:700 14px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#2EE6C7}
+.cim-day .moment p{font-size:15px;line-height:1.4}
+.cim-product-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.cim-product{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--s,var(--green));border-radius:18px;padding:20px;min-width:0;transition:transform .2s ease,border-color .2s ease}
+.cim-product:hover{transform:translateY(-3px);border-color:var(--s,var(--green))}
+.cim-product h3{margin-top:10px;font-size:22px}
+.cim-product p{margin-top:6px;color:var(--ink-2);font-size:15px}
+@media (max-width:880px){
+  .cim-chapters{grid-template-columns:1fr 1fr}
+  .cim-product-row{grid-template-columns:1fr}
+  .cim-chapter img,.cim-token-flash{height:120px}
+}
+@media (max-width:520px){.cim-chapters{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.cim-product{transition:none}}
+
+/* Business hero: larger slideshow/video; no botanical cafe strip under the pills. */
+.hero .wrap{grid-template-columns:minmax(260px,.9fr) minmax(0,1.3fr);gap:24px;align-items:stretch;min-height:calc(100vh - var(--header-offset,96px));min-height:calc(100svh - var(--header-offset,96px));height:auto;max-height:none;padding:8px 0 10px;box-sizing:border-box}
 .hero .wrap>*{min-height:0;min-width:0}
 .hero-copy{display:flex;flex-direction:column;justify-content:center;min-width:0}
 .hero-title{display:grid;grid-template-columns:minmax(0,1fr) minmax(140px,244px);gap:8px 14px;align-items:center;margin-top:12px;min-width:0}
@@ -333,13 +364,12 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero .lead{font-size:17px;line-height:1.45}
 .hero .actions{margin-top:16px;gap:8px}
 .cafe-photo{width:100%;max-width:244px;height:auto;aspect-ratio:244/194;object-fit:contain;object-position:center;justify-self:end;min-width:0}
-.hero-art.has-video{display:grid;grid-template-rows:minmax(0,1fr);gap:0;align-content:stretch;padding-top:0;min-height:0;height:auto;overflow:hidden}
+.hero-art.has-video{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:0;align-content:stretch;padding-top:0;min-height:0;height:100%;overflow:hidden;justify-items:stretch}
 .hero-art.has-video:before{content:none}
 .hero-art.has-video:after{content:none}
-.hero-art.has-video .show{grid-row:1;position:relative;z-index:auto;margin:0;min-height:0;height:auto;display:flex;flex-direction:column;background:#07110E;border-color:#3A4D43}
-.hero-art.has-video .show-cafe{flex:none;flex-shrink:0;display:block;width:min(100%,420px);height:clamp(120px,18vh,200px);margin:0 auto;padding:0 12px 12px;box-sizing:border-box;object-fit:contain;object-position:center bottom;pointer-events:none}
+.hero-art.has-video .show{grid-row:1;position:relative;z-index:auto;margin:0;min-height:min(72vh,640px);height:100%;display:flex;flex-direction:column;background:#07110E;border-color:#3A4D43}
 
-.hero-art.has-video .promo{width:100%;margin:0;transform:none;border:0;border-radius:0;box-shadow:none;aspect-ratio:auto;flex:1;min-height:0;height:auto}
+.hero-art.has-video .promo{width:100%;margin:0;transform:none;border:0;border-radius:0;box-shadow:none;aspect-ratio:auto;flex:1 1 auto;min-height:min(48vh,420px);height:auto}
 .hero-art.has-video .show-stage{flex:1 1 auto;min-height:0;display:grid;grid-template-rows:minmax(0,1fr);background:#07110E}
 .hero-art.has-video .show-slide.is-on{display:flex;flex-direction:column;min-height:0;height:100%}
 .hero-art.has-video .scene{aspect-ratio:auto;flex:1;min-height:0;height:auto;background:#07110E;color:#FFF8EA}
@@ -395,13 +425,14 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .hero-art,.hero-art.has-video{width:100%;max-width:100%;min-width:0;height:auto;overflow:hidden}
   .hero-art.has-video .show,.show-stage,.show-slide,.hero-art.has-video .promo{width:100%;max-width:100%;min-width:0}
   .hero-art.has-video .show{min-height:0;height:auto}
-  .hero-art.has-video .show-cafe{width:min(100%,280px);height:clamp(110px,32vw,160px);padding:0 10px 10px}
-  .guest-face{grid-template-columns:1fr;grid-template-rows:minmax(72px,auto) minmax(0,1fr)}
-  .guest-ads .food-shot{height:96px;max-height:96px;flex:none}
+  .guest-face{grid-template-columns:1fr;grid-template-rows:minmax(96px,auto) minmax(0,1fr)}
+  .guest-ads .food-shot{height:120px;max-height:140px;flex:none}
   .token-board{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .token-col ol{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .hero-art.has-video .promo{flex:none;height:auto;aspect-ratio:16/9}
+  .hero-art.has-video .promo{flex:none;height:auto;min-height:0;aspect-ratio:16/9}
   .hero-art.has-video .promo video{width:100%;height:100%;max-width:100%;object-fit:cover}
+  .hero-art.has-video .food-photo{width:104px;height:104px}
+  .hero-art.has-video .dish{font-size:26px}
   .promo-badge{display:none}
   .promo-sound{padding:9px 14px;font-size:14px;top:10px;right:10px}
 }

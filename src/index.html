@@ -1,9 +1,10 @@
 {{> head}}
 {{> header}}
 <main id="main">
-<section class="hero" style="padding:0"><div class="wrap">
+<section class="hero cim-hero" style="padding:0"><div class="wrap">
   <div class="hero-copy">
-    <div class="eyebrow">Cafe POS · kiosk · kitchen</div>
+    <p class="brand-mark" aria-hidden="true">OrdenZ</p>
+    <div class="eyebrow">Cafe in motion · POS · kiosk · kitchen</div>
     <div class="hero-title">
       <h1>Good orders.<br>Great days.</h1>
       <img class="cafe-photo" src="/assets/img/cafe-storefront.webp" width="244" height="194" alt="Cafe storefront with plants and a latte">
@@ -12,7 +13,7 @@
     <div class="actions">
       <a class="btn btn-cta" href="/demo/">Try the live demo</a>
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
-      {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a walk-through</a>{{/if}}
+      {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a full walkthrough</a>{{/if}}
       <a class="btn btn-ghost" href="/features/">See every feature</a>
     </div>
     <p style="margin-top:10px;color:var(--ink-2);font-size:15px">Set up free. 30 days of Pro. Then Free, unless you pick Starter or Pro.</p>
@@ -38,17 +39,17 @@
                 <p class="guest-ads-flag">Ads on · House</p>
                 <img class="food-shot" src="/assets/img/showcase/option-b-drink.jpg" width="1152" height="864" alt="Latte with mint in a sage cup">
                 <p class="scene-kicker">Today's special</p>
-                <p class="guest-ads-line" data-for-country="IN">Filter kaapi · ₹40</p>
+                <p class="guest-ads-line" data-for-country="IN">Cafe latte · ₹200</p>
                 <p class="guest-ads-line" data-for-country="MY">Teh tarik · RM5</p>
                 <p class="guest-ads-note">Owner turns ads on in House and adds the picture.</p>
               </aside>
               <div class="guest-bill">
                 <div class="bill-top"><span>Table 4 · Guest</span><span>English</span></div>
                 <div data-for-country="IN">
-                  <div class="bill-row"><span>1 × Filter kaapi</span><b>₹40</b></div>
+                  <div class="bill-row"><span>1 × Cafe latte</span><b>₹200</b></div>
                   <p class="bill-opts">Takeaway · Less sugar</p>
                   <p class="bill-tax">GST included</p>
-                  <div class="bill-row total"><span>Total</span><b>₹40</b></div>
+                  <div class="bill-row total"><span>Total</span><b>₹200</b></div>
                 </div>
                 <div data-for-country="MY">
                   <div class="bill-row"><span>1 × Teh tarik</span><b>RM5</b></div>
@@ -69,7 +70,7 @@
                 <img class="food-photo" src="/assets/img/showcase/option-b-drink.jpg" width="1152" height="864" alt="Latte with mint in a sage cup">
                 <div>
                   <p class="scene-kicker">Today's special</p>
-                  <p class="dish" data-for-country="IN">Filter kaapi</p>
+                  <p class="dish" data-for-country="IN">Cafe latte</p>
                   <p class="dish" data-for-country="MY">Teh tarik</p>
                   <p class="scene-meta">English</p>
                   <p class="scene-meta">About 6 min · estimate</p>
@@ -109,13 +110,12 @@
         <button class="show-dot" type="button" data-scene="showcase" aria-controls="show-showcase">Showcase</button>
         <button class="show-dot" type="button" data-scene="token" aria-controls="show-token">Token</button>
       </div>
-      <img class="show-cafe" src="/assets/img/botanical-cafe.webp" width="900" height="600" alt="" aria-hidden="true">
     </div>
   </div>
 </div></section>
 
-<section style="padding:44px 0 20px"><div class="wrap">
-  <div class="stats">
+<section class="cim-proof" style="padding:40px 0 8px"><div class="wrap">
+  <div class="stats cim-stats">
     <div class="stat"><b>6</b><span>kiosk languages you can tick in House</span></div>
     <div class="stat"><b>8</b><span>ways to sign in: Owner plus 7 staff jobs, including All-rounder. Each staff member has their own PIN</span></div>
     <div class="stat" data-for-country="IN"><b>₹</b><span>GST bills in India</span></div>
@@ -124,39 +124,63 @@
   </div>
 </div></section>
 
-<section id="day"><div class="wrap" style="max-width:900px">
-  <div class="center"><div class="eyebrow">A day at your cafe</div><h2>One app, from opening to closing</h2>
-    <p class="lead">Here's a normal Saturday with OrdenZ. Each colour is a part of the app, the same colour you'll see on its tab.</p></div>
-  <ol class="day" data-for-country="IN">
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Clock in, open the drawer</h3><p>After PIN, Brief asks staff to clock in — sign-in is not a clock. Skip to work is allowed. The cashier counts ₹2,000 of float into the cash drawer.</p><span class="who">Brief · Cash drawer · Cashier</span></div></li>
-    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The morning rush orders itself</h3><p>Office regulars order filter kaapi on the kiosk in Tamil or English and pay by UPI. The token TV shows their number when it's ready. It says the number only if Speak the token is on in House.</p><span class="who">Self-order kiosk · Token TV</span></div></li>
-    <li data-s="kitchen"><time>9:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The kitchen sees everything at once</h3><p>Tickets from the kiosk, counter and tables arrive in a second. Orders waiting too long turn amber, then red.</p><span class="who">Kitchen screen · Chef</span></div></li>
-    <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Lunch at the tables</h3><p>The captain seats table 4 and taps Pay later — no cash buttons. Extra phones add lines to that same open check. The cashier settles with Pay T4.</p><span class="who">Captain · Group order · Pay by table</span></div></li>
-    <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The milk delivery arrives</h3><p>The store keeper saves a purchase draft from what's below reorder. The owner approves it, then the bill is entered and stock goes up.</p><span class="who">Intake · Drafts · Store keeper</span></div></li>
-    <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup before dinner</h3><p>A guest books a 4:15 slot on the public link. The kitchen sees the cap. The ticket stays unpaid until the cashier collects at the counter.</p><span class="who">Pickup slots · Kitchen · Cashier</span></div></li>
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A Swiggy order lands from a signed webhook, or the cashier types it. Prices come from your cafe menu (with that app's mark-up) — not the partner app's listed prices. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
-    <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close, count, go home</h3><p>The drawer is counted note by note and the Z report prints. The owner checks the day's sales from home and sends the day book to the accountant.</p><span class="who">Reports · Owner</span></div></li>
+<section id="day" class="cim-shift"><div class="wrap">
+  <div class="center">
+    <div class="eyebrow">Cafe in motion</div>
+    <h2>One shift. Four screens.</h2>
+    <p class="lead">Watch the cafe work — short lines, real product moments.</p>
+  </div>
+  <div class="cim-chapters" aria-label="Four screens in a cafe shift">
+    <article class="cim-chapter" data-s="devices">
+      <img src="/assets/video/ordenz-one-day-v3.jpg" width="640" height="360" alt="Counter tablet tour still">
+      <h3>Counter</h3>
+      <p>Cashier stays on the till.</p>
+    </article>
+    <article class="cim-chapter" data-s="floor">
+      <img src="/assets/img/showcase/option-b-drink.jpg" width="576" height="432" alt="Cafe latte special on Guest ads">
+      <h3>Guest</h3>
+      <p>Ads beside a real bill. Silent.</p>
+    </article>
+    <article class="cim-chapter" data-s="kitchen">
+      <div class="cim-token-flash" aria-hidden="true"><span>14</span><small>Ready</small></div>
+      <h3>Token</h3>
+      <p>Shows the number. Speaks only when Speak the token is on in House.</p>
+    </article>
+    <article class="cim-chapter" data-s="sales">
+      <img src="/assets/img/cafe-storefront.webp" width="244" height="194" alt="Cafe storefront">
+      <h3>Close</h3>
+      <p>Count the drawer. Send the day book.</p>
+    </article>
+  </div>
+  <ol class="day cim-day" data-for-country="IN">
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Open</h3><p>Brief asks staff to clock in. Cashier counts ₹2,000 of float into the cash drawer.</p><span class="who">Brief · Cash drawer</span></div></li>
+    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Rush</h3><p>Cafe latte on the kiosk in Tamil or English, pay by UPI. Token speaks only if Speak the token is on in House.</p><span class="who">Kiosk · Token TV</span></div></li>
+    <li data-s="kitchen"><time>9:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Kitchen</h3><p>Tickets arrive together. Waiting too long turns amber, then red.</p><span class="who">Kitchen · Chef</span></div></li>
+    <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Tables</h3><p>Captain taps Pay later — no cash buttons. Cashier settles with Pay T4.</p><span class="who">Captain · Pay by table</span></div></li>
+    <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Intake</h3><p>Store keeper saves a purchase draft. Owner approves; stock goes up.</p><span class="who">Intake · Drafts</span></div></li>
+    <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup</h3><p>Guest books a 4:15 slot. Ticket stays unpaid until the counter collects.</p><span class="who">Pickup slots</span></div></li>
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Delivery</h3><p>A Swiggy order lands from a signed webhook, or the cashier types it. Prices come from your cafe menu (with that app's mark-up). OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps</span></div></li>
+    <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close</h3><p>Z report prints. Owner sends the day book to the accountant.</p><span class="who">Reports · Owner</span></div></li>
   </ol>
-  <ol class="day" data-for-country="MY">
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Clock in, open the drawer</h3><p>After PIN, Brief asks staff to clock in — sign-in is not a clock. Skip to work is allowed. The cashier counts RM200 of float into the cash drawer.</p><span class="who">Brief · Cash drawer · Cashier</span></div></li>
-    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The morning rush orders itself</h3><p>Regulars order teh tarik on the kiosk in Bahasa Melayu or Chinese and pay by DuitNow QR. The token TV shows their number when it's ready. It says the number only if Speak the token is on in House.</p><span class="who">Self-order kiosk · Token TV</span></div></li>
-    <li data-s="kitchen"><time>9:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The kitchen sees everything at once</h3><p>Tickets from the kiosk, counter and tables arrive in a second. Orders waiting too long turn amber, then red.</p><span class="who">Kitchen screen · Chef</span></div></li>
-    <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Lunch at the tables</h3><p>The captain seats table 4 and taps Pay later — no cash buttons. Extra phones add lines to that same open check. The cashier settles with Pay T4, DuitNow or cash.</p><span class="who">Captain · Group order · Pay by table</span></div></li>
-    <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>The milk delivery arrives</h3><p>The store keeper saves a purchase draft from what's below reorder. The owner approves it, then the bill is entered and stock goes up.</p><span class="who">Intake · Drafts · Store keeper</span></div></li>
-    <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup before dinner</h3><p>A guest books a 4:15 slot on the public link. The kitchen sees the cap. The ticket stays unpaid until the cashier collects at the counter.</p><span class="who">Pickup slots · Kitchen · Cashier</span></div></li>
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Dinner on the delivery apps</h3><p>A GrabFood or foodpanda order lands from a signed webhook, or the cashier types it. Prices come from your cafe menu (with that app's mark-up) — not the partner app's listed prices. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps · Cashier</span></div></li>
-    <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close, count, go home</h3><p>The drawer is counted note by note and the Z report prints. SST is on the bill only if the cafe added an SST number. Reports prepare the MyInvois ZIP; OrdenZ does not log in to LHDN.</p><span class="who">Reports · Owner</span></div></li>
+  <ol class="day cim-day" data-for-country="MY">
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Open</h3><p>Brief asks staff to clock in. Cashier counts RM200 of float into the cash drawer.</p><span class="who">Brief · Cash drawer</span></div></li>
+    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Rush</h3><p>Teh tarik on the kiosk in Bahasa Melayu or Chinese, pay by DuitNow QR. Token speaks only if Speak the token is on in House.</p><span class="who">Kiosk · Token TV</span></div></li>
+    <li data-s="kitchen"><time>9:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Kitchen</h3><p>Tickets arrive together. Waiting too long turns amber, then red.</p><span class="who">Kitchen · Chef</span></div></li>
+    <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Tables</h3><p>Captain taps Pay later — no cash buttons. Cashier settles with Pay T4, DuitNow or cash.</p><span class="who">Captain · Pay by table</span></div></li>
+    <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Intake</h3><p>Store keeper saves a purchase draft. Owner approves; stock goes up.</p><span class="who">Intake · Drafts</span></div></li>
+    <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup</h3><p>Guest books a 4:15 slot. Ticket stays unpaid until the counter collects.</p><span class="who">Pickup slots</span></div></li>
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Delivery</h3><p>A GrabFood or foodpanda order lands from a signed webhook, or the cashier types it. Prices come from your cafe menu (with that app's mark-up). OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps</span></div></li>
+    <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close</h3><p>SST is on the bill only if the cafe added an SST number. Reports prepare the MyInvois ZIP; OrdenZ does not log in to LHDN.</p><span class="who">Reports · Owner</span></div></li>
   </ol>
   <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/demo/">Live the day in the demo</a><a class="btn btn-soft" href="/features/">How each part works</a></div>
 </div></section>
 
-
-<section class="band" id="products"><div class="wrap">
-  <div class="center"><div class="eyebrow">Made for the way you serve</div><h2>Small cafe or busy kitchen</h2><p class="lead">Start with the counter. Add the kiosk, tables, stock and catering when you're ready. It's the same app.</p></div>
-  <div class="grid g3">
-    <article class="card" data-s="devices"><span class="tag">Cafes &amp; bakeries</span><h3>Make room for the morning rush</h3><p>Let regulars order on a kiosk in their own language while your team makes coffee. Every order arrives in the kitchen with its options.</p><a class="more" href="/features/#customers">Customers order themselves →</a></article>
-    <article class="card" data-s="kitchen"><span class="tag">Quick-service kitchens</span><h3>Keep the next order moving</h3><p>Tickets go from new to preparing to ready, and the token TV shows the number. It speaks only when Speak the token is on in House, and then only the number. Nobody shouts names across the room.</p><a class="more" href="/features/#kitchen">In the kitchen →</a></article>
-    <article class="card" data-s="sales"><span class="tag">Growing businesses</span><h3>Run more than one counter</h3><p>Catering orders, supplier bills, PIN clock-in, Tally import (not a live push) and up to 50 outlets with stock transfers, for when the cafe becomes a business.</p><a class="more" href="/features/#business">Run the business →</a></article>
+<section class="band cim-products" id="products"><div class="wrap">
+  <div class="center"><div class="eyebrow">Same app</div><h2>Start at the counter. Grow when ready.</h2><p class="lead">Add the kiosk, tables, stock and catering later. Slim Starter stays counter-only. Pro tools stay Pro.</p></div>
+  <div class="cim-product-row">
+    <a class="cim-product" data-s="devices" href="/features/#customers"><span class="tag">Cafes</span><h3>Morning rush</h3><p>Kiosk in their language.</p></a>
+    <a class="cim-product" data-s="kitchen" href="/features/#kitchen"><span class="tag">Kitchen</span><h3>Next ticket</h3><p>Token speaks the number only when Speak the token is on in House.</p></a>
+    <a class="cim-product" data-s="sales" href="/features/#business"><span class="tag">Business</span><h3>More counters</h3><p>Catering, Intake, day book — on Pro.</p></a>
   </div>
 </div></section>
 

@@ -32,7 +32,7 @@ test("phone header uses a forest-mint menu button and keeps every public link", 
 
 test("phone hero stacks in one column and keeps the slideshow inside the viewport", () => {
   const css = read("src/assets/site.css");
-  const twoCol = css.lastIndexOf("grid-template-columns:minmax(280px,1.05fr) minmax(0,1.1fr)");
+  const twoCol = css.lastIndexOf("grid-template-columns:minmax(260px,.9fr) minmax(0,1.3fr)");
   const phoneCol = css.lastIndexOf("@media (max-width:880px)");
   const oneCol = css.lastIndexOf("grid-template-columns:1fr");
   assert.ok(twoCol > 0, "desktop two-column hero is still defined");
@@ -62,16 +62,24 @@ test("phone and desktop keep the storefront beside the headline, not below the s
   assert.doesNotMatch(css, /\.hero-title\{[^}]*overflow/);
 });
 
-test("Guest scene card includes the cafe picture below the pills", () => {
+test("Hero slideshow has no botanical cafe strip; stage and video grow larger", () => {
   const home = read("src/index.html");
   const css = read("src/assets/site.css");
   assert.match(home, /id="show-guest"/);
-  assert.match(home, /id="heroShow"[\s\S]*class="show-nav"[\s\S]*class="show-cafe"/);
-  assert.match(home, /class="show-cafe"[^>]*src="\/assets\/img\/botanical-cafe\.webp"/);
-  assert.match(css, /\.hero-art\.has-video \.show-cafe\{[^}]*flex:none/);
-  assert.match(css, /\.hero-art\.has-video \.show-cafe\{[^}]*object-fit:contain/);
+  assert.match(home, /id="heroShow"[\s\S]*class="show-nav"/);
+  assert.doesNotMatch(home, /id="showStart"|Just click to start|Start the preview|id="showRestart"/);
+  assert.doesNotMatch(home, /class="show-cafe"/);
+  assert.doesNotMatch(home, /id="heroShow"[\s\S]*botanical-cafe\.webp/);
+  assert.doesNotMatch(home, /Open the browser preview/);
+  assert.doesNotMatch(css, /\.hero-art\.has-video \.show-cafe\{/);
+  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*min-height:min\(72vh,640px\)/);
+  assert.match(css, /\.hero-art\.has-video \.promo\{[^}]*min-height:min\(48vh,420px\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-art\.has-video \.show\{[^}]*height:auto/);
-  assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-art\.has-video \.show-cafe\{[^}]*width:min\(100%,280px\)/);
+  assert.match(home, /1 × Cafe latte/);
+  assert.match(home, /Cafe latte · ₹200/);
+  assert.match(home, /class="dish"[^>]*>Cafe latte</);
+  assert.match(home, /Cafe in motion/);
+  assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.cim-chapters\{[^}]*1fr 1fr/);
 });
 
 test("Guest shows House ads on the left and a real bill on the right", () => {
