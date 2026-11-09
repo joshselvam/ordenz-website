@@ -40,6 +40,15 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.match(f,/About N min/);
   assert.match(f,/kiosk hides card payment when no terminal is saved/);
   assert.match(f,/Included GST is labelled as included/);
+  assert.match(f,/data-for-country="IN"[\s\S]*kiosk-menu\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*kiosk-malay\.webp/);
+  assert.match(f,/data-for-country="IN"[\s\S]*kiosk-hindi\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*receipt-my\.webp/);
+  assert.match(f,/data-for-country="IN"[^>]*>[\s\S]*?eyebrow">UPI payments/);
+  assert.match(f,/data-for-country="MY"[^>]*>[\s\S]*?eyebrow">DuitNow QR/);
+  assert.doesNotMatch(f,/India: English, Tamil, Hindi, Malayalam, Telugu and Kannada\. Malaysia: English, Malay/);
+  assert.doesNotMatch(f,/1 point per ₹1 in India, or 1 point per RM1 in Malaysia/);
+  assert.doesNotMatch(f,/Swiggy and Zomato in India; GrabFood, foodpanda/);
 });
 test('header country switcher is a native select with no geo lookup',()=>{
   const header=read('src/_partials/header.html');

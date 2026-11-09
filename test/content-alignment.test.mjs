@@ -68,13 +68,17 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.match(help,/Pro tools \(Voice &amp; AI, Recipes, Intake, Bulk, TableTurn/);
  // Photo/Swiggy menu import is Pro voiceAi, not a yearly paid Marketing add-on.
  {
-  const mkt = features.match(/eyebrow">Marketing · paid extras[\s\S]*?<\/ul>/);
-  assert.ok(mkt, 'Marketing · paid extras block');
-  assert.doesNotMatch(mkt[0], /Import menu items from a photo|Swiggy\/Zomato screenshot/);
-  const voice = features.match(/eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
-  assert.ok(voice, 'Voice & AI ordering · Pro block');
-  assert.match(voice[0], /Import menu items from a photo or a Swiggy\/Zomato screenshot/);
-  assert.match(voice[0], /not a paid extra/);
+  const mktBlocks = [...features.matchAll(/eyebrow">Marketing · paid extras[\s\S]*?<\/ul>/g)].map(m => m[0]);
+  assert.equal(mktBlocks.length, 2, 'Marketing · paid extras IN and MY blocks');
+  for (const mkt of mktBlocks) assert.doesNotMatch(mkt, /Import menu items from a photo|Swiggy\/Zomato screenshot|Grab\/foodpanda screenshot/);
+  const voiceIn = features.match(/<div class="feature" data-s="devices" data-for-country="IN"><div><div class="eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
+  const voiceMy = features.match(/<div class="feature" data-s="devices" data-for-country="MY"><div><div class="eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
+  assert.ok(voiceIn, 'Voice & AI ordering · Pro IN block');
+  assert.ok(voiceMy, 'Voice & AI ordering · Pro MY block');
+  assert.match(voiceIn[0], /Import menu items from a photo or a Swiggy\/Zomato screenshot/);
+  assert.match(voiceMy[0], /Import menu items from a photo or a Grab\/foodpanda screenshot/);
+  assert.match(voiceIn[0], /not a paid extra/);
+  assert.match(voiceMy[0], /not a paid extra/);
  }
  assert.match(features,/eyebrow">Recipes · Pro</);
  assert.match(features,/eyebrow">Bulk · Pro</);
