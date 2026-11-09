@@ -47,8 +47,8 @@ test("Live home ships Shift reel Cafe in motion with muted autoplay and short ch
   assert.match(home, /One shift\. Four screens\./);
   assert.match(home, /class="cim-chapters"/);
   assert.match(home, /class="cim-chapter"/);
-  assert.match(home, /Slim Starter stays counter-only/);
-  assert.match(home, /Pro tools stay Pro/);
+  assert.match(home, /Slim Starter covers the till, kiosk, kitchen and token screen \(up to 5 devices\)/);
+  assert.match(home, /other Pro tools stay on Pro/);
   assert.doesNotMatch(home, /Just click to start|Start the preview|id="showStart"|id="showRestart"/);
   assert.match(home, /Book a full walkthrough/);
   assert.doesNotMatch(home, /Open the browser preview/);
