@@ -19,8 +19,7 @@ jobs:
         run: node build.mjs
       - name: Test
         run: node --test test/*.test.mjs
-      - name: App alignment (optional sibling checkout)
-        continue-on-error: true
+      - name: App alignment when sibling app is checked out
         run: |
           if [ -d ../Ordernest-pos-AI/server ]; then
             node scripts/align-check.mjs

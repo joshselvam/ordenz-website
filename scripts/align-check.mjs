@@ -51,6 +51,9 @@ if (PAID_ADDON_MODULES.includes("ads")) {
   if (/Ads on the left if the owner turns them on in House/.test(all)) {
     note("C3 Guest ads still sound like a free House-only toggle");
   }
+  if (/House turns Feature ads/.test(all)) {
+    note("C3 Guest ads copy must not say House turns Feature ads on (owner must enable the switch)");
+  }
 }
 
 const distIndex = join(siteRoot, "dist/index.html");
