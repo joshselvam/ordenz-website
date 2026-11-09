@@ -70,6 +70,19 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.match(help,/data-for-country="MY"[\s\S]*pickup-page-my\.webp/);
   assert.match(help,/data-for-country="MY"[\s\S]*pickup-slots-my\.webp/);
 });
+test('features and help image src files exist on disk (no broken Features shots)',()=>{
+  const pages=['src/features.html','src/help.html'];
+  const refs=new Set();
+  for(const page of pages){
+    const html=read(page);
+    for(const m of html.matchAll(/\bsrc="(\/assets\/img\/[^"]+)"/g)) refs.add(m[1]);
+  }
+  assert.ok(refs.size>20,'expected many feature images');
+  for(const src of refs){
+    const rel='src'+src; // /assets/... → src/assets/...
+    assert.ok(fs.existsSync(new URL('../'+rel,import.meta.url)),'missing '+src);
+  }
+});
 test('header country switcher is a native select with no geo lookup',()=>{
   const header=read('src/_partials/header.html');
   const js=read('src/assets/country.js');
