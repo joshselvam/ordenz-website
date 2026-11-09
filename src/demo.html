@@ -43,8 +43,10 @@
   <div class="grid g3 demo-grid">
     <a class="card demo-card" data-s="devices" data-for-country="IN" href="{{demoUrl}}/?demo=kiosk#kiosk" target="_blank" rel="noopener"><img src="/assets/img/kiosk-india-tamil.webp" width="960" height="891" alt="" loading="lazy"><h3>Self-order kiosk</h3><p>UPI. Token after pay.</p></a>
     <a class="card demo-card" data-s="devices" data-for-country="MY" href="{{demoUrl}}/?demo=kiosk&amp;country=MY#kiosk" target="_blank" rel="noopener"><img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="" loading="lazy"><h3>Self-order kiosk</h3><p>DuitNow. Token after pay.</p></a>
-    <a class="card demo-card" data-s="sales" href="{{demoUrl}}/?demo=owner#recipes" target="_blank" rel="noopener"><img src="/assets/img/owner.webp" width="1440" height="810" alt="" loading="lazy"><h3>Owner</h3><p>Crew desk / Recipes Assign, then Owner for sales, Money Review, pickup slots, payouts, the day book and Tally import.</p></a>
-    <a class="card demo-card" data-s="floor" href="{{demoUrl}}/?demo=cashier#counter" target="_blank" rel="noopener"><img src="/assets/img/counter.webp" width="1440" height="810" alt="" loading="lazy"><h3>Cashier</h3><p>Counter billing with Pay by table, split bills, pickup collection, delivery-app orders, the cash drawer, and Brief clock-in. Pair a second tablet as Guest for the bill (one language, no speak; loyalty QR after pay). On a PC, Counter can open a Guest window — phones and tablets do not open customer-bill.html. After two idle minutes the till asks for this cashier's PIN.</p></a>
+    <a class="card demo-card" data-s="sales" data-for-country="IN" href="{{demoUrl}}/?demo=owner#recipes" target="_blank" rel="noopener"><img src="/assets/img/owner.webp" width="1440" height="810" alt="" loading="lazy"><h3>Owner</h3><p>Crew desk / Recipes Assign, then Owner for sales, Money Review, pickup slots, payouts, the day book and Tally import.</p></a>
+    <a class="card demo-card" data-s="sales" data-for-country="MY" href="{{demoUrl}}/?demo=owner&amp;country=MY#recipes" target="_blank" rel="noopener"><img src="/assets/img/owner-my.webp" width="1440" height="810" alt="" loading="lazy"><h3>Owner</h3><p>Crew desk / Recipes Assign, then Owner for sales, Money Review, pickup slots, payouts, the day book, Tally import and MyInvois.</p></a>
+    <a class="card demo-card" data-s="floor" data-for-country="IN" href="{{demoUrl}}/?demo=cashier#counter" target="_blank" rel="noopener"><img src="/assets/img/counter.webp" width="1440" height="810" alt="" loading="lazy"><h3>Cashier</h3><p>Counter billing with Pay by table, split bills, pickup collection, delivery-app orders, the cash drawer, and Brief clock-in. Pair a second tablet as Guest for the bill (one language, no speak; loyalty QR after pay). On a PC, Counter can open a Guest window — phones and tablets do not open customer-bill.html. After two idle minutes the till asks for this cashier's PIN.</p></a>
+    <a class="card demo-card" data-s="floor" data-for-country="MY" href="{{demoUrl}}/?demo=cashier&amp;country=MY#counter" target="_blank" rel="noopener"><img src="/assets/img/counter-my.webp" width="1440" height="810" alt="" loading="lazy"><h3>Cashier</h3><p>Counter billing with DuitNow, Pay by table, split bills, pickup collection, delivery-app orders, the cash drawer, and Brief clock-in. Pair a second tablet as Guest for the bill (one language, no speak; loyalty QR after pay). On a PC, Counter can open a Guest window — phones and tablets do not open customer-bill.html. After two idle minutes the till asks for this cashier's PIN.</p></a>
     <a class="card demo-card" data-s="kitchen" href="{{demoUrl}}/?demo=chef#today" target="_blank" rel="noopener"><img src="/assets/img/chef.webp" width="1440" height="810" alt="" loading="lazy"><h3>Chef</h3><p>Brief first: clock in and the cook task from Assign. Then tickets, recipes and batch cooking. Done does not cook a batch.</p></a>
     <a class="card demo-card" data-s="floor" href="{{demoUrl}}/?demo=captain#today" target="_blank" rel="noopener"><img src="/assets/img/tableturn.webp" width="1440" height="810" alt="" loading="lazy"><h3>Captain</h3><p>Brief to clock in (or Skip to work), then the floor: Pay later on a table, bookings, the waitlist QR and table QR orders.</p></a>
     <a class="card demo-card" data-s="stock" href="{{demoUrl}}/?demo=store#purchases" target="_blank" rel="noopener"><img src="/assets/img/suppliers.webp" width="1440" height="810" alt="" loading="lazy"><h3>Store keeper</h3><p><b>Intake</b>: supplier bills with tax and a photo, purchase drafts from stock vs reorder, wastage and what you owe each supplier.</p></a>
@@ -54,7 +56,7 @@
   </div>
 </div></section>
 
-<section id="india" class="demo-country"><div class="wrap">
+<section id="india" class="demo-country" data-for-country="IN"><div class="wrap">
   <div class="center"><div class="eyebrow">India</div>
     <p class="demo-country-line">₹ · UPI · English + Tamil on the kiosk</p></div>
   <div class="demo-fade" aria-hidden="true">
@@ -72,7 +74,7 @@
   </div>
 </div></section>
 
-<section id="malaysia" class="demo-country band"><div class="wrap">
+<section id="malaysia" class="demo-country band" data-for-country="MY"><div class="wrap">
   <div class="center"><div class="eyebrow">Malaysia</div>
     <p class="demo-country-line">RM · DuitNow · SST · MyInvois</p></div>
   <div class="demo-fade" aria-hidden="true">
@@ -107,7 +109,7 @@
   </div>
 </div></section>
 
-<section id="india" class="demo-country"><div class="wrap">
+<section id="india" class="demo-country" data-for-country="IN"><div class="wrap">
   <div class="center"><div class="eyebrow">India</div>
     <p class="demo-country-line">₹ · UPI · English + Tamil on the kiosk</p></div>
   <div class="demo-fade" aria-hidden="true">
@@ -125,7 +127,7 @@
   </div>
 </div></section>
 
-<section id="malaysia" class="demo-country band"><div class="wrap">
+<section id="malaysia" class="demo-country band" data-for-country="MY"><div class="wrap">
   <div class="center"><div class="eyebrow">Malaysia</div>
     <p class="demo-country-line">RM · DuitNow · SST · MyInvois</p></div>
   <div class="demo-fade" aria-hidden="true">

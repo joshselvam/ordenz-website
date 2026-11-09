@@ -221,9 +221,11 @@
     <h2>15. Intake: supplier invoices (Pro)</h2>
     <ol><li>When a delivery comes, open <b>Intake</b> (supplier bills) and tap <b>Enter an invoice</b>.</li>
       <li>Type or choose the supplier, the invoice number and date, and the pay-by date if they gave you credit.</li>
-      <li>Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
+      <li data-for-country="IN">Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
+      <li data-for-country="MY">Add each item: quantity, cost and the tax. Take a photo of the bill.</li>
       <li>Tap <b>Save and add to stock</b>. The stock goes up and recipe costs update.</li>
-      <li>The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and the GST you paid this month.</li>
+      <li data-for-country="IN">The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and the GST you paid this month.</li>
+      <li data-for-country="MY">The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and your wastage costs.</li>
       <li>Store keeper: open <b>Drafts</b> and tap <b>New draft from stock</b>. Suggested qty is from stock vs reorder. Send or approve needs the owner or manager.</li></ol>
     <figure><img src="/assets/img/invoice.webp" width="1440" height="810" alt="Entering a supplier invoice" loading="lazy"><figcaption>The same invoice number from the same supplier can't be entered twice.</figcaption></figure>
   </article>
@@ -236,7 +238,8 @@
       <li><b>Money Review</b> lists unusual money events (refunds, paid cancels, counter discounts, drawer events, Z variance) for the owner or a manager — for review, not a theft verdict. Kitchen and captain cannot open it. The WhatsApp digest is a preview only.</li>
       <li><b>Pickup slots</b> (Pro): set slot length and an order limit per slot, then share the public link. A takeaway stays unpaid until the customer collects it. The cashier records the payment then. Paying online for pickup stays off.</li>
       <li><b>Devices</b> lists your tablets; reload or lock one from here. <b>Create a new device key</b> signs every kiosk and TV out so a copied key stops working. Pair them again with the new key.</li></ol>
-    <figure><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard" loading="lazy"></figure>
+    <figure data-for-country="IN"><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard for an Indian cafe" loading="lazy"></figure>
+    <figure data-for-country="MY"><img src="/assets/img/owner-my.webp" width="1440" height="810" alt="The owner dashboard for a Malaysian cafe" loading="lazy"></figure>
   </article>
 
   <article class="g-topic" id="reports" data-roles="owner manager" data-keys="reports export tally day book purchase gst sst working sheet csv accountant outlets branches link copy menu stock transfer">
