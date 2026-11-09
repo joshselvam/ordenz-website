@@ -19,3 +19,11 @@ jobs:
         run: node build.mjs
       - name: Test
         run: node --test test/*.test.mjs
+      - name: App alignment (optional sibling checkout)
+        continue-on-error: true
+        run: |
+          if [ -d ../Ordernest-pos-AI/server ]; then
+            node scripts/align-check.mjs
+          else
+            echo "Sibling Ordernest-pos-AI not present; skip cross-repo align-check"
+          fi

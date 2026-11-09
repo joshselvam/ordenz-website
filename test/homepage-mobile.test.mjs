@@ -87,7 +87,7 @@ test("Guest shows House ads on the left and a real bill on the right", () => {
   const css = read("src/assets/site.css");
   assert.match(home, /class="guest-ads"/);
   assert.match(home, /Ads · Plan \+ House/);
-  assert.match(home, /Yearly Ads add-on on Plan, then House turns Featured ads on/);
+  assert.match(home, /Yearly Ads add-on on Plan, then House turns Feature ads on Guest/);
   assert.match(home, /class="guest-bill"/);
   assert.match(home, /Table 4 · Guest/);
   assert.match(home, /Takeaway · Less sugar/);

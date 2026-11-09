@@ -13,6 +13,10 @@ const load = (p) => import(pathToFileURL(p).href);
 const read = (p) => readFileSync(join(siteRoot, p), "utf8");
 
 const site = JSON.parse(read("site.config.json"));
+if (!existsSync(join(appRoot, "server/public/js/plan-prices.js"))) {
+  console.error("Sibling app repo missing at ../Ordernest-pos-AI — clone it next to ordenz-website to run align-check.");
+  process.exit(2);
+}
 const { planListPrice } = await load(join(appRoot, "server/public/js/plan-prices.js"));
 const { REFERRAL_CREDIT_CAP, REFERRAL_CREDIT_EXPIRY_MONTHS, TRIAL_DAYS, TRIAL_START_WINDOW_DAYS } =
   await load(join(appRoot, "server/src/growth.js"));
