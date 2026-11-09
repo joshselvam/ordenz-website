@@ -135,9 +135,8 @@ test("homepage hero copy stays short and still names OrdenZ", () => {
   assert.match(home, /Great days\./);
   assert.match(home, /OrdenZ runs the counter, guest tablet, kitchen and token screen/);
   assert.match(home, /Cheap Android tablets/);
-  assert.match(home, /Set up free\. 30 days of Pro\. Then Free, unless you pick Starter or Pro\./);
+  assert.match(home, /Set up free\. 30 days of Pro from the first real bill, or from day 15\. Then Free \(1 paired device, 50 orders\/day\), unless you pick Starter or Pro\./);
   assert.doesNotMatch(home, /From the first coffee at 7 am/);
-  assert.doesNotMatch(home, /1 paired device, 50 orders a day/);
   assert.doesNotMatch(home, /self-order kiosk · kitchen screen/);
   assert.match(home, /A second tablet signed in as Guest/);
   assert.match(home, /not an overlay on the till/);
