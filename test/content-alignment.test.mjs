@@ -68,13 +68,17 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.match(help,/Pro tools \(Voice &amp; AI, Recipes, Intake, Bulk, TableTurn/);
  // Photo/Swiggy menu import is Pro voiceAi, not a yearly paid Marketing add-on.
  {
-  const mkt = features.match(/eyebrow">Marketing · paid extras[\s\S]*?<\/ul>/);
-  assert.ok(mkt, 'Marketing · paid extras block');
-  assert.doesNotMatch(mkt[0], /Import menu items from a photo|Swiggy\/Zomato screenshot/);
-  const voice = features.match(/eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
-  assert.ok(voice, 'Voice & AI ordering · Pro block');
-  assert.match(voice[0], /Import menu items from a photo or a Swiggy\/Zomato screenshot/);
-  assert.match(voice[0], /not a paid extra/);
+  const mktBlocks = [...features.matchAll(/eyebrow">Marketing · paid extras[\s\S]*?<\/ul>/g)].map(m => m[0]);
+  assert.equal(mktBlocks.length, 2, 'Marketing · paid extras IN and MY blocks');
+  for (const mkt of mktBlocks) assert.doesNotMatch(mkt, /Import menu items from a photo|Swiggy\/Zomato screenshot|Grab\/foodpanda screenshot/);
+  const voiceIn = features.match(/<div class="feature" data-s="devices" data-for-country="IN"><div><div class="eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
+  const voiceMy = features.match(/<div class="feature" data-s="devices" data-for-country="MY"><div><div class="eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
+  assert.ok(voiceIn, 'Voice & AI ordering · Pro IN block');
+  assert.ok(voiceMy, 'Voice & AI ordering · Pro MY block');
+  assert.match(voiceIn[0], /Import menu items from a photo or a Swiggy\/Zomato screenshot/);
+  assert.match(voiceMy[0], /Import menu items from a photo or a Grab\/foodpanda screenshot/);
+  assert.match(voiceIn[0], /not a paid extra/);
+  assert.match(voiceMy[0], /not a paid extra/);
  }
  assert.match(features,/eyebrow">Recipes · Pro</);
  assert.match(features,/eyebrow">Bulk · Pro</);
@@ -121,8 +125,14 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.match(features,/Owners use <b>Crew desk<\/b> to manage the team/);
  assert.doesNotMatch(features,/After PIN or email, <b>Brief<\/b>/);
  assert.match(demo,/Open <b>Intake<\/b>/);
- assert.match(demo,/<b>Intake<\/b>, <b>Bulk<\/b>/);
- assert.match(demo,/1 point per RM1/);
+ assert.match(demo,/id="india"/);
+ assert.match(demo,/id="malaysia"/);
+ assert.match(demo,/kiosk-india-tamil\.webp/);
+ assert.match(demo,/kiosk-malay\.webp/);
+ assert.match(demo,/myinvois\.webp/);
+ assert.match(demo,/demo-country-line/);
+ assert.doesNotMatch(demo,/The same app set up for Malaysia/);
+ assert.doesNotMatch(demo,/1 point per RM1 \(100 points = RM10 off\)/);
  assert.match(features,/Subscribe monthly/);
  assert.match(features,/Request Starter invoice/);
  assert.match(features,/natural voice/);
@@ -140,5 +150,11 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.match(help,/Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet/);
  assert.match(features,/Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet/);
  assert.doesNotMatch(read('README.md'),/one free month when they first pay\)/);
+ // Kitchen gallery: kitchen.webp must be full-width (flex:1 1 100%) so it fills
+ // its own row; token-screen and country-settings pair at 45% to avoid a black void.
+ assert.match(features,/kitchen\.webp[^>]+flex:1 1 100%/);
+ assert.match(features,/token-screen\.webp[^>]+flex:1 1 45%/);
+ // country-settings (MY) must have a matching 45% flex-basis so it pairs with token-screen
+ assert.match(features,/country-settings\.webp[^>]+flex:1 1 45%/);
 });
 
