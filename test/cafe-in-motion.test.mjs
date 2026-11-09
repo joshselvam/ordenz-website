@@ -73,11 +73,37 @@ test("Demo page embeds the browser preview iframe with kiosk open", () => {
   assert.match(demo, /<iframe[^>]*class="demo-embed-frame"[^>]*src="\/demo\/preview\/#kiosk"/);
   assert.match(demo, /title="OrdenZ browser preview — kiosk open"/);
   assert.match(demo, /Open the preview full screen/);
+  assert.match(demo, /class="demo-setup-row"/);
   assert.match(demo, /Book a full walkthrough/);
   assert.doesNotMatch(demo, /Open the browser preview/);
+  assert.match(css, /\.demo-setup-row\{/);
   assert.match(css, /\.demo-embed\{/);
   assert.match(css, /\.demo-embed-frame\{/);
   assert.match(headers, /frame-src 'self' https:\/\/www\.youtube-nocookie\.com/);
+});
+
+test("Demo India and Malaysia sections are visual-first with short copy", () => {
+  const demo = read("src/demo.html");
+  const css = read("src/assets/site.css");
+  assert.ok(fs.existsSync(new URL("../src/assets/img/kiosk-india-tamil.webp", import.meta.url)));
+  assert.match(demo, /id="india"/);
+  assert.match(demo, /id="malaysia"/);
+  assert.match(demo, /class="demo-fade"/);
+  assert.match(demo, /demo-shots/);
+  assert.match(demo, /kiosk-india-tamil\.webp/);
+  assert.match(demo, /phone-tamil\.webp/);
+  assert.match(demo, /kiosk-malay\.webp/);
+  assert.match(demo, /counter-my\.webp/);
+  assert.match(demo, /owner-my\.webp/);
+  assert.match(demo, /receipt-my\.webp/);
+  assert.match(demo, /myinvois\.webp/);
+  assert.match(demo, /₹ · UPI · English \+ Tamil on the kiosk/);
+  assert.match(demo, /RM · DuitNow · SST · MyInvois/);
+  assert.doesNotMatch(demo, /The same app set up for Malaysia: prices in RM/);
+  assert.doesNotMatch(demo, /Loyalty on that demo is 1 point per RM1/);
+  assert.match(css, /\.demo-shots\{/);
+  assert.match(css, /\.demo-fade\{/);
+  assert.match(css, /@keyframes demoFade/);
 });
 
 test("Cafe in motion picker stage also uses muted autoplay, not a click gate", () => {

@@ -121,8 +121,14 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  assert.match(features,/Owners use <b>Crew desk<\/b> to manage the team/);
  assert.doesNotMatch(features,/After PIN or email, <b>Brief<\/b>/);
  assert.match(demo,/Open <b>Intake<\/b>/);
- assert.match(demo,/<b>Intake<\/b>, <b>Bulk<\/b>/);
- assert.match(demo,/1 point per RM1/);
+ assert.match(demo,/id="india"/);
+ assert.match(demo,/id="malaysia"/);
+ assert.match(demo,/kiosk-india-tamil\.webp/);
+ assert.match(demo,/kiosk-malay\.webp/);
+ assert.match(demo,/myinvois\.webp/);
+ assert.match(demo,/demo-country-line/);
+ assert.doesNotMatch(demo,/The same app set up for Malaysia/);
+ assert.doesNotMatch(demo,/1 point per RM1 \(100 points = RM10 off\)/);
  assert.match(features,/Subscribe monthly/);
  assert.match(features,/Request Starter invoice/);
  assert.match(features,/natural voice/);

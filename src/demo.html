@@ -37,7 +37,7 @@
   <div class="center"><div class="eyebrow">Choose a screen</div><h2 style="margin-top:10px">Open the demo as…</h2>
     <p class="lead">Each role sees only what its job needs, just like in your cafe. The colours match the app's tabs.</p></div>
   <div class="grid g3 demo-grid">
-    <a class="card demo-card" data-s="devices" href="{{demoUrl}}/?demo=kiosk#kiosk" target="_blank" rel="noopener"><img src="/assets/img/kiosk-menu.webp" width="1440" height="810" alt="" loading="lazy"><h3>Self-order kiosk</h3><p>Photo menu and voice. The India demo pays with a UPI code. After pay, you see the token and a QR to the English bill. Unpaid cash-at-counter is token only.</p></a>
+    <a class="card demo-card" data-s="devices" href="{{demoUrl}}/?demo=kiosk#kiosk" target="_blank" rel="noopener"><img src="/assets/img/kiosk-india-tamil.webp" width="960" height="891" alt="" loading="lazy"><h3>Self-order kiosk</h3><p>India: UPI. Malaysia: DuitNow. Token after pay.</p></a>
     <a class="card demo-card" data-s="sales" href="{{demoUrl}}/?demo=owner#recipes" target="_blank" rel="noopener"><img src="/assets/img/owner.webp" width="1440" height="810" alt="" loading="lazy"><h3>Owner</h3><p>Crew desk / Recipes Assign, then Owner for sales, Money Review, pickup slots, payouts, the day book and Tally import.</p></a>
     <a class="card demo-card" data-s="floor" href="{{demoUrl}}/?demo=cashier#counter" target="_blank" rel="noopener"><img src="/assets/img/counter.webp" width="1440" height="810" alt="" loading="lazy"><h3>Cashier</h3><p>Counter billing with Pay by table, split bills, pickup collection, delivery-app orders, the cash drawer, and Brief clock-in. Pair a second tablet as Guest for the bill (one language, no speak; loyalty QR after pay). On a PC, Counter can open a Guest window — phones and tablets do not open customer-bill.html. After two idle minutes the till asks for this cashier's PIN.</p></a>
     <a class="card demo-card" data-s="kitchen" href="{{demoUrl}}/?demo=chef#today" target="_blank" rel="noopener"><img src="/assets/img/chef.webp" width="1440" height="810" alt="" loading="lazy"><h3>Chef</h3><p>Brief first: clock in and the cook task from Assign. Then tickets, recipes and batch cooking. Done does not cook a batch.</p></a>
@@ -49,15 +49,40 @@
   </div>
 </div></section>
 
-<section><div class="wrap">
-  <div class="center"><div class="eyebrow">Malaysia</div><h2 style="margin-top:10px">The Kuala Lumpur demo cafe</h2>
-    <p class="lead">The same app set up for Malaysia: prices in RM, a 10% service charge on dine-in bills and 6% SST, cash rounded to 5 sen, DuitNow QR for the exact ringgit, and MyInvois files. Loyalty on that demo is 1 point per RM1 (100 points = RM10 off). Kiosk languages follow House. A new Malaysia cafe starts with English, Malay, Chinese, Tamil and Hindi.</p></div>
-  <div class="grid g3 demo-grid" style="margin-top:20px">
-    <a class="card demo-card" data-s="devices" href="{{demoUrl}}/?demo=kiosk&amp;country=MY#kiosk" target="_blank" rel="noopener"><img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="" loading="lazy"><h3>Kiosk in Bahasa Melayu</h3><p>Teh Tarik, Nasi Lemak and the coffee menu. Languages follow House: English, Malay, Chinese, Tamil and Hindi until you untick them.</p></a>
-    <a class="card demo-card" data-s="floor" href="{{demoUrl}}/?demo=cashier&amp;country=MY#counter" target="_blank" rel="noopener"><img src="/assets/img/counter-my.webp" width="1440" height="810" alt="" loading="lazy"><h3>Cashier (Malaysia)</h3><p>DuitNow QR, a dine-in service charge, SST, and 5-sen rounding on cash. Card and DuitNow stay exact. SSM and SST numbers show on the bill.</p></a>
-    <a class="card demo-card" data-s="sales" href="{{demoUrl}}/?demo=owner&amp;country=MY#owner" target="_blank" rel="noopener"><img src="/assets/img/owner-my.webp" width="1440" height="810" alt="" loading="lazy"><h3>Owner (Malaysia)</h3><p>Sales in RM, SST collected, <b>Intake</b>, <b>Bulk</b> and a MyInvois ZIP via the cafe's provider — not an IRBM login.</p></a>
+<section id="india" class="demo-country"><div class="wrap">
+  <div class="center"><div class="eyebrow">India</div>
+    <p class="demo-country-line">₹ · UPI · English + Tamil on the kiosk</p></div>
+  <div class="demo-fade" aria-hidden="true">
+    <img src="/assets/img/kiosk-india-tamil.webp" width="960" height="891" alt="" loading="lazy">
+    <img src="/assets/img/phone-tamil.webp" width="585" height="1266" alt="" loading="lazy">
+    <img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="" loading="lazy">
   </div>
-  <p style="text-align:center;color:var(--muted);margin-top:24px">Payments in the demo are simulated, and nothing reaches real customers. Passwords, the plan and WhatsApp sending are switched off.</p>
+  <div class="grid g3 demo-grid demo-shots">
+    <a class="card demo-card demo-card-shot" data-s="devices" href="{{demoUrl}}/?demo=kiosk#kiosk" target="_blank" rel="noopener"><img src="/assets/img/kiosk-india-tamil.webp" width="960" height="891" alt="India kiosk: tablet English and phone Tamil" loading="lazy"><h3>Tablet + phone</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="devices" href="{{demoUrl}}/?demo=kiosk#kiosk" target="_blank" rel="noopener"><img class="shot-phone" src="/assets/img/phone-tamil.webp" width="585" height="1266" alt="Kiosk menu in Tamil" loading="lazy"><h3>Tamil phone</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="devices" href="{{demoUrl}}/?demo=kiosk#kiosk" target="_blank" rel="noopener"><img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="Kiosk menu in Hindi" loading="lazy"><h3>Hindi kiosk</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="floor" href="{{demoUrl}}/?demo=cashier#counter" target="_blank" rel="noopener"><img src="/assets/img/upi.webp" width="1440" height="810" alt="UPI pay" loading="lazy"><h3>UPI pay</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="floor" href="{{demoUrl}}/?demo=cashier#counter" target="_blank" rel="noopener"><img src="/assets/img/receipt.webp" width="1440" height="810" alt="India receipt" loading="lazy"><h3>GST bill</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="sales" href="{{demoUrl}}/?demo=owner#owner" target="_blank" rel="noopener"><img src="/assets/img/owner.webp" width="1440" height="810" alt="Owner India" loading="lazy"><h3>Owner</h3></a>
+  </div>
+</div></section>
+
+<section id="malaysia" class="demo-country band"><div class="wrap">
+  <div class="center"><div class="eyebrow">Malaysia</div>
+    <p class="demo-country-line">RM · DuitNow · SST · MyInvois</p></div>
+  <div class="demo-fade" aria-hidden="true">
+    <img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="" loading="lazy">
+    <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="" loading="lazy">
+    <img src="/assets/img/receipt-my.webp" width="1440" height="810" alt="" loading="lazy">
+  </div>
+  <div class="grid g3 demo-grid demo-shots">
+    <a class="card demo-card demo-card-shot" data-s="devices" href="{{demoUrl}}/?demo=kiosk&amp;country=MY#kiosk" target="_blank" rel="noopener"><img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="Kiosk in Bahasa Melayu" loading="lazy"><h3>Bahasa Melayu</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="floor" href="{{demoUrl}}/?demo=cashier&amp;country=MY#counter" target="_blank" rel="noopener"><img src="/assets/img/counter-my.webp" width="1440" height="810" alt="Malaysia counter" loading="lazy"><h3>Counter MY</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="sales" href="{{demoUrl}}/?demo=owner&amp;country=MY#owner" target="_blank" rel="noopener"><img src="/assets/img/owner-my.webp" width="1440" height="810" alt="Owner Malaysia" loading="lazy"><h3>Owner MY</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="floor" href="{{demoUrl}}/?demo=cashier&amp;country=MY#counter" target="_blank" rel="noopener"><img src="/assets/img/receipt-my.webp" width="1440" height="810" alt="Malaysia receipt" loading="lazy"><h3>SST bill</h3></a>
+    <a class="card demo-card demo-card-shot" data-s="sales" href="{{demoUrl}}/?demo=owner&amp;country=MY#reports" target="_blank" rel="noopener"><img src="/assets/img/myinvois.webp" width="1440" height="810" alt="MyInvois files" loading="lazy"><h3>MyInvois</h3></a>
+  </div>
+  <p class="demo-note">Demo payments are simulated. Passwords, plan and WhatsApp stay off.</p>
 </div></section>
 {{/if}}
 
@@ -66,14 +91,49 @@
   <div>
     <span class="eyebrow">Browser preview</span>
     <h1 style="margin-top:14px">Try a small browser preview</h1>
-    <p class="lead" style="margin-top:18px">The live demo server is being set up. Until then, this limited preview uses simulated payments for the kiosk, counter, kitchen and token screen. It is not the full cafe app — Brief, Crew desk, Board, House and Intake are named in the tip only.</p>
+    <div class="demo-setup-row">
+      <p class="lead">The live demo server is being set up. Until then, this limited preview uses simulated payments for the kiosk, counter, kitchen and token screen. It is not the full cafe app — Brief, Crew desk, Board, House and Intake are named in the tip only.</p>
+      <a class="btn btn-ghost demo-setup-cta" href="{{contactLink}}">Book a full walkthrough</a>
+    </div>
     <div class="demo-embed">
       <iframe class="demo-embed-frame" src="/demo/preview/#kiosk" title="OrdenZ browser preview — kiosk open" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
       <p class="demo-embed-cap"><a href="/demo/preview/#kiosk">Open the preview full screen</a> · Kiosk is open by default</p>
     </div>
-    <div class="actions" style="margin-top:18px">
-      <a class="btn btn-ghost" href="{{contactLink}}">Book a full walkthrough</a>
-    </div>
+  </div>
+</div></section>
+
+<section id="india" class="demo-country"><div class="wrap">
+  <div class="center"><div class="eyebrow">India</div>
+    <p class="demo-country-line">₹ · UPI · English + Tamil on the kiosk</p></div>
+  <div class="demo-fade" aria-hidden="true">
+    <img src="/assets/img/kiosk-india-tamil.webp" width="960" height="891" alt="" loading="lazy">
+    <img src="/assets/img/phone-tamil.webp" width="585" height="1266" alt="" loading="lazy">
+    <img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="" loading="lazy">
+  </div>
+  <div class="grid g3 demo-grid demo-shots">
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#kiosk"><img src="/assets/img/kiosk-india-tamil.webp" width="960" height="891" alt="India kiosk: tablet English and phone Tamil" loading="lazy"><h3>Tablet + phone</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#kiosk"><img class="shot-phone" src="/assets/img/phone-tamil.webp" width="585" height="1266" alt="Kiosk menu in Tamil" loading="lazy"><h3>Tamil phone</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#kiosk"><img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="Kiosk menu in Hindi" loading="lazy"><h3>Hindi kiosk</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#counter"><img src="/assets/img/upi.webp" width="1440" height="810" alt="UPI pay" loading="lazy"><h3>UPI pay</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#counter"><img src="/assets/img/receipt.webp" width="1440" height="810" alt="India receipt" loading="lazy"><h3>GST bill</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#owner"><img src="/assets/img/owner.webp" width="1440" height="810" alt="Owner India" loading="lazy"><h3>Owner</h3></a>
+  </div>
+</div></section>
+
+<section id="malaysia" class="demo-country band"><div class="wrap">
+  <div class="center"><div class="eyebrow">Malaysia</div>
+    <p class="demo-country-line">RM · DuitNow · SST · MyInvois</p></div>
+  <div class="demo-fade" aria-hidden="true">
+    <img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="" loading="lazy">
+    <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="" loading="lazy">
+    <img src="/assets/img/receipt-my.webp" width="1440" height="810" alt="" loading="lazy">
+  </div>
+  <div class="grid g3 demo-grid demo-shots">
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#kiosk"><img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="Kiosk in Bahasa Melayu" loading="lazy"><h3>Bahasa Melayu</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#counter"><img src="/assets/img/counter-my.webp" width="1440" height="810" alt="Malaysia counter" loading="lazy"><h3>Counter MY</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#owner"><img src="/assets/img/owner-my.webp" width="1440" height="810" alt="Owner Malaysia" loading="lazy"><h3>Owner MY</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#counter"><img src="/assets/img/receipt-my.webp" width="1440" height="810" alt="Malaysia receipt" loading="lazy"><h3>SST bill</h3></a>
+    <a class="card demo-card demo-card-shot" href="/demo/preview/#owner"><img src="/assets/img/myinvois.webp" width="1440" height="810" alt="MyInvois files" loading="lazy"><h3>MyInvois</h3></a>
   </div>
 </div></section>
 {{/unless}}
