@@ -112,7 +112,8 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/not an overlay on the till/);
   assert.match(h,/It does not speak/);
   assert.match(h,/one language/);
-  assert.match(h,/Ads on the left if the owner turns them on in House/);
+  assert.match(h,/Cafe ads need the yearly Ads add-on \(Plan → Add yearly\)/);
+  assert.match(h,/House can turn Featured ads on Guest/);
   assert.match(h,/class="guest-ads"/);
   assert.match(h,/class="guest-bill"/);
   assert.match(h,/class="token-board"/);

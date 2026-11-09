@@ -70,7 +70,14 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  {
   const mktBlocks = [...features.matchAll(/eyebrow">Marketing · paid extras[\s\S]*?<\/ul>/g)].map(m => m[0]);
   assert.equal(mktBlocks.length, 2, 'Marketing · paid extras IN and MY blocks');
-  for (const mkt of mktBlocks) assert.doesNotMatch(mkt, /Import menu items from a photo|Swiggy\/Zomato screenshot|Grab\/foodpanda screenshot/);
+  for (const mkt of mktBlocks) {
+    assert.doesNotMatch(mkt, /Import menu items from a photo|Swiggy\/Zomato screenshot|Grab\/foodpanda screenshot/);
+    assert.match(mkt, /<b>Ads<\/b> yearly add-on/);
+  }
+  assert.match(features, /Paid extras — loyalty, campaigns, Ads, delivery pack/);
+  assert.match(help, /Paid extras \(loyalty, campaigns, Ads, delivery pack/);
+  assert.match(read('src/index.html'), /Cafe ads need the yearly Ads add-on/);
+  assert.doesNotMatch(read('src/index.html'), /Ads on the left if the owner turns them on in House/);
   const voiceIn = features.match(/<div class="feature" data-s="devices" data-for-country="IN"><div><div class="eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
   const voiceMy = features.match(/<div class="feature" data-s="devices" data-for-country="MY"><div><div class="eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
   assert.ok(voiceIn, 'Voice & AI ordering · Pro IN block');
