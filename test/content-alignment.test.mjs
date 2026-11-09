@@ -6,12 +6,18 @@ const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
 test('a preview-only deployment does not promise role-specific live screens',()=>{
  const config=JSON.parse(read('site.config.json'));
  const demo=read('dist/demo/index.html');
+ const home=read('dist/index.html');
+ const features=read('dist/features/index.html');
  if(!config.demoUrl){
   assert.match(demo,/Cafe POS demo \(browser preview\)/);
   assert.match(demo,/limited preview uses simulated payments/);
   assert.doesNotMatch(demo,/id="roles"|id="tour"|A real cafe, open right now/);
   assert.match(demo,/Book a full walkthrough/);
   assert.match(demo,/>Try demo</);
+  assert.match(home,/>Try the demo</);
+  assert.doesNotMatch(home,/>Try the live demo</);
+  assert.match(features,/>Try the demo</);
+  assert.doesNotMatch(features,/>Try the live demo</);
  }
 });
 

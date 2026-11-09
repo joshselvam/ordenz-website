@@ -11,7 +11,7 @@
     </div>
     <p class="lead" style="margin-top:12px">OrdenZ runs the counter, guest tablet, kitchen and token screen. Cheap Android tablets.</p>
     <div class="actions">
-      <a class="btn btn-cta" href="/demo/">Try the live demo</a>
+      <a class="btn btn-cta" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
       {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a full walkthrough</a>{{/if}}
       <a class="btn btn-ghost" href="/features/">See every feature</a>
@@ -222,7 +222,7 @@
       {{#if email}}<a class="btn btn-primary" href="mailto:{{email}}?subject=Hello%20{{company}}">Email us</a>{{/if}}
       {{#unless emailOrWhatsapp}}<span class="btn btn-ghost" style="cursor:default">Contact details coming soon</span>{{/unless}}
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
-      <a class="btn btn-ghost" href="/demo/">Try the live demo</a>
+      <a class="btn btn-ghost" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
     </div>
   </div>
 </div></section>

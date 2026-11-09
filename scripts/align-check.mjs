@@ -57,11 +57,13 @@ if (PAID_ADDON_MODULES.includes("ads")) {
 }
 
 const distIndex = join(siteRoot, "dist/index.html");
-if (existsSync(distIndex)) {
-  const built = readFileSync(distIndex, "utf8") + readFileSync(join(siteRoot, "dist/support/index.html"), "utf8");
+const distSupport = join(siteRoot, "dist/support/index.html");
+if (existsSync(distIndex) && existsSync(distSupport)) {
+  const built = readFileSync(distIndex, "utf8") + readFileSync(distSupport, "utf8");
   if (site.email && !built.includes(site.email)) note(`C4 built pages missing email ${site.email}`);
   const wa = String(site.whatsapp || "").replace(/\D/g, "");
   if (wa && !built.replace(/\D/g, "").includes(wa)) note(`C4 built pages missing WhatsApp ${site.whatsapp}`);
+  if (!site.demoUrl && /Try the live demo/.test(built)) note("C3 built pages say live demo while demoUrl is empty");
 }
 
 console.log(issues.length ? `MISMATCHES (${issues.length}):\n- ${issues.join("\n- ")}` : "No mismatches found by align-check");
