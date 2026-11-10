@@ -1,0 +1,46 @@
+# OrdenZ website: notes for AI agents (Cursor, Codex, Claude)
+
+Marketing site for OrdenZ, www.ordenz.com. Owner: Joshua (GitHub joshselvam). App repo: github.com/joshselvam/ordenz-app.
+Static site: `node build.mjs` builds `src/` into `dist/`; tests: `node --test test/*.test.mjs`. Also follow `.cursor/rules/working-loop.mdc`.
+
+## Branches, commits and pushes
+
+- `main` is protected in both repos (GitHub ruleset "Protect main"): no direct pushes, no force pushes, no deleting `main` or `qa`. Every change reaches `main` through a pull request.
+- Start each task on a new branch from the latest `origin/main`: `bugfix/<short_snake_name>` or `feature/<short_snake_name>`, one topic per branch.
+- Commit only after the working loop is done: Bugbot reports no blocking bug and the tests for the change pass.
+- Never push, open a PR or merge without Joshua's explicit "Allow" in chat. Stop before the push and list the branch, commit SHAs, files and tests run.
+- Before asking for a merge, bring the branch up to date with `main` ("Update branch" on the PR, or merge `origin/main` into it) and re-run the checks. A PR made before a `main` fix does not get that fix by itself.
+- Do not switch, reset, stash or commit in a checkout another agent is using, and do not touch its uncommitted files. Use a separate `git worktree` for your branch.
+- Keep each file's existing line endings (some files, e.g. `wrangler.jsonc`, are CRLF). A diff that rewrites every line of a file is a mistake: fix it before committing.
+- Never commit secrets, `.env` files, `.qa-base-url.txt`, or the Android LAN debug config (`android-app/capacitor.config.json`, `android-app/www/server.json`).
+- Never use real money, real WhatsApp/SMS or the live database in tests: local Postgres and mock payments only.
+
+## Release order
+
+1. App first (`ordenz-app`), then the website (`ordenz-website`). The website's pricing reads the app's `GET /api/plans/public`, so a website deploy before the app shows old prices.
+2. Merge the app PR and confirm `/api/plans/public` shows the new amounts, then merge the website PR.
+3. After a website merge, update `qa` to match: `git fetch origin && git push origin origin/main:qa` (only with "Allow").
+
+## Website hosting (Cloudflare Workers)
+
+- Cloudflare's Git connection is the only publisher. GitHub Actions only runs `test` and `build`. Do not add a deploy job, and do not add `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` secrets: that would deploy every merge twice.
+- `main` → Worker `www` → www.ordenz.com and ordenz.com (`npx wrangler deploy`).
+- Pull requests → Worker `www` preview versions on `*-www.starnest.workers.dev`. The bot comment on the PR has the link. Check the change there before merging.
+- `qa` → Worker `www-qa` → qa.ordenz.com (`npx wrangler deploy --env qa`), behind Cloudflare Access (team emails only). `www-qa` does not build PRs.
+- Required checks on website PRs: `test / test`, `build / build`, `Workers Builds: www`. Do not merge while one is red, and do not remove a required check to get a merge through.
+- `wrangler.jsonc` rules:
+  - Top-level `"name"` stays `"www"`. Never change it to `"www-qa"`, even when the Cloudflare dashboard banner or a Cloudflare bot PR asks: close that PR unmerged. The QA name lives only in `env.qa`.
+  - Keep `"build": { "command": "node build.mjs" }` (Cloudflare's PR builds skip the dashboard build command) and the empty `"previews": {}` block (`npx wrangler preview` refuses to run without it).
+  - Custom domains are set in `routes` with `custom_domain: true`. Do not add workers.dev routes for production.
+- Check a `wrangler.jsonc` change before committing: `node build.mjs`, `node --test test/*.test.mjs`, then `npx wrangler deploy --dry-run` and `npx wrangler deploy --dry-run --env qa` from a clean checkout without `dist/`.
+
+## Subscription tax and company details (app)
+
+- OrdenZ's seller details and tax come only from `server/src/platform-company.js` and the server settings `ORDENZ_MY_*` / `ORDENZ_IN_*` (`STATUS`, `CIN`, `INCORPORATED_ON`, `GSTIN`, `SST`, `ADDRESS`, `EMAIL`, `PHONE`). Never hardcode or invent a CIN, GSTIN, SST number or address, not even as a placeholder on a real invoice.
+- List prices exclude tax in both countries. No tax is charged or mentioned (invoice, Plan page, website) until OrdenZ's own SST number / GSTIN is set. Then SST 6% / GST 18% is added on top.
+- India is name-approved only (SRN AC7409450). Never print a CIN or claim full incorporation while `ORDENZ_IN_STATUS` is `name_approved`.
+- Do not change plan prices (`server/public/js/plan-prices.js`, the website's `site.config.json`) without Joshua confirming the amounts in chat.
+
+## Reporting
+
+End every task with a table of the tasks given and their status (done, in progress, not started), and say what is waiting for Joshua (pushes, merges, dashboard settings).
