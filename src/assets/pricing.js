@@ -28,8 +28,7 @@ if(root?.dataset.pricingApi){fetch(root.dataset.pricingApi,{credentials:'omit',s
  let updated=0;for(const tier of ['starter','pro']){const plan=info.plans?.[tier],card=panel.querySelector('[data-plan="'+tier+'"]');if(!card)continue;if(!plan){card.querySelector('[data-price-monthly]').textContent='On request';card.querySelector('[data-price-annual]').textContent='On request';continue}if(!Number.isSafeInteger(plan.monthlyMinor)||!Number.isSafeInteger(plan.annualMinor))continue;const money=n=>new Intl.NumberFormat(region==='MY'?'en-MY':'en-IN',{style:'currency',currency:info.currency}).format(n/100);card.querySelector('h3').textContent=plan.label;card.querySelector('[data-price-monthly]').textContent=money(plan.monthlyMinor);card.querySelector('[data-price-annual]').textContent=money(plan.annualMinor);updated++}
  {const status=panel.querySelector('.pricing-status');
   const refresh=updated===2?'Current approved public list prices':updated?'Published prices shown where available; other plans need a quote.':'Contact OrdenZ for a current quote';
-  // Keep MY SSR tax status (excl. SST) — do not wipe it with generic refresh copy.
-  if(status){const prior=status.textContent.trim();status.textContent=(region==='MY'&&/excl\.?\s*SST/i.test(prior)&&!/excl\.?\s*SST/i.test(refresh))?(prior+' · '+refresh):refresh;}
+  if(status)status.textContent=refresh;
   // Keep SSR legal/onboarding copy in .pricing-notice (MyInvois, DuitNow, India disclaimers).
   // Only prepend API notes when present; never replace the whole paragraph.
   const notice=panel.querySelector('.pricing-notice');

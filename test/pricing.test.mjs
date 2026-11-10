@@ -1,6 +1,6 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {renderPricing} from '../pricing.mjs';
 const pricing=JSON.parse(fs.readFileSync(new URL('../site.config.json',import.meta.url))).pricing;
-test('India and Malaysia panels expose all prices with explicit invoice status',()=>{const h=renderPricing(pricing,'mailto:owner@example.invalid');assert.match(h,/role="tablist"/);assert.match(h,/id="pricing-IN"/);assert.match(h,/id="pricing-MY"/);assert.equal((h.match(/class="card plan/g)||[]).length,6);assert.match(h,/987/);assert.match(h,/1,987/);assert.match(h,/9,870/);assert.match(h,/19,870/);assert.match(h,/RM/);assert.match(h,/excl\. SST/);assert.match(h,/MYR list prices exclude SST/);assert.match(h,/prepares MyInvois e-invoice files/);assert.match(h,/DuitNow QR availability depends on an approved supported merchant connection/);});
+test('India and Malaysia panels expose all prices with explicit invoice status',()=>{const h=renderPricing(pricing,'mailto:owner@example.invalid');assert.match(h,/role="tablist"/);assert.match(h,/id="pricing-IN"/);assert.match(h,/id="pricing-MY"/);assert.equal((h.match(/class="card plan/g)||[]).length,6);assert.match(h,/987/);assert.match(h,/1,987/);assert.match(h,/9,870/);assert.match(h,/19,870/);assert.match(h,/RM/);assert.doesNotMatch(h,/excl\. SST|exclude SST|SST is added|exclusive of GST|GST 18/,'no subscription tax wording until OrdenZ is registered');assert.match(h,/prepares MyInvois e-invoice files/);assert.match(h,/DuitNow QR availability depends on an approved supported merchant connection/);});
 test('region and currency mismatch or invalid amounts cannot be published',()=>{const p=structuredClone(pricing);p.MY.currency='INR';assert.throws(()=>renderPricing(p,'#contact'));p.MY.currency='MYR';p.MY.monthly.pro=-1;assert.throws(()=>renderPricing(p,'#contact'));});
 test('contact links and text are escaped; non-mail links are preserved',()=>{const h=renderPricing(pricing,'#contact');assert.match(h,/href="#contact"/);assert.ok(!h.includes('#contact?subject'));const p=structuredClone(pricing);p.MY.status='<script>bad</script>';assert.ok(!renderPricing(p,'#contact').includes('<script>bad'));});
 
@@ -31,9 +31,7 @@ test('live price refresh updates amounts only and does not rebuild feature lists
   assert.match(js,/Keep SSR legal\/onboarding copy/);
   assert.match(js,/notice\.textContent=data\.notes/);
   assert.doesNotMatch(js,/\.pricing-notice'\)\.textContent=data\.notes\+'/);
-  // MY excl. SST status line must survive live price refresh.
-  assert.match(js,/Keep MY SSR tax status/);
-  assert.match(js,/excl\\\.\?\\s\*SST/);
+  assert.doesNotMatch(js,/SST/,'live refresh adds no tax wording');
 });
 test('pricing.js parses after notice-preservation refactor',async()=>{
   const {spawnSync}=await import('node:child_process');

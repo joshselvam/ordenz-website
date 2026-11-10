@@ -35,7 +35,7 @@
       "currency": "MYR",
       "locale": "en-MY",
       "label": "Malaysia",
-      "status": "List prices excl. SST · confirm your invoice",
+      "status": "List prices · confirm your invoice",
       "monthly": {
         "free": 0,
         "starter": 987,
