@@ -2,12 +2,17 @@
 {{> header}}
 <main id="main">
 {{#if demoUrl}}
-<section class="hero" style="padding:0"><div class="wrap" style="grid-template-columns:1fr">
-  <div>
+<section class="hero hero--pass" style="padding:0"><div class="wrap">
+  <div class="hero-copy">
     <span class="eyebrow">OrdenZ live demo</span>
-    <h1 style="margin-top:14px">A real cafe, open right now.</h1>
-    <p class="lead" style="margin-top:18px">This is the real OrdenZ app with a sample cafe that never closes. Orders, table bookings, deliveries, clean-ups and staff stars arrive every few minutes. Be the owner, the cashier, the chef or the kiosk, and try anything: the demo cafe is reset every night.</p>
+    <h1>A real cafe, open right now.</h1>
+    <p class="lead">This is the real OrdenZ app with a sample cafe that never closes. Orders, table bookings, deliveries, clean-ups and staff stars arrive every few minutes. Be the owner, the cashier, the chef or the kiosk, and try anything: the demo cafe is reset every night.</p>
     <div class="actions"><a class="btn btn-cta" href="#tour">Take the 10-minute tour</a><a class="btn btn-ghost" href="#roles">Pick a role</a></div>
+  </div>
+  <div class="pass-surface" aria-hidden="true">
+    <img data-for-country="IN" src="/assets/img/counter.webp" width="1440" height="810" alt="" loading="eager">
+    <img data-for-country="MY" src="/assets/img/counter-my.webp" width="1440" height="810" alt="" loading="eager">
+    <p class="pass-surface-cap">Counter open · pick a role below to step in</p>
   </div>
 </div></section>
 
@@ -52,7 +57,7 @@
     <a class="card demo-card" data-s="stock" href="{{demoUrl}}/?demo=store#purchases" target="_blank" rel="noopener"><img src="/assets/img/suppliers.webp" width="1440" height="810" alt="" loading="lazy"><h3>Store keeper</h3><p><b>Intake</b>: supplier bills with tax and a photo, purchase drafts from stock vs reorder, wastage and what you owe each supplier.</p></a>
     <a class="card demo-card" data-s="market" href="{{demoUrl}}/?demo=manager#recipes" target="_blank" rel="noopener"><img src="/assets/img/team.webp" width="1440" height="810" alt="" loading="lazy"><h3>Manager</h3><p>Crew desk / Recipes Assign, then the day: Board, Crew desk PINs, clock-in hours, offers and reports. Not the plan or billing.</p></a>
     <a class="card demo-card" data-s="floor" href="{{demoUrl}}/?demo=cleaning#tables" target="_blank" rel="noopener"><img src="/assets/img/tableturn.webp" width="1440" height="810" alt="" loading="lazy"><h3>Cleaning</h3><p>Their own clean-up jobs, finished with a photo of the clean table.</p></a>
-    <a class="card demo-card" data-s="devices" href="{{demoUrl}}/?demo=board#board" target="_blank" rel="noopener"><img src="/assets/img/token-screen.webp" width="1440" height="810" alt="" loading="lazy"><h3>Token TV</h3><p>Order numbers in the languages ticked in House, with a chime. Speak the token is off until you turn it on in House. When it is on, the TV uses the device's natural voice and says the number in the language that guest chose on the kiosk, such as Token 1 4. Guest does not speak.</p></a>
+    <a class="card demo-card" data-s="devices" href="{{demoUrl}}/?demo=board#board" target="_blank" rel="noopener"><img data-for-country="IN" src="/assets/img/token-screen.webp" width="1440" height="810" alt="" loading="lazy"><img data-for-country="MY" src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="" loading="lazy"><h3>Token TV</h3><p>Order numbers in the languages ticked in House, with a chime. Speak the token is off until you turn it on in House. When it is on, the TV uses the device's natural voice and says the number in the language that guest chose on the kiosk, such as Token 1 4. Guest does not speak.</p></a>
   </div>
 </div></section>
 
@@ -94,16 +99,22 @@
 {{/if}}
 
 {{#unless demoUrl}}
-<section class="hero" style="padding:0"><div class="wrap" style="grid-template-columns:1fr">
-  <div>
+<section class="hero hero--pass" style="padding:0"><div class="wrap">
+  <div class="hero-copy">
     <span class="eyebrow">Browser preview</span>
-    <h1 style="margin-top:14px">Try a small browser preview</h1>
-    <div class="demo-setup-row">
-      <p class="lead">The live demo server is being set up. Until then, this limited preview uses simulated payments for the kiosk, counter, kitchen and token screen. It is not the full cafe app — Brief, Crew desk, Board, House and Intake are named in the tip only.</p>
-      <a class="btn btn-ghost demo-setup-cta" href="{{contactLink}}">Book a full walkthrough</a>
-    </div>
+    <h1>Try a small browser preview</h1>
+    <p class="lead">The live demo server is being set up. Until then, this limited preview uses simulated payments for the kiosk, counter, kitchen and token screen. It is not the full cafe app — Brief, Crew desk, Board, House and Intake are named in the tip only.</p>
+    <div class="actions"><a class="btn btn-ghost demo-setup-cta" href="{{contactLink}}">Book a full walkthrough</a><a class="btn btn-cta" href="/demo/preview/#kiosk">Open full screen</a></div>
+    <nav class="pass-roles" aria-label="Preview screens">
+      <a href="/demo/preview/#kiosk">Kiosk</a>
+      <a href="/demo/preview/#counter">Counter</a>
+      <a href="/demo/preview/#kitchen">Kitchen</a>
+      <a href="/demo/preview/#board">Token</a>
+    </nav>
+  </div>
+  <div class="pass-surface pass-surface--embed">
     <div class="demo-embed">
-      <iframe class="demo-embed-frame" src="/demo/preview/#kiosk" title="OrdenZ browser preview — kiosk open" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <iframe class="demo-embed-frame" src="/demo/preview/#kiosk" title="OrdenZ browser preview — kiosk open" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
       <p class="demo-embed-cap"><a href="/demo/preview/#kiosk">Open the preview full screen</a> · Kiosk is open by default</p>
     </div>
   </div>
@@ -147,7 +158,7 @@
 
 <section class="band" style="padding:56px 0"><div class="wrap">
   <div class="center"><div class="eyebrow">No internet needed</div><h2 style="margin-top:10px">Try the kiosk and counter offline</h2>
-    <p class="lead">A small, separate sample of the kiosk, counter, kitchen and token screen that runs in your browser. Payments are simulated and it isn't the full app; the live demo has everything.</p>
+    <p class="lead">A small, separate sample of the kiosk, counter, kitchen and token screen that runs in your browser. Payments are simulated and it isn't the full app.{{#if demoUrl}} The live demo has everything.{{/if}}</p>
     <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/demo/preview/">Open the offline sample</a><a class="btn btn-soft" href="/guide/">Read the guide</a></div></div>
 </div></section>
 </main>

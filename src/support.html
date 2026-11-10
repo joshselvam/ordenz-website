@@ -1,10 +1,19 @@
 {{> head}}
 {{> header}}
-<main id="main"><div class="wrap doc" style="max-width:960px">
-<div class="eyebrow">Help</div>
-<h1 style="margin-top:8px">We're here to help</h1>
-<p class="lead" style="margin-top:14px">Stuck on a screen, found a problem, or have an idea? Real people answer, and the app tells us which screen you were on so you don't have to explain.</p>
-
+<main id="main">
+<section class="hero hero--pass" style="padding:0"><div class="wrap">
+  <div class="hero-copy">
+    <span class="eyebrow">Help</span>
+    <h1>We're here to help</h1>
+    <p class="lead">Stuck on a screen, found a problem, or have an idea? Real people answer, and the app tells us which screen you were on so you don't have to explain.</p>
+  </div>
+  <div class="pass-surface pass-surface--help" aria-hidden="true">
+    <img data-for-country="IN" src="/assets/img/counter.webp" width="1440" height="810" alt="" loading="eager">
+    <img data-for-country="MY" src="/assets/img/counter-my.webp" width="1440" height="810" alt="" loading="eager">
+    <p class="pass-surface-cap">Help → Chat on WhatsApp · we see your cafe and screen</p>
+  </div>
+</div></section>
+<div class="wrap doc" style="max-width:960px;padding-top:28px">
 <div class="ways">
   {{#if waLink}}<div class="way wa"><h3>Chat on WhatsApp</h3><p>The quickest way. Send photos, screenshots or voice notes. From the app, tap <b>Help → Chat with us on WhatsApp</b> and your cafe, the screen and the app version are added for you.</p>
     <a class="btn btn-wa" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%20need%20help%20with%20my%20cafe." rel="noopener">Open WhatsApp</a></div>{{/if}}

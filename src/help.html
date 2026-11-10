@@ -1,11 +1,17 @@
 {{> head}}
 {{> header}}
 <main id="main" class="guide">
-<section class="hero" style="padding:0"><div class="wrap" style="grid-template-columns:1fr;padding:56px 0 48px">
-  <div><span class="eyebrow">OrdenZ guide</span>
-    <h1 style="margin-top:12px;font-size:clamp(36px,5vw,56px)">How to run your cafe on OrdenZ</h1>
-    <p class="lead" style="margin-top:14px">Short, step-by-step help with pictures. Pick your role to see what matters to you, or search.</p>
-    <p style="margin-top:12px;color:var(--ink-2);font-size:15px"><b>Board</b> = menu &amp; prices. <b>Token screen</b> = TV order numbers. Do not mix them up.</p></div>
+<section class="hero hero--pass" style="padding:0"><div class="wrap">
+  <div class="hero-copy">
+    <span class="eyebrow">OrdenZ guide</span>
+    <h1>How to run your cafe on OrdenZ</h1>
+    <p class="lead">Short, step-by-step help with pictures. Pick your role to see what matters to you, or search.</p>
+    <p class="note"><b>Board</b> = menu &amp; prices. <b>Token screen</b> = TV order numbers. Do not mix them up.</p>
+  </div>
+  <div class="pass-surface" aria-hidden="true">
+    <img src="/assets/img/owner.webp" width="1440" height="810" alt="" loading="eager">
+    <p class="pass-surface-cap">Owner checklist · search the topics below</p>
+  </div>
 </div></section>
 
 <section style="padding:32px 0 88px"><div class="wrap g-layout">
@@ -68,6 +74,12 @@
       <li>The token screen, Showcase and Guest follow the app's light or dark theme.</li>
       <li>Tap <b>Printer</b> on the counter or kitchen screen to connect a Bluetooth, Wi-Fi or USB thermal printer (58 mm or 80 mm). Thermal slips use the English name. Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet. Stock, supplier, offer and kitchen documents print as compact 58/80 mm slips when a thermal printer is set. Failed jobs wait in the print queue.</li>
       <li>If a tablet is lost, tap <b>Create a new device key</b>. A new key signs every kiosk and TV out. Pair them again with the new key. Staff PIN sign-in then works only on devices you sign in to again as the owner.</li></ol>
+    <figure data-for-country="IN"><img src="/assets/img/guest.webp" width="1440" height="810" alt="Guest tablet with Filter coffee Friday ad and the open bill total" loading="lazy"><figcaption>Guest: the bill faces the guest. One language. It does not speak.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/guest-my.webp" width="1440" height="810" alt="Guest tablet with Showcase and the open bill, service and tax" loading="lazy"><figcaption>Guest in Malaysia: Showcase beside the bill, with service and tax.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/showcase.webp" width="1440" height="810" alt="Showcase: Masala Chai, Butter Croissant and Chocolate Brownie with prices" loading="lazy"><figcaption>Showcase: one language, and a food photo when stored.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="Showcase: Teh tarik Tuesday with About 2 min" loading="lazy"><figcaption>Showcase in Malaysia. Specials need the yearly Ads add-on.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/token-screen.webp" width="1440" height="810" alt="Token screen: In preparation and Ready for collection in English, Tamil and Hindi" loading="lazy"><figcaption>Token screen: In preparation, then Ready for collection.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="Token screen in English, Malay and Chinese" loading="lazy"><figcaption>Token screen in Malaysia: English, Malay and Chinese.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="team" data-roles="owner manager" data-keys="staff team role pin manager captain chef cashier store cleaning switch off access">
@@ -258,7 +270,7 @@
     <ol><li><b>Reports → Accounting export</b>: choose the dates, then download the sales day book, the purchase day book, the <span data-for-country="IN">GST</span><span data-for-country="MY">SST</span> working sheet (not a filed return), or Tally files. The accountant imports the Tally XML; OrdenZ does not push live.</li>
       <li><b>Reports → All outlets</b> (Pro plus the outlets extra): prove it once with that cafe's owner email, password and authenticator code if MFA is on. We do not keep that password (hash check only). If they change the password, link again. Pick a day or a date range. Copy a menu to a linked outlet (recipes and stock stay put). Send a stock transfer: draft, then send; the other outlet receives it. This is not a central warehouse.</li></ol>
     <figure data-for-country="IN"><img src="/assets/img/accounting-export.webp" width="1440" height="810" alt="The GST summary and the day book and Tally downloads" loading="lazy"><figcaption>The tax summary and the downloads for your accountant.</figcaption></figure>
-    <figure data-for-country="MY"><img src="/assets/img/owner-my.webp" width="1440" height="810" alt="The owner and reports tabs for a Malaysian cafe" loading="lazy"><figcaption>The tax summary and the downloads for your accountant.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/accounting-export-my.webp" width="1440" height="810" alt="Reports, Accounting export for a Malaysian cafe: SST summary and downloads" loading="lazy"><figcaption>The tax summary and the downloads for your accountant.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="einvoice" data-for-country="MY" data-roles="owner manager cashier" data-keys="malaysia e-invoice einvoice myinvois lhdn consolidated tin buyer zip submit provider">

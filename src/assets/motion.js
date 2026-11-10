@@ -13,11 +13,13 @@
   var sound = document.getElementById("promoSound");
   if (video && sound) {
     var figure = video.closest(".promo");
+    var compactTour = !!(figure && figure.classList.contains("promo--tour"));
     var youtube = figure && /^[A-Za-z0-9_-]{11}$/.test(figure.dataset.youtube || "") ? figure.dataset.youtube : "";
     var withSound = false;
     var tryPlay = function () { var p = video.play(); if (p && p.catch) p.catch(function () {}); };
 
-    if (!reduce && !saveData) {
+    // Compact pass-strip tour: do not autoplay a hidden MP4 beside the live iframe.
+    if (!compactTour && !reduce && !saveData) {
       video.autoplay = true;
       tryPlay();
       if ("IntersectionObserver" in window) {
@@ -28,7 +30,7 @@
           });
         }, { threshold: 0.25 }).observe(video);
       }
-    } else {
+    } else if (reduce || saveData || compactTour) {
       sound.lastChild.textContent = " Play the 50-second tour";
     }
 
@@ -52,10 +54,11 @@
       video.controls = true;
       video.currentTime = 0;
       tryPlay();
-      figure.classList.add("playing");
+      if (figure) figure.classList.add("playing");
     });
     video.addEventListener("ended", function () {
       if (figure) figure.classList.remove("playing");
+      withSound = false;
     });
     if (dialog) {
       var close = function () { if (frame) frame.replaceChildren(); if (dialog.open) dialog.close(); };
@@ -82,6 +85,7 @@
       if (!slides.length) return;
       index = (n + slides.length) % slides.length;
       var clip = document.getElementById("promoVideo");
+      var preview = show.querySelector(".hero-preview-frame");
       slides.forEach(function (slide, i) {
         var on = i === index;
         slide.hidden = !on;
@@ -91,6 +95,15 @@
         if (i === index) dot.setAttribute("aria-current", "true");
         else dot.removeAttribute("aria-current");
       });
+      if (preview) {
+        var onCounter = slides[index].id === "show-counter";
+        var live = preview.getAttribute("data-preview-src") || "/demo/preview/#kiosk";
+        if (onCounter) {
+          if (!preview.getAttribute("src")) preview.setAttribute("src", live);
+        } else if (preview.getAttribute("src")) {
+          preview.setAttribute("src", "");
+        }
+      }
       if (clip && !slides[index].contains(clip)) {
         clip.pause();
         var promo = clip.closest(".promo");

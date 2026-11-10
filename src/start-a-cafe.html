@@ -1,13 +1,18 @@
 {{> head}}
 {{> header}}
 <main id="main">
-<section class="hero" style="padding:0"><div class="wrap" style="grid-template-columns:1fr">
-  <div>
+<section class="hero hero--pass" style="padding:0"><div class="wrap">
+  <div class="hero-copy">
     <span class="eyebrow" data-for-country="IN">Starter guide · India</span>
     <span class="eyebrow" data-for-country="MY">Starter guide · Malaysia</span>
-    <h1 style="margin-top:14px">Start a cafe without the guesswork.</h1>
-    <p class="lead" style="margin-top:18px">The licences, taxes, equipment and first-week checklist for opening a small cafe in India or Malaysia, in plain words, with links to the official sites. Bookmark it, and tick things off as you go.</p>
-    <div class="country-tabs" style="justify-content:flex-start"><a href="#india" data-for-country="IN">India</a><a href="#malaysia" data-for-country="MY">Malaysia</a><a href="#equipment">Equipment</a><a href="#menu">Menu &amp; prices</a><a href="#first-week">Your first week</a><a href="#faq">FAQ</a></div>
+    <h1>Start a cafe without the guesswork.</h1>
+    <p class="lead">The licences, taxes, equipment and first-week checklist for opening a small cafe in India or Malaysia, in plain words, with links to the official sites. Bookmark it, and tick things off as you go.</p>
+    <div class="country-tabs country-tabs--pass"><a href="#india" data-for-country="IN">India</a><a href="#malaysia" data-for-country="MY">Malaysia</a><a href="#equipment">Equipment</a><a href="#menu">Menu &amp; prices</a><a href="#first-week">Your first week</a><a href="#faq">FAQ</a></div>
+  </div>
+  <div class="pass-surface" aria-hidden="true">
+    <img src="/assets/img/kiosk-menu.webp" width="1440" height="810" alt="" loading="eager" data-for-country="IN">
+    <img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="" loading="eager" data-for-country="MY">
+    <p class="pass-surface-cap">Day one → kiosk → token TV · tick the list as you go</p>
   </div>
 </div></section>
 
@@ -39,12 +44,12 @@
 <p class="callout" data-for-country="MY"><b>In OrdenZ:</b> choose Malaysia when you sign up. Prices are in RM. Cash rounds to 5 sen. Card and DuitNow stay the exact amount. Add your SSM number, and your SST number once you register; SST is only charged after that. Below the threshold leave SST blank. Set a dine-in service charge if you have one. It is not added to take-away, pickup or delivery. Connect Fiuu under House for automatic DuitNow QR, or record a received DuitNow at the counter. Reports → e-Invoice prepares MyInvois files for your provider when you need them.</p>
 
 <h2 id="equipment">The equipment you need</h2>
-<div class="grid g2" style="margin-top:16px">
-  <article class="card" data-s="floor"><span class="tag">Day one</span><h3 style="margin-top:12px">Just the counter</h3><p>Free is enough for one counter in a browser. That's enough to bill, send orders to the kitchen and see your sales. A kitchen phone with a staff PIN is not a paired device.</p></article>
-  <article class="card" data-s="devices"><span class="tag">Add when you're busy</span><h3 style="margin-top:12px">Kiosk and token TV</h3><p>A paired kiosk, token TV or Showcase uses the one Free slot. Showcase is not its own tab. Kiosk plus a TV needs Starter (5 devices). A TV does count.</p></article>
-  <article class="card" data-s="kitchen"><span class="tag">Printing</span><h3 style="margin-top:12px">Receipt and kitchen printer</h3><p>A Bluetooth or network thermal printer, 58 mm or 80 mm. Buy one cash drawer that opens from the printer. Test your exact model with OrdenZ before you buy several.</p></article>
-  <article class="card" data-s="stock"><span class="tag">The basics</span><h3 style="margin-top:12px">Reliable internet</h3><p data-for-country="IN">A broadband line plus a mobile hotspot as backup. Offline counter billing is on Starter and Pro. Free needs a connection. UPI and table QR always need internet.</p><p data-for-country="MY">A broadband line plus a mobile hotspot as backup. Offline counter billing is on Starter and Pro. Free needs a connection. DuitNow and table QR always need internet.</p></article>
-</div>
+<ol class="deploy-strip" style="margin-top:16px">
+  <li data-s="floor"><span class="tag">Day one</span><h3>Just the counter</h3><p>Free is enough for one counter in a browser. That's enough to bill, send orders to the kitchen and see your sales. A kitchen phone with a staff PIN is not a paired device.</p></li>
+  <li data-s="devices"><span class="tag">Add when busy</span><h3>Kiosk and token TV</h3><p>A paired kiosk, token TV or Showcase uses the one Free slot. Showcase is not its own tab. Kiosk plus a TV needs Starter (5 devices). A TV does count.</p></li>
+  <li data-s="kitchen"><span class="tag">Printing</span><h3>Receipt and kitchen printer</h3><p>A Bluetooth or network thermal printer, 58 mm or 80 mm. Buy one cash drawer that opens from the printer. Test your exact model with OrdenZ before you buy several.</p></li>
+  <li data-s="stock"><span class="tag">Basics</span><h3>Reliable internet</h3><p data-for-country="IN">A broadband line plus a mobile hotspot as backup. Offline counter billing is on Starter and Pro. Free needs a connection. UPI and table QR always need internet.</p><p data-for-country="MY">A broadband line plus a mobile hotspot as backup. Offline counter billing is on Starter and Pro. Free needs a connection. DuitNow and table QR always need internet.</p></li>
+</ol>
 
 <h2 id="menu">Pricing your menu</h2>
 <ul>
@@ -82,11 +87,13 @@
 </ul>
 <p class="sources">Checked 28 October 2026.</p>
 
-<div class="cta" style="margin-top:44px">
-  <h2>Opening soon? Let's get your counter ready.</h2>
-  <p class="lead">Send us your menu and we'll help you set up OrdenZ before opening day.</p>
-  <div class="actions">{{#if whatsapp}}<a class="btn btn-wa" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27m%20opening%20a%20cafe%20and%20would%20like%20help%20setting%20up." rel="noopener">Chat on WhatsApp</a>{{/if}}<a class="btn btn-primary" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a></div>
-</div>
+</div></section>
+<section class="band" style="padding:28px 0 64px"><div class="wrap">
+  <div class="cta">
+    <h2>Opening soon? Let's get your counter ready.</h2>
+    <p class="lead">Send us your menu and we'll help you set up OrdenZ before opening day.</p>
+    <div class="actions">{{#if whatsapp}}<a class="btn btn-wa" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27m%20opening%20a%20cafe%20and%20would%20like%20help%20setting%20up." rel="noopener">Chat on WhatsApp</a>{{/if}}<a class="btn btn-primary" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a></div>
+  </div>
 </div></section>
 </main>
 {{> footer}}

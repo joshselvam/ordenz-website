@@ -66,5 +66,12 @@ if (existsSync(distIndex) && existsSync(distSupport)) {
   if (!site.demoUrl && /Try the live demo/.test(built)) note("C3 built pages say live demo while demoUrl is empty");
 }
 
+if (!site.demoUrl) {
+  for (const page of ["dist/features/index.html", "dist/demo/index.html", "dist/demo/preview/index.html"]) {
+    const file = join(siteRoot, page);
+    if (existsSync(file) && /Try the live demo|live demo (has|also)/i.test(readFileSync(file, "utf8"))) note(`C3 ${page} promises a live demo while demoUrl is empty`);
+  }
+}
+
 console.log(issues.length ? `MISMATCHES (${issues.length}):\n- ${issues.join("\n- ")}` : "No mismatches found by align-check");
 process.exit(issues.length ? 1 : 0);

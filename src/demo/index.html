@@ -4,6 +4,7 @@
 :root[data-theme="light"]{--bg:#F6F5EE;--surface:#FFFEFB;--surface-2:#EDF2E8;--line:#D8E1D5;--muted:#54665B;--accent-soft:#E1ECDF}
 .sample-notice{padding:8px 16px;background:#E9EEDF;color:#173C32;font-size:13px;border-bottom:1px solid #D8E1D5;flex-shrink:0}
 .sample-notice a{color:#0E5B49;font-weight:700}
+/* Keep the sample banner in embeds so the home preview matches /demo/. */
 #app{min-height:0}
 .bar{flex-wrap:wrap;height:auto;flex-shrink:0}.tabs{flex-wrap:wrap}
 </style>
@@ -544,7 +545,7 @@ function showHelp(){
       <li><b>Stock:</b> every sale deducts ingredients by recipe. Items sell out on the kiosk automatically when stock runs out.</li>
       <li><b>Owner:</b> today's sales, peak hours, top items, upsell revenue and the daily WhatsApp summary, which is a preview and is not sent.</li>
     </ol>
-    <p>Tip: open the Kitchen or Token screen in a second browser tab next to the Kiosk. Orders sync between tabs on the same device. The live demo also has Brief (clock-in and cook tasks), Crew desk, Board, House, Intake and optional paperless bills — this browser sample does not.</p>
+    <p>Tip: open the Kitchen or Token screen in a second browser tab next to the Kiosk. Orders sync between tabs on the same device. The full app also has Brief (clock-in and cook tasks), Crew desk, Board, House, Intake and optional paperless bills — this browser sample does not.</p>
   </div><div class="row-end"><button class="btn btn-primary" data-close type="button">Got it</button></div>`);
 }
 
@@ -920,6 +921,7 @@ function drawHourChart(data){
 /* =========================================================
    Boot
    ========================================================= */
+try{ if(window.self!==window.top) document.documentElement.classList.add("embedded"); }catch(e){ document.documentElement.classList.add("embedded"); }
 load();
 view = readHash();
 if(!location.hash){ try{ const v=localStorage.getItem(LS_KEY+"-view"); if(v && VIEWS.some(x=>x.id===v)) view=v; }catch(e){} }

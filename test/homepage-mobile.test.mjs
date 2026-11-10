@@ -32,7 +32,7 @@ test("phone header uses a forest-mint menu button and keeps every public link", 
 
 test("phone hero stacks in one column and keeps the slideshow inside the viewport", () => {
   const css = read("src/assets/site.css");
-  const twoCol = css.lastIndexOf("grid-template-columns:minmax(260px,.9fr) minmax(0,1.3fr)");
+  const twoCol = css.lastIndexOf("grid-template-columns:minmax(360px,.58fr) minmax(0,2fr)");
   const phoneCol = css.lastIndexOf("@media (max-width:880px)");
   const oneCol = css.lastIndexOf("grid-template-columns:1fr");
   assert.ok(twoCol > 0, "desktop two-column hero is still defined");
@@ -54,7 +54,7 @@ test("phone and desktop keep the storefront beside the headline, not below the s
   assert.match(home, /width="244"/);
   assert.match(home, /height="194"/);
   assert.doesNotMatch(home, /hero-art has-video"[\s\S]*class="cafe-photo"/);
-  assert.match(css, /\.hero-title\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(140px,244px\)/);
+  assert.match(css, /\.hero-title\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(110px,150px\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-title\{[^}]*minmax\(88px,28%\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.cafe-photo\{[^}]*max-width:128px/);
   assert.match(css, /\.cafe-photo\{[^}]*object-fit:contain/);
@@ -72,57 +72,40 @@ test("Hero slideshow has no botanical cafe strip; stage and video grow larger", 
   assert.doesNotMatch(home, /id="heroShow"[\s\S]*botanical-cafe\.webp/);
   assert.doesNotMatch(home, /Open the browser preview/);
   assert.doesNotMatch(css, /\.hero-art\.has-video \.show-cafe\{/);
-  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*min-height:min\(72vh,640px\)/);
-  assert.match(css, /\.hero-art\.has-video \.promo\{[^}]*min-height:min\(48vh,420px\)/);
+  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*min-height:min\(88svh,860px\)/);
+  assert.match(css, /\.hero-art\.has-video \.promo\{[^}]*min-height:min\(72svh,760px\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-art\.has-video \.show\{[^}]*height:auto/);
-  assert.match(home, /1 × Cafe latte/);
-  assert.match(home, /Cafe latte · ₹200/);
-  assert.match(home, /class="dish"[^>]*>Cafe latte</);
+  assert.match(home, /id="show-guest"[\s\S]*guest\.webp/);
+  assert.match(home, /id="show-showcase"[\s\S]*showcase\.webp/);
+  assert.match(home, /id="show-token"[\s\S]*token-screen\.webp/);
   assert.match(home, /Cafe in motion/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.cim-chapters\{[^}]*1fr 1fr/);
 });
 
-test("Guest shows House ads on the left and a real bill on the right", () => {
+test("Guest, Showcase and Token slides use the latest country screenshots", () => {
   const home = read("src/index.html");
   const css = read("src/assets/site.css");
-  assert.match(home, /class="guest-ads"/);
-  assert.match(home, /Ads · Plan \+ House/);
-  assert.match(home, /Yearly Ads add-on on Plan, then turn on Feature ads on Guest in House/);
-  assert.match(home, /class="guest-bill"/);
-  assert.match(home, /Table 4 · Guest/);
-  assert.match(home, /Takeaway · Less sugar/);
-  assert.match(home, /GST included/);
-  assert.match(home, /Rounding/);
-  assert.match(home, /Loyalty QR after payment/);
-  assert.match(home, /class="food-shot"[^>]*src="\/assets\/img\/showcase\/option-b-drink\.jpg"/);
-  assert.doesNotMatch(home, /swap after pick|shot-swap/);
-  assert.match(css, /\.food-shot\{[^}]*object-fit:cover/);
-  assert.match(css, /\.guest-face\{[^}]*grid-template-columns:minmax\(0,1\.05fr\) minmax\(0,\.95fr\)/);
-  assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.guest-face\{[^}]*grid-template-columns:1fr/);
+  assert.match(home, /id="show-guest"[\s\S]*data-for-country="IN" src="\/assets\/img\/guest\.webp"/);
+  assert.match(home, /id="show-guest"[\s\S]*data-for-country="MY" src="\/assets\/img\/guest-my\.webp"/);
+  assert.match(home, /id="show-showcase"[\s\S]*data-for-country="IN" src="\/assets\/img\/showcase\.webp"/);
+  assert.match(home, /id="show-showcase"[\s\S]*data-for-country="MY" src="\/assets\/img\/showcase-my\.webp"/);
+  assert.match(home, /id="show-token"[\s\S]*data-for-country="IN" src="\/assets\/img\/token-screen\.webp"/);
+  assert.match(home, /id="show-token"[\s\S]*data-for-country="MY" src="\/assets\/img\/token-screen-my\.webp"/);
+  assert.match(home, /In preparation/);
+  assert.match(home, /Ready for collection/);
+  assert.doesNotMatch(home, /option-b-drink|token-board-fill\.gif|swap after pick|shot-swap/);
+  assert.match(css, /\.show-slide \.live-shot\{[^}]*object-fit:contain/);
+  assert.match(css, /\.show-slide \.live-shot\{[^}]*object-position:center/);
   assert.doesNotMatch(home, /ZUS|AEON/i);
 });
 
-test("Token board has In preparation and Ready for collection in forest mint", () => {
-  const home = read("src/index.html");
-  const css = read("src/assets/site.css");
-  assert.match(home, /class="token-board"/);
-  assert.match(home, /In preparation/);
-  assert.match(home, /Ready for collection/);
-  assert.match(home, /class="token-num">14</);
-  assert.match(css, /\.token-board\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(0,1fr\)/);
-  assert.match(css, /\.token-col-h\{[^}]*#2EE6C7/);
-  assert.match(css, /\.token-col li\.is-on\{[^}]*#0E5B49/);
-});
-
-test("Showcase and Guest ads lock Option B as the featured creative", () => {
+test("Showcase picture options stay off the live home slideshow", () => {
   const home = read("src/index.html");
   const css = read("src/assets/site.css");
   const js = read("src/assets/motion.js");
   const dir = new URL("../src/assets/img/showcase/", import.meta.url);
   assert.ok(fs.existsSync(new URL("option-b-drink.jpg", dir)));
-  assert.match(home, /id="show-guest"[\s\S]*\/assets\/img\/showcase\/option-b-drink\.jpg/);
-  assert.match(home, /id="show-showcase"[\s\S]*\/assets\/img\/showcase\/option-b-drink\.jpg/);
-  assert.doesNotMatch(home, /option-a-counter|option-c-kitchen|option-d-guest|swap after pick|shot-swap/);
+  assert.doesNotMatch(home, /option-a-counter|option-b-drink|option-c-kitchen|option-d-guest|swap after pick|shot-swap/);
   assert.match(css, /\.food-shot\{[^}]*object-fit:cover/);
   assert.match(css, /\.food-photo\{[^}]*object-fit:cover/);
   assert.doesNotMatch(css, /shot-swap/);
