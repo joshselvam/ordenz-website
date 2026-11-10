@@ -1,7 +1,29 @@
 {{> head}}
 {{> header}}
 <main id="main">
-<section class="hero cim-hero" style="padding:0"><div class="wrap">
+<section class="hero cim-hero" style="padding:0">
+<aside class="hero-rail hero-rail--token" aria-hidden="true">
+  <div class="hero-rail-glass">
+    <p class="hero-rail-kicker">Token TV</p>
+    <div class="hero-rail-stream">
+      <ol class="hero-rail-tokens">
+        <li data-s="ready"><span class="hero-rail-chip"><b>7</b><span>Ready</span></span></li>
+        <li data-s="ready"><span class="hero-rail-chip"><b>14</b><span>Ready</span></span></li>
+        <li data-s="ready"><span class="hero-rail-chip"><b>9</b><span>Ready</span></span></li>
+        <li data-s="prep"><span class="hero-rail-chip"><b>21</b><span>Prep</span></span></li>
+        <li data-s="ready"><span class="hero-rail-chip"><b>3</b><span>Ready</span></span></li>
+        <li data-s="prep"><span class="hero-rail-chip"><b>18</b><span>Prep</span></span></li>
+        <li data-s="ready"><span class="hero-rail-chip"><b>7</b><span>Ready</span></span></li>
+        <li data-s="ready"><span class="hero-rail-chip"><b>14</b><span>Ready</span></span></li>
+        <li data-s="ready"><span class="hero-rail-chip"><b>9</b><span>Ready</span></span></li>
+        <li data-s="prep"><span class="hero-rail-chip"><b>21</b><span>Prep</span></span></li>
+        <li data-s="ready"><span class="hero-rail-chip"><b>3</b><span>Ready</span></span></li>
+        <li data-s="prep"><span class="hero-rail-chip"><b>18</b><span>Prep</span></span></li>
+      </ol>
+    </div>
+  </div>
+</aside>
+<div class="wrap">
   <div class="hero-copy">
     <p class="brand-mark" aria-hidden="true">OrdenZ</p>
     <div class="eyebrow">Cafe in motion · POS · kiosk · kitchen</div>
@@ -11,97 +33,53 @@
     </div>
     <p class="lead" style="margin-top:12px">OrdenZ runs the counter, guest tablet, kitchen and token screen. Cheap Android tablets.</p>
     <div class="actions">
-      <a class="btn btn-cta" href="/demo/">Try the live demo</a>
+      <a class="btn btn-cta" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
       {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a full walkthrough</a>{{/if}}
       <a class="btn btn-ghost" href="/features/">See every feature</a>
     </div>
-    <p style="margin-top:10px;color:var(--ink-2);font-size:15px">Set up free. 30 days of Pro from the first real bill, or from day 15. Then Free (1 paired device, 50 orders/day), unless you pick Starter or Pro.</p>
+    <p class="hero-footnote">Set up free. 30 days of Pro from the first real bill, or from day 15. Then Free (1 paired device, 50 orders/day), unless you pick Starter or Pro.</p>
   </div>
   <div class="hero-art has-video">
     <div class="show" id="heroShow" aria-roledescription="carousel" aria-label="Four screens in the cafe">
       <div class="show-stage">
         <div class="show-slide is-on" id="show-counter" aria-label="Counter tablet, 1 of 4">
-          <figure class="promo" data-youtube="{{youtubeId}}">
-            <video id="promoVideo" muted loop playsinline preload="metadata" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 50-second tour with captions">
-              <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
-              <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
-            </video>
-            <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch with sound</button>
-            <span class="promo-badge">50-second tour</span>
-          </figure>
-          <p class="scene-cap">Counter tablet. The cashier stays here.</p>
-        </div>
-        <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
-          <div class="scene scene-guest" data-s="floor">
-            <div class="guest-face">
-              <aside class="guest-ads">
-                <p class="guest-ads-flag">Ads on · House</p>
-                <img class="food-shot" src="/assets/img/showcase/option-b-drink.jpg" width="1152" height="864" alt="Latte with mint in a sage cup">
-                <p class="scene-kicker">Today's special</p>
-                <p class="guest-ads-line" data-for-country="IN">Cafe latte · ₹200</p>
-                <p class="guest-ads-line" data-for-country="MY">Teh tarik · RM5</p>
-                <p class="guest-ads-note">Owner turns ads on in House and adds the picture.</p>
-              </aside>
-              <div class="guest-bill">
-                <div class="bill-top"><span>Table 4 · Guest</span><span>English</span></div>
-                <div data-for-country="IN">
-                  <div class="bill-row"><span>1 × Cafe latte</span><b>₹200</b></div>
-                  <p class="bill-opts">Takeaway · Less sugar</p>
-                  <p class="bill-tax">GST included</p>
-                  <div class="bill-row total"><span>Total</span><b>₹200</b></div>
-                </div>
-                <div data-for-country="MY">
-                  <div class="bill-row"><span>1 × Teh tarik</span><b>RM5</b></div>
-                  <p class="bill-opts">Takeaway · Less sugar</p>
-                  <div class="bill-row"><span>Rounding</span><b>RM0.00</b></div>
-                  <div class="bill-row total"><span>Total</span><b>RM5</b></div>
-                </div>
-                <div class="loyalty"><span class="qr"></span><span>Loyalty QR after payment, for their own phone</span></div>
-              </div>
+          <div class="hero-preview hero-preview--paper">
+            <iframe class="hero-preview-frame" src="/demo/preview/#kiosk" title="OrdenZ browser preview — kiosk open" loading="eager" referrerpolicy="strict-origin-when-cross-origin" data-preview-src="/demo/preview/#kiosk"></iframe>
+            <div class="pass-strip pass-strip--paper">
+              <p class="hero-preview-cap"><a class="hero-preview-open" href="/demo/preview/#kiosk">Open the preview full screen</a> · Kiosk is open by default</p>
+              <figure class="promo promo--tour" data-youtube="{{youtubeId}}">
+                <video id="promoVideo" muted loop playsinline preload="none" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 45-second narrated tour with captions">
+                  <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
+                  <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
+                </video>
+                <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch with sound</button>
+                <span class="promo-badge">45-second tour</span>
+              </figure>
             </div>
           </div>
-          <p class="scene-cap">A second tablet signed in as Guest — not an overlay on the till. Ads on the left if the owner turns them on in House. The bill in one language. It does not speak.</p>
+          <p class="scene-cap">Live browser preview — start on the kiosk, then try Counter, Kitchen and Token.</p>
+        </div>
+        <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
+          <div class="scene" data-s="floor">
+            <img class="live-shot" data-for-country="IN" src="/assets/img/guest.webp" width="1440" height="810" alt="Guest tablet with Filter coffee Friday ad and the open bill total" loading="lazy">
+            <img class="live-shot" data-for-country="MY" src="/assets/img/guest-my.webp" width="1440" height="810" alt="Guest tablet with Showcase and the open bill: cafe drinks and food, service and tax, total" loading="lazy">
+          </div>
+          <p class="scene-cap">A second tablet signed in as Guest — not an overlay on the till. The bill in one language. It does not speak. Cafe ads need the yearly Ads add-on (Plan → Add yearly); then House can turn Feature ads on Guest.</p>
         </div>
         <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
           <div class="scene" data-s="market">
-            <div class="tablet">
-              <div class="tablet-screen showcase">
-                <img class="food-photo" src="/assets/img/showcase/option-b-drink.jpg" width="1152" height="864" alt="Latte with mint in a sage cup">
-                <div>
-                  <p class="scene-kicker">Today's special</p>
-                  <p class="dish" data-for-country="IN">Cafe latte</p>
-                  <p class="dish" data-for-country="MY">Teh tarik</p>
-                  <p class="scene-meta">English</p>
-                  <p class="scene-meta">About 6 min · estimate</p>
-                </div>
-              </div>
-            </div>
+            <img class="live-shot" data-for-country="IN" src="/assets/img/showcase.webp" width="1440" height="810" alt="Showcase: Masala Chai, Butter Croissant and Chocolate Brownie with prices" loading="lazy">
+            <img class="live-shot" data-for-country="MY" src="/assets/img/showcase-my.webp" width="1440" height="810" alt="Showcase: Cold coffee week special with the wait time" loading="lazy">
           </div>
-          <p class="scene-cap">One language, and a food photo when stored. About 6 min is an estimate.</p>
+          <p class="scene-cap">Your menu with a food photo, today's special and the wait time, on a screen facing the street.</p>
         </div>
         <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
           <div class="scene scene-token" data-s="kitchen">
-            <div class="token-board">
-              <div class="token-col">
-                <p class="token-col-h">In preparation</p>
-                <ol>
-                  <li class="is-on"><b class="token-num">14</b></li>
-                  <li></li><li></li><li></li>
-                  <li></li><li></li><li></li><li></li>
-                </ol>
-              </div>
-              <div class="token-col token-col-ready">
-                <p class="token-col-h">Ready for collection</p>
-                <ol>
-                  <li class="is-on"><b>9</b></li>
-                  <li></li><li></li><li></li>
-                  <li></li><li></li><li></li><li></li>
-                </ol>
-              </div>
-            </div>
+            <img class="live-shot" data-for-country="IN" src="/assets/img/token-screen.webp" width="1440" height="810" alt="Token screen: In preparation and Ready for collection in English, Tamil and Hindi" loading="lazy">
+            <img class="live-shot" data-for-country="MY" src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="Token screen: In preparation and Ready for collection in English, Malay and Chinese" loading="lazy">
           </div>
-          <p class="scene-cap">Shows the number. Speaks only when Speak the token is on in House. It does not read the dish names.</p>
+          <p class="scene-cap">In preparation, then Ready for collection, in your guests' languages. It can call the number aloud when Speak the token is on in House. It does not read the dish names.</p>
         </div>
       </div>
       <div class="show-nav">
@@ -112,17 +90,21 @@
       </div>
     </div>
   </div>
-</div></section>
+</div>
+</section>
 
 <section class="cim-proof" style="padding:40px 0 8px"><div class="wrap">
   <div class="stats cim-stats">
-    <div class="stat"><b>6</b><span>kiosk languages you can tick in House</span></div>
-    <div class="stat"><b>8</b><span>ways to sign in: Owner plus 7 staff jobs, including All-rounder. Each staff member has their own PIN</span></div>
+    <div class="stat" data-for-country="IN"><b>6</b><span>kiosk languages, one tap to switch</span></div>
+    <div class="stat" data-for-country="MY"><b>5</b><span>kiosk languages, one tap to switch</span></div>
+    <div class="stat"><b>8</b><span>ways to sign in: the owner plus 7 staff jobs, including All-rounder, each with a PIN</span></div>
     <div class="stat" data-for-country="IN"><b>₹</b><span>GST bills in India</span></div>
-    <div class="stat" data-for-country="MY"><b>RM</b><span>SST on bills only if you add an SST number</span></div>
-    <div class="stat"><b>30 days</b><span>of Pro from the first real bill, or from day 15 if you have not billed yet</span></div>
+    <div class="stat" data-for-country="MY"><b>RM</b><span>SST, service charge and 5-sen rounding</span></div>
+    <div class="stat"><b>30 days</b><span>of Pro, free, from your first real bill</span></div>
   </div>
 </div></section>
+
+{{> spotlight}}
 
 <section id="day" class="cim-shift"><div class="wrap">
   <div class="center">
@@ -132,45 +114,49 @@
   </div>
   <div class="cim-chapters" aria-label="Four screens in a cafe shift">
     <article class="cim-chapter" data-s="devices">
-      <img src="/assets/video/ordenz-one-day-v3.jpg" width="640" height="360" alt="Counter tablet tour still">
+      <img data-for-country="IN" src="/assets/img/counter.webp" width="1440" height="810" alt="Counter: menu, new bill with GST and Cash, UPI, Card">
+      <img data-for-country="MY" src="/assets/img/counter-my.webp" width="1440" height="810" alt="Counter for a Malaysia cafe with RM prices">
       <h3>Counter</h3>
       <p>Cashier stays on the till.</p>
     </article>
     <article class="cim-chapter" data-s="floor">
-      <img src="/assets/img/showcase/option-b-drink.jpg" width="576" height="432" alt="Cafe latte special on Guest ads">
+      <img data-for-country="IN" src="/assets/img/guest.webp" width="1440" height="810" alt="Guest tablet with Filter coffee Friday ad and the open bill total">
+      <img data-for-country="MY" src="/assets/img/guest-my.webp" width="1440" height="810" alt="Guest tablet with Showcase and the open bill, service and tax">
       <h3>Guest</h3>
-      <p>Ads beside a real bill. Silent.</p>
+      <p>The guest sees the bill build.</p>
     </article>
     <article class="cim-chapter" data-s="kitchen">
-      <div class="cim-token-flash" aria-hidden="true"><span>14</span><small>Ready</small></div>
+      <img data-for-country="IN" src="/assets/img/token-screen.webp" width="1440" height="810" alt="Token screen: In preparation and Ready for collection in English, Tamil and Hindi">
+      <img data-for-country="MY" src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="Token screen in English, Malay and Chinese">
       <h3>Token</h3>
-      <p>Shows the number. Speaks only when Speak the token is on in House.</p>
+      <p>Calls the number when it's ready.</p>
     </article>
-    <article class="cim-chapter" data-s="sales">
-      <img src="/assets/img/cafe-storefront.webp" width="244" height="194" alt="Cafe storefront">
-      <h3>Close</h3>
-      <p>Count the drawer. Send the day book.</p>
+    <article class="cim-chapter" data-s="market">
+      <img data-for-country="IN" src="/assets/img/showcase.webp" width="1440" height="810" alt="Showcase: Masala Chai, Butter Croissant and Chocolate Brownie">
+      <img data-for-country="MY" src="/assets/img/showcase-my.webp" width="1440" height="810" alt="Showcase: Cold coffee week special with the wait time">
+      <h3>Showcase</h3>
+      <p>Specials and the wait, out front.</p>
     </article>
   </div>
   <ol class="day cim-day" data-for-country="IN">
     <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Open</h3><p>Brief asks staff to clock in. Cashier counts ₹2,000 of float into the cash drawer.</p><span class="who">Brief · Cash drawer</span></div></li>
-    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Rush</h3><p>Cafe latte on the kiosk in Tamil or English, pay by UPI. Token speaks only if Speak the token is on in House.</p><span class="who">Kiosk · Token TV</span></div></li>
+    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Rush</h3><p>Cafe latte on the kiosk in Tamil, paid by UPI. The token screen calls the number.</p><span class="who">Kiosk · Token TV</span></div></li>
     <li data-s="kitchen"><time>9:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Kitchen</h3><p>Tickets arrive together. Waiting too long turns amber, then red.</p><span class="who">Kitchen · Chef</span></div></li>
     <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Tables</h3><p>Captain taps Pay later — no cash buttons. Cashier settles with Pay T4.</p><span class="who">Captain · Pay by table</span></div></li>
     <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Intake</h3><p>Store keeper saves a purchase draft. Owner approves; stock goes up.</p><span class="who">Intake · Drafts</span></div></li>
     <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup</h3><p>Guest books a 4:15 slot. Ticket stays unpaid until the counter collects.</p><span class="who">Pickup slots</span></div></li>
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Delivery</h3><p>A Swiggy order lands from a signed webhook, or the cashier types it. Prices come from your cafe menu (with that app's mark-up). OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps</span></div></li>
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Delivery</h3><p>A Swiggy order lands from a signed webhook. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps</span></div></li>
     <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close</h3><p>Z report prints. Owner sends the day book to the accountant.</p><span class="who">Reports · Owner</span></div></li>
   </ol>
   <ol class="day cim-day" data-for-country="MY">
     <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Open</h3><p>Brief asks staff to clock in. Cashier counts RM200 of float into the cash drawer.</p><span class="who">Brief · Cash drawer</span></div></li>
-    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Rush</h3><p>Teh tarik on the kiosk in Bahasa Melayu or Chinese, pay by DuitNow QR. Token speaks only if Speak the token is on in House.</p><span class="who">Kiosk · Token TV</span></div></li>
+    <li data-s="devices"><time>8:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Rush</h3><p>Teh tarik on the kiosk in Bahasa Melayu, paid by DuitNow QR. The token screen calls the number.</p><span class="who">Kiosk · Token TV</span></div></li>
     <li data-s="kitchen"><time>9:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Kitchen</h3><p>Tickets arrive together. Waiting too long turns amber, then red.</p><span class="who">Kitchen · Chef</span></div></li>
     <li data-s="floor"><time>12:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Tables</h3><p>Captain taps Pay later — no cash buttons. Cashier settles with Pay T4, DuitNow or cash.</p><span class="who">Captain · Pay by table</span></div></li>
     <li data-s="stock"><time>3:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Intake</h3><p>Store keeper saves a purchase draft. Owner approves; stock goes up.</p><span class="who">Intake · Drafts</span></div></li>
     <li data-s="sales"><time>4:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Pickup</h3><p>Guest books a 4:15 slot. Ticket stays unpaid until the counter collects.</p><span class="who">Pickup slots</span></div></li>
-    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Delivery</h3><p>A GrabFood or foodpanda order lands from a signed webhook, or the cashier types it. Prices come from your cafe menu (with that app's mark-up). OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps</span></div></li>
-    <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close</h3><p>SST is on the bill only if the cafe added an SST number. Reports prepare the MyInvois ZIP; OrdenZ does not log in to LHDN.</p><span class="who">Reports · Owner</span></div></li>
+    <li data-s="floor"><time>7:00</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Delivery</h3><p>A GrabFood or foodpanda order lands from a signed webhook. OrdenZ records that app commission and what the app still owes you.</p><span class="who">Delivery apps</span></div></li>
+    <li data-s="sales"><time>10:30</time><span class="dot" aria-hidden="true"></span><div class="moment"><h3>Close</h3><p>Z report prints. Reports prepare the SST sheet and MyInvois files for your accountant.</p><span class="who">Reports · Owner</span></div></li>
   </ol>
   <div class="actions" style="justify-content:center"><a class="btn btn-primary" href="/demo/">Live the day in the demo</a><a class="btn btn-soft" href="/features/">How each part works</a></div>
 </div></section>
@@ -179,19 +165,19 @@
   <div class="center"><div class="eyebrow">Same app</div><h2>Start at the counter. Grow when ready.</h2><p class="lead">Slim Starter covers the till, kiosk, kitchen and token screen (up to 5 devices). Tables, stock recipes, catering and other Pro tools stay on Pro.</p></div>
   <div class="cim-product-row">
     <a class="cim-product" data-s="devices" href="/features/#customers"><span class="tag">Cafes</span><h3>Morning rush</h3><p>Kiosk in their language.</p></a>
-    <a class="cim-product" data-s="kitchen" href="/features/#kitchen"><span class="tag">Kitchen</span><h3>Next ticket</h3><p>Token speaks the number only when Speak the token is on in House.</p></a>
+    <a class="cim-product" data-s="kitchen" href="/features/#kitchen"><span class="tag">Kitchen</span><h3>Next ticket</h3><p>Kitchen to token screen in a second.</p></a>
     <a class="cim-product" data-s="sales" href="/features/#business"><span class="tag">Business</span><h3>More counters</h3><p>Catering, Intake, day book — on Pro.</p></a>
   </div>
 </div></section>
 
 <section id="new-cafe"><div class="wrap">
-  <div class="cta" style="text-align:left;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center">
+  <div class="cta cta--tape">
     <div><div class="eyebrow">Opening your first cafe?</div><h2 style="margin-top:8px">Start a cafe without the guesswork</h2>
       <p class="lead" style="margin:14px 0 0" data-for-country="IN">Which licences you need in India, when GST applies, what equipment to buy, and how to price your menu. Plain answers, with links to the official sources.</p>
       <p class="lead" style="margin:14px 0 0" data-for-country="MY">Which licences you need in Malaysia, when SST applies, what equipment to buy, and how to price your menu. Plain answers, with links to the official sources.</p>
       <div class="actions"><a class="btn btn-primary" href="/start-a-cafe/">Read the starter guide</a></div></div>
-    <ul style="margin:0;padding-left:20px;color:var(--ink-2)" data-for-country="IN"><li>FSSAI, GST and trade licence</li><li>Tablets, printer and payment set-up</li><li>Menu pricing and food cost</li><li>Your first week, step by step</li></ul>
-    <ul style="margin:0;padding-left:20px;color:var(--ink-2)" data-for-country="MY"><li>SSM, council licence, food handler course and SST</li><li>Tablets, printer and payment set-up</li><li>Menu pricing and food cost</li><li>Your first week, step by step</li></ul>
+    <ol class="tape-list" data-for-country="IN"><li>FSSAI, GST and trade licence</li><li>Tablets, printer and payment set-up</li><li>Menu pricing and food cost</li><li>Your first week, step by step</li></ol>
+    <ol class="tape-list" data-for-country="MY"><li>SSM, council licence, food handler course and SST</li><li>Tablets, printer and payment set-up</li><li>Menu pricing and food cost</li><li>Your first week, step by step</li></ol>
   </div>
 </div></section>
 
@@ -199,17 +185,17 @@
   <div class="center"><div class="eyebrow">Why {{company}}</div><h2 style="margin-top:10px">Keep your team focused on service</h2></div>
   <div class="grid g3">
     <div class="card" data-s="devices"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
-      <h3>Runs on budget tablets</h3><p>An Android tablet for the kiosk, any browser for the counter and kitchen, and a Bluetooth or network thermal printer if you want one. Test your exact models before you buy.</p></div>
+      <h3>Runs on budget tablets</h3><p>Android tablet for the kiosk. Any browser for the counter. Test your models first.</p></div>
     <div class="card" data-s="market"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h7"/><path d="M17 15l3 3-3 3"/></svg></div>
-      <h3>Your customers' language</h3><p data-for-country="IN">English, Tamil, Hindi, Malayalam, Telugu and Kannada. Tick up to six in House. English stays available. Customers switch with one tap.</p><p data-for-country="MY">English, Malay, Chinese, Tamil and Hindi. Tick up to six in House. English stays available. Customers switch with one tap.</p></div>
+      <h3>Your customers' language</h3><p data-for-country="IN">English, Tamil, Hindi, Malayalam, Telugu and Kannada. One tap to switch.</p><p data-for-country="MY">English, Malay, Chinese, Tamil and Hindi. One tap to switch.</p></div>
     <div class="card" data-s="account"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <h3>Fair, simple pricing</h3><p>Free for one device and 50 orders a day. Starter and Pro when you grow, monthly or yearly with pricing confirmed before purchase. No card needed to start.</p></div>
+      <h3>Fair, simple pricing</h3><p>Free: one device, 50 orders a day. Starter and Pro when you grow. No card to start.</p></div>
     <div class="card" data-s="floor"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l3-8 4 16 3-8h7"/></svg></div>
-      <h3>Offline billing on Starter and Pro</h3><p data-for-country="IN">Wi-Fi down at lunch? On Starter and Pro the counter saves bills on the tablet and sends them, never twice, when you're back online. Receipts still print. Free needs a connection. UPI and table QR always need internet.</p><p data-for-country="MY">Wi-Fi down at lunch? On Starter and Pro the counter saves bills on the tablet and sends them, never twice, when you're back online. Receipts still print. Free needs a connection. DuitNow and table QR always need internet.</p></div>
+      <h3>Offline billing on Starter and Pro</h3><p data-for-country="IN">Wi-Fi down? Keep billing. Bills sync once, receipts still print. UPI and table QR need internet.</p><p data-for-country="MY">Wi-Fi down? Keep billing. Bills sync once, receipts still print. DuitNow and table QR need internet.</p></div>
     <div class="card" data-s="sales"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-      <h3>Your data stays yours</h3><p>No ads, no selling data. Customers order without signing up. Download your sales any time, or delete your account and everything with it.</p></div>
+      <h3>Your data stays yours</h3><p>No selling data. No customer sign-up. Download or delete it all, any time.</p></div>
     <div class="card" data-s="kitchen"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-      <h3>Help from real people</h3><p>Tap Help in the app to chat with us on WhatsApp. Your cafe and the screen you're on come with the message, so we can help faster.</p></div>
+      <h3>Help from real people</h3><p>Tap Help for WhatsApp. Your cafe and screen come along, so we fix it faster.</p></div>
   </div>
 </div></section>
 
@@ -222,7 +208,7 @@
       {{#if email}}<a class="btn btn-primary" href="mailto:{{email}}?subject=Hello%20{{company}}">Email us</a>{{/if}}
       {{#unless emailOrWhatsapp}}<span class="btn btn-ghost" style="cursor:default">Contact details coming soon</span>{{/unless}}
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
-      <a class="btn btn-ghost" href="/demo/">Try the live demo</a>
+      <a class="btn btn-ghost" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
     </div>
   </div>
 </div></section>

@@ -2,7 +2,7 @@
 // captions burned in, a small file, no third-party frames unless a YouTube ID is set.
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
-test('the hero video is muted, inline and has a poster, so it can start silently on phones',()=>{const h=read('src/index.html');assert.match(h,/<video id="promoVideo" muted loop playsinline preload="metadata" poster="\/assets\/video\/ordenz-one-day-v3\.jpg"/);assert.match(h,/src="\/assets\/video\/ordenz-one-day-v3\.mp4" type="video\/mp4"/);assert.match(h,/src="\/assets\/video\/ordenz-one-day-v3\.webm" type="video\/webm"/);assert.match(h,/id="promoSound"/);assert.match(h,/Watch with sound/);assert.ok(!/<video[^>]*\bautoplay\b/.test(h),'autoplay is switched on by motion.js only when motion and data saving allow it');});
+test('the hero video is muted, inline and has a poster, so it can start silently on phones',()=>{const h=read('src/index.html');assert.match(h,/<video id="promoVideo" muted loop playsinline preload="none" poster="\/assets\/video\/ordenz-one-day-v3\.jpg"/);assert.match(h,/src="\/assets\/video\/ordenz-one-day-v3\.mp4" type="video\/mp4"/);assert.match(h,/src="\/assets\/video\/ordenz-one-day-v3\.webm" type="video\/webm"/);assert.match(h,/id="promoSound"/);assert.match(h,/Watch with sound/);assert.ok(!/<video[^>]*\bautoplay\b/.test(h),'autoplay is switched on by motion.js only when motion and data saving allow it');});
 test('video files exist and stay small enough for the host',()=>{for(const f of ['ordenz-one-day-v3.mp4','ordenz-one-day-v3.webm','ordenz-one-day-v3.jpg']){const s=fs.statSync(new URL('../src/assets/video/'+f,import.meta.url)).size;assert.ok(s>1000&&s<20*1024*1024,f)}});
 test('the security policy allows our own video, same-origin demo embed, and only the privacy-enhanced YouTube player',()=>{const c=read('src/_headers');assert.match(c,/media-src 'self'/);assert.match(c,/frame-src 'self' https:\/\/www\.youtube-nocookie\.com;/);assert.ok(!/frame-src[^;]*\*/.test(c));assert.match(c,/Permissions-Policy: camera=\(\), geolocation=\(\), microphone=\(\)/);assert.doesNotMatch(c,/geolocation=\(self\)/);assert.match(c,/Strict-Transport-Security: max-age=31536000; includeSubDomains/);assert.match(c,/Cross-Origin-Opener-Policy: same-origin/);assert.match(c,/Cross-Origin-Resource-Policy: same-origin/);});
 test('motion respects reduced-motion and data saving, and only accepts a real YouTube ID',()=>{const j=read('src/assets/motion.js');assert.match(j,/prefers-reduced-motion: reduce/);assert.match(j,/saveData/);assert.match(j,/\^\[A-Za-z0-9_-\]\{11\}\$/);assert.match(j,/youtube-nocookie\.com\/embed\//);assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|document\.write/.test(j),'builds no HTML from strings');});
@@ -50,7 +50,7 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.match(f,/data-for-country="MY"[\s\S]*pickup-page-my\.webp/);
   assert.match(f,/data-for-country="MY"[\s\S]*pickup-slots-my\.webp/);
   assert.match(f,/data-for-country="MY"[\s\S]*counter-my\.webp/);
-  assert.match(f,/data-for-country="MY"[\s\S]*guest-my\.png/);
+  assert.match(f,/data-for-country="MY"[\s\S]*guest-my\.webp/);
   assert.match(f,/data-for-country="MY"[\s\S]*card-dock-my\.png/);
   assert.match(f,/data-for-country="MY"[\s\S]*paperless-send-bill\.png/);
   assert.match(f,/Malaysia Fiuu card/);
@@ -112,15 +112,16 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/not an overlay on the till/);
   assert.match(h,/It does not speak/);
   assert.match(h,/one language/);
-  assert.match(h,/Ads on the left if the owner turns them on in House/);
-  assert.match(h,/class="guest-ads"/);
-  assert.match(h,/class="guest-bill"/);
-  assert.match(h,/class="token-board"/);
+  assert.match(h,/Cafe ads need the yearly Ads add-on \(Plan → Add yearly\)/);
+  assert.match(h,/House can turn Feature ads on Guest/);
+  assert.match(h,/id="show-guest"[\s\S]*data-for-country="IN" src="\/assets\/img\/guest\.webp"/);
+  assert.match(h,/id="show-guest"[\s\S]*data-for-country="MY" src="\/assets\/img\/guest-my\.webp"/);
+  assert.match(h,/id="show-showcase"[\s\S]*data-for-country="MY" src="\/assets\/img\/showcase-my\.webp"/);
+  assert.match(h,/id="show-token"[\s\S]*data-for-country="MY" src="\/assets\/img\/token-screen-my\.webp"/);
   assert.match(h,/In preparation/);
   assert.match(h,/Ready for collection/);
   assert.match(h,/food photo/);
-  assert.match(h,/\/assets\/img\/showcase\/option-b-drink\.jpg/);
-  assert.doesNotMatch(h,/swap after pick|shot-swap|option-a-counter|option-c-kitchen|option-d-guest/);
+  assert.doesNotMatch(h,/swap after pick|shot-swap|option-a-counter|option-b-drink|option-c-kitchen|option-d-guest/);
   assert.match(h,/Speak the token is on in House/);
   assert.match(h,/It does not read the dish names/);
   assert.ok(!/<video[^>]*\bautoplay\b/.test(h),'the video tag has no autoplay attribute');
@@ -154,12 +155,26 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.doesNotMatch(h,/class="show-cafe"/);
   assert.doesNotMatch(h,/id="heroShow"[\s\S]*botanical-cafe\.webp/);
   assert.match(h,/show-slide is-on" id="show-counter"/);
+  assert.match(h,/class="hero-preview hero-preview--paper"/);
+  assert.match(h,/class="pass-strip pass-strip--paper"/);
+  assert.match(h,/class="hero-preview-frame"[^>]*src="\/demo\/preview\/#kiosk"/);
+  assert.match(h,/loading="eager"/);
+  assert.match(h,/class="hero-preview-open" href="\/demo\/preview\/#kiosk"/);
+  assert.match(h,/Open the preview full screen/);
+  assert.match(h,/Kiosk is open by default/);
+  assert.match(h,/class="promo promo--tour"/);
+  assert.match(c,/\.hero-art\.has-video \.hero-preview-frame\{/);
+  assert.match(c,/\.hero-preview--paper\{/);
+  assert.match(c,/\.hero--pass \.pass-surface\{/);
+  assert.match(j,/compactTour/);
+  assert.match(j,/data-preview-src/);
+  assert.match(j,/\/demo\/preview\/#kiosk/);
   assert.match(h,/>14</);
-  assert.match(h,/1 × Cafe latte/);
-  assert.match(h,/Cafe latte · ₹200/);
-  assert.match(c,/\.hero-title\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(140px,244px\)/);
+  assert.match(h,/id="show-guest"[\s\S]*guest\.webp/);
+  assert.match(h,/id="show-showcase"[\s\S]*showcase\.webp/);
+  assert.match(c,/\.hero-title\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(110px,150px\)/);
   assert.match(c,/\.cafe-photo\{[^}]*object-fit:contain/);
-  assert.match(c,/\.cafe-photo\{[^}]*max-width:244px/);
+  assert.match(c,/\.cafe-photo\{[^}]*max-width:150px/);
   assert.doesNotMatch(c,/\.cafe-photo\{[^}]*grid-row:2/);
   assert.doesNotMatch(c,/\.cafe-photo\{[^}]*clamp\(260px/);
   assert.match(c,/Cafe days, made brighter\./);
@@ -167,11 +182,23 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-art\.has-video:before\{content:none\}/);
   assert.match(c,/\.hero-art\.has-video:after\{content:none\}/);
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*grid-row:1/);
-  assert.match(c,/\.hero-art\.has-video \.show\{[^}]*min-height:min\(72vh,640px\)/);
+  assert.match(c,/\.hero-art\.has-video \.show\{[^}]*min-height:min\(88svh,860px\)/);
   assert.doesNotMatch(c,/\.hero-art\.has-video \.show-cafe\{/);
   assert.match(c,/\.hero-art\.has-video \.token-num\{[^}]*#F0B13D/);
   assert.match(c,/#2EE6C7/);
   assert.doesNotMatch(c,/\.hero-art\.has-video:after\{display:none\}/);
   assert.doesNotMatch(c,/height:58%|height:42%|width:72%/);
   assert.doesNotMatch(h,/dual display|two monitors|PC \+/i);
+});
+test('demo and support pass-surface heroes pair IN/MY counter shots',()=>{
+  for(const page of ['src/demo.html','src/support.html']){
+    const html=read(page);
+    assert.match(html,/pass-surface[\s\S]*?data-for-country="IN" src="\/assets\/img\/counter\.webp"/);
+    assert.match(html,/pass-surface[\s\S]*?data-for-country="MY" src="\/assets\/img\/counter-my\.webp"/);
+  }
+});
+test('starter guide tape list keeps dark ink on the cream card in every theme',()=>{
+  const c=read('src/assets/site.css');
+  assert.match(c,/\.tape-list\{[^}]*color:#173C32/);
+  assert.doesNotMatch(c,/\.tape-list\{[^}]*color:var\(--ink-2\)/);
 });

@@ -23,8 +23,8 @@ test("ads layout preview stays off the live home page and keeps forest-mint copy
   assert.doesNotMatch(js, /innerHTML|outerHTML|insertAdjacentHTML|document\.write/);
   assert.doesNotMatch(page + css + js + home, /ZUS|AEON/i);
   assert.doesNotMatch(home, /ads-layouts/);
-  assert.match(home, /option-b-drink\.jpg/);
-  assert.doesNotMatch(home, /option-a-counter|option-c-kitchen|option-d-guest|option-e-pastry|option-f-till/);
+  assert.doesNotMatch(home, /option-a-counter|option-b-drink|option-c-kitchen|option-d-guest|option-e-pastry|option-f-till/);
+  assert.match(home, /showcase\.webp/);
 });
 
 test("six picture options exist and the preview can switch them without locking live home", () => {

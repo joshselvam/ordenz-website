@@ -6,12 +6,18 @@ const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
 test('a preview-only deployment does not promise role-specific live screens',()=>{
  const config=JSON.parse(read('site.config.json'));
  const demo=read('dist/demo/index.html');
+ const home=read('dist/index.html');
+ const features=read('dist/features/index.html');
  if(!config.demoUrl){
   assert.match(demo,/Cafe POS demo \(browser preview\)/);
   assert.match(demo,/limited preview uses simulated payments/);
   assert.doesNotMatch(demo,/id="roles"|id="tour"|A real cafe, open right now/);
   assert.match(demo,/Book a full walkthrough/);
   assert.match(demo,/>Try demo</);
+  assert.match(home,/>Try the demo</);
+  assert.doesNotMatch(home,/>Try the live demo</);
+  assert.match(features,/>Try the demo</);
+  assert.doesNotMatch(features,/>Try the live demo</);
  }
 });
 
@@ -70,7 +76,14 @@ test('features, guide and demo use shipped tab names from the app',()=>{
  {
   const mktBlocks = [...features.matchAll(/eyebrow">Marketing · paid extras[\s\S]*?<\/ul>/g)].map(m => m[0]);
   assert.equal(mktBlocks.length, 2, 'Marketing · paid extras IN and MY blocks');
-  for (const mkt of mktBlocks) assert.doesNotMatch(mkt, /Import menu items from a photo|Swiggy\/Zomato screenshot|Grab\/foodpanda screenshot/);
+  for (const mkt of mktBlocks) {
+    assert.doesNotMatch(mkt, /Import menu items from a photo|Swiggy\/Zomato screenshot|Grab\/foodpanda screenshot/);
+    assert.match(mkt, /<b>Ads<\/b> yearly add-on/);
+  }
+  assert.match(features, /Paid extras — loyalty, campaigns, Ads, delivery pack/);
+  assert.match(help, /Paid extras \(loyalty, campaigns, Ads, delivery pack/);
+  assert.match(read('src/index.html'), /Cafe ads need the yearly Ads add-on/);
+  assert.doesNotMatch(read('src/index.html'), /Ads on the left if the owner turns them on in House/);
   const voiceIn = features.match(/<div class="feature" data-s="devices" data-for-country="IN"><div><div class="eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
   const voiceMy = features.match(/<div class="feature" data-s="devices" data-for-country="MY"><div><div class="eyebrow">Voice &amp; AI ordering · Pro[\s\S]*?<\/ul>/);
   assert.ok(voiceIn, 'Voice & AI ordering · Pro IN block');
