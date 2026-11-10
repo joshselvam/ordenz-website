@@ -14,12 +14,17 @@
   if (video && sound) {
     var figure = video.closest(".promo");
     var compactTour = !!(figure && figure.classList.contains("promo--tour"));
-    var youtube = figure && /^[A-Za-z0-9_-]{11}$/.test(figure.dataset.youtube || "") ? figure.dataset.youtube : "";
+    // YouTube tour per country: data-youtube is Malaysia (and the default), data-youtube-in is India
+    var ytOf = function (id) { return /^[A-Za-z0-9_-]{11}$/.test(id || "") ? id : ""; };
+    var youtubeMy = figure ? ytOf(figure.dataset.youtube) : "";
+    var youtubeIn = figure ? ytOf(figure.dataset.youtubeIn) : "";
+    var youtube = youtubeMy;
     var withSound = false;
     var tryPlay = function () { var p = video.play(); if (p && p.catch) p.catch(function () {}); };
     // India and Malaysia each get their own narrated tour: same names, "-in" for India.
     var pickTour = function (code) {
       var suffix = code === "IN" ? "-in" : "";
+      youtube = code === "IN" ? (youtubeIn || youtubeMy) : youtubeMy;
       var swap = function (url) { return url ? url.replace(/ordenz-one-day-v3(?:-in)?\./, "ordenz-one-day-v3" + suffix + ".") : url; };
       var changed = false;
       Array.prototype.forEach.call(video.querySelectorAll("source"), function (s) {
