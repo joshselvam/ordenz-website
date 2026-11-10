@@ -46,7 +46,8 @@ Edit `site.config.json` and push. Empty settings are left out of the pages.
 | `appUrl` | Your OrdenZ server address, for "Sign in" and the in-app delete page |
 | `demoUrl` | The live demo server, for example `https://demo.ordenz.com`. Empty: the demo page sends visitors to the browser preview |
 | `siteUrl` | The site's address (used for search engines and link previews) |
-| `legalName` | Who is responsible in the privacy policy. Change to the registered company name when you have it |
+| `legalName`, `legalRegistration`, `legalIncorporated` | Malaysia platform company on privacy, terms and footer |
+| `legalNameIn`, `legalNoteIn` | India approved company name (incorporation in progress; no CIN) |
 
 ## Preview on your computer
 
@@ -66,7 +67,7 @@ npx serve dist        # or open dist/index.html
 4. Click **Deploy**. The site goes live at `https://www.<your-subdomain>.workers.dev`. Put that address in `siteUrl` in `site.config.json`.
 5. Every push to `main` rebuilds the site automatically.
 
-GitHub Actions runs the same checks. The **Website** workflow is test, then build, then deploy. A pull request stops before deploy. A push to `main` or `master` publishes the built `dist` folder with Wrangler when `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are set under Settings → Secrets and variables → Actions. Until both secrets exist, Cloudflare's Git connection remains the publisher.
+GitHub Actions runs the same checks: the **Website** workflow is test, then build. Branch protection on `main` requires them (and Cloudflare's "Workers Builds: www") before a pull request can merge. Actions never deploys; Cloudflare's Git connection is the only publisher: `main` goes to www.ordenz.com, every other branch gets a preview version (non-production deploy command `npx wrangler versions upload`), and the `qa` branch goes to qa.ordenz.com through a second Worker, `www-qa` (deploy command `npx wrangler deploy --env qa`, kept behind Cloudflare Access).
 
 `wrangler.jsonc` tells Cloudflare to serve the built `dist` folder as a static site, with `_headers`, `_redirects` and the 404 page.
 
@@ -98,7 +99,7 @@ Built since: table QR ordering, guest waitlist QR with wait minutes, split and m
 
 ## Regional price update — 28 October 2026
 
-India Starter: ₹987 monthly / ₹9,870 yearly; Pro: ₹1,987 monthly / ₹19,870 yearly. Malaysia Starter: RM97 monthly / RM970 yearly; Pro: RM197 monthly / RM1,970 yearly. Annual prices equal ten monthly payments. The app's regional defaults match this configuration. Approved public catalog versions override website defaults; client-specific bundles and existing agreements are excluded from the public feed. India provider plan amounts must match before checkout; Malaysia remains invoiced. Deployment is required for these source changes to appear online.
+India Starter: ₹987 monthly / ₹9,870 yearly; Pro: ₹1,987 monthly / ₹19,870 yearly. Malaysia Starter: RM987 monthly / RM9,870 yearly; Pro: RM1,987 monthly / RM19,870 yearly (list prices excl. SST; SST added on the subscription invoice). Annual prices equal ten monthly payments. The app's regional defaults match this configuration. Approved public catalog versions override website defaults; client-specific bundles and existing agreements are excluded from the public feed. India provider plan amounts must match before checkout; Malaysia remains invoiced. Deployment is required for these source changes to appear online.
 
 ## Responsive verification — 30 October 2026
 

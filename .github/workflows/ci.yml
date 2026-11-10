@@ -1,17 +1,18 @@
 # OrdenZ website. Thin entry: triggers and stage order only.
 #
-#   test  →  build  →  deploy
+#   test  →  build
 #
-# Pull requests run test and build, then stop.
-# Deploy runs only on a push to main or master. A cancelled run does not deploy.
-# Cloudflare's own Git connection can still publish until CLOUDFLARE_API_TOKEN
-# and CLOUDFLARE_ACCOUNT_ID are set (Settings → Secrets and variables → Actions).
+# These are the checks branch protection requires before a pull request can merge.
+# Publishing is done by Cloudflare's Git connection only (Workers & Pages → www):
+#   main → www.ordenz.com (npx wrangler deploy), qa → qa.ordenz.com (www-qa Worker),
+#   other branches → a preview version (npx wrangler versions upload).
+# Actions never deploys, so a merge can't publish twice.
 name: Website
 
 on:
   pull_request:
   push:
-    branches: [main, master, develop, 'release/**']
+    branches: [main, master, qa, develop, 'release/**']
   workflow_dispatch:
 
 permissions:
@@ -42,10 +43,4 @@ jobs:
           echo "===================================================="
           echo "Test:  ${{ needs.test.result }}"
           echo "Build: ${{ needs.build.result }}"
-          echo "Deploy runs next only for a push to main or master."
-
-  deploy:
-    needs: [build, summary]
-    if: ${{ !cancelled() && needs.build.result == 'success' && needs.summary.result == 'success' && github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') }}
-    uses: ./.github/workflows/website-deploy.yml
-    secrets: inherit
+          echo "Cloudflare publishes main (www) and qa (qa.ordenz.com); Actions does not deploy."

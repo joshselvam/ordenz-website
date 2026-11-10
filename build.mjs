@@ -79,7 +79,8 @@ function siteJsonLd() {
     "@type": "Organization",
     "name": cfg.company,
     "url": cfg.siteUrl,
-    "founder": { "@type": "Person", "name": cfg.legalName },
+    "legalName": cfg.legalName,
+    ...(cfg.legalRegistration ? { "identifier": cfg.legalRegistration } : {}),
     "areaServed": ["IN", "MY"],
   };
   if (cfg.email) org.email = cfg.email;

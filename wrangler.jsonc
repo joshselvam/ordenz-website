@@ -1,9 +1,15 @@
 // Cloudflare Workers settings for the OrdenZ website (static files only, no server code).
 // Build command: node build.mjs   Deploy command: npx wrangler deploy
+// QA site (qa.ordenz.com): a second Worker "www-qa" built from the qa branch with
+//   Deploy command: npx wrangler deploy --env qa
+// Keep qa.ordenz.com behind Cloudflare Access so only the team sees it and search engines don't index it.
 // "name" must match the project name you type in the Cloudflare dashboard.
 {
   "name": "www",
   "compatibility_date": "2025-09-01",
+  // Wrangler builds the site itself before deploy, versions upload and preview, so every Cloudflare build
+  // (production, PR previews, qa) works even when the dashboard's build command is empty.
+  "build": { "command": "node build.mjs" },
   // The site answers on www.ordenz.com; ordenz.com is attached too and a Redirect Rule sends it to www.
   // Wrangler creates these custom domains (DNS record + certificate) on deploy; the zone must be in this account.
   "routes": [
@@ -15,5 +21,20 @@
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
+  },
+  // Cloudflare's PR previews (npx wrangler preview or npx wrangler versions upload) need this block; empty is enough.
+  "previews": {},
+  "env": {
+    "qa": {
+      "name": "www-qa",
+      "routes": [
+        { "pattern": "qa.ordenz.com", "custom_domain": true }
+      ],
+      "assets": {
+        "directory": "./dist",
+        "html_handling": "auto-trailing-slash",
+        "not_found_handling": "404-page"
+      }
+    }
   }
 }
