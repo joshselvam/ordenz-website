@@ -27,4 +27,18 @@ test('live price refresh updates amounts only and does not rebuild feature lists
   assert.doesNotMatch(js,/replaceChildren/);
   assert.doesNotMatch(js,/deviceLimit\+' devices'/);
   assert.doesNotMatch(js,/Object\.values\(plan\.modules\)/);
+  // API refresh must not wipe SSR MyInvois / India disclaimer copy in .pricing-notice.
+  assert.match(js,/Keep SSR legal\/onboarding copy/);
+  assert.match(js,/notice\.textContent=data\.notes/);
+  assert.doesNotMatch(js,/\.pricing-notice'\)\.textContent=data\.notes\+'/);
+  // MY excl. SST status line must survive live price refresh.
+  assert.match(js,/Keep MY SSR tax status/);
+  assert.match(js,/excl\\\.\?\\s\*SST/);
+});
+test('pricing.js parses after notice-preservation refactor',async()=>{
+  const {spawnSync}=await import('node:child_process');
+  const {fileURLToPath}=await import('node:url');
+  const file=fileURLToPath(new URL('../src/assets/pricing.js',import.meta.url));
+  const r=spawnSync(process.execPath,['--check',file],{encoding:'utf8'});
+  assert.equal(r.status,0,r.stderr||r.stdout);
 });

@@ -26,6 +26,14 @@ if(root?.dataset.pricingApi){fetch(root.dataset.pricingApi,{credentials:'omit',s
  // (BILLING_PLANS wording). Do not rebuild the list from catalog modules — that replaced
  // "Unlimited devices" with "999 devices" and dropped Pro marketing lines.
  let updated=0;for(const tier of ['starter','pro']){const plan=info.plans?.[tier],card=panel.querySelector('[data-plan="'+tier+'"]');if(!card)continue;if(!plan){card.querySelector('[data-price-monthly]').textContent='On request';card.querySelector('[data-price-annual]').textContent='On request';continue}if(!Number.isSafeInteger(plan.monthlyMinor)||!Number.isSafeInteger(plan.annualMinor))continue;const money=n=>new Intl.NumberFormat(region==='MY'?'en-MY':'en-IN',{style:'currency',currency:info.currency}).format(n/100);card.querySelector('h3').textContent=plan.label;card.querySelector('[data-price-monthly]').textContent=money(plan.monthlyMinor);card.querySelector('[data-price-annual]').textContent=money(plan.annualMinor);updated++}
- {panel.querySelector('.pricing-status').textContent=updated===2?'Current approved public list prices':updated?'Published prices shown where available; other plans need a quote.':'Contact OrdenZ for a current quote';panel.querySelector('.pricing-notice').textContent=data.notes+' '+(region==='MY'?'MYR list prices exclude SST; SST is added on the subscription invoice. Settled by agreed invoice or DuitNow when connected.':'')}
+ {const status=panel.querySelector('.pricing-status');
+  const refresh=updated===2?'Current approved public list prices':updated?'Published prices shown where available; other plans need a quote.':'Contact OrdenZ for a current quote';
+  // Keep MY SSR tax status (excl. SST) — do not wipe it with generic refresh copy.
+  if(status){const prior=status.textContent.trim();status.textContent=(region==='MY'&&/excl\.?\s*SST/i.test(prior)&&!/excl\.?\s*SST/i.test(refresh))?(prior+' · '+refresh):refresh;}
+  // Keep SSR legal/onboarding copy in .pricing-notice (MyInvois, DuitNow, India disclaimers).
+  // Only prepend API notes when present; never replace the whole paragraph.
+  const notice=panel.querySelector('.pricing-notice');
+  if(notice&&data.notes){const body=notice.textContent.trim();if(!body.startsWith(data.notes))notice.textContent=data.notes+(body?' '+body:'');}
+ }
  }
 }).catch(()=>{for(const panel of root.querySelectorAll('.pricing-panel')){const status=panel.querySelector('.pricing-status');if(status)status.textContent+=' · verify the current quote with OrdenZ'}})}
