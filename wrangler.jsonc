@@ -1,5 +1,8 @@
 // Cloudflare Workers settings for the OrdenZ website (static files only, no server code).
 // Build command: node build.mjs   Deploy command: npx wrangler deploy
+// QA site (qa.ordenz.com): a second Worker "www-qa" built from the qa branch with
+//   Deploy command: npx wrangler deploy --env qa
+// Keep qa.ordenz.com behind Cloudflare Access so only the team sees it and search engines don't index it.
 // "name" must match the project name you type in the Cloudflare dashboard.
 {
   "name": "www",
@@ -15,5 +18,18 @@
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
+  },
+  "env": {
+    "qa": {
+      "name": "www-qa",
+      "routes": [
+        { "pattern": "qa.ordenz.com", "custom_domain": true }
+      ],
+      "assets": {
+        "directory": "./dist",
+        "html_handling": "auto-trailing-slash",
+        "not_found_handling": "404-page"
+      }
+    }
   }
 }
