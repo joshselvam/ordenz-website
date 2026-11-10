@@ -17,6 +17,19 @@
     var youtube = figure && /^[A-Za-z0-9_-]{11}$/.test(figure.dataset.youtube || "") ? figure.dataset.youtube : "";
     var withSound = false;
     var tryPlay = function () { var p = video.play(); if (p && p.catch) p.catch(function () {}); };
+    // India and Malaysia each get their own narrated tour: same names, "-in" for India.
+    var pickTour = function (code) {
+      var suffix = code === "IN" ? "-in" : "";
+      var swap = function (url) { return url ? url.replace(/ordenz-one-day-v3(?:-in)?\./, "ordenz-one-day-v3" + suffix + ".") : url; };
+      var changed = false;
+      Array.prototype.forEach.call(video.querySelectorAll("source"), function (s) {
+        var next = swap(s.getAttribute("src")); if (next !== s.getAttribute("src")) { s.setAttribute("src", next); changed = true; }
+      });
+      var poster = swap(video.getAttribute("poster")); if (poster !== video.getAttribute("poster")) video.setAttribute("poster", poster);
+      if (changed) { var playing = !video.paused; video.load(); if (playing) tryPlay(); }
+    };
+    if (window.OrdenzCountry) pickTour(window.OrdenzCountry.get());
+    document.addEventListener("ordenz-country", function (e) { pickTour(e.detail && e.detail.country); });
 
     // Compact pass-strip tour: do not autoplay a hidden MP4 beside the live iframe.
     if (!compactTour && !reduce && !saveData) {
@@ -31,7 +44,7 @@
         }, { threshold: 0.25 }).observe(video);
       }
     } else if (reduce || saveData || compactTour) {
-      sound.lastChild.textContent = " Play the 50-second tour";
+      sound.lastChild.textContent = " Play the 45-second tour";
     }
 
     var dialog = document.getElementById("promoDialog");
