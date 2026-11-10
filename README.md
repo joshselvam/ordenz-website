@@ -99,7 +99,7 @@ Built since: table QR ordering, guest waitlist QR with wait minutes, split and m
 
 ## Regional price update — 28 October 2026
 
-India Starter: ₹987 monthly / ₹9,870 yearly; Pro: ₹1,987 monthly / ₹19,870 yearly. Malaysia Starter: RM987 monthly / RM9,870 yearly; Pro: RM1,987 monthly / RM19,870 yearly. Annual prices equal ten monthly payments. The app's regional defaults match this configuration. Approved public catalog versions override website defaults; client-specific bundles and existing agreements are excluded from the public feed. India provider plan amounts must match before checkout; Malaysia remains invoiced. Deployment is required for these source changes to appear online.
+India Starter: ₹987 monthly / ₹9,870 yearly; Pro: ₹1,987 monthly / ₹19,870 yearly. Malaysia Starter: RM97 monthly / RM970 yearly; Pro: RM197 monthly / RM1,970 yearly. Annual prices equal ten monthly payments. The app's regional defaults match this configuration. Approved public catalog versions override website defaults; client-specific bundles and existing agreements are excluded from the public feed. India provider plan amounts must match before checkout; Malaysia remains invoiced. Deployment is required for these source changes to appear online.
 
 ## Responsive verification — 30 October 2026
 

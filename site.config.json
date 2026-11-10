@@ -38,13 +38,13 @@
       "status": "List prices · confirm your invoice",
       "monthly": {
         "free": 0,
-        "starter": 987,
-        "pro": 1987
+        "starter": 97,
+        "pro": 197
       },
       "annual": {
         "free": 0,
-        "starter": 9870,
-        "pro": 19870
+        "starter": 970,
+        "pro": 1970
       }
     }
   },
