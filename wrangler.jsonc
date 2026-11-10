@@ -19,6 +19,8 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
+  // Cloudflare's PR previews (npx wrangler preview or npx wrangler versions upload) need this block; empty is enough.
+  "previews": {},
   "env": {
     "qa": {
       "name": "www-qa",
