@@ -26,7 +26,7 @@ not implement those screens. Do not treat preview as app.ordenz.com.
 Assert (marketing), matching the app:
   - Trial: first real bill or day 15; Free 1 paired device / 50 orders
   - Slim Starter is counter ops: UPI/offline, basic stock, receipts, kiosk, kitchen, token, up to 5 devices
-  - Not on slim Starter: Recipes, Intake, Bulk, TableTurn / table QR, pickup, day book/Tally, browser management, voice/AI (Pro, or Request)
+  - Not on Starter: Recipes, Intake, Bulk, TableTurn / table QR, pickup, day book/Tally, voice/AI (Pro, or Request). Starter includes owner management from any browser.
   - table QR and bulk are not sold add-ons; they are on Pro
   - Paid add-ons are yearly only (Add yearly, / year). Plan subscribe in the Android app opens the browser
   - Guest is a second paired tablet, or a desktop Guest window. No Counter overlay on phone or tablet
