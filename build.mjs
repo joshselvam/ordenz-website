@@ -21,7 +21,15 @@ cfg.siteUrl = String(process.env.SITE_URL || cfg.siteUrl || "").replace(/\/+$/, 
 if (!cfg.siteUrl) throw new Error("Set siteUrl in site.config.json (or SITE_URL) so canonical links, the sitemap and share images use the real address");
 const pricingApp=new URL(cfg.appUrl||'https://app.ordenz.com');if(pricingApp.protocol!=='https:'&&!(pricingApp.protocol==='http:'&&['localhost','127.0.0.1'].includes(pricingApp.hostname)))throw Error('Use an HTTPS app URL for public pricing');cfg.appOrigin=pricingApp.origin;
 cfg.emailOrWhatsapp = cfg.email || cfg.whatsapp;
-cfg.waLink = cfg.whatsapp ? `https://wa.me/${String(cfg.whatsapp).replace(/\D/g, "")}` : "";
+// WhatsApp per country: "whatsapp" is India (and the default), "whatsappMY" is Malaysia. country.js swaps the
+// number in every wa.me link when the visitor picks Malaysia; without JavaScript the India number shows.
+const waDigits = (v) => String(v || "").replace(/\D/g, "");
+for (const [key, v] of [["whatsapp", cfg.whatsapp], ["whatsappMY", cfg.whatsappMY]]) {
+  if (v && !/^\d{8,15}$/.test(waDigits(v))) throw new Error(`${key} must be a phone number with the country code (8-15 digits)`);
+}
+cfg.waNumberIN = waDigits(cfg.whatsapp);
+cfg.waNumberMY = waDigits(cfg.whatsappMY) || cfg.waNumberIN;
+cfg.waLink = cfg.whatsapp ? `https://wa.me/${cfg.waNumberIN}` : "";
 cfg.contactLink = cfg.email ? `mailto:${cfg.email}` : cfg.waLink || "#contact";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
