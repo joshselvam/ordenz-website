@@ -20,5 +20,5 @@ test('home hero shows the Play badge beside the OrdenZ wordmark',()=>{
  const html=fs.readFileSync(new URL('../dist/index.html',import.meta.url),'utf8');
  assert.match(html,/<div class="brand-row"><p class="brand-mark" aria-hidden="true">OrdenZ<\/p><a class="play-badge" href="https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.joshselvam\.ordernest" rel="noopener" aria-label="Get OrdenZ on Google Play">/);
  const css=fs.readFileSync(new URL('../src/assets/site.css',import.meta.url),'utf8');
- assert.match(css,/\.play-badge\{display:inline-flex/);
+ assert.match(css,/\.play-badge\{display:inline-flex[^}]*background:#0E5B49;color:#FFF6E8/,'brand green with beige text');
 });
