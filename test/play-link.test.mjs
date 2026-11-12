@@ -6,7 +6,7 @@ test('home and features pages show Get it on Google Play once built',()=>{
  execFileSync(process.execPath,['build.mjs'],{cwd:new URL('..',import.meta.url),stdio:'pipe'});
  for(const page of ['../dist/index.html','../dist/features/index.html']){
   const html=fs.readFileSync(new URL(page,import.meta.url),'utf8');
-  assert.ok(html.includes(`href="${PLAY}" rel="noopener"`),page);
+  assert.ok(html.includes(`href="${PLAY}" rel="noopener">Get it on Google Play</a>`),page);
   assert.doesNotMatch(html,/\{\{#?\/?(if|unless) playUrl/,page);
  }
 });
