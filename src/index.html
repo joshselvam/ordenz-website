@@ -25,7 +25,7 @@
 </aside>
 <div class="wrap">
   <div class="hero-copy">
-    <p class="brand-mark" aria-hidden="true">OrdenZ</p>
+    <div class="brand-row"><p class="brand-mark" aria-hidden="true">OrdenZ</p>{{#if playUrl}}<a class="play-badge" href="{{playUrl}}" rel="noopener" aria-label="Get OrdenZ on Google Play"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3.8v16.4L19.5 12z" fill="currentColor"/></svg><span><small>GET IT ON</small>Google Play</span></a>{{/if}}</div>
     <div class="eyebrow">Cafe in motion · POS · kiosk · kitchen</div>
     <div class="hero-title">
       <h1>Good orders.<br>Great days.</h1>
@@ -34,7 +34,6 @@
     <p class="lead" style="margin-top:12px">OrdenZ runs the counter, guest tablet, kitchen and token screen. Cheap Android tablets.</p>
     <div class="actions">
       <a class="btn btn-cta" href="/demo/">{{#if demoUrl}}Try the live demo{{/if}}{{#unless demoUrl}}Try the demo{{/unless}}</a>
-      {{#if playUrl}}<a class="btn btn-ghost" href="{{playUrl}}" rel="noopener">Get it on Google Play</a>{{/if}}
       {{#if appUrl}}<a class="btn btn-ghost" href="{{appUrl}}">Sign in</a>{{/if}}
       {{#if whatsapp}}<a class="btn btn-ghost" href="{{waLink}}?text=Hi%20OrdenZ%2C%20I%27d%20like%20a%20walk-through%20for%20my%20cafe." rel="noopener">Book a full walkthrough</a>{{/if}}
       <a class="btn btn-ghost" href="/features/">See every feature</a>

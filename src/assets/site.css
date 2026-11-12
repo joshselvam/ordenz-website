@@ -814,3 +814,13 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .nav a,.nav .theme-btn,.nav .country-sel,.nav .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:flex-start;width:100%;margin-left:0}
   .nav a{padding:10px 12px;font-size:16px}
 }
+
+/* Google Play badge beside the OrdenZ wordmark (home hero) */
+.brand-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;margin:0 0 8px}
+.cim-hero .brand-row .brand-mark{margin:0}
+.play-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px;border-radius:10px;background:#000;color:#fff;border:1px solid #A6A6A6;text-decoration:none;line-height:1.05;white-space:nowrap}
+.play-badge svg{width:20px;height:20px;flex:none}
+.play-badge span{font:600 15px/1.1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.play-badge small{display:block;font-size:9px;font-weight:500;letter-spacing:.08em}
+.play-badge:hover{border-color:#fff}
+.play-badge:focus-visible{outline:3px solid var(--saffron);outline-offset:3px}
