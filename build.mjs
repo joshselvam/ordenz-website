@@ -154,6 +154,7 @@ if (fs.existsSync(demo)) {
 const warn = [];
 if (!cfg.email && !cfg.whatsapp) warn.push("No contact email or WhatsApp number yet: set \"email\" or \"whatsapp\" in site.config.json");
 if (!cfg.demoUrl) warn.push("No live demo server yet: set \"demoUrl\" in site.config.json (the demo page shows the browser preview until then)");
+if (cfg.playUrl && !/^https:\/\/play\.google\.com\/store\/apps\/details\?id=[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+$/.test(cfg.playUrl)) throw new Error("playUrl must be a Google Play app link: https://play.google.com/store/apps/details?id=<package>");
 if (!cfg.playUrl) warn.push("No Google Play link yet: the OrdenZ page shows \"Book a demo\" instead of the Play badge");
 warn.forEach((w) => console.warn("note:", w));
 console.log(`Built ${pages.length} pages into dist`);
