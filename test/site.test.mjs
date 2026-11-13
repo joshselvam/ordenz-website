@@ -2,9 +2,9 @@
 // captions burned in, a small file, no third-party frames unless a YouTube ID is set.
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 const read=p=>fs.readFileSync(new URL('../'+p,import.meta.url),'utf8');
-test('the hero video is muted, inline and has a poster, so it can start silently on phones',()=>{const h=read('src/index.html');assert.match(h,/<video id="promoVideo" muted loop playsinline preload="metadata" poster="\/assets\/video\/ordenz-one-day-v3\.jpg"/);assert.match(h,/src="\/assets\/video\/ordenz-one-day-v3\.mp4" type="video\/mp4"/);assert.match(h,/src="\/assets\/video\/ordenz-one-day-v3\.webm" type="video\/webm"/);assert.match(h,/id="promoSound"/);assert.match(h,/Watch with sound/);assert.ok(!/<video[^>]*\bautoplay\b/.test(h),'autoplay is switched on by motion.js only when motion and data saving allow it');});
+test('the hero video is muted, inline and has a poster, so it can start silently on phones',()=>{const h=read('src/index.html');assert.match(h,/<video id="promoVideo" muted loop playsinline preload="none" poster="\/assets\/video\/ordenz-one-day-v3\.jpg"/);assert.match(h,/src="\/assets\/video\/ordenz-one-day-v3\.mp4" type="video\/mp4"/);assert.match(h,/src="\/assets\/video\/ordenz-one-day-v3\.webm" type="video\/webm"/);assert.match(h,/id="promoSound"/);assert.match(h,/Watch with sound/);assert.ok(!/<video[^>]*\bautoplay\b/.test(h),'autoplay is switched on by motion.js only when motion and data saving allow it');});
 test('video files exist and stay small enough for the host',()=>{for(const f of ['ordenz-one-day-v3.mp4','ordenz-one-day-v3.webm','ordenz-one-day-v3.jpg']){const s=fs.statSync(new URL('../src/assets/video/'+f,import.meta.url)).size;assert.ok(s>1000&&s<20*1024*1024,f)}});
-test('the security policy allows our own video and only the privacy-enhanced YouTube player',()=>{const c=read('src/_headers');assert.match(c,/media-src 'self'/);assert.match(c,/frame-src https:\/\/www\.youtube-nocookie\.com;/);assert.ok(!/frame-src[^;]*\*/.test(c));assert.match(c,/Permissions-Policy: camera=\(\), geolocation=\(\), microphone=\(\)/);assert.doesNotMatch(c,/geolocation=\(self\)/);assert.match(c,/Strict-Transport-Security: max-age=31536000; includeSubDomains/);assert.match(c,/Cross-Origin-Opener-Policy: same-origin/);assert.match(c,/Cross-Origin-Resource-Policy: same-origin/);});
+test('the security policy allows our own video, same-origin demo embed, and only the privacy-enhanced YouTube player',()=>{const c=read('src/_headers');assert.match(c,/media-src 'self'/);assert.match(c,/frame-src 'self' https:\/\/www\.youtube-nocookie\.com;/);assert.ok(!/frame-src[^;]*\*/.test(c));assert.match(c,/Permissions-Policy: camera=\(\), geolocation=\(\), microphone=\(\)/);assert.doesNotMatch(c,/geolocation=\(self\)/);assert.match(c,/Strict-Transport-Security: max-age=31536000; includeSubDomains/);assert.match(c,/Cross-Origin-Opener-Policy: same-origin/);assert.match(c,/Cross-Origin-Resource-Policy: same-origin/);});
 test('motion respects reduced-motion and data saving, and only accepts a real YouTube ID',()=>{const j=read('src/assets/motion.js');assert.match(j,/prefers-reduced-motion: reduce/);assert.match(j,/saveData/);assert.match(j,/\^\[A-Za-z0-9_-\]\{11\}\$/);assert.match(j,/youtube-nocookie\.com\/embed\//);assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|document\.write/.test(j),'builds no HTML from strings');});
 test('features and FAQs match current DuitNow, delivery and referral behaviour',()=>{
   const f=read('src/features.html');
@@ -26,7 +26,8 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.match(home,/records that app commission/);
   assert.doesNotMatch(home,/keeps the commission/);
   assert.match(home,/signed webhook/);
-  assert.match(home,/Book a walk-through/);
+  assert.match(home,/Book a full walkthrough/);
+  assert.doesNotMatch(home,/Open the browser preview/);
   assert.match(home,/ways to sign in/);
   assert.match(home,/All-rounder/);
   assert.match(home,/Speak the token is on in House/);
@@ -39,10 +40,54 @@ test('features and FAQs match current DuitNow, delivery and referral behaviour',
   assert.match(f,/About N min/);
   assert.match(f,/kiosk hides card payment when no terminal is saved/);
   assert.match(f,/Included GST is labelled as included/);
+  assert.match(f,/data-for-country="IN"[\s\S]*kiosk-menu\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*kiosk-malay\.webp/);
+  assert.match(f,/data-for-country="IN"[\s\S]*kiosk-hindi\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*receipt-my\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*voice-my\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*table-qr-accept-my\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*table-qr-phone-my\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*pickup-page-my\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*pickup-slots-my\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*counter-my\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*guest-my\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*card-dock-my\.png/);
+  assert.match(f,/data-for-country="MY"[\s\S]*paperless-send-bill\.png/);
+  assert.match(f,/Malaysia Fiuu card/);
+  assert.match(f,/Cash, card and DuitNow QR/);
+  assert.doesNotMatch(f,/option-d-guest\.jpg/);
+  assert.match(f,/data-for-country="IN"[^>]*>[\s\S]*?eyebrow">UPI payments/);
+  assert.match(f,/data-for-country="MY"[^>]*>[\s\S]*?eyebrow">DuitNow QR/);
+  assert.doesNotMatch(f,/India: English, Tamil, Hindi, Malayalam, Telugu and Kannada\. Malaysia: English, Malay/);
+  assert.doesNotMatch(f,/1 point per ₹1 in India, or 1 point per RM1 in Malaysia/);
+  assert.doesNotMatch(f,/Swiggy and Zomato in India; GrabFood, foodpanda/);
+  assert.match(f,/data-for-country="IN"[\s\S]*delivery-payouts\.webp/);
+  assert.match(f,/data-for-country="MY"[\s\S]*delivery-payouts-my\.webp/);
+  const help=read('src/help.html');
+  assert.match(help,/data-for-country="IN"[\s\S]*delivery-payouts\.webp/);
+  assert.match(help,/data-for-country="MY"[\s\S]*delivery-payouts-my\.webp/);
+  assert.match(help,/data-for-country="MY"[\s\S]*table-qr-accept-my\.webp/);
+  assert.match(help,/data-for-country="MY"[\s\S]*pickup-page-my\.webp/);
+  assert.match(help,/data-for-country="MY"[\s\S]*pickup-slots-my\.webp/);
+});
+test('features and help image src files exist on disk (no broken Features shots)',()=>{
+  const pages=['src/features.html','src/help.html'];
+  const refs=new Set();
+  for(const page of pages){
+    const html=read(page);
+    for(const m of html.matchAll(/\bsrc="(\/assets\/img\/[^"]+)"/g)) refs.add(m[1]);
+  }
+  assert.ok(refs.size>20,'expected many feature images');
+  for(const src of refs){
+    const rel='src'+src; // /assets/... → src/assets/...
+    assert.ok(fs.existsSync(new URL('../'+rel,import.meta.url)),'missing '+src);
+  }
 });
 test('header country switcher is a native select with no geo lookup',()=>{
   const header=read('src/_partials/header.html');
   const js=read('src/assets/country.js');
+  assert.match(header,/id="navToggle"/);
+  assert.match(header,/id="siteNav"/);
   assert.match(header,/id="countrySel"/);
   assert.match(header,/aria-label="Country"/);
   assert.match(js,/ordenz-country/);
@@ -67,10 +112,24 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/not an overlay on the till/);
   assert.match(h,/It does not speak/);
   assert.match(h,/one language/);
+  assert.match(h,/Cafe ads need the yearly Ads add-on \(Plan → Add yearly\)/);
+  assert.match(h,/House can turn Feature ads on Guest/);
+  assert.match(h,/id="show-guest"[\s\S]*data-for-country="IN" src="\/assets\/img\/guest\.webp"/);
+  assert.match(h,/id="show-guest"[\s\S]*data-for-country="MY" src="\/assets\/img\/guest-my\.webp"/);
+  assert.match(h,/id="show-showcase"[\s\S]*data-for-country="MY" src="\/assets\/img\/showcase-my\.webp"/);
+  assert.match(h,/id="show-token"[\s\S]*data-for-country="MY" src="\/assets\/img\/token-screen-my\.webp"/);
+  assert.match(h,/In preparation/);
+  assert.match(h,/Ready for collection/);
   assert.match(h,/food photo/);
+  assert.doesNotMatch(h,/swap after pick|shot-swap|option-a-counter|option-b-drink|option-c-kitchen|option-d-guest/);
   assert.match(h,/Speak the token is on in House/);
   assert.match(h,/It does not read the dish names/);
   assert.ok(!/<video[^>]*\bautoplay\b/.test(h),'the video tag has no autoplay attribute');
+  assert.doesNotMatch(h,/id="showStart"|Just click to start|Start the preview|id="showRestart"/);
+  assert.match(h,/id="promoSound"/);
+  assert.doesNotMatch(h,/id="promoSound" hidden/);
+  assert.doesNotMatch(h,/Open the browser preview/);
+  assert.match(h,/Book a full walkthrough/);
   const j=read('src/assets/motion.js');
   assert.match(j,/heroShow/);
   assert.match(j,/pointerenter/);
@@ -81,22 +140,65 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(j,/addEventListener\("ended"/);
   assert.match(j,/classList\.remove\("playing"\)/);
   assert.doesNotMatch(j,/querySelector\("\.promo\.playing"\)/);
+  assert.match(j,/video\.autoplay = true/);
+  assert.doesNotMatch(j,/startShow|showStart|Just click to start|is-started|restartShow/);
+  assert.doesNotMatch(j,/window\.open/);
   const c=read('src/assets/site.css');
+  assert.match(h,/class="hero-title"/);
   assert.match(h,/class="cafe-photo"/);
+  assert.match(h,/src="\/assets\/img\/cafe-storefront\.webp"/);
+  assert.match(h,/width="244"/);
+  assert.match(h,/height="194"/);
+  assert.match(h,/class="hero-title"[\s\S]*Good orders\.[\s\S]*cafe-storefront\.webp[\s\S]*id="heroShow"/);
   assert.match(h,/class="cafe-photo"[\s\S]*id="heroShow"/);
+  assert.doesNotMatch(h,/hero-art has-video"[\s\S]*class="cafe-photo"/);
+  assert.doesNotMatch(h,/class="show-cafe"/);
+  assert.doesNotMatch(h,/id="heroShow"[\s\S]*botanical-cafe\.webp/);
   assert.match(h,/show-slide is-on" id="show-counter"/);
+  assert.match(h,/class="hero-preview hero-preview--paper"/);
+  assert.match(h,/class="pass-strip pass-strip--paper"/);
+  assert.match(h,/class="hero-preview-frame"[^>]*src="\/demo\/preview\/#kiosk"/);
+  assert.match(h,/loading="eager"/);
+  assert.match(h,/class="hero-preview-open" href="\/demo\/preview\/#kiosk"/);
+  assert.match(h,/Open the preview full screen/);
+  assert.match(h,/Kiosk is open by default/);
+  assert.match(h,/class="promo promo--tour"/);
+  assert.match(c,/\.hero-art\.has-video \.hero-preview-frame\{/);
+  assert.match(c,/\.hero-preview--paper\{/);
+  assert.match(c,/\.hero--pass \.pass-surface\{/);
+  assert.match(j,/compactTour/);
+  assert.match(j,/data-preview-src/);
+  assert.match(j,/\/demo\/preview\/#kiosk/);
   assert.match(h,/>14</);
-  assert.match(c,/\.cafe-photo\{[^}]*\/assets\/img\/botanical-cafe\.webp[^}]*contain/);
-  assert.match(c,/\.cafe-photo\{[^}]*grid-row:2/);
-  assert.match(c,/\.cafe-photo\{[^}]*clamp\(260px/);
+  assert.match(h,/id="show-guest"[\s\S]*guest\.webp/);
+  assert.match(h,/id="show-showcase"[\s\S]*showcase\.webp/);
+  assert.match(c,/\.hero-title\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(110px,150px\)/);
+  assert.match(c,/\.cafe-photo\{[^}]*object-fit:contain/);
+  assert.match(c,/\.cafe-photo\{[^}]*max-width:150px/);
+  assert.doesNotMatch(c,/\.cafe-photo\{[^}]*grid-row:2/);
+  assert.doesNotMatch(c,/\.cafe-photo\{[^}]*clamp\(260px/);
   assert.match(c,/Cafe days, made brighter\./);
   assert.match(c,/\.hero-art\.has-video\{[^}]*display:grid/);
   assert.match(c,/\.hero-art\.has-video:before\{content:none\}/);
   assert.match(c,/\.hero-art\.has-video:after\{content:none\}/);
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*grid-row:1/);
+  assert.match(c,/\.hero-art\.has-video \.show\{[^}]*min-height:min\(88svh,860px\)/);
+  assert.doesNotMatch(c,/\.hero-art\.has-video \.show-cafe\{/);
   assert.match(c,/\.hero-art\.has-video \.token-num\{[^}]*#F0B13D/);
   assert.match(c,/#2EE6C7/);
   assert.doesNotMatch(c,/\.hero-art\.has-video:after\{display:none\}/);
   assert.doesNotMatch(c,/height:58%|height:42%|width:72%/);
   assert.doesNotMatch(h,/dual display|two monitors|PC \+/i);
+});
+test('demo and support pass-surface heroes pair IN/MY counter shots',()=>{
+  for(const page of ['src/demo.html','src/support.html']){
+    const html=read(page);
+    assert.match(html,/pass-surface[\s\S]*?data-for-country="IN" src="\/assets\/img\/counter\.webp"/);
+    assert.match(html,/pass-surface[\s\S]*?data-for-country="MY" src="\/assets\/img\/counter-my\.webp"/);
+  }
+});
+test('starter guide tape list keeps dark ink on the cream card in every theme',()=>{
+  const c=read('src/assets/site.css');
+  assert.match(c,/\.tape-list\{[^}]*color:#173C32/);
+  assert.doesNotMatch(c,/\.tape-list\{[^}]*color:var\(--ink-2\)/);
 });

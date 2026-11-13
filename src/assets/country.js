@@ -49,6 +49,17 @@
     setMeta('meta[property="og:description"]', HOME_DESC[code]);
   }
 
+  // WhatsApp links use the number for the chosen country (India and Malaysia have their own support line)
+  function syncWhatsApp(code) {
+    var root = document.documentElement;
+    var num = code === "MY" ? root.getAttribute("data-wa-my") : root.getAttribute("data-wa-in");
+    if (!/^\d{8,15}$/.test(num || "")) return;
+    var links = document.querySelectorAll('a[href^="https://wa.me/"]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute("href", links[i].getAttribute("href").replace(/^https:\/\/wa\.me\/\d+/, "https://wa.me/" + num));
+    }
+  }
+
   function apply(code, persist) {
     if (code !== "IN" && code !== "MY") return;
     document.documentElement.dataset.country = code;
@@ -58,6 +69,7 @@
     var sel = document.getElementById("countrySel");
     if (sel && sel.value !== code) sel.value = code;
     applyHomeSeo(code);
+    syncWhatsApp(code);
     document.dispatchEvent(new CustomEvent(EVENT, { detail: { country: code } }));
   }
 
@@ -66,6 +78,7 @@
   apply(country(), !readSaved());
 
   function wire() {
+    syncWhatsApp(country());
     var sel = document.getElementById("countrySel");
     if (!sel) return;
     sel.value = country();

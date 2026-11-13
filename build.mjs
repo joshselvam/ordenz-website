@@ -21,7 +21,15 @@ cfg.siteUrl = String(process.env.SITE_URL || cfg.siteUrl || "").replace(/\/+$/, 
 if (!cfg.siteUrl) throw new Error("Set siteUrl in site.config.json (or SITE_URL) so canonical links, the sitemap and share images use the real address");
 const pricingApp=new URL(cfg.appUrl||'https://app.ordenz.com');if(pricingApp.protocol!=='https:'&&!(pricingApp.protocol==='http:'&&['localhost','127.0.0.1'].includes(pricingApp.hostname)))throw Error('Use an HTTPS app URL for public pricing');cfg.appOrigin=pricingApp.origin;
 cfg.emailOrWhatsapp = cfg.email || cfg.whatsapp;
-cfg.waLink = cfg.whatsapp ? `https://wa.me/${String(cfg.whatsapp).replace(/\D/g, "")}` : "";
+// WhatsApp per country: "whatsapp" is India (and the default), "whatsappMY" is Malaysia. country.js swaps the
+// number in every wa.me link when the visitor picks Malaysia; without JavaScript the India number shows.
+const waDigits = (v) => String(v || "").replace(/\D/g, "");
+for (const [key, v] of [["whatsapp", cfg.whatsapp], ["whatsappMY", cfg.whatsappMY]]) {
+  if (v && !/^\d{8,15}$/.test(waDigits(v))) throw new Error(`${key} must be a phone number with the country code (8-15 digits)`);
+}
+cfg.waNumberIN = waDigits(cfg.whatsapp);
+cfg.waNumberMY = waDigits(cfg.whatsappMY) || cfg.waNumberIN;
+cfg.waLink = cfg.whatsapp ? `https://wa.me/${cfg.waNumberIN}` : "";
 cfg.contactLink = cfg.email ? `mailto:${cfg.email}` : cfg.waLink || "#contact";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -79,7 +87,8 @@ function siteJsonLd() {
     "@type": "Organization",
     "name": cfg.company,
     "url": cfg.siteUrl,
-    "founder": { "@type": "Person", "name": cfg.legalName },
+    "legalName": cfg.legalName,
+    ...(cfg.legalRegistration ? { "identifier": cfg.legalRegistration } : {}),
     "areaServed": ["IN", "MY"],
   };
   if (cfg.email) org.email = cfg.email;
@@ -153,6 +162,7 @@ if (fs.existsSync(demo)) {
 const warn = [];
 if (!cfg.email && !cfg.whatsapp) warn.push("No contact email or WhatsApp number yet: set \"email\" or \"whatsapp\" in site.config.json");
 if (!cfg.demoUrl) warn.push("No live demo server yet: set \"demoUrl\" in site.config.json (the demo page shows the browser preview until then)");
+if (cfg.playUrl && !/^https:\/\/play\.google\.com\/store\/apps\/details\?id=[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+$/.test(cfg.playUrl)) throw new Error("playUrl must be a Google Play app link: https://play.google.com/store/apps/details?id=<package>");
 if (!cfg.playUrl) warn.push("No Google Play link yet: the OrdenZ page shows \"Book a demo\" instead of the Play badge");
 warn.forEach((w) => console.warn("note:", w));
 console.log(`Built ${pages.length} pages into dist`);

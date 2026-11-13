@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Cafe in motion · 5 front pages · OrdenZ</title>
+<meta name="description" content="Preview five Cafe in motion front-page compositions. The live home page uses Shift reel until you pick another.">
+<meta name="theme-color" content="#FFFCF5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B110F" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem("ordenz.theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}try{var c=localStorage.getItem("ordenz-country");if(c!=="IN"&&c!=="MY"){var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";c=(tz==="Asia/Kolkata"||tz==="Asia/Calcutta")?"IN":"MY"}document.documentElement.dataset.country=c}catch(e){document.documentElement.dataset.country="MY"}</script>
+<link rel="icon" type="image/png" href="/assets/brand/favicon-32.png?v=crest-1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hind+Madurai:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/cafe-in-motion.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="cim-switch">
+  <div class="wrap">
+    <p class="cim-kicker">Preview only · noindex. Live home uses <b>1 · Shift reel</b>.</p>
+    <nav class="cim-nav" aria-label="Cafe in motion front pages">
+      <a href="?v=1" data-pick="1">1 <span>Shift reel</span></a>
+      <a href="?v=2" data-pick="2">2 <span>Morning rush</span></a>
+      <a href="?v=3" data-pick="3">3 <span>Counter stage</span></a>
+      <a href="?v=4" data-pick="4">4 <span>Token moment</span></a>
+      <a href="?v=5" data-pick="5">5 <span>Guest latte</span></a>
+    </nav>
+    <p class="cim-now" id="cimNow">1. Shift reel. Brand and headline left. Large motion stage right — the live homepage direction.</p>
+  </div>
+</header>
+<main id="main">
+<section class="cim-pick" data-cafe-in-motion data-v="1">
+  <div class="cim-board wrap">
+    <div class="cim-copy">
+      <p class="brand-mark">OrdenZ</p>
+      <div class="eyebrow">Cafe in motion</div>
+      <h1>Good orders.<br>Great days.</h1>
+      <p class="lead">Counter, Guest, kitchen and token — one shift on cheap Android tablets.</p>
+      <div class="actions">
+        <a class="btn btn-cta" href="/demo/">Try the live demo</a>
+        <a class="btn btn-ghost cim-ghost" href="/features/">See every feature</a>
+      </div>
+      <p class="cim-plan">Set up free. 30 days of Pro. Then Free, unless you pick Starter or Pro. Add-ons are yearly.</p>
+    </div>
+
+    <div class="cim-stage" aria-label="Front page stage">
+      <img class="cim-photo" src="/assets/img/cafe-storefront.webp" width="488" height="388" alt="Cafe storefront with plants and a latte">
+
+      <div class="cim-show" id="heroShow" aria-roledescription="carousel" aria-label="Four screens in the cafe">
+        <div class="show-stage">
+          <div class="show-slide is-on" id="show-counter" aria-label="Counter tablet, 1 of 4">
+            <figure class="promo">
+              <video id="promoVideo" muted loop playsinline preload="metadata" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 50-second tour with captions">
+                <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
+                <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
+              </video>
+              <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch with sound</button>
+              <span class="promo-badge">50-second tour</span>
+            </figure>
+          </div>
+          <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
+            <div class="scene" data-s="floor">
+              <img class="live-shot" data-for-country="IN" src="/assets/img/guest.webp" width="1440" height="810" alt="Guest tablet with Filter coffee Friday ad and the open bill total">
+              <img class="live-shot" data-for-country="MY" src="/assets/img/guest-my.webp" width="1440" height="810" alt="Guest tablet with Showcase and the open bill, service and tax">
+            </div>
+          </div>
+          <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
+            <div class="scene" data-s="market">
+              <img class="live-shot" data-for-country="IN" src="/assets/img/showcase.webp" width="1440" height="810" alt="Showcase: Masala Chai, Butter Croissant and Chocolate Brownie with prices">
+              <img class="live-shot" data-for-country="MY" src="/assets/img/showcase-my.webp" width="1440" height="810" alt="Showcase: Teh tarik Tuesday with About 2 min">
+            </div>
+          </div>
+          <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
+            <div class="scene" data-s="kitchen">
+              <img class="live-shot" data-for-country="IN" src="/assets/img/token-screen.webp" width="1440" height="810" alt="Token screen: In preparation and Ready for collection in English, Tamil and Hindi">
+              <img class="live-shot" data-for-country="MY" src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="Token screen in English, Malay and Chinese">
+            </div>
+          </div>
+        </div>
+        <div class="show-nav">
+          <button class="show-dot" type="button" data-scene="counter" aria-controls="show-counter" aria-current="true">Counter</button>
+          <button class="show-dot" type="button" data-scene="guest" aria-controls="show-guest">Guest</button>
+          <button class="show-dot" type="button" data-scene="showcase" aria-controls="show-showcase">Showcase</button>
+          <button class="show-dot" type="button" data-scene="token" aria-controls="show-token">Token</button>
+        </div>
+      </div>
+
+      <div class="cim-token-hero" aria-hidden="true">
+        <p class="cim-token-big">14</p>
+        <p class="cim-token-ready">Ready for collection</p>
+      </div>
+
+      <div class="cim-guest-hero" aria-hidden="true">
+        <img data-for-country="IN" src="/assets/img/guest.webp" width="1440" height="810" alt="Guest tablet with Filter coffee Friday ad and the open bill total">
+        <img data-for-country="MY" src="/assets/img/guest-my.webp" width="1440" height="810" alt="Guest tablet with Showcase and the open bill, service and tax">
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<script src="/assets/theme.js"></script>
+<script src="/assets/country.js"></script>
+<script src="/assets/motion.js"></script>
+<script src="/assets/cafe-in-motion.js"></script>
+</body>
+</html>

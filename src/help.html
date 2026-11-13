@@ -1,11 +1,17 @@
 {{> head}}
 {{> header}}
 <main id="main" class="guide">
-<section class="hero" style="padding:0"><div class="wrap" style="grid-template-columns:1fr;padding:56px 0 48px">
-  <div><span class="eyebrow">OrdenZ guide</span>
-    <h1 style="margin-top:12px;font-size:clamp(36px,5vw,56px)">How to run your cafe on OrdenZ</h1>
-    <p class="lead" style="margin-top:14px">Short, step-by-step help with pictures. Pick your role to see what matters to you, or search.</p>
-    <p style="margin-top:12px;color:var(--ink-2);font-size:15px"><b>Board</b> = menu &amp; prices. <b>Token screen</b> = TV order numbers. Do not mix them up.</p></div>
+<section class="hero hero--pass" style="padding:0"><div class="wrap">
+  <div class="hero-copy">
+    <span class="eyebrow">OrdenZ guide</span>
+    <h1>How to run your cafe on OrdenZ</h1>
+    <p class="lead">Short, step-by-step help with pictures. Pick your role to see what matters to you, or search.</p>
+    <p class="note"><b>Board</b> = menu &amp; prices. <b>Token screen</b> = TV order numbers. Do not mix them up.</p>
+  </div>
+  <div class="pass-surface" aria-hidden="true">
+    <img src="/assets/img/owner.webp" width="1440" height="810" alt="" loading="eager">
+    <p class="pass-surface-cap">Owner checklist · search the topics below</p>
+  </div>
 </div></section>
 
 <section style="padding:32px 0 88px"><div class="wrap g-layout">
@@ -23,7 +29,7 @@
       <button type="button" data-role="cleaning" aria-pressed="false">Cleaning</button>
     </div>
     <nav class="g-toc" aria-label="Topics" id="gtoc"></nav>
-    <a class="btn btn-cta" style="margin-top:14px;width:100%" href="/demo/">Try it in the live demo</a>
+    <a class="btn btn-cta" style="margin-top:14px;width:100%" href="/demo/">{{#if demoUrl}}Try it in the live demo{{/if}}{{#unless demoUrl}}Try it in the demo{{/unless}}</a>
   </aside>
 
   <div class="g-body" id="gbody">
@@ -35,13 +41,14 @@
       <li>You land on <b>Owner</b>. Follow <b>Get your cafe ready</b> in order: menu, address and phone on bills, then optional pay, team, printer and kiosk. Take the first real bill last.</li>
       <li>Under the checklist, <b>Ask how to set this up</b> points at the next unfinished step. Tap a question or <b>Ask the assistant</b>. It will not refund, send a campaign, or delete anything.</li>
       <li>Add your menu: type items, use the sample menu, upload the <b>Excel template</b>, or (Pro) photograph a printed menu and check the items before saving.</li>
-      <li>In <b>House</b> fill in the details that print on bills: India GSTIN, FSSAI and UPI; Malaysia SSM, SST if registered, and Fiuu for automatic DuitNow QR.</li></ol>
+      <li data-for-country="IN">In <b>House</b> fill in the details that print on bills: GSTIN, FSSAI and UPI.</li>
+      <li data-for-country="MY">In <b>House</b> fill in the details that print on bills: SSM, SST if registered, and Fiuu for automatic DuitNow QR.</li></ol>
     <figure><img src="/assets/img/setup.webp" width="1440" height="810" alt="Get your cafe ready and Ask how to set this up on the owner screen" loading="lazy"><figcaption>A new cafe: the first-day checklist, then the setup coach for this cafe.</figcaption></figure>
     <figure><img src="/assets/img/help-menu-empty.webp" width="1440" height="810" alt="Empty Board and House on a new cafe" loading="lazy"><figcaption>No items yet. Add one, import Excel, or use the sample menu from the checklist.</figcaption></figure>
     <p>The longer walkthrough with pictures (sign-in through first bill, then tables, Tally, e-invoice, outlets and attendance) is the <a href="https://joshselvam.github.io/ordenz-app/docs/GETTING-STARTED.html">getting started guide</a>.</p>
     <h3>Practice first, with sample customers</h3>
     <p>Want to see OrdenZ busy before your first real customer, or train your team? Ask us to turn on <b>practice mode</b> for your cafe. A sample customer then orders about every 5 minutes for a week, on the kiosk or at the counter, so you can watch the kitchen screen, token TV, stock and reports working. If your menu is still empty, we add a sample menu so there's something to order.</p>
-    <ul><li>Practice bills print <b>PRACTICE BILL · NOT A TAX INVOICE</b>. They don't count for GST or the Free plan's daily limit, and they don't start your trial.</li>
+    <ul><li>Practice bills print <b>PRACTICE BILL · NOT A TAX INVOICE</b>. They don't count for tax or the Free plan's daily limit, and they don't start your trial.</li>
       <li>Orders you place yourself in practice mode are practice bills too, so try anything.</li>
       <li>When you're ready, tap <b>Start selling for real</b> on the yellow banner. Every practice bill is removed, the stock goes back, and your first real bill is bill 1. You can remove the sample menu at the same time.</li></ul>
     <figure><img src="/assets/img/practice.webp" width="1440" height="810" alt="The kitchen screen in practice mode, with sample orders and the practice banner" loading="lazy"><figcaption>Practice mode: sample orders arriving on the kitchen screen.</figcaption></figure>
@@ -50,22 +57,29 @@
   <article class="g-topic" id="country" data-roles="owner manager" data-keys="country india malaysia currency rm ringgit rupee gst sst service charge rounding ssm duitnow tax nett">
     <h2>2. Your country: India or Malaysia</h2>
     <ol><li>When you sign up, choose your <b>Country</b>. It sets your currency, taxes, bill format, phone numbers and kiosk languages. You can change it in <b>House</b> until your first real bill.</li>
-      <li><b>India</b>: add your <b>GSTIN</b>, <b>FSSAI</b> number and <b>GST rate</b>. Menu prices include GST. Included GST is labelled as included and is not added on top of the total. Bills show CGST and SGST once your GSTIN is saved; until then they are plain bills with no GST.</li>
-      <li><b>Malaysia</b>: add your <b>SSM registration no.</b>. If you're SST-registered, add your <b>SST registration no.</b> and set <b>SST rate</b> to 6%; otherwise leave it at 0%.</li>
-      <li>Choose <b>Menu prices</b>: <i>Service charge + SST on top</i> (set the <b>Service charge %</b>, usually 10%), or <i>Nett (all included)</i>. Tap <b>Save settings</b>.</li>
-      <li>Cash bills are rounded to the nearest 5 sen. Card and DuitNow QR stay the exact amount. Service charge is dine-in only. SST shows only after you save an SST number.</li></ol>
-    <figure><img src="/assets/img/country-settings.webp" width="1440" height="810" alt="House for Malaysia: SSM and SST numbers, SST rate, menu prices and service charge" loading="lazy"></figure>
-    <figure><img src="/assets/img/receipt-my.webp" width="1440" height="810" alt="A Malaysian bill with service charge, SST and rounding" loading="lazy"></figure>
+      <li data-for-country="IN"><b>India</b>: add your <b>GSTIN</b>, <b>FSSAI</b> number and <b>GST rate</b>. Menu prices include GST. Included GST is labelled as included and is not added on top of the total. Bills show CGST and SGST once your GSTIN is saved; until then they are plain bills with no GST.</li>
+      <li data-for-country="MY"><b>Malaysia</b>: add your <b>SSM registration no.</b>. If you're SST-registered, add your <b>SST registration no.</b> and set <b>SST rate</b> to 6%; otherwise leave it at 0%.</li>
+      <li data-for-country="MY">Choose <b>Menu prices</b>: <i>Service charge + SST on top</i> (set the <b>Service charge %</b>, usually 10%), or <i>Nett (all included)</i>. Tap <b>Save settings</b>.</li>
+      <li data-for-country="MY">Cash bills are rounded to the nearest 5 sen. Card and DuitNow QR stay the exact amount. Service charge is dine-in only. SST shows only after you save an SST number.</li></ol>
+    <figure data-for-country="IN"><img src="/assets/img/receipt.webp" width="1440" height="810" alt="An India bill with CGST and SGST once a GSTIN is saved" loading="lazy"></figure>
+    <figure data-for-country="MY"><img src="/assets/img/country-settings.webp" width="1440" height="810" alt="House for Malaysia: SSM and SST numbers, SST rate, menu prices and service charge" loading="lazy"></figure>
+    <figure data-for-country="MY"><img src="/assets/img/receipt-my.webp" width="1440" height="810" alt="A Malaysian bill with service charge, SST and rounding" loading="lazy"></figure>
   </article>
 
   <article class="g-topic" id="devices" data-roles="owner manager" data-keys="tablet kiosk tv token screen pair device key printer bluetooth guest showcase photo sold out wait about">
     <h2>3. Connect the kiosk, TV and printer</h2>
     <p>Free is enough for one counter in a browser. Free includes 1 paired device. A paired kiosk, token TV, Showcase or Guest uses that slot. Kiosk plus a TV needs Starter (5 devices). A kitchen phone with a staff PIN is not a paired device. A TV does count.</p>
     <ol><li>In <b>House</b>, find <b>Kiosk and TV devices</b>. It shows your cafe code and device key.</li>
-      <li>On the kiosk tablet or TV, open OrdenZ, choose <b>Kiosk / TV</b>, enter the cafe code and device key, and pick <b>Self-order kiosk</b>, <b>Token screen (TV)</b>, <b>Showcase</b> or <b>Guest</b>. Showcase and Guest are not their own tabs. Showcase shows one language. Edit slides on <b>Offers</b>: Today's special, Menu list, or Offer slide. A dish with a stored photo shows that photo. A dish with no photo shows the name and price. A sold-out dish is not the photo on a menu slide. Hidden or sold-out dishes drop off a special or a menu list. Promo codes stay at checkout. Kitchen wait shows as "About N min" once there are enough real ready tickets. It is an estimate, not the clock.</li>
+      <li>On the kiosk tablet or TV, open OrdenZ, choose <b>Kiosk / TV</b>, enter the cafe code and device key, and pick <b>Self-order kiosk</b>, <b>Token screen (TV)</b>, <b>Showcase</b> or <b>Guest</b>. Showcase and Guest are not their own tabs. Showcase shows one language. Edit slides on <b>Offers → Ads &amp; Showcase</b>. Menu-list slides work without the Ads add-on. Today's special and Offer slides, the Token left strip, and Guest featured ads need the yearly <b>Ads</b> add-on (Plan → Add yearly), then House can turn Feature ads on Guest. A dish with a stored photo shows that photo. A dish with no photo shows the name and price. A sold-out dish is not the photo on a menu slide. Hidden or sold-out dishes drop off a special or a menu list. Promo codes stay at checkout. Kitchen wait shows as "About N min" once there are enough real ready tickets. It is an estimate, not the clock.</li>
       <li>The token screen, Showcase and Guest follow the app's light or dark theme.</li>
       <li>Tap <b>Printer</b> on the counter or kitchen screen to connect a Bluetooth, Wi-Fi or USB thermal printer (58 mm or 80 mm). Thermal slips use the English name. Picture receipts in Hindi, Telugu, Malayalam and Kannada are not available yet. Stock, supplier, offer and kitchen documents print as compact 58/80 mm slips when a thermal printer is set. Failed jobs wait in the print queue.</li>
       <li>If a tablet is lost, tap <b>Create a new device key</b>. A new key signs every kiosk and TV out. Pair them again with the new key. Staff PIN sign-in then works only on devices you sign in to again as the owner.</li></ol>
+    <figure data-for-country="IN"><img src="/assets/img/guest.webp" width="1440" height="810" alt="Guest tablet with Filter coffee Friday ad and the open bill total" loading="lazy"><figcaption>Guest: the bill faces the guest. One language. It does not speak.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/guest-my.webp" width="1440" height="810" alt="Guest tablet with Showcase and the open bill, service and tax" loading="lazy"><figcaption>Guest in Malaysia: Showcase beside the bill, with service and tax.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/showcase.webp" width="1440" height="810" alt="Showcase: Masala Chai, Butter Croissant and Chocolate Brownie with prices" loading="lazy"><figcaption>Showcase: one language, and a food photo when stored.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="Showcase: Teh tarik Tuesday with About 2 min" loading="lazy"><figcaption>Showcase in Malaysia. Specials need the yearly Ads add-on.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/token-screen.webp" width="1440" height="810" alt="Token screen: In preparation and Ready for collection in English, Tamil and Hindi" loading="lazy"><figcaption>Token screen: In preparation, then Ready for collection.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="Token screen in English, Malay and Chinese" loading="lazy"><figcaption>Token screen in Malaysia: English, Malay and Chinese.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="team" data-roles="owner manager" data-keys="staff team role pin manager captain chef cashier store cleaning switch off access">
@@ -90,15 +104,18 @@
     <h2>5. How customers order on the kiosk</h2>
     <ol><li>The customer taps the screen, chooses their language at the top, and picks <b>Eat here</b> or <b>Take away</b>.</li>
       <li>They tap items, choose size, milk and extras, or tap <b>Order by voice</b> (Pro) and just say it. "Would you like to add?" suggests a matching item.</li>
-      <li><b>India:</b> they pay with a UPI QR for the exact amount (Razorpay or PhonePe), or with cash or card at the counter. <b>Malaysia:</b> they pay with a DuitNow QR. Payment confirms itself. Nobody has to check a phone.</li>
+      <li data-for-country="IN">They pay with a UPI QR for the exact amount (Razorpay or PhonePe), or with cash or card at the counter. Payment confirms itself. Nobody has to check a phone.</li>
+      <li data-for-country="MY">They pay with a DuitNow QR for the exact amount, or with cash or card at the counter. Payment confirms itself. Nobody has to check a phone.</li>
       <li>They see the token number. If the bill is paid, they also see a QR to the English bill on their phone. The caption above the QR follows the languages you ticked in House, for example "Scan for your bill". Cash at the counter stays token only until the bill is paid. If the kiosk shows a wait, it says "About N min" once there are enough real ready tickets. That is an estimate, not the clock.</li>
       <li>The TV always chimes when the order is ready. It says the number only when <b>Speak the token</b> is on in House. That switch is off until you turn it on. It does not speak on every cafe by default. When it is on, it uses the device's natural voice and says the token number only, in the language that guest chose on the kiosk (or the cafe's first language), such as "Token 1 4". It does not read the dish names. Guest does not speak.</li></ol>
-    <figure><img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="The kiosk menu in Hindi" loading="lazy"><figcaption>The kiosk in Hindi. Item names show in English wherever you haven't added the translation yet.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="The kiosk menu in Hindi" loading="lazy"><figcaption>The kiosk in Hindi. Item names show in English wherever you haven't added the translation yet.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="The kiosk menu in Bahasa Melayu" loading="lazy"><figcaption>The kiosk in Bahasa Melayu. Item names show in English wherever you haven't added the translation yet.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="languages" data-roles="owner manager" data-keys="language hindi telugu malayalam kannada tamil malay melayu chinese translate names kiosk">
     <h2>6. Kiosk languages and menu names</h2>
-    <p>Tick the languages guests can use, up to six. English stays available as the fallback. Tamil is not required. India: English, Tamil, Hindi, Malayalam, Telugu and Kannada. Malaysia: English, Malay, Chinese, Tamil and Hindi. A new Malaysia cafe starts with those five until you untick them. On Pro, voice without AI understands English, Tamil and Tanglish. With AI in India it also understands Hindi, Telugu, Malayalam and Kannada. With AI in Malaysia it understands English, Malay, Manglish, Chinese, Tamil or Hindi.</p>
+    <p data-for-country="IN">Tick the languages guests can use, up to six. English stays available as the fallback. Tamil is not required. English, Tamil, Hindi, Malayalam, Telugu and Kannada. On Pro, voice without AI understands English, Tamil and Tanglish. With AI it also understands Hindi, Telugu, Malayalam and Kannada.</p>
+    <p data-for-country="MY">Tick the languages guests can use, up to six. English stays available as the fallback. Tamil is not required. English, Malay, Chinese, Tamil and Hindi. A new cafe starts with those five until you untick them. On Pro, voice without AI understands English, Tamil and Tanglish. With AI it understands English, Malay, Manglish, Chinese, Tamil or Hindi.</p>
     <ol><li>In <b>House → Kiosk languages</b>, tick up to six languages and tap <b>Save languages</b>.</li>
       <li>Under <b>Menu names in</b>, choose a language and type each item's name, then tap <b>Save names</b>.</li>
       <li>On Pro, tap <b>Fill in the missing names with AI</b> to translate everything at once. Ask someone who reads the language to check them.</li></ol>
@@ -108,29 +125,38 @@
   <article class="g-topic" id="counter" data-roles="cashier captain owner manager" data-keys="counter billing bill gst receipt discount cash card upi print collect guest loyalty qr card terminal card dock included gst">
     <h2>7. Bill at the counter</h2>
     <ol><li>Open <b>Counter</b>, tap the items (choose options if asked), and add a discount if you need one.</li>
-      <li><b>India:</b> choose cash, UPI or card. The receipt prints straight away, with CGST and SGST once your GSTIN is saved. Included GST is labelled as included and is not added on top of the total. <b>Malaysia:</b> choose cash, card or DuitNow QR. Cash rounds to 5 sen. Card and DuitNow stay the exact amount. Service charge is dine-in only. SST shows only after you save an SST number.</li>
-      <li>In <b>House → Card dock</b>, the owner chooses India card terminal or Malaysia Fiuu card, enters the terminal reference, and saves. Turn off clears it. The screen does not ask for a card number. The payment keys stay on the server. A saved usable terminal lets the kiosk offer card. The kiosk hides card payment when no terminal is saved. The counter can still record a card payment already taken.</li>
+      <li data-for-country="IN">Choose cash, UPI or card. The receipt prints straight away, with CGST and SGST once your GSTIN is saved. Included GST is labelled as included and is not added on top of the total.</li>
+      <li data-for-country="MY">Choose cash, card or DuitNow QR. Cash rounds to 5 sen. Card and DuitNow stay the exact amount. Service charge is dine-in only. SST shows only after you save an SST number.</li>
+      <li data-for-country="IN">In <b>House → Card dock</b>, the owner chooses an India card terminal, enters the terminal reference, and saves. Turn off clears it. The screen does not ask for a card number. The payment keys stay on the server. A saved usable terminal lets the kiosk offer card. The kiosk hides card payment when no terminal is saved. The counter can still record a card payment already taken.</li>
+      <li data-for-country="MY">In <b>House → Card dock</b>, the owner chooses Malaysia Fiuu card, enters the terminal reference, and saves. Turn off clears it. The screen does not ask for a card number. The payment keys stay on the server. A saved usable terminal lets the kiosk offer card. The kiosk hides card payment when no terminal is saved. The counter can still record a card payment already taken.</li>
       <li>A successful card sale is a normal payment. It is not copied again into the error log.</li>
       <li>If the terminal times out, the network drops, or the terminal rejects the charge, OrdenZ records one redacted attempt: cafe, bill, amount, provider, and the reason (timeout, network, or rejected). No card number. The bill stays open and the stock stays taken. The counter says "The card terminal has not answered yet." A later matching approval can still pay that bill. Platform admin shows the attempt under Errors &amp; payments.</li>
       <li>Cancel does not close a bill while the terminal is still waiting.</li>
-      <li><b>Guest</b> is a second tablet signed in as Guest. It shows the public bill: names, quantity and total, in one language. It does not speak. After payment it can show that bill's loyalty QR for the guest to scan on their own phone. A paid token stays until the order is served or cancelled. The cashier tablet stays on the counter. On a desktop browser (PC), Counter can still open a Guest window. A phone or tablet does not open customer-bill.html.</li>
+      <li><b>Guest</b> is a second tablet signed in as Guest. It shows the public bill: names, quantity and total, in one language. It does not speak. Cafe ads need the yearly <b>Ads</b> add-on on Plan; then House can turn Feature ads on Guest and Offers holds the pictures. The bill stays on the right. After payment it can show that bill's loyalty QR for the guest to scan on their own phone. A paid token stays until the order is served or cancelled. The cashier tablet stays on the counter. On a desktop browser (PC), Counter can still open a Guest window. A phone or tablet does not open customer-bill.html.</li>
       <li>For kiosk orders paid in cash, find the token and collect the money here.</li>
-      <li>Owner or manager: a customer complains after the food went out? Tap <b>Refund</b> on Counter. The dialog is <b>Cash back on a served bill</b>. Pick today's cash bill and write the reason. Give the cash from the drawer. The bill leaves sales; stock isn't put back. Bills still in the kitchen are cancelled on <b>Kitchen</b> instead. UPI and card refunds go through the payment provider.</li>
+      <li data-for-country="IN">Owner or manager: a customer complains after the food went out? Tap <b>Refund</b> on Counter. The dialog is <b>Cash back on a served bill</b>. Pick today's cash bill and write the reason. Give the cash from the drawer. The bill leaves sales; stock isn't put back. Bills still in the kitchen are cancelled on <b>Kitchen</b> instead. UPI and card refunds go through the payment provider.</li>
+      <li data-for-country="MY">Owner or manager: a customer complains after the food went out? Tap <b>Refund</b> on Counter. The dialog is <b>Cash back on a served bill</b>. Pick today's cash bill and write the reason. Give the cash from the drawer. The bill leaves sales; stock isn't put back. Bills still in the kitchen are cancelled on <b>Kitchen</b> instead. Card refunds go through the payment provider. DuitNow refunds go through the Fiuu merchant portal.</li>
       <li>On a phone or a short landscape window, tap the cart to open the bill drawer so the menu stays full-width. Favourites start hidden on phone and tablet; tap to show them.</li>
       <li><b>Send bill</b> on WhatsApp works even when paperless is off. Paperless itself is optional — see <a href="#paperless">paperless bills</a>.</li>
-      <li>Internet down? Offline counter billing is on Starter and Pro. Free needs a connection. Bills are saved on the tablet with an offline number and sync by themselves, never twice. UPI, DuitNow and table QR always need internet.</li></ol>
-    <figure><img src="/assets/img/counter.webp" width="1440" height="810" alt="The counter billing screen" loading="lazy"></figure>
+      <li data-for-country="IN">Internet down? Offline counter billing is on Starter and Pro. Free needs a connection. Bills are saved on the tablet with an offline number and sync by themselves, never twice. UPI and table QR always need internet.</li>
+      <li data-for-country="MY">Internet down? Offline counter billing is on Starter and Pro. Free needs a connection. Bills are saved on the tablet with an offline number and sync by themselves, never twice. DuitNow and table QR always need internet.</li></ol>
+    <figure data-for-country="IN"><img src="/assets/img/counter.webp" width="1440" height="810" alt="The counter billing screen" loading="lazy"></figure>
+    <figure data-for-country="MY"><img src="/assets/img/counter-my.webp" width="1440" height="810" alt="The Malaysia counter billing screen" loading="lazy"></figure>
   </article>
 
   <article class="g-topic" id="split" data-roles="cashier captain owner manager" data-keys="split bill equal by amount by items part cash part upi change open bill tab pay later table">
     <h2>8. Split bills and open tabs</h2>
-    <p>A table wants to pay separately, or half by UPI and half in cash? No calculator needed.</p>
+    <p data-for-country="IN">A table wants to pay separately, or half by UPI and half in cash? No calculator needed.</p>
+    <p data-for-country="MY">A table wants to pay separately, or half by DuitNow and half in cash? No calculator needed.</p>
     <ol><li>Add the items, then tap <b>Split / more</b>.</li>
       <li>Choose <b>Equal split</b> and the number of people, <b>By amount</b>, or <b>By items</b> to give each person what they had.</li>
-      <li>Pick how each share is paid: cash, UPI or card. For cash, type what was handed over and OrdenZ shows the change.</li>
-      <li>Not paying yet? The captain taps <b>Pay later</b> and picks a floor table. Rounds append to that table's open unpaid check. A typed name (Priya / takeaway) still works. The captain cannot collect cash, UPI or card.</li>
+      <li data-for-country="IN">Pick how each share is paid: cash, UPI or card. For cash, type what was handed over and OrdenZ shows the change.</li>
+      <li data-for-country="MY">Pick how each share is paid: cash, DuitNow or card. For cash, type what was handed over and OrdenZ shows the change.</li>
+      <li data-for-country="IN">Not paying yet? The captain taps <b>Pay later</b> and picks a floor table. Rounds append to that table's open unpaid check. A typed name (Priya / takeaway) still works. The captain cannot collect cash, UPI or card.</li>
+      <li data-for-country="MY">Not paying yet? The captain taps <b>Pay later</b> and picks a floor table. Rounds append to that table's open unpaid check. A typed name still works. The captain cannot collect cash, DuitNow or card.</li>
       <li>The cashier opens <b>Open bills</b> and taps <b>Pay T4</b> (or Pay all) when the table is ready to settle.</li></ol>
-    <figure><img src="/assets/img/split-bill.webp" width="1440" height="810" alt="Splitting a bill equally, part UPI and part cash" loading="lazy"><figcaption>One bill, two guests: ₹320 by UPI and the rest in cash.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/split-bill.webp" width="1440" height="810" alt="Splitting a bill equally, part UPI and part cash" loading="lazy"><figcaption>One bill, two guests: ₹320 by UPI and the rest in cash.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/counter-my.webp" width="1440" height="810" alt="The Malaysian counter with DuitNow QR and cash payment options" loading="lazy"><figcaption>One bill, two guests: part DuitNow and the rest in cash.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="drawer" data-roles="cashier owner manager" data-keys="cash drawer float shift count close z report difference cash in cash out review shift sync">
@@ -140,7 +166,8 @@
       <li>Took money out to pay a delivery, or added change from the bank? Tap <b>Cash out</b> or <b>Cash in</b> and give a reason.</li>
       <li>At closing, tap <b>Count and close</b> and type how many notes and coins of each kind you have. OrdenZ shows what should be there and the difference.</li>
       <li>A difference above your limit goes to the owner or a manager to review. Print the Z report for your records.</li></ol>
-    <figure><img src="/assets/img/cash-drawer.webp" width="1440" height="810" alt="The cash drawer with the expected cash and this shift's payments" loading="lazy"><figcaption>Expected cash, payments this shift, and a shift waiting for review.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/cash-drawer.webp" width="1440" height="810" alt="The cash drawer: expected cash in ₹, UPI and card payments this shift, and a shift waiting for review" loading="lazy"><figcaption>Expected cash, payments this shift, and a shift waiting for review.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/cash-drawer-my.webp" width="1440" height="810" alt="The cash drawer: expected cash in RM, DuitNow QR and card payments this shift, and a shift waiting for review" loading="lazy"><figcaption>Expected cash, payments this shift, and a shift waiting for review.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="delivery" data-roles="cashier owner manager" data-keys="swiggy zomato grabfood foodpanda shopeefood delivery app commission payout settlement webhook menu settings">
@@ -148,9 +175,11 @@
     <ol>
       <li>Owner: in <b>House</b>, under <i>Delivery apps</i>, turn on the apps you use and set each one's commission and mark-up (for example menu +10%).</li>
       <li>Cashier: choose <b>Delivery</b>, then the app. The bill uses the cafe menu, plus that app's mark-up when you set one. Type the app's order number and tap <b>Send to kitchen</b>.</li>
-      <li>A signed webhook brings an automatic live order only when that partner's webhook secret is set on the server. India uses Swiggy and Zomato. Malaysia uses Grab and foodpanda. When those secrets are absent, House, Reports and the counter say "Automatic live orders are not connected." OrdenZ prices the live order from the cafe menu, plus that app's mark-up. The partner's price is not used. An item that is not on the menu is held for the cashier and does not become a bill. The same partner order does not create a second bill. This is taking the order in at the cafe, not a public Swiggy or Zomato listing by itself.</li>
+      <li data-for-country="IN">A signed webhook brings an automatic live order only when that partner's webhook secret is set on the server. India uses Swiggy and Zomato. When those secrets are absent, House, Reports and the counter say "Automatic live orders are not connected." OrdenZ prices the live order from the cafe menu, plus that app's mark-up. The partner's price is not used. An item that is not on the menu is held for the cashier and does not become a bill. The same partner order does not create a second bill. This is taking the order in at the cafe, not a public Swiggy or Zomato listing by itself.</li>
+      <li data-for-country="MY">A signed webhook brings an automatic live order only when that partner's webhook secret is set on the server. Malaysia uses Grab and foodpanda. When those secrets are absent, House, Reports and the counter say "Automatic live orders are not connected." OrdenZ prices the live order from the cafe menu, plus that app's mark-up. The partner's price is not used. An item that is not on the menu is held for the cashier and does not become a bill. The same partner order does not create a second bill. This is taking the order in at the cafe, not a public Grab or foodpanda listing by itself.</li>
       <li>Owner: in <b>Reports → Delivery apps</b>, upload the app's settlement file or tick each payout, and see what's still owed.</li></ol>
-    <figure><img src="/assets/img/delivery-payouts.webp" width="1440" height="810" alt="Delivery app sales, commission and payouts" loading="lazy"><figcaption>What each app sold, its commission, and the payouts still to come.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/delivery-payouts.webp" width="1440" height="810" alt="Delivery app sales, commission and payouts" loading="lazy"><figcaption>What each app sold, its commission, and the payouts still to come.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/delivery-payouts-my.webp" width="1660" height="916" alt="GrabFood and foodpanda delivery app sales in RM, commission and payouts for a Malaysia cafe" loading="lazy"><figcaption>What each app sold, its commission, and the payouts still to come.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="kitchen" data-roles="chef captain cashier" data-keys="kitchen ticket preparing ready served token tv chime speak the token token 1 4">
@@ -166,7 +195,7 @@
   <article class="g-topic" id="tables" data-roles="captain cleaning owner manager" data-keys="table booking reservation waiting list waitlist qr wait minutes seat clean photo star tableturn">
     <h2>12. Tables, bookings and clean-ups (TableTurn) — Pro</h2>
     <p>TableTurn (bookings, waitlist QR, table QR and pickup slots) is on Pro. You can also Request it from Plan. Clean-up photos and staff stars stay on Pro.</p>
-    <ol><li>Open <b>TableTurn</b> to see every table: free, reserved, seated or needs cleaning.</li>
+    <ol><li>Open <b>TableTurn</b> to see every table: free, reserved, seated or needs cleaning. Staff can move an open check to another table, or merge two open checks when guests join.</li>
       <li>On Pro, tap <b>New booking</b> for a reservation; OrdenZ suggests the right-size table and never double-books. Walk-ins go on <b>Add to waiting list</b>.</li>
       <li>Print the <b>Waiting list QR</b> and put it at the door. Guests scan, join and see the wait in minutes. No app.</li>
       <li>On Pro, when guests leave, tap the table. The clean-up job goes to the cleaning staff automatically.</li>
@@ -183,7 +212,8 @@
       <li>Staff see <b>Table orders to accept</b> at the top of the counter. Tap <b>Accept</b> to send it to the kitchen, or <b>Turn down</b>.</li>
       <li>After a captain check or an accepted table order is open, extra phones add lines to that same unpaid check (group order). Until then, each phone is its own bill.</li>
       <li>The table's bill is paid at the counter. Guest online share-pay is not built yet.</li></ol>
-    <figure><img src="/assets/img/table-qr-accept.webp" width="1440" height="810" alt="Table orders waiting to be accepted at the counter" loading="lazy"><figcaption>Table orders wait for a yes before they reach the kitchen.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/table-qr-accept.webp" width="1440" height="810" alt="Table orders waiting to be accepted at the counter" loading="lazy"><figcaption>Table orders wait for a yes before they reach the kitchen.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/table-qr-accept-my.webp" width="1440" height="810" alt="Table orders waiting to be accepted at the Malaysia counter" loading="lazy"><figcaption>Table orders wait for a yes before they reach the kitchen.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="pickup" data-roles="owner manager cashier chef" data-keys="pickup slot collect public link cap kitchen">
@@ -191,7 +221,13 @@
     <ol><li>Owner: on <b>Owner</b>, set the slot length and how many orders each slot can take.</li>
       <li>Share the public pickup link on WhatsApp. Guests pick items and a time. A takeaway stays unpaid until the customer collects it. The cashier records the payment then. Paying online for pickup stays off.</li>
       <li>The kitchen sees the cap for that slot.</li></ol>
-    <figure><img src="/assets/img/cafe-ops/pickup-slots.png" width="1440" height="810" alt="Pickup slots on the owner screen" loading="lazy"><figcaption>Slot length and how many orders each time can take.</figcaption></figure>
+    <figure>
+      <img data-for-country="IN" src="/assets/img/cafe-ops/pickup-slots.png" width="1600" height="960" alt="Kitchen board with pickup slot caps" loading="lazy">
+      <img data-for-country="MY" src="/assets/img/cafe-ops/pickup-slots-my.webp" width="1440" height="810" alt="Kitchen board with Malaysia pickup slot caps" loading="lazy">
+      <figcaption>Kitchen sees each slot’s order cap so 4:15 does not turn into twenty bags at once.</figcaption>
+    </figure>
+    <figure data-for-country="IN"><img src="/assets/img/cafe-ops/pickup-page.png" width="1290" height="2760" alt="Guest pickup page with slot picker" loading="lazy" style="max-width:280px;border-radius:18px"><figcaption>Public pickup link: prices in ₹, pay at the cafe when you collect.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/cafe-ops/pickup-page-my.webp" width="860" height="1800" alt="Guest pickup page with RM prices and slot picker" loading="lazy" style="max-width:280px;border-radius:18px"><figcaption>Public pickup link: prices in RM, pay at the cafe when you collect.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="stock" data-roles="store chef owner manager" data-keys="stock ingredient receive count reorder low recipe batch cook wastage">
@@ -207,11 +243,14 @@
     <h2>15. Intake: supplier invoices (Pro)</h2>
     <ol><li>When a delivery comes, open <b>Intake</b> (supplier bills) and tap <b>Enter an invoice</b>.</li>
       <li>Type or choose the supplier, the invoice number and date, and the pay-by date if they gave you credit.</li>
-      <li>Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
+      <li data-for-country="IN">Add each item: quantity, cost before GST and the GST rate. Take a photo of the bill.</li>
+      <li data-for-country="MY">Add each item: quantity, cost and the tax. Take a photo of the bill.</li>
       <li>Tap <b>Save and add to stock</b>. The stock goes up and recipe costs update.</li>
-      <li>The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and the GST you paid this month.</li>
+      <li data-for-country="IN">The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and the GST you paid this month.</li>
+      <li data-for-country="MY">The owner or manager taps an invoice and <b>Record payment</b> when it's paid. The top of the page shows what you owe, what's overdue, and your wastage costs.</li>
       <li>Store keeper: open <b>Drafts</b> and tap <b>New draft from stock</b>. Suggested qty is from stock vs reorder. Send or approve needs the owner or manager.</li></ol>
-    <figure><img src="/assets/img/invoice.webp" width="1440" height="810" alt="Entering a supplier invoice" loading="lazy"><figcaption>The same invoice number from the same supplier can't be entered twice.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/invoice.webp" width="1440" height="810" alt="Entering a supplier invoice with GST rate and ₹ amount" loading="lazy"><figcaption>The same invoice number from the same supplier can't be entered twice.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/counter-my.webp" width="1440" height="810" alt="The Malaysian counter — stock and costs update when you save the supplier bill" loading="lazy"><figcaption>The same invoice number from the same supplier can't be entered twice.</figcaption></figure>
   </article>
 
   <article class="g-topic" id="owner" data-roles="owner manager" data-keys="report sales dashboard top items peak hour whatsapp summary activity log devices">
@@ -222,17 +261,19 @@
       <li><b>Money Review</b> lists unusual money events (refunds, paid cancels, counter discounts, drawer events, Z variance) for the owner or a manager — for review, not a theft verdict. Kitchen and captain cannot open it. The WhatsApp digest is a preview only.</li>
       <li><b>Pickup slots</b> (Pro): set slot length and an order limit per slot, then share the public link. A takeaway stays unpaid until the customer collects it. The cashier records the payment then. Paying online for pickup stays off.</li>
       <li><b>Devices</b> lists your tablets; reload or lock one from here. <b>Create a new device key</b> signs every kiosk and TV out so a copied key stops working. Pair them again with the new key.</li></ol>
-    <figure><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard" loading="lazy"></figure>
+    <figure data-for-country="IN"><img src="/assets/img/owner.webp" width="1440" height="810" alt="The owner dashboard for an Indian cafe" loading="lazy"></figure>
+    <figure data-for-country="MY"><img src="/assets/img/owner-my.webp" width="1440" height="810" alt="The owner dashboard for a Malaysian cafe" loading="lazy"></figure>
   </article>
 
   <article class="g-topic" id="reports" data-roles="owner manager" data-keys="reports export tally day book purchase gst sst working sheet csv accountant outlets branches link copy menu stock transfer">
     <h2>17. Day book exports (Pro), and all your outlets</h2>
-    <ol><li><b>Reports → Accounting export</b>: choose the dates, then download the sales day book, the purchase day book, the GST or SST working sheet (not a filed return), or Tally files. The accountant imports the Tally XML; OrdenZ does not push live.</li>
+    <ol><li><b>Reports → Accounting export</b>: choose the dates, then download the sales day book, the purchase day book, the <span data-for-country="IN">GST</span><span data-for-country="MY">SST</span> working sheet (not a filed return), or Tally files. The accountant imports the Tally XML; OrdenZ does not push live.</li>
       <li><b>Reports → All outlets</b> (Pro plus the outlets extra): prove it once with that cafe's owner email, password and authenticator code if MFA is on. We do not keep that password (hash check only). If they change the password, link again. Pick a day or a date range. Copy a menu to a linked outlet (recipes and stock stay put). Send a stock transfer: draft, then send; the other outlet receives it. This is not a central warehouse.</li></ol>
-    <figure><img src="/assets/img/accounting-export.webp" width="1440" height="810" alt="The GST summary and the day book and Tally downloads" loading="lazy"><figcaption>The tax summary and the downloads for your accountant.</figcaption></figure>
+    <figure data-for-country="IN"><img src="/assets/img/accounting-export.webp" width="1440" height="810" alt="The GST summary and the day book and Tally downloads" loading="lazy"><figcaption>The tax summary and the downloads for your accountant.</figcaption></figure>
+    <figure data-for-country="MY"><img src="/assets/img/accounting-export-my.webp" width="1440" height="810" alt="Reports, Accounting export for a Malaysian cafe: SST summary and downloads" loading="lazy"><figcaption>The tax summary and the downloads for your accountant.</figcaption></figure>
   </article>
 
-  <article class="g-topic" id="einvoice" data-roles="owner manager cashier" data-keys="malaysia e-invoice einvoice myinvois lhdn consolidated tin buyer zip submit provider">
+  <article class="g-topic" id="einvoice" data-for-country="MY" data-roles="owner manager cashier" data-keys="malaysia e-invoice einvoice myinvois lhdn consolidated tin buyer zip submit provider">
     <h2>18. Malaysia: MyInvois e-invoices (paid extra)</h2>
     <ol><li>Owner: in <b>Reports → e-Invoice</b>, fill in your e-invoice details once (TIN, MSIC code, business activity).</li>
       <li>Each month, download the <b>MyInvois ZIP</b> (JSON files plus a manifest) or tap <b>Submit month</b> to send it through the cafe's e-invoice provider. Tests use a mock provider.</li>
@@ -247,7 +288,8 @@
     <ol><li>Clock in on <b>Brief</b> after a staff PIN (plus any cook tasks). Email sign-in is the owner. Owners do not see Brief. Sign-in is not a clock. Skip to work is always there. See <a href="#today">Brief</a>.</li>
       <li>Staff: open <b>Attendance</b> to <b>clock out</b> with the PIN you already signed in with. The owner can require a selfie. This is not a face terminal.</li>
       <li>Managers: clock out and download hours on <b>Crew desk</b> (managers do not see the Attendance tab).</li>
-      <li>Owner or manager: pick the dates, then download the hours CSV and the working sheet — EPF / SOCSO / EIS in Malaysia, or PF / ESI in India. Set a monthly wage if you want the sheet to show contributions.</li></ol>
+      <li data-for-country="IN">Owner or manager: pick the dates, then download the hours CSV and the PF / ESI working sheet. Set a monthly wage if you want the sheet to show contributions.</li>
+      <li data-for-country="MY">Owner or manager: pick the dates, then download the hours CSV and the EPF / SOCSO / EIS working sheet. Set a monthly wage if you want the sheet to show contributions.</li></ol>
     <p>The files are for your accountant. OrdenZ does not file with KWSP, EPFO, SOCSO or ESI.</p>
   </article>
 
@@ -261,7 +303,8 @@
 
   <article class="g-topic" id="marketing" data-roles="owner manager" data-keys="loyalty points offer promo code campaign whatsapp banner referral">
     <h2>21. Loyalty, offers and WhatsApp (paid extras)</h2>
-    <ol><li>Customers join loyalty with just a mobile number and earn points on every bill: 1 point per ₹1 in India, or 1 point per RM1 in Malaysia (100 points = ₹10 or RM10 off). If a bill is cancelled or refunded, its points are taken back (never below zero), and points spent on it are returned.</li>
+    <ol><li data-for-country="IN">Customers join loyalty with just a mobile number and earn points on every bill: 1 point per ₹1 (100 points = ₹10 off). If a bill is cancelled or refunded, its points are taken back (never below zero), and points spent on it are returned.</li>
+      <li data-for-country="MY">Customers join loyalty with just a mobile number and earn points on every bill: 1 point per RM1 (100 points = RM10 off). If a bill is cancelled or refunded, its points are taken back (never below zero), and points spent on it are returned.</li>
       <li>In <b>Offers</b>, create codes with a minimum order, a limit and an end date. Design a banner in botanical, saffron, leaf, story or square and download the PNG.</li>
       <li>In <b>Campaigns</b>, send an approved WhatsApp template only to members who have marketing consent. Connect your WhatsApp Business account first.</li>
       <li>Share your referral link from <b>Plan</b>. The new cafe gets 30 extra Pro days. When they first pay for a subscription, you earn 1 free month (added to access now if you are not yet paying, or banked if you already are). Up to 6 unused banked credits; unused credits expire after 12 months. While credits remain, billing alternates pay → free one.</li></ol>
@@ -287,9 +330,11 @@
 
   <article class="g-topic" id="plans" data-roles="owner" data-keys="plan price trial starter pro free upgrade billing yearly promo referral add-on extra loyalty">
     <h2>24. Plans and billing</h2>
-    <ol><li>Open <b>Plan</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly. Yearly is 12 months for the price of 10 (two months free). The number on the card is what you pay once for the year. Same for extras. In India the buttons are <b>Subscribe monthly</b> and <b>Subscribe yearly</b>. In Malaysia, or when billing is a manual invoice, the buttons are <b>Request Starter invoice</b> and <b>Request Pro invoice</b> (DuitNow when that channel is open). A running trial is not labelled Current plan. The paid plan and cycle you already have is a disabled <b>Current plan</b>. The Android app opens this plan page in the browser and does not buy the plan inside the app.</li>
+    <ol><li data-for-country="IN">Open <b>Plan</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly. Yearly is 12 months for the price of 10 (two months free). The number on the card is what you pay once for the year. Same for extras. The buttons are <b>Subscribe monthly</b> and <b>Subscribe yearly</b>. A running trial is not labelled Current plan. The paid plan and cycle you already have is a disabled <b>Current plan</b>. The Android app opens this plan page in the browser and does not buy the plan inside the app.</li>
+      <li data-for-country="MY">Open <b>Plan</b> to see your trial, compare Free, Starter and Pro, and pay monthly or yearly. Yearly is 12 months for the price of 10 (two months free). The number on the card is what you pay once for the year. Same for extras. When billing is a manual invoice, the buttons are <b>Request Starter invoice</b> and <b>Request Pro invoice</b> (DuitNow when that channel is open). A running trial is not labelled Current plan. The paid plan and cycle you already have is a disabled <b>Current plan</b>. The Android app opens this plan page in the browser and does not buy the plan inside the app.</li>
       <li>Set up free. 30 days of Pro from the first real bill or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders a day) unless you pick Starter or Pro.</li>
-      <li>Starter is counter billing, stock, paired devices and offline bills. Pro tools (Voice &amp; AI, Recipes, Intake, Bulk, TableTurn, table QR, pickup, day book/Tally, browser management) use <b>Request</b> — not a paid Add. Paid extras (loyalty, campaigns, delivery pack, linked outlets, Malaysia e-invoice and the rest) are billed yearly only, starting around ₹490 / RM49 a year (12 months for the price of 10). On Plan the button is Add yearly.</li>
+      <li data-for-country="IN">Starter is counter billing, stock, paired devices, offline bills and owner management from any browser. Pro tools (Voice &amp; AI, Recipes, Intake, Bulk, TableTurn, table QR, pickup, day book/Tally) use <b>Request</b> — not a paid Add. Paid extras (loyalty, campaigns, Ads, delivery pack, linked outlets and the rest) are billed yearly only, starting around ₹490 a year (12 months for the price of 10). On Plan the button is Add yearly.</li>
+      <li data-for-country="MY">Starter is counter billing, stock, paired devices, offline bills and owner management from any browser. Pro tools (Voice &amp; AI, Recipes, Intake, Bulk, TableTurn, table QR, pickup, day book/Tally) use <b>Request</b> — not a paid Add. Paid extras (loyalty, campaigns, Ads, delivery pack, linked outlets, Malaysia e-invoice and the rest) are billed yearly only, starting around RM49 a year (12 months for the price of 10). On Plan the button is Add yearly.</li>
       <li>Have a promo or referral code? Add it here. Share your own referral link on WhatsApp. Plan shows banked referral credits (up to 6 unused; unused expire after 12 months) and when the next bill can be free.</li></ol>
   </article>
 

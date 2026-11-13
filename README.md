@@ -28,7 +28,9 @@ The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standa
 
 Keep the OrdenZ page in step with the app: the trial is 30 days of Pro from the first real bill, or starts after the 15-day setup window; Starter is slim counter ops (UPI/offline, stock, up to 5 devices); Pro adds recipes, Intake, bulk & catering, TableTurn/table QR, day book/Tally, voice/AI, unlimited devices and managing the cafe from any browser. Country prices come from `pricing.IN` and `pricing.MY` in `site.config.json`. India values match the app; Malaysia list prices are confirmed and settled by invoice.
 
-Images in `src/assets/img/` include real app screenshots and `botanical-cafe.webp`, a decorative illustration. The Indie Botanical design uses ivory paper, emerald serif headings, sage foliage, terracotta accents and collage layers. Actual app screenshots sit above the artwork as responsive HTML images; links and controls remain native HTML. All public navigation links stay available on small screens.
+Images in `src/assets/img/` include real app screenshots, `botanical-cafe.webp` for local hero-layout previews only (not under the live home slideshow), and `cafe-storefront.webp`, a 244×194 storefront crop that sits beside the home headline on phone and desktop. The live Guest ads panel and Showcase slide use Option B (`src/assets/img/showcase/option-b-drink.jpg`, Cafe latte) in layout L1 (ads beside the bill). Picture options A–F live in `src/assets/img/showcase/`. Layouts L1–L3 and those pictures are a local-only preview in `src/ads-layouts.html` (noindex, not in the header, not built into `dist` — same as `src/hero-layouts.html`). The live home page stays on L1 + B until you pick.
+
+**Cafe in motion** is the marketing front-page system on this branch: the live home ships **Shift reel** (brand-first hero, larger motion stage, no botanical strip under the pills, short visual chapters plus a slim day timeline). The hero slideshow and tour video start muted on load when motion and data saving allow it. Outline CTA stays **Book a full walkthrough**. Until `demoUrl` is set, `/demo/` embeds `/demo/preview/#kiosk` in an always-visible iframe (kiosk open by default) with a full-screen link kept for accessibility. Four more compositions — Morning rush, Counter stage, Token moment, Guest latte — are a local noindex picker in `src/cafe-in-motion.html` (same pattern as Guest latte Option B / hero-layouts). Preview with `npx --yes serve dist -l 4188` (or `serve src` for the picker). Actual app screenshots sit above the artwork as responsive HTML images; links and controls remain native HTML. All public navigation links stay available on small screens.
 
 Build with `node build.mjs`, then preview at `http://localhost:8088` using the app repository's local Docker overlay. These changes do not publish the website or the Android app.
 
@@ -44,7 +46,8 @@ Edit `site.config.json` and push. Empty settings are left out of the pages.
 | `appUrl` | Your OrdenZ server address, for "Sign in" and the in-app delete page |
 | `demoUrl` | The live demo server, for example `https://demo.ordenz.com`. Empty: the demo page sends visitors to the browser preview |
 | `siteUrl` | The site's address (used for search engines and link previews) |
-| `legalName` | Who is responsible in the privacy policy. Change to the registered company name when you have it |
+| `legalName`, `legalRegistration`, `legalIncorporated` | Malaysia platform company on privacy, terms and footer |
+| `legalNameIn`, `legalNoteIn` | India approved company name (incorporation in progress; no CIN) |
 
 ## Preview on your computer
 
@@ -64,7 +67,7 @@ npx serve dist        # or open dist/index.html
 4. Click **Deploy**. The site goes live at `https://www.<your-subdomain>.workers.dev`. Put that address in `siteUrl` in `site.config.json`.
 5. Every push to `main` rebuilds the site automatically.
 
-GitHub Actions runs the same checks. The **Website** workflow is test, then build, then deploy. A pull request stops before deploy. A push to `main` or `master` publishes the built `dist` folder with Wrangler when `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` are set under Settings → Secrets and variables → Actions. Until both secrets exist, Cloudflare's Git connection remains the publisher.
+GitHub Actions runs the same checks: the **Website** workflow is test, then build. Branch protection on `main` requires them (and Cloudflare's "Workers Builds: www") before a pull request can merge. Actions never deploys; Cloudflare's Git connection is the only publisher: `main` goes to www.ordenz.com, every other branch gets a preview version (non-production deploy command `npx wrangler versions upload`), and the `qa` branch goes to qa.ordenz.com through a second Worker, `www-qa` (deploy command `npx wrangler deploy --env qa`, kept behind Cloudflare Access).
 
 `wrangler.jsonc` tells Cloudflare to serve the built `dist` folder as a static site, with `_headers`, `_redirects` and the 404 page.
 

@@ -1,14 +1,19 @@
 {
   "company": "OrdenZ",
   "tagline": "Cafe POS, kiosk and kitchen",
-  "legalName": "Joshua Selvam",
-  "city": "India",
+  "legalName": "ORDENZ TECH SDN. BHD.",
+  "legalRegistration": "202601046131 (1708226-M)",
+  "legalIncorporated": "10 Nov 2026",
+  "legalNameIn": "ORDENZ TECHCRAFTZ PRIVATE LIMITED",
+  "legalNoteIn": "Name approved; incorporation in progress (SRN AC7409450, 03 Nov 2026). No CIN yet.",
+  "city": "Malaysia",
   "email": "hello@ordenz.com",
   "whatsapp": "+91 7358507977",
+  "whatsappMY": "+60 11-1644 1186",
   "siteUrl": "https://www.ordenz.com",
   "appUrl": "https://app.ordenz.com",
   "demoUrl": "",
-  "playUrl": "",
+  "playUrl": "https://play.google.com/store/apps/details?id=com.joshselvam.ordernest",
   "year": "2026",
   "pricing": {
     "IN": {
@@ -31,7 +36,7 @@
       "currency": "MYR",
       "locale": "en-MY",
       "label": "Malaysia",
-      "status": "Malaysia list prices \u00b7 confirm your invoice",
+      "status": "List prices · confirm your invoice",
       "monthly": {
         "free": 0,
         "starter": 97,
@@ -44,5 +49,6 @@
       }
     }
   },
-  "youtubeId": "Eoo_9CFgIhA"
+  "youtubeId": "2j3kzcZjG8c",
+  "youtubeIdIn": "rqN2818VETA"
 }
