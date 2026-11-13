@@ -51,7 +51,16 @@ function copyDir(from, to) {
   }
 }
 
-fs.rmSync(out, { recursive: true, force: true });
+// Retry: parallel tests each call build.mjs and can race on Windows/CI clearing dist.
+for (let i = 0; ; i++) {
+  try {
+    fs.rmSync(out, { recursive: true, force: true });
+    break;
+  } catch (e) {
+    if (i >= 8) throw e;
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 40 * (i + 1));
+  }
+}
 fs.mkdirSync(out, { recursive: true });
 
 // Pages: src/<name>.html  ->  dist/<name>/index.html  (index.html and 404.html stay at the root)
