@@ -622,8 +622,15 @@ function render(fromSync){
 const K = {step:"attract", lang:"en", type:"dine", cat:"hot", cart:[], upsellShown:false, lastOrder:null, payTimer:null, idle:Date.now()};
 function kioskReset(){ clearInterval(K.payTimer); Object.assign(K,{step:"attract",type:"dine",cat:"hot",cart:[],upsellShown:false,lastOrder:null}); }
 function t(k){
-  if(k==="upi") return countryCode==="MY" ? (T[K.lang]&&T[K.lang].upi) || "Pay with DuitNow" : (T[K.lang]&&T[K.lang][k]) || T.en[k];
-  if(k==="scan") return countryCode==="MY" ? ((T[K.lang]&&T[K.lang].scan) || "Scan with any DuitNow app") : (T[K.lang]&&T[K.lang][k]) || T.en[k];
+  // Malaysia: never fall through to English/Tamil UPI copy (T.en.upi / T.ta.upi).
+  if(k==="upi"){
+    if(countryCode==="MY") return (K.lang==="ms" && T.ms && T.ms.upi) || "Pay with DuitNow";
+    return (T[K.lang]&&T[K.lang][k]) || T.en[k];
+  }
+  if(k==="scan"){
+    if(countryCode==="MY") return (K.lang==="ms" && T.ms && T.ms.scan) || "Scan with any DuitNow app";
+    return (T[K.lang]&&T[K.lang][k]) || T.en[k];
+  }
   if(k==="gst") return pack().taxLabel;
   return (T[K.lang]&&T[K.lang][k]) || T.en[k] || k;
 }
@@ -827,18 +834,30 @@ main.addEventListener("click", e=>{
   if(el.dataset.collect){ const o=S.orders.find(x=>x.id===el.dataset.collect); if(o){ o.status="new"; o.payment="cash"; save(); render(); toast(`Token ${o.token} paid in cash and sent to the kitchen`); } return; }
 });
 function showReceipt(o){
-  const d=new Date(o.at); const taxable=o.total/1.05; const gst=o.total-taxable;
+  const p=pack(); const d=new Date(o.at);
+  const when=`${d.toLocaleDateString(p.locale)} ${d.toLocaleTimeString(p.locale,{hour:"2-digit",minute:"2-digit"})}`;
+  const ids = p.code==="MY"
+    ? `SST ${esc(CAFE.gstin)}<br>SSM ${esc(CAFE.fssai)}`
+    : `GSTIN ${esc(CAFE.gstin)}<br>FSSAI ${esc(CAFE.fssai)}`;
+  // India: 5% GST split. Malaysia: list prices exclude tax until an SST number is set (demo: none charged).
+  let taxRows="";
+  if(p.code==="IN"){
+    const taxable=o.total/1.05, gst=o.total-taxable;
+    taxRows=`<div class="r"><span>Taxable value</span><span>${money(taxable)}</span></div>
+    <div class="r"><span>CGST 2.5%</span><span>${money(gst/2)}</span></div>
+    <div class="r"><span>SGST 2.5%</span><span>${money(gst/2)}</span></div><hr>`;
+  } else {
+    taxRows=`<div class="r"><span>${esc(p.taxLabel)}</span><span>—</span></div><hr>`;
+  }
   modal(`<h3>Bill saved · Token ${o.token}</h3><div class="receipt num">
-    <div class="c"><b>${esc(CAFE.name)}</b><br>${esc(CAFE.addr)}<br>GSTIN ${esc(CAFE.gstin)}<br>FSSAI ${esc(CAFE.fssai)}</div><hr>
-    <div class="r"><span>Bill #${o.bill}</span><span>${d.toLocaleDateString("en-IN")} ${d.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"})}</span></div>
+    <div class="c"><b>${esc(CAFE.name)}</b><br>${esc(CAFE.addr)}<br>${ids}</div><hr>
+    <div class="r"><span>Bill #${o.bill}</span><span>${when}</span></div>
     <div class="r"><span>${o.type==="dine"?"Dine in":"Takeaway"}</span><span class="tk">TOKEN ${o.token}</span></div><hr>
-    ${o.lines.map(l=>`<div class="r"><span>${l.qty} × ${esc(itemDef(l.itemId).en)}</span><span>${(linePrice(l)).toFixed(2)}</span></div>`).join("")}<hr>
-    ${o.discount?`<div class="r"><span>Discount</span><span>-${o.discount.toFixed(2)}</span></div>`:""}
-    <div class="r"><span>Taxable value</span><span>${taxable.toFixed(2)}</span></div>
-    <div class="r"><span>CGST 2.5%</span><span>${(gst/2).toFixed(2)}</span></div>
-    <div class="r"><span>SGST 2.5%</span><span>${(gst/2).toFixed(2)}</span></div><hr>
+    ${o.lines.map(l=>`<div class="r"><span>${l.qty} × ${esc(itemDef(l.itemId).en)}</span><span>${money(linePrice(l))}</span></div>`).join("")}<hr>
+    ${o.discount?`<div class="r"><span>Discount</span><span>-${money(o.discount)}</span></div>`:""}
+    ${taxRows}
     <div class="r"><b>TOTAL</b><b>${money(o.total)}</b></div>
-    <div class="r"><span>Paid by</span><span>${o.payment==="upi"?pack().payLabel:o.payment.toUpperCase()}</span></div><hr><div class="c">Thank you! Visit again.</div></div>
+    <div class="r"><span>Paid by</span><span>${o.payment==="upi"?p.payLabel:o.payment.toUpperCase()}</span></div><hr><div class="c">Thank you! Visit again.</div></div>
     <p style="margin:0;color:var(--muted);font-size:13px">On a real counter this prints on a thermal printer and can be sent to the customer on WhatsApp.</p>
     <div class="row-end"><button class="btn btn-soft" type="button" id="waBill">Send on WhatsApp</button><button class="btn btn-primary" type="button" data-close>Next bill</button></div>`);
   document.getElementById("waBill").onclick=()=>toast("Demo: bill would be sent to the customer's WhatsApp");

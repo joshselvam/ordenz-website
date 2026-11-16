@@ -266,9 +266,23 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   // With the features rail visible: copy | reports | screen, pushed right so the screen meets the rail.
   const wide = c.slice(c.indexOf("grid-template-columns:max(260px,min(368px,calc(100% - 1214px))) 260px minmax(0,922px)"));
   assert.match(wide,/^grid-template-columns:max\(260px,min\(368px,calc\(100% - 1214px\)\)\) 260px minmax\(0,922px\);grid-template-rows:auto auto;justify-content:end/);
-  assert.match(wide,/\.hero-reports\{grid-column:2;grid-row:1;width:260px\}/);
-  assert.match(wide,/\.hero-art\{grid-column:3;grid-row:1\}/);
+  assert.match(wide,/\.hero-reports\{[^}]*grid-column:2;grid-row:1;width:260px/);
+  assert.match(wide,/\.hero-reports\{[^}]*height:min\(804px, calc\(100svh - var\(--header-offset,68px\) - 140px\)\)/);
+  assert.match(wide,/\.hero-art\{grid-column:3;grid-row:1/);
+  // Wide-screen title/lead/button overrides must come AFTER the base .hero.cim-hero h1 rule.
+  const baseH1 = c.indexOf(".hero.cim-hero h1{font-size:clamp(26px,2.5vw,36px)");
+  const wideH1 = c.indexOf(".hero.cim-hero h1{font-size:clamp(34px,2.95vw,58px)", baseH1);
+  assert.ok(baseH1 >= 0 && wideH1 > baseH1, "desktop h1 override must follow base h1");
   assert.match(c,/@media \(min-width:1101px\) and \(max-width:1599px\)\{\s*\.hero-features-list small\{display:none\}/);
+  // Demo: Malaysia receipts and kiosk pay copy are country-aware (no INR-style lines / UPI English).
+  assert.match(demo,/p\.code==="MY"/);
+  assert.match(demo,/SST \$\{esc\(CAFE\.gstin\)\}/);
+  assert.match(demo,/SSM \$\{esc\(CAFE\.fssai\)\}/);
+  assert.match(demo,/money\(linePrice\(l\)\)/);
+  assert.doesNotMatch(demo,/linePrice\(l\)\)\.toFixed\(2\)/);
+  assert.match(demo,/countryCode==="MY"\) return \(K\.lang==="ms"/);
+  assert.match(demo,/Pay with DuitNow/);
+  assert.match(demo,/Scan with any DuitNow app/);
   assert.match(h,/class="hero-side"/);
   assert.doesNotMatch(h,/hero-preview[\s\S]{0,80}hero-reports/);
   assert.doesNotMatch(c,/\.hero-art\.has-video \.show-cafe\{/);

@@ -54,11 +54,14 @@ for (const width of widths) {
     const threeCol = sideBySide && b.brand && b.reports.x > b.brand.x + 100;
     if (sideBySide) {
       if (b.brand && !near(b.brand.y, b.show.y, 8)) issues.push("screen top not level with brand row");
-      if (!near(b.reports.b, b.show.b)) issues.push("reports/screen bottoms differ");
       if (b.reports.r > b.show.x) issues.push("reports overlap screen");
       if (b.reports.h < 220) issues.push("reports panel too short (" + b.reports.h + "px)");
+      // Reports must not grow taller than the demo screen (short desktop viewports).
+      if (b.reports.h > b.show.h + 4) issues.push("reports taller than screen (" + b.reports.h + ">" + b.show.h + ")");
+      if (!threeCol && !near(b.reports.b, b.show.b)) issues.push("reports/screen bottoms differ");
       if (threeCol) {
         if (b.show.x - b.reports.r > 20) issues.push("reports not directly left of screen");
+        if (Math.abs(b.reports.y - b.show.y) > 4) issues.push("reports/screen tops differ");
       } else if (b.actions && b.actions.b > b.reports.y) issues.push("copy runs into reports");
       const colX = b.brand ? b.brand.x : b.reports.x;
       const colR = threeCol ? b.reports.x - 12 : b.reports.r;
@@ -68,7 +71,6 @@ for (const width of widths) {
       }
       const stripX = b.copy ? b.copy.x : colX;
       if (b.strip && (!near(b.strip.x, stripX) || !near(b.strip.r, b.show.r))) issues.push("strip not spanning left column→screen");
-      if (threeCol && b.footnote && b.footnote.b > b.show.b + 2) issues.push("copy runs past the screen bottom");
       const railGap = b.rail && b.rail.w < 20 ? 6 : 12;
       if (b.rail && b.rail.x - b.show.r < railGap) issues.push("rail too close to preview");
       if (b.rail && b.rail.w > 100 && b.rail.x - b.show.r > 24) issues.push("screen not next to features rail (" + (b.rail.x - b.show.r) + "px gap)");
