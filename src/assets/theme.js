@@ -44,11 +44,25 @@
       if (root.dataset.theme) { metas[i].removeAttribute("media"); metas[i].setAttribute("content", root.dataset.theme === "dark" ? "#0B110F" : "#FFFCF5"); }
     }
   }
+  function postThemeToFrames(theme) {
+    var frames = document.querySelectorAll("iframe.hero-preview-frame, iframe.demo-embed-frame");
+    for (var i = 0; i < frames.length; i++) {
+      try {
+        var win = frames[i] && frames[i].contentWindow;
+        if (win && typeof win.postMessage === "function") {
+          win.postMessage({ type: "ordenz-theme", theme: theme }, "*");
+        }
+      } catch (e) {}
+    }
+  }
   function show() {
-    var isDark = current() === "dark";
+    var theme = current();
+    var isDark = theme === "dark";
     syncBar();
     btn.innerHTML = (isDark ? SUN : MOON) + "<span>" + (isDark ? "Light theme" : "Dark theme") + "</span>";
     btn.setAttribute("aria-pressed", String(isDark));
+    postThemeToFrames(theme);
+    document.dispatchEvent(new CustomEvent("ordenz-theme", { detail: { theme: theme } }));
   }
   btn.addEventListener("click", function () {
     var next = current() === "dark" ? "light" : "dark";
@@ -57,5 +71,11 @@
     show();
   });
   if (dark.addEventListener) dark.addEventListener("change", show);
+  var frames = document.querySelectorAll("iframe.hero-preview-frame, iframe.demo-embed-frame");
+  for (var i = 0; i < frames.length; i++) {
+    if (frames[i] && typeof frames[i].addEventListener === "function") {
+      frames[i].addEventListener("load", function () { postThemeToFrames(current()); });
+    }
+  }
   show();
 })();
