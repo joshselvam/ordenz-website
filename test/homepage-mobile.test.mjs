@@ -32,7 +32,7 @@ test("phone header uses a forest-mint menu button and keeps every public link", 
 
 test("phone hero stacks in one column and keeps the slideshow inside the viewport", () => {
   const css = read("src/assets/site.css");
-  const twoCol = css.lastIndexOf("grid-template-columns:300px minmax(0,2.4fr);grid-template-rows:auto auto");
+  const twoCol = css.lastIndexOf("grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto auto auto");
   const phoneCol = css.lastIndexOf("@media (max-width:880px)");
   const oneCol = css.lastIndexOf("grid-template-columns:1fr");
   assert.ok(twoCol > 0, "desktop two-column hero is still defined");

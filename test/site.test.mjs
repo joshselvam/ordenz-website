@@ -195,8 +195,10 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/<b>Card terminal<\/b>/);
   assert.match(h,/<b>Delivery apps<\/b>/);
   assert.match(h,/<b>Table QR<\/b>/);
-  assert.match(h,/card-terminal\.webp/);
-  assert.match(h,/card-terminal-rail\.webp/);
+  assert.match(h,/card-terminal-in\.webp/);
+  assert.match(h,/card-terminal-my\.webp/);
+  assert.match(h,/card-terminal-rail-in\.webp/);
+  assert.match(h,/card-terminal-rail-my\.webp/);
   assert.match(h,/delivery-apps-rail-in\.webp/);
   assert.match(h,/delivery-apps-rail-my\.webp/);
   assert.match(h,/delivery-apps-in\.webp/);
@@ -222,7 +224,7 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-rail--features\{/);
   assert.match(c,/\.hero-rail-features\{[^}]*hero-rail-rise/);
   assert.match(c,/@media \(min-width:1400px\)\{[^}]*width:234px/);
-  assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px[^}]*grid-template-rows:auto auto/);
+  assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px[^}]*grid-template-rows:auto auto auto/);
   assert.match(c,/\.hero-reports\{/);
   assert.match(c,/\.hero-features-list\{[^}]*var\(--saffron\)/);
   assert.match(c,/\.hero-features-list li\{[^}]*var\(--saffron-ink\)/);
@@ -249,8 +251,8 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-width:922px/);
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-height:804px/);
   assert.match(c,/\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:cover/);
-  assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px minmax\(0,2\.4fr\)/);
-  assert.match(c,/\.hero\.cim-hero \.hero-side\{/);
+  assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px minmax\(0,1fr\)/);
+  assert.match(c,/\.hero\.cim-hero \.hero-side\{[^}]*display:contents/);
   assert.match(h,/class="hero-side"/);
   assert.doesNotMatch(h,/hero-preview[\s\S]{0,80}hero-reports/);
   assert.doesNotMatch(c,/\.hero-art\.has-video \.show-cafe\{/);
