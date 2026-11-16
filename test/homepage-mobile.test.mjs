@@ -32,7 +32,7 @@ test("phone header uses a forest-mint menu button and keeps every public link", 
 
 test("phone hero stacks in one column and keeps the slideshow inside the viewport", () => {
   const css = read("src/assets/site.css");
-  const twoCol = css.lastIndexOf("grid-template-columns:minmax(200px,.34fr) minmax(0,2.6fr);grid-template-rows:minmax(0,1fr) auto");
+  const twoCol = css.lastIndexOf("grid-template-columns:300px minmax(0,2.4fr);grid-template-rows:auto auto");
   const phoneCol = css.lastIndexOf("@media (max-width:880px)");
   const oneCol = css.lastIndexOf("grid-template-columns:1fr");
   assert.ok(twoCol > 0, "desktop two-column hero is still defined");
@@ -73,8 +73,8 @@ test("Hero slideshow has no botanical cafe strip; stage and video grow larger", 
   assert.doesNotMatch(home, /id="heroShow"[\s\S]*botanical-cafe\.webp/);
   assert.doesNotMatch(home, /Open the browser preview/);
   assert.doesNotMatch(css, /\.hero-art\.has-video \.show-cafe\{/);
-  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-width:1009px/);
-  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-height:716px/);
+  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-width:922px/);
+  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-height:804px/);
   assert.match(css, /\.hero-art\.has-video \.promo\{[^}]*min-height:min\(72svh,760px\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-art\.has-video \.show\{[^}]*height:auto/);
   assert.match(home, /id="show-guest"[\s\S]*guest\.webp/);
@@ -97,7 +97,7 @@ test("Guest, Showcase and Token slides use the latest country screenshots", () =
   assert.match(home, /Ready for collection/);
   assert.doesNotMatch(home, /option-b-drink|token-board-fill\.gif|swap after pick|shot-swap/);
   assert.match(css, /\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:cover/);
-  assert.match(css, /\.show-slide \.live-shot\{[^}]*object-position:center/);
+  assert.match(css, /\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-position:left center/);
   assert.doesNotMatch(home, /ZUS|AEON/i);
 });
 
