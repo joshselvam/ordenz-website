@@ -73,8 +73,8 @@ test("Hero slideshow has no botanical cafe strip; stage and video grow larger", 
   assert.doesNotMatch(home, /id="heroShow"[\s\S]*botanical-cafe\.webp/);
   assert.doesNotMatch(home, /Open the browser preview/);
   assert.doesNotMatch(css, /\.hero-art\.has-video \.show-cafe\{/);
-  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-width:1007px/);
-  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-height:788px/);
+  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-width:1009px/);
+  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-height:716px/);
   assert.match(css, /\.hero-art\.has-video \.promo\{[^}]*min-height:min\(72svh,760px\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-art\.has-video \.show\{[^}]*height:auto/);
   assert.match(home, /id="show-guest"[\s\S]*guest\.webp/);
@@ -96,7 +96,7 @@ test("Guest, Showcase and Token slides use the latest country screenshots", () =
   assert.match(home, /In preparation/);
   assert.match(home, /Ready for collection/);
   assert.doesNotMatch(home, /option-b-drink|token-board-fill\.gif|swap after pick|shot-swap/);
-  assert.match(css, /\.show-slide \.live-shot\{[^}]*object-fit:contain/);
+  assert.match(css, /\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:cover/);
   assert.match(css, /\.show-slide \.live-shot\{[^}]*object-position:center/);
   assert.doesNotMatch(home, /ZUS|AEON/i);
 });

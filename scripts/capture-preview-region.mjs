@@ -23,10 +23,10 @@ await page.evaluate(() => {
 await page.reload({ waitUntil: "networkidle0", timeout: 60000 });
 await page.waitForSelector(".hero-art.has-video .show");
 await page.evaluate(() => {
-  const btn = document.querySelector('.show-dot[data-scene="counter"]');
+  const btn = document.querySelector('.show-dot[data-scene="showcase"]');
   if (btn) btn.click();
 });
-await new Promise((r) => setTimeout(r, 2500));
+await new Promise((r) => setTimeout(r, 1500));
 
 const box = await page.$eval(".hero-art.has-video .show", (el) => {
   const r = el.getBoundingClientRect();
@@ -34,14 +34,12 @@ const box = await page.$eval(".hero-art.has-video .show", (el) => {
     x: Math.round(r.x),
     y: Math.round(r.y),
     width: Math.round(r.width),
-    height: Math.round(r.height),
-    scrollWidth: el.scrollWidth,
-    scrollHeight: el.scrollHeight
+    height: Math.round(r.height)
   };
 });
 console.log("show box", JSON.stringify(box));
 
-const out = path.join(storeMedia, "impl-verify-resized-1007x788.jpg");
+const out = path.join(storeMedia, "impl-verify-showcase-1009x716.jpg");
 await page.screenshot({
   path: out,
   type: "jpeg",
@@ -49,8 +47,8 @@ await page.screenshot({
   clip: {
     x: box.x,
     y: box.y,
-    width: Math.min(box.width, 1007),
-    height: Math.min(box.height, 788)
+    width: Math.min(box.width, 1009),
+    height: Math.min(box.height, 716)
   }
 });
 console.log("wrote", out);

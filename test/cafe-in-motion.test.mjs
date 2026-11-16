@@ -60,7 +60,7 @@ test("Live home ships Shift reel Cafe in motion with muted autoplay and short ch
   assert.match(home, /id="show-token"[\s\S]*token-screen-my\.webp/);
   assert.match(css, /\.cim-chapters\{/);
   assert.match(css, /\.cim-hero \.brand-mark\{/);
-  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-height:788px/);
+  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*max-height:716px/);
   assert.match(js, /video\.autoplay = true/);
   assert.match(js, /if \(reduce \|\| held\(\) \|\| timer \|\| slides\.length < 2\) return/);
   assert.doesNotMatch(js, /startShow|showStart|Just click to start|restartShow/);

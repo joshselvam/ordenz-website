@@ -203,8 +203,9 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-art\.has-video:before\{content:none\}/);
   assert.match(c,/\.hero-art\.has-video:after\{content:none\}/);
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*grid-row:1/);
-  assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-width:1007px/);
-  assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-height:788px/);
+  assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-width:1009px/);
+  assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-height:716px/);
+  assert.match(c,/\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:cover/);
   assert.doesNotMatch(c,/\.hero-art\.has-video \.show-cafe\{/);
   assert.match(c,/\.hero-art\.has-video \.token-num\{[^}]*#F0B13D/);
   assert.match(c,/#2EE6C7/);
