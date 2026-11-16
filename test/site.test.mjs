@@ -274,6 +274,22 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   const wideH1 = c.indexOf(".hero.cim-hero h1{font-size:clamp(34px,2.95vw,58px)", baseH1);
   assert.ok(baseH1 >= 0 && wideH1 > baseH1, "desktop h1 override must follow base h1");
   assert.match(c,/@media \(min-width:1101px\) and \(max-width:1599px\)\{\s*\.hero-features-list small\{display:none\}/);
+  // Light/dark hero chrome tokens: cream panels in light, charcoal restored in dark (no image filters).
+  assert.match(c,/--hero-chrome:#FFFEFB/);
+  assert.match(c,/--hero-chrome-line:#D8E1D5/);
+  assert.match(c,/--hero-chrome-ink:#1B4332/);
+  assert.match(c,/--hero-chrome-soft:#EDF2E8/);
+  assert.match(c,/--hero-chrome-caption-bg:#EDF2E8/);
+  assert.match(c,/--hero-chrome-tab-on-bg:#1B4332/);
+  assert.match(c,/\.hero-reports\{[^}]*background:var\(--hero-chrome\)/);
+  assert.match(c,/\.hero-reports-shots b\{[^}]*background:var\(--hero-chrome-caption-bg\)/);
+  assert.match(c,/\.hero-rail-features b\{[^}]*background:var\(--hero-chrome-caption-bg\)/);
+  assert.match(c,/\.hero-art\.has-video \.show-nav\{[^}]*background:var\(--hero-chrome-soft\)/);
+  assert.match(c,/\.hero-art\.has-video \.show-dot\[aria-current="true"\]\{[^}]*var\(--hero-chrome-tab-on-bg\)/);
+  assert.match(c,/:root\[data-theme="dark"\] \.hero-reports/);
+  assert.match(c,/background:linear-gradient\(180deg,#14211C 0%,#0B110F 100%\)/);
+  assert.doesNotMatch(c,/\.hero-reports-shot\{[^}]*filter:/);
+  assert.doesNotMatch(c,/\.hero-rail-shot\{[^}]*filter:/);
   // Demo: Malaysia receipts and kiosk pay copy are country-aware (no INR-style lines / UPI English).
   assert.match(demo,/p\.code==="MY"/);
   assert.match(demo,/SST \$\{esc\(CAFE\.gstin\)\}/);

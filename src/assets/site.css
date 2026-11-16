@@ -16,6 +16,14 @@
   --display:"Bricolage Grotesque","Hind Madurai",system-ui,sans-serif;
   --body:"Hind Madurai",system-ui,-apple-system,"Segoe UI",sans-serif;
   --r:20px; --shadow:0 2px 4px #173C300A,0 8px 24px #173C3010;
+  /* Homepage hero chrome (reports / demo shell / features rail) — light cream panels. */
+  --hero-chrome:#FFFEFB; --hero-chrome-line:#D8E1D5; --hero-chrome-ink:#1B4332;
+  --hero-chrome-soft:#EDF2E8; --hero-chrome-shadow:0 14px 32px #1B433218,0 2px 6px #1B433212;
+  --hero-chrome-kicker:#1B4332; --hero-rail-kicker:#1B4332;
+  --hero-chrome-card:#FFFEFB; --hero-chrome-card-line:#D8E1D5;
+  --hero-chrome-caption-bg:#EDF2E8; --hero-chrome-caption-ink:#1B4332;
+  --hero-chrome-tab-ink:#1B4332; --hero-chrome-tab-line:#D8E1D5;
+  --hero-chrome-tab-on-bg:#1B4332; --hero-chrome-tab-on-ink:#FFFFFF;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -26,6 +34,13 @@
   --hero-glow:#16352D; --dots:#FFFFFF08; --top:#0B110FF2; --band:#121A17; --footer:#0F1714; --cta:#16352D;
   --s-sales:#7FB2F0; --s-floor:#3DB291; --s-kitchen:#F08C66; --s-stock:#E3B54F; --s-market:#BFA0EE; --s-devices:#5CC8D6; --s-account:#A9B8B1;
   --s-ink:#0B110F;
+  --hero-chrome:#0B110F; --hero-chrome-line:#3A4D43; --hero-chrome-ink:#FFFCF5;
+  --hero-chrome-soft:#1B4332; --hero-chrome-shadow:0 14px 32px #0B110F66;
+  --hero-chrome-kicker:#C8E6C9; --hero-rail-kicker:#F0B13D;
+  --hero-chrome-card:#1B4332; --hero-chrome-card-line:color-mix(in srgb,#2EE6C7 28%,#1B4332);
+  --hero-chrome-caption-bg:#1B4332; --hero-chrome-caption-ink:#FFFCF5;
+  --hero-chrome-tab-ink:rgba(255,248,234,.72); --hero-chrome-tab-line:rgba(255,248,234,.28);
+  --hero-chrome-tab-on-bg:#2EE6C7; --hero-chrome-tab-on-ink:#04221C;
   --shadow:0 2px 4px #0005,0 10px 26px #0004; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#0B110F; --surface:#18221E; --soft:#22312A; --line:#3A4D43; --line-strong:#4B6356;
@@ -35,6 +50,13 @@
   --hero-glow:#16352D; --dots:#FFFFFF08; --top:#0B110FF2; --band:#121A17; --footer:#0F1714; --cta:#16352D;
   --s-sales:#7FB2F0; --s-floor:#3DB291; --s-kitchen:#F08C66; --s-stock:#E3B54F; --s-market:#BFA0EE; --s-devices:#5CC8D6; --s-account:#A9B8B1;
   --s-ink:#0B110F;
+  --hero-chrome:#0B110F; --hero-chrome-line:#3A4D43; --hero-chrome-ink:#FFFCF5;
+  --hero-chrome-soft:#1B4332; --hero-chrome-shadow:0 14px 32px #0B110F66;
+  --hero-chrome-kicker:#C8E6C9; --hero-rail-kicker:#F0B13D;
+  --hero-chrome-card:#1B4332; --hero-chrome-card-line:color-mix(in srgb,#2EE6C7 28%,#1B4332);
+  --hero-chrome-caption-bg:#1B4332; --hero-chrome-caption-ink:#FFFCF5;
+  --hero-chrome-tab-ink:rgba(255,248,234,.72); --hero-chrome-tab-line:rgba(255,248,234,.28);
+  --hero-chrome-tab-on-bg:#2EE6C7; --hero-chrome-tab-on-ink:#04221C;
   --shadow:0 2px 4px #0005,0 10px 26px #0004; color-scheme:dark}
 /* A part of the cafe, as in the app: set data-s on a block and it takes that colour */
 [data-s="sales"]{--s:var(--s-sales)}[data-s="floor"]{--s:var(--s-floor)}[data-s="kitchen"]{--s:var(--s-kitchen)}[data-s="stock"]{--s:var(--s-stock)}
@@ -437,13 +459,13 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .hero-rail-glass--features{
     width:100%;min-height:0;height:100%;max-height:808px;
     display:flex;flex-direction:column;align-items:center;gap:12px;padding:14px 12px;
-    border-radius:22px;border:1px solid #3A4D43;
-    background:linear-gradient(180deg,#14211C 0%,#0B110F 100%);
-    box-shadow:0 18px 40px #0B110F66,inset 0 1px 0 #2EE6C722;overflow:hidden;
+    border-radius:22px;border:1px solid var(--hero-chrome-line);
+    background:var(--hero-chrome);
+    box-shadow:var(--hero-chrome-shadow);overflow:hidden;
   }
   .hero-rail-kicker{
     margin:0;flex:none;align-self:center;text-align:center;
-    font:800 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#F0B13D;
+    font:800 11px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--hero-rail-kicker);
   }
   .hero-rail-stream{flex:1;min-height:0;width:100%;overflow:hidden;mask-image:linear-gradient(#000 0%,#000 82%,#0000 100%)}
   .hero-rail-features{
@@ -454,8 +476,8 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .hero-rail-features li{
     width:100%;min-height:152px;padding:0;border-radius:14px;box-sizing:border-box;overflow:hidden;
     display:grid;grid-template-rows:1fr auto;align-items:stretch;text-align:center;
-    background:#1B4332;border:1px solid color-mix(in srgb,#2EE6C7 28%,#1B4332);
-    box-shadow:0 10px 22px #04221C44;color:#FFFCF5;
+    background:var(--hero-chrome-card);border:1px solid var(--hero-chrome-card-line);
+    box-shadow:0 10px 22px #1B433214;color:var(--hero-chrome-caption-ink);
   }
   .hero-rail-shot{
     display:block;width:100%;height:118px;object-fit:cover;object-position:top center;background:#0B110F;
@@ -463,7 +485,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .hero-rail-shot--product{object-fit:contain;object-position:center;background:#FFFCF5}
   .hero-rail-features b{
     display:block;margin:0;padding:8px 10px 10px;
-    font:800 13px/1.2 var(--display);color:#FFFCF5;letter-spacing:-.02em;background:#1B4332;
+    font:800 13px/1.2 var(--display);color:var(--hero-chrome-caption-ink);letter-spacing:-.02em;background:var(--hero-chrome-caption-bg);
   }
   @keyframes hero-rail-rise{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 }
@@ -656,13 +678,13 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   width:300px;height:692px;max-height:692px;box-sizing:border-box;flex:none;
   padding:12px 10px 0;border-radius:18px;pointer-events:none;overflow:hidden;
   display:flex;flex-direction:column;gap:10px;
-  background:linear-gradient(180deg,#14211C 0%,#0B110F 100%);
-  border:1px solid color-mix(in srgb,#1B4332 55%,#3A4D43);
-  box-shadow:0 14px 32px #0B110F66;color:#FFFCF5;
+  background:var(--hero-chrome);
+  border:1px solid var(--hero-chrome-line);
+  box-shadow:var(--hero-chrome-shadow);color:var(--hero-chrome-ink);
 }
 .hero-reports-kicker{
   margin:0;flex:none;text-align:center;
-  font:800 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#C8E6C9;
+  font:800 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--hero-chrome-kicker);
 }
 .hero-reports-stream{flex:1;min-height:0;overflow:hidden;mask-image:linear-gradient(#000 0%,#000 88%,#0000 100%)}
 .hero-reports-shots{
@@ -670,16 +692,16 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   animation:hero-reports-rise 28s linear infinite;
 }
 .hero-reports-shots li{
-  width:100%;border-radius:12px;overflow:hidden;background:#1B4332;
-  border:1px solid color-mix(in srgb,#2EE6C7 22%,#1B4332);
-  box-shadow:0 8px 18px #04221C44;
+  width:100%;border-radius:12px;overflow:hidden;background:var(--hero-chrome-card);
+  border:1px solid var(--hero-chrome-card-line);
+  box-shadow:0 8px 18px #1B433214;
 }
 .hero-reports-shot{
   display:block;width:100%;height:auto;aspect-ratio:325 / 334;object-fit:cover;object-position:top center;background:#FFFCF5;
 }
 .hero-reports-shots b{
   display:block;margin:0;padding:7px 10px 9px;text-align:center;
-  font:800 13px/1.2 var(--display);color:#FFFCF5;letter-spacing:-.02em;background:#1B4332;
+  font:800 13px/1.2 var(--display);color:var(--hero-chrome-caption-ink);letter-spacing:-.02em;background:var(--hero-chrome-caption-bg);
 }
 @keyframes hero-reports-rise{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 @media (prefers-reduced-motion:reduce){
@@ -738,7 +760,8 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-art.has-video .show{
   grid-row:1;position:relative;z-index:auto;margin:0;width:100%;max-width:922px;justify-self:stretch;align-self:start;
   min-height:0;height:min(804px, calc(100svh - var(--header-offset,68px) - 140px));max-height:804px;
-  display:flex;flex-direction:column;background:#07110E;border-color:#3A4D43;border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;background:var(--hero-chrome);border-color:var(--hero-chrome-line);
+  box-shadow:var(--hero-chrome-shadow);border-radius:16px;overflow:hidden;
 }
 
 /* Counter slide: paper browser preview (same feel as /demo/ embed), kiosk open by default. */
@@ -786,7 +809,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-art.has-video .show-stage{flex:1 1 auto;min-height:0;display:grid;grid-template-rows:minmax(0,1fr);background:#07110E}
 .hero-art.has-video .show-slide.is-on{display:flex;flex-direction:column;min-height:0;height:100%}
 .hero-art.has-video .scene{aspect-ratio:auto;flex:1 1 auto;min-height:0;height:auto;padding:0;background:#FFFCF5;color:#FFF8EA;overflow:hidden}
-.hero-art.has-video .scene-cap{flex:none;min-height:0;padding:6px 14px 8px;background:#07110E;color:#FFF8EA;font-size:14px;line-height:1.3}
+.hero-art.has-video .scene-cap{flex:none;min-height:0;padding:6px 14px 8px;background:var(--hero-chrome-caption-bg);color:var(--hero-chrome-caption-ink);font-size:14px;line-height:1.3}
 .hero-art.has-video .token-face{background:#07110E;color:#FFF8EA}
 .hero-art.has-video .token-num{color:#F0B13D;font-size:clamp(22px,3.2vw,32px)}
 .hero-art.has-video .token-ready{color:#FFE7A3;font-size:18px}
@@ -807,9 +830,9 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .token-col li.is-on{border-style:solid;border-color:#2EE6C7;background:#0E5B49}
 .token-col-ready li.is-on{background:#2EE6C7;border-color:#2EE6C7;color:#04221C}
 .token-col-ready li.is-on b{color:#04221C}
-.hero-art.has-video .show-nav{flex:none;flex-shrink:0;background:#07110E;padding:8px}
-.hero-art.has-video .show-dot{color:rgba(255,248,234,.72);border-color:rgba(255,248,234,.28);min-height:46px;font-size:16px}
-.hero-art.has-video .show-dot[aria-current="true"]{background:#2EE6C7;color:#04221C;border-color:#2EE6C7}
+.hero-art.has-video .show-nav{flex:none;flex-shrink:0;background:var(--hero-chrome-soft);padding:8px}
+.hero-art.has-video .show-dot{color:var(--hero-chrome-tab-ink);border-color:var(--hero-chrome-tab-line);min-height:46px;font-size:16px}
+.hero-art.has-video .show-dot[aria-current="true"]{background:var(--hero-chrome-tab-on-bg);color:var(--hero-chrome-tab-on-ink);border-color:var(--hero-chrome-tab-on-bg)}
 .hero-art.has-video .promo video{width:100%;height:100%;object-fit:cover}
 .hero-art.has-video .scene{width:100%;height:100%;min-height:0;padding:0;place-items:stretch;align-content:stretch;display:grid;overflow:hidden}
 .hero-art.has-video .tablet{width:100%;max-width:none;height:100%;min-height:0;display:flex;flex-direction:column;box-sizing:border-box;padding:18px 14px 12px}
@@ -940,3 +963,40 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .play-badge small{display:block;font-size:9px;font-weight:500;letter-spacing:.08em;color:#F3E6C8}
 .play-badge:hover{background:#0B4A3B;border-color:#FFF6E8}
 .play-badge:focus-visible{outline:3px solid var(--saffron);outline-offset:3px}
+
+/* Dark theme: restore charcoal gradient shells for reports + features rail (light uses solid cream tokens).
+   Placed last so later rules cannot leave light chrome stuck on dark pages. Product screens / shots stay untouched. */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .hero-reports,
+  :root:not([data-theme="light"]) .hero-rail-glass,
+  :root:not([data-theme="light"]) .hero-rail-glass--features{
+    background:linear-gradient(180deg,#14211C 0%,#0B110F 100%);
+  }
+  :root:not([data-theme="light"]) .hero-rail-glass,
+  :root:not([data-theme="light"]) .hero-rail-glass--features{
+    box-shadow:0 18px 40px #0B110F66,inset 0 1px 0 #2EE6C722;
+  }
+  :root:not([data-theme="light"]) .hero-rail-features li{
+    box-shadow:0 10px 22px #04221C44;
+  }
+  :root:not([data-theme="light"]) .hero-reports-shots li{
+    box-shadow:0 8px 18px #04221C44;
+  }
+  :root:not([data-theme="light"]) .hero-art.has-video .show{
+    background:#07110E;border-color:#3A4D43;box-shadow:0 14px 32px #0B110F66;
+  }
+}
+:root[data-theme="dark"] .hero-reports,
+:root[data-theme="dark"] .hero-rail-glass,
+:root[data-theme="dark"] .hero-rail-glass--features{
+  background:linear-gradient(180deg,#14211C 0%,#0B110F 100%);
+}
+:root[data-theme="dark"] .hero-rail-glass,
+:root[data-theme="dark"] .hero-rail-glass--features{
+  box-shadow:0 18px 40px #0B110F66,inset 0 1px 0 #2EE6C722;
+}
+:root[data-theme="dark"] .hero-rail-features li{box-shadow:0 10px 22px #04221C44}
+:root[data-theme="dark"] .hero-reports-shots li{box-shadow:0 8px 18px #04221C44}
+:root[data-theme="dark"] .hero-art.has-video .show{
+  background:#07110E;border-color:#3A4D43;box-shadow:0 14px 32px #0B110F66;
+}
