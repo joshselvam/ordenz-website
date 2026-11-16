@@ -226,7 +226,7 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-rail--features\{/);
   assert.match(c,/\.hero-rail-features\{[^}]*hero-rail-rise/);
   assert.match(c,/@media \(min-width:1400px\)\{[^}]*width:234px/);
-  assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px[^}]*grid-template-rows:auto auto auto/);
+  assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px[^}]*grid-template-rows:auto minmax\(0,1fr\) auto/);
   assert.match(c,/\.hero-reports\{/);
   assert.match(c,/\.hero-features-list\{[^}]*var\(--saffron\)/);
   assert.match(c,/\.hero-features-list li\{[^}]*var\(--saffron-ink\)/);
@@ -255,9 +255,11 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:cover/);
   assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px minmax\(0,922px\)[^}]*justify-content:center/);
   assert.match(c,/\.hero\.cim-hero \.hero-side\{[^}]*display:contents/);
-  // Copy band shares the reports | preview columns so headline, lead and strip line up.
-  assert.match(c,/\.hero\.cim-hero \.hero-copy\{[^}]*grid-template-columns:300px minmax\(0,1fr\)[^}]*grid-template-areas:"brand eyebrow" "title lead" "title actions" "title foot"/);
-  assert.match(c,/\.hero\.cim-hero \.hero-reports\{[^}]*max-height:804px/);
+  // Copy sits above the reports in the left column; the demo screen spans both rows on the right.
+  assert.match(c,/\.hero\.cim-hero \.hero-copy\{[^}]*grid-column:1;grid-row:1;[^}]*flex-direction:column/);
+  assert.match(c,/\.hero\.cim-hero \.hero-reports\{[^}]*grid-column:1;grid-row:2;align-self:stretch[^}]*contain:size/);
+  assert.match(c,/\.hero\.cim-hero \.hero-art\{[^}]*grid-column:2;grid-row:1 \/ 3/);
+  assert.match(c,/\.hero\.cim-hero \.actions\{[^}]*grid-template-columns:1fr 1fr/);
   assert.match(c,/\.hero-rail-shot--product\{[^}]*object-fit:contain/);
   assert.match(h,/guest-screen-rail-my\.webp" width="420" height="236"/);
   assert.match(c,/\.hero\.cim-hero > \.wrap\{[^}]*width:calc\(100% - 234px - 44px\)/);

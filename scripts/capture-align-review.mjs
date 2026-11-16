@@ -48,13 +48,16 @@ for (const width of widths) {
     const issues = [];
     const near = (a, c, tol = 2) => Math.abs(a - c) <= tol;
     if (b.reports && b.show) {
-      if (!near(b.reports.y, b.show.y)) issues.push("reports/preview tops differ");
-      if (!near(b.reports.b, b.show.b)) issues.push("reports/preview bottoms differ");
-      if (b.reports.r > b.show.x) issues.push("reports overlap preview");
+      if (b.brand && !near(b.brand.y, b.show.y, 4)) issues.push("screen top not level with brand row");
+      if (!near(b.reports.b, b.show.b)) issues.push("reports/screen bottoms differ");
+      if (b.reports.r > b.show.x) issues.push("reports overlap screen");
+      if (b.reports.h < 220) issues.push("reports panel too short (" + b.reports.h + "px)");
     }
-    if (b.title && b.reports && !near(b.title.x, b.reports.x)) issues.push("headline not on reports column edge");
-    if (b.lead && b.show && !near(b.lead.x, b.show.x)) issues.push("lead not on preview column edge");
-    if (b.eyebrow && b.show && !near(b.eyebrow.x, b.show.x)) issues.push("eyebrow not on preview column edge");
+    for (const k of ["title", "eyebrow", "lead", "actions"]) {
+      if (b[k] && b.reports && !near(b[k].x, b.reports.x)) issues.push(k + " not on left column edge");
+      if (b[k] && b.reports && b[k].r > b.reports.r + 2) issues.push(k + " wider than left column");
+    }
+    if (b.actions && b.reports && b.actions.b > b.reports.y) issues.push("copy runs into reports");
     if (b.strip && b.reports && b.show && (!near(b.strip.x, b.reports.x) || !near(b.strip.r, b.show.r))) issues.push("strip not spanning reports→preview");
     const railGap = b.rail && b.rail.w < 20 ? 6 : 12;
     if (b.rail && b.show && b.rail.x - b.show.r < railGap) issues.push("rail too close to preview");
