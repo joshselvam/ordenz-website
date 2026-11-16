@@ -195,14 +195,15 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/<b>Guest screen<\/b>/);
   assert.match(h,/<span>Guest screen<\/span>/);
   assert.match(h,/<b>Delivery apps<\/b>/);
-  assert.match(h,/<b>Table QR<\/b>/);
+  assert.match(h,/<b>Table ordering<\/b>/);
+  assert.match(h,/<span>Table ordering<\/span>/);
   assert.match(h,/guest-screen-rail-in\.webp/);
   assert.match(h,/guest-screen-rail-my\.webp/);
   assert.match(h,/delivery-apps-rail-in\.webp/);
   assert.match(h,/delivery-apps-rail-my\.webp/);
   assert.match(h,/pay-duitnow-qr-rail\.webp/);
   assert.match(h,/pay-upi-qr-rail\.webp/);
-  assert.match(h,/table-qr-accept-rail\.webp/);
+  assert.match(h,/table-ordering-rail\.webp/);
   assert.match(h,/Best sellers · WhatsApp/);
   assert.match(h,/class="hero-rail-shot hero-rail-shot--product"/);
   assert.match(h,/token-screen-rail\.webp/);
