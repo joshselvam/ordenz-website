@@ -615,8 +615,17 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 @media (min-width:1400px){
   /* The screen keeps its full 922px first; the copy column only takes spare width, up to 368px. */
   .hero.cim-hero .wrap{grid-template-columns:max(260px,min(368px,calc(100% - 1214px))) 260px minmax(0,922px);grid-template-rows:auto auto;justify-content:end}
-  .hero.cim-hero .hero-copy{grid-column:1;grid-row:1;gap:12px}
-  .hero.cim-hero h1{font-size:clamp(30px,2.4vw,44px)}
+  /* Copy stretches down the column: big stacked title, full-width demo button, then a 2×2 of the rest. */
+  .hero.cim-hero .hero-copy{grid-column:1;grid-row:1;align-self:stretch;gap:clamp(12px,2.4vh,26px);padding:4px clamp(0px,0.8vw,14px) 0}
+  .hero.cim-hero .hero-title{grid-template-columns:minmax(0,1fr) minmax(96px,44%);gap:8px 10px}
+  .hero.cim-hero .cafe-photo{max-width:160px}
+  .hero.cim-hero h1{font-size:clamp(34px,2.95vw,58px);line-height:1.02}
+  .hero.cim-hero .lead{font-size:clamp(15px,0.9vw,17px);line-height:1.5}
+  .hero.cim-hero .actions{gap:12px}
+  .hero.cim-hero .actions .btn{min-height:clamp(46px,7vh,68px);padding:10px 14px;font-size:clamp(13.5px,0.8vw,15px)}
+  .hero.cim-hero .actions .btn:first-child{grid-column:1 / -1}
+  .hero.cim-hero .actions .btn:last-child:nth-child(odd):not(:first-child){grid-column:auto}
+  .hero.cim-hero .hero-footnote{font-size:clamp(12.5px,0.75vw,14px);line-height:1.5}
   .hero.cim-hero .hero-reports{grid-column:2;grid-row:1;width:260px}
   .hero.cim-hero .hero-art{grid-column:3;grid-row:1}
   .hero.cim-hero .hero-features{grid-column:1 / -1;grid-row:2}

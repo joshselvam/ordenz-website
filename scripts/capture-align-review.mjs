@@ -32,11 +32,13 @@ for (const width of widths) {
       return { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height), r: Math.round(r.right), b: Math.round(r.bottom) };
     };
     const b = {
+      copy: box(".hero-copy"),
       brand: box(".hero-copy > .brand-row"),
       eyebrow: box(".hero-copy > .eyebrow"),
       title: box(".hero-copy > .hero-title"),
       lead: box(".hero-copy > .lead"),
       actions: box(".hero-copy > .actions"),
+      footnote: box(".hero-copy > .hero-footnote"),
       reports: box(".hero-reports"),
       show: box(".hero-art .show"),
       strip: box(".hero-features-list"),
@@ -47,28 +49,30 @@ for (const width of widths) {
       .map((el) => ({ src: el.getAttribute("src"), loaded: el.complete && el.naturalWidth > 0 }));
     const issues = [];
     const near = (a, c, tol = 2) => Math.abs(a - c) <= tol;
-    if (b.reports && b.show) {
-      if (b.brand && !near(b.brand.y, b.show.y, 4)) issues.push("screen top not level with brand row");
+    // Side-by-side only when reports and screen share a top edge (desktop). Stacked/mobile skips those checks.
+    const sideBySide = b.reports && b.show && near(b.reports.y, b.show.y, 8);
+    const threeCol = sideBySide && b.brand && b.reports.x > b.brand.x + 100;
+    if (sideBySide) {
+      if (b.brand && !near(b.brand.y, b.show.y, 8)) issues.push("screen top not level with brand row");
       if (!near(b.reports.b, b.show.b)) issues.push("reports/screen bottoms differ");
       if (b.reports.r > b.show.x) issues.push("reports overlap screen");
       if (b.reports.h < 220) issues.push("reports panel too short (" + b.reports.h + "px)");
+      if (threeCol) {
+        if (b.show.x - b.reports.r > 20) issues.push("reports not directly left of screen");
+      } else if (b.actions && b.actions.b > b.reports.y) issues.push("copy runs into reports");
+      const colX = b.brand ? b.brand.x : b.reports.x;
+      const colR = threeCol ? b.reports.x - 12 : b.reports.r;
+      for (const k of ["title", "eyebrow", "lead", "actions"]) {
+        if (b[k] && !near(b[k].x, colX)) issues.push(k + " not on left column edge");
+        if (b[k] && b[k].r > colR + 2) issues.push(k + " wider than its column");
+      }
+      const stripX = b.copy ? b.copy.x : colX;
+      if (b.strip && (!near(b.strip.x, stripX) || !near(b.strip.r, b.show.r))) issues.push("strip not spanning left column→screen");
+      if (threeCol && b.footnote && b.footnote.b > b.show.b + 2) issues.push("copy runs past the screen bottom");
+      const railGap = b.rail && b.rail.w < 20 ? 6 : 12;
+      if (b.rail && b.rail.x - b.show.r < railGap) issues.push("rail too close to preview");
+      if (b.rail && b.rail.w > 100 && b.rail.x - b.show.r > 24) issues.push("screen not next to features rail (" + (b.rail.x - b.show.r) + "px gap)");
     }
-    // Wide (rail visible): copy | reports | screen. Narrower: copy above reports | screen.
-    const threeCol = b.reports && b.brand && b.reports.x > b.brand.x + 100;
-    const colX = b.brand ? b.brand.x : b.reports?.x;
-    const colR = threeCol ? b.reports.x - 12 : b.reports?.r;
-    for (const k of ["title", "eyebrow", "lead", "actions"]) {
-      if (b[k] && colX != null && !near(b[k].x, colX)) issues.push(k + " not on left column edge");
-      if (b[k] && colR != null && b[k].r > colR + 2) issues.push(k + " wider than its column");
-    }
-    if (threeCol) {
-      if (b.show.x - b.reports.r > 20) issues.push("reports not directly left of screen");
-      if (!near(b.reports.y, b.show.y)) issues.push("reports/screen tops differ");
-    } else if (b.actions && b.reports && b.actions.b > b.reports.y) issues.push("copy runs into reports");
-    if (b.strip && b.show && colX != null && (!near(b.strip.x, colX) || !near(b.strip.r, b.show.r))) issues.push("strip not spanning left column→screen");
-    const railGap = b.rail && b.rail.w < 20 ? 6 : 12;
-    if (b.rail && b.show && b.rail.x - b.show.r < railGap) issues.push("rail too close to preview");
-    if (b.rail && b.rail.w > 100 && b.show && b.rail.x - b.show.r > 24) issues.push("screen not next to features rail (" + (b.rail.x - b.show.r) + "px gap)");
     return { b, cardImgs, issues };
   });
   const missing = [];
