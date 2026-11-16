@@ -17,8 +17,6 @@ CROPS = {
     "tableturn": (0.0, 0.10, 0.50, 0.60),
     "showcase": (0.0, 0.0, 0.67, 0.67),
     "showcase-my": (0.15, 0.10, 0.85, 0.80),
-    "token-screen": (0.50, 0.26, 1.0, 0.76),
-    "token-screen-my": (0.50, 0.26, 1.0, 0.76),
 }
 
 for name, (x0, y0, x1, y1) in CROPS.items():
