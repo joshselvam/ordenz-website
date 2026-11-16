@@ -19,7 +19,7 @@ let failed = false;
 for (const width of widths) {
   const page = await browser.newPage();
   await page.setViewport({ width, height: 1000, deviceScaleFactor: 1 });
-  await page.evaluateOnNewDocument((c) => localStorage.setItem("ordenz.country", c), country);
+  await page.evaluateOnNewDocument((c) => localStorage.setItem("ordenz-country", c), country);
   await page.goto("http://127.0.0.1:8765/", { waitUntil: "networkidle0", timeout: 60000 });
   await page.waitForSelector(".hero.cim-hero");
   await new Promise((r) => setTimeout(r, 800));

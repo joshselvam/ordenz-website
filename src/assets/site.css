@@ -665,19 +665,16 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-features-list{
   list-style:none;margin:0;padding:0 4px;display:flex;flex-wrap:nowrap;align-items:stretch;
   justify-content:flex-start;gap:0;overflow-x:auto;scrollbar-width:thin;
+  scrollbar-color:color-mix(in srgb,#0B110F 45%,var(--saffron)) transparent;
   background:var(--saffron);color:var(--saffron-ink);border:0;border-radius:14px;
   box-shadow:0 10px 24px #0B110F33;min-height:56px;
 }
 .hero-features-list li{
-  min-width:120px;flex:0 0 auto;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:7px;
-  text-align:left;padding:10px 12px;color:var(--saffron-ink);font:700 12px/1.15 var(--body);
+  min-width:0;flex:1 0 auto;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:6px;
+  text-align:left;padding:10px 7px;color:var(--saffron-ink);font:700 12px/1.15 var(--body);
   border-right:1px solid color-mix(in srgb,#0B110F 22%,transparent);box-sizing:border-box;
 }
 .hero-features-list li:last-child{border-right:0}
-.hero-features-list li:has(.hero-features-ico--hw){min-width:168px}
-.hero-features-list li:has(.hero-features-ico--card),
-.hero-features-list li:has(.hero-features-ico--pay){min-width:150px}
-.hero-features-list li:has(.hero-features-ico--delivery){min-width:178px}
 .hero-features-list li > span:not(.hero-features-ico):not(.hero-features-label){
   min-width:0;white-space:nowrap;
 }
@@ -685,26 +682,8 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-features-label > :first-child,
 .hero-features-list li .hero-features-label{font:700 12px/1.15 var(--body)}
 .hero-features-list small{display:block;font:600 10px/1.15 var(--body);color:color-mix(in srgb,var(--saffron-ink) 78%,#0B110F);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
-.hero-features-ico{width:28px;min-width:28px;height:28px;min-height:28px;color:var(--saffron-ink);display:inline-grid;place-items:center;flex:none}
+.hero-features-ico{width:22px;min-width:22px;height:28px;min-height:28px;color:var(--saffron-ink);display:inline-grid;place-items:center;flex:none}
 .hero-features-ico svg{width:20px;height:20px}
-.hero-features-ico--hw{display:inline-flex;gap:3px;width:auto;min-width:48px;height:28px;align-items:center;justify-content:center}
-.hero-features-ico--hw svg{width:16px;height:16px}
-.hero-features-photo{
-  display:block;width:24px;height:24px;object-fit:contain;object-position:center;
-  background:#FFFCF5;border-radius:5px;border:1px solid color-mix(in srgb,#0B110F 18%,transparent);
-}
-.hero-features-ico--card,.hero-features-ico--delivery,.hero-features-ico--pay{
-  width:auto;min-width:40px;height:28px;min-height:28px;align-items:center;
-}
-.hero-features-photo--card{
-  width:44px;height:26px;object-fit:cover;border-radius:5px;background:#FFFCF5;
-}
-.hero-features-photo--delivery{
-  width:48px;height:28px;object-fit:cover;border-radius:6px;background:#1B4332;border-color:transparent;
-}
-.hero-features-photo--pay{
-  width:44px;height:22px;object-fit:cover;border-radius:5px;background:#FFFCF5;
-}
 @media (max-width:1100px){
   .hero-features-list{flex-wrap:wrap;padding:4px}
   .hero-features-list li{flex:1 1 160px;min-width:140px;border-right:0;border-bottom:1px solid color-mix(in srgb,#0B110F 18%,transparent)}
