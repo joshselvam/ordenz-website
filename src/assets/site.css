@@ -613,8 +613,10 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero.cim-hero .hero-features{grid-column:1 / -1;grid-row:3;padding:0;min-width:0;align-self:start}
 /* Wide screens (features rail visible): copy | reports | demo screen, the screen sitting beside the rail. */
 @media (min-width:1400px){
-  .hero.cim-hero .wrap{grid-template-columns:minmax(260px,1fr) 260px minmax(0,922px);grid-template-rows:auto auto;justify-content:end}
-  .hero.cim-hero .hero-copy{grid-column:1;grid-row:1}
+  /* The screen keeps its full 922px first; the copy column only takes spare width, up to 368px. */
+  .hero.cim-hero .wrap{grid-template-columns:max(260px,min(368px,calc(100% - 1214px))) 260px minmax(0,922px);grid-template-rows:auto auto;justify-content:end}
+  .hero.cim-hero .hero-copy{grid-column:1;grid-row:1;gap:12px}
+  .hero.cim-hero h1{font-size:clamp(30px,2.4vw,44px)}
   .hero.cim-hero .hero-reports{grid-column:2;grid-row:1;width:260px}
   .hero.cim-hero .hero-art{grid-column:3;grid-row:1}
   .hero.cim-hero .hero-features{grid-column:1 / -1;grid-row:2}
