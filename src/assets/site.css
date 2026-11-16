@@ -603,7 +603,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 
 /* Home (cim) hero: narrower brand rail + larger preview stage. */
 .hero.cim-hero{width:100%}
-.hero.cim-hero .wrap{display:grid;grid-template-columns:minmax(200px,.34fr) minmax(0,2.6fr);grid-template-rows:minmax(0,1fr) auto;gap:10px 18px;align-items:stretch;min-height:calc(100vh - var(--header-offset,96px) - 8px);min-height:calc(100svh - var(--header-offset,96px) - 8px);height:auto;max-height:none;padding:8px 0 10px;box-sizing:border-box}
+.hero.cim-hero .wrap{display:grid;grid-template-columns:minmax(200px,.34fr) minmax(0,2.6fr);grid-template-rows:minmax(0,1fr) auto;gap:10px 18px;align-items:stretch;min-height:0;height:auto;max-height:none;padding:8px 0 10px;box-sizing:border-box}
 .hero .wrap>*{min-height:0;min-width:0}
 .hero.cim-hero .wrap>*{min-height:0;min-width:0}
 .hero.cim-hero .hero-copy{grid-column:1;grid-row:1}
@@ -625,8 +625,8 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero.cim-hero .hero-footnote{margin-top:14px!important;font-size:13px;line-height:1.4;max-width:32ch;color:var(--ink-2)}
 .cafe-photo{width:100%;max-width:120px;height:auto;aspect-ratio:244/194;object-fit:contain;object-position:center;justify-self:end;min-width:0}
 .hero-reports{
-  position:absolute;z-index:2;top:52px;right:12px;width:min(210px,42%);
-  padding:12px 14px;border-radius:14px;pointer-events:none;
+  position:absolute;z-index:2;top:48px;right:10px;width:min(188px,34%);
+  padding:10px 12px;border-radius:12px;pointer-events:none;
   background:linear-gradient(180deg,#14211C 0%,#0B110F 100%);
   border:1px solid color-mix(in srgb,#1B4332 55%,#3A4D43);
   box-shadow:0 14px 32px #0B110F66;color:#FFFCF5;
@@ -666,18 +666,23 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-art.has-video{display:grid;grid-template-rows:minmax(0,1fr);gap:0;align-content:stretch;padding-top:0;min-height:0;height:100%;overflow:hidden;justify-items:stretch}
 .hero-art.has-video:before{content:none}
 .hero-art.has-video:after{content:none}
-.hero-art.has-video .show{grid-row:1;position:relative;z-index:auto;margin:0;width:100%;min-height:min(68svh,620px);height:100%;display:flex;flex-direction:column;background:#07110E;border-color:#3A4D43;border-radius:16px}
+/* Browser preview sized for a ~1007×788 stage so iframe + pass strip + show-nav stay in view. */
+.hero-art.has-video .show{
+  grid-row:1;position:relative;z-index:auto;margin:0;width:100%;max-width:1007px;justify-self:stretch;
+  min-height:0;height:min(788px, calc(100svh - var(--header-offset,96px) - 120px));max-height:788px;
+  display:flex;flex-direction:column;background:#07110E;border-color:#3A4D43;border-radius:16px;overflow:hidden;
+}
 
 /* Counter slide: paper browser preview (same feel as /demo/ embed), kiosk open by default. */
 .hero-art.has-video .hero-preview{
-  position:relative;flex:1 1 auto;min-height:0;height:100%;display:flex;flex-direction:column;gap:0;
+  position:relative;flex:1 1 auto;min-height:0;height:auto;display:flex;flex-direction:column;gap:0;
   background:#F5F6F2;border-radius:0;overflow:hidden;
 }
 .hero-art.has-video .hero-preview--paper{
   background:#FFFEFB;border:0;
 }
 .hero-art.has-video .hero-preview-frame{
-  display:block;flex:1 1 auto;width:100%;min-height:min(58svh,640px);height:100%;border:0;border-radius:0;
+  display:block;flex:1 1 auto;width:100%;min-height:0;height:100%;border:0;border-radius:0;
   background:#F5F6F2;
 }
 .hero-art.has-video .pass-strip{
