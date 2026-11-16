@@ -670,6 +670,18 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   display:block;width:28px;height:28px;object-fit:contain;object-position:center;
   background:#FFFCF5;border-radius:6px;border:1px solid color-mix(in srgb,#0B110F 18%,transparent);
 }
+.hero-features-ico--card,.hero-features-ico--delivery,.hero-features-ico--pay{
+  height:auto;min-height:0;align-items:center;
+}
+.hero-features-photo--card{
+  width:56px;height:33px;object-fit:cover;border-radius:6px;background:#FFFCF5;
+}
+.hero-features-photo--delivery{
+  width:64px;height:44px;object-fit:cover;border-radius:8px;background:#1B4332;border-color:transparent;
+}
+.hero-features-photo--pay{
+  width:58px;height:30px;object-fit:cover;border-radius:6px;background:#FFFCF5;
+}
 @media (max-width:1100px){
   .hero-features-list{flex-wrap:wrap;padding:4px}
   .hero-features-list li{flex:1 1 140px;border-right:0;border-bottom:1px solid color-mix(in srgb,#0B110F 18%,transparent)}
