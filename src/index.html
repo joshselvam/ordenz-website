@@ -47,6 +47,22 @@
         <div class="show-slide is-on" id="show-counter" aria-label="Counter tablet, 1 of 4">
           <div class="hero-preview hero-preview--paper">
             <iframe class="hero-preview-frame" src="/demo/preview/#kiosk" title="OrdenZ browser preview — kiosk open" loading="eager" referrerpolicy="strict-origin-when-cross-origin" data-preview-src="/demo/preview/#kiosk"></iframe>
+            <aside class="hero-reports" aria-label="Real-time reports preview">
+              <p class="hero-reports-kicker">Real-time reports</p>
+              <h3 class="hero-reports-title">Sales today</h3>
+              <ul class="hero-reports-list" data-for-country="MY">
+                <li><span>Latte + Croissant</span><b>RM 12.90</b></li>
+                <li><span>Kaapi + Brownie</span><b>RM 8.90</b></li>
+                <li><span>Nasi Lemak wrap</span><b>RM 14.50</b></li>
+                <li class="hero-reports-total"><span>Today</span><b>RM 1,284</b></li>
+              </ul>
+              <ul class="hero-reports-list" data-for-country="IN">
+                <li><span>Latte + Croissant</span><b>₹329</b></li>
+                <li><span>Kaapi + Brownie</span><b>₹219</b></li>
+                <li><span>Masala Dosa</span><b>₹149</b></li>
+                <li class="hero-reports-total"><span>Today</span><b>₹48,620</b></li>
+              </ul>
+            </aside>
             <div class="pass-strip pass-strip--paper">
               <p class="hero-preview-cap"><a class="hero-preview-open" href="/demo/preview/#kiosk">Open the preview full screen</a> · Kiosk is open by default</p>
               <figure class="promo promo--tour" data-youtube="{{youtubeId}}" data-youtube-in="{{youtubeIdIn}}">
@@ -90,6 +106,46 @@
         <button class="show-dot" type="button" data-scene="token" aria-controls="show-token">Token</button>
       </div>
     </div>
+  </div>
+  <div class="hero-features" aria-label="OrdenZ highlights">
+    <ul class="hero-features-list">
+      <li>
+        <span class="hero-features-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h.01M12 8h.01M16 8h.01M8 12h.01M12 12h.01M16 12h.01M8 16h8"/></svg></span>
+        <span>Guest QR</span>
+      </li>
+      <li>
+        <span class="hero-features-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 18V9a4 4 0 0 1 8 0v9"/><path d="M6 18h12"/><path d="M9 21h6"/></svg></span>
+        <span>Cafe-ready</span>
+      </li>
+      <li>
+        <span class="hero-features-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2"/><path d="M8 12h8M8 15h5"/></svg></span>
+        <span>Inventory</span>
+      </li>
+      <li>
+        <span class="hero-features-ico hero-features-ico--hw" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="10" height="8" rx="1"/><path d="M5 14v3h6v-3"/><path d="M7 10h2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 7h6v10h-6z"/><path d="M16 10h2M16 13h2"/><path d="M14 17h6"/></svg>
+        </span>
+        <span>Hardware</span>
+        <small>Scanner + printer</small>
+      </li>
+      <li>
+        <span class="hero-features-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h16v8H4z"/><path d="M7 10V8a5 5 0 0 1 10 0v2"/><circle cx="8.5" cy="14" r="1"/><circle cx="15.5" cy="14" r="1"/></svg></span>
+        <span>Tables</span>
+      </li>
+      <li>
+        <span class="hero-features-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 15l2.5-3 2 2 2.5-3L18 15"/><circle cx="9" cy="9" r="1.2"/></svg></span>
+        <span>Showcase / Token</span>
+      </li>
+      <li data-for-country="MY">
+        <span class="hero-features-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M8 12h8M12 9v6"/></svg></span>
+        <span>DuitNow</span>
+      </li>
+      <li data-for-country="IN">
+        <span class="hero-features-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M8 12h8M12 9v6"/></svg></span>
+        <span>UPI</span>
+      </li>
+    </ul>
   </div>
 </div>
 </section>

@@ -60,6 +60,18 @@
     }
   }
 
+  function postCountryToFrames(code) {
+    var frames = document.querySelectorAll("iframe.hero-preview-frame, iframe.demo-embed-frame");
+    for (var i = 0; i < frames.length; i++) {
+      try {
+        var win = frames[i] && frames[i].contentWindow;
+        if (win && typeof win.postMessage === "function") {
+          win.postMessage({ type: "ordenz-country", country: code }, "*");
+        }
+      } catch (e) {}
+    }
+  }
+
   function apply(code, persist) {
     if (code !== "IN" && code !== "MY") return;
     document.documentElement.dataset.country = code;
@@ -70,6 +82,7 @@
     if (sel && sel.value !== code) sel.value = code;
     applyHomeSeo(code);
     syncWhatsApp(code);
+    postCountryToFrames(code);
     document.dispatchEvent(new CustomEvent(EVENT, { detail: { country: code } }));
   }
 
@@ -79,6 +92,13 @@
 
   function wire() {
     syncWhatsApp(country());
+    postCountryToFrames(country());
+    var frames = document.querySelectorAll("iframe.hero-preview-frame, iframe.demo-embed-frame");
+    for (var i = 0; i < frames.length; i++) {
+      if (frames[i] && typeof frames[i].addEventListener === "function") {
+        frames[i].addEventListener("load", function () { postCountryToFrames(country()); });
+      }
+    }
     var sel = document.getElementById("countrySel");
     if (!sel) return;
     sel.value = country();

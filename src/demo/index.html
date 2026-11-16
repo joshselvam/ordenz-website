@@ -346,8 +346,38 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
 /* =========================================================
    Sample data. Prices include 5% GST (CGST 2.5% + SGST 2.5%).
    ========================================================= */
-const CAFE = {name:"OrdenZ Demo", addr:"Tamil Nadu, India",
-  gstin:"33ABCDE1234F1Z5 (sample)", fssai:"12426999000123 (sample)"};
+/* Country packs: currency, pay rail, and language lists — not hardcoded one-offs. */
+const LANG_LABEL = {en:"English",ta:"தமிழ்",ms:"Bahasa Melayu",zh:"中文",hi:"हिन्दी",ml:"മലയാളം"};
+const PACKS = {
+  IN:{
+    code:"IN", currency:"₹", locale:"en-IN", scale:1, payLabel:"UPI", payKey:"upi",
+    taxLabel:"Includes 5% GST", taxShort:"GST 5%",
+    cafe:{name:"OrdenZ Demo", addr:"Tamil Nadu, India", gstin:"33ABCDE1234F1Z5 (sample)", fssai:"12426999000123 (sample)"},
+    languages:[{id:"en",primary:true},{id:"ta",primary:true},{id:"ml",primary:false},{id:"hi",primary:false}],
+    offers:[{label:"Latte + Croissant",display:"₹329"},{label:"Kaapi + Brownie",display:"₹219"}],
+    langLine:"English · தமிழ்"
+  },
+  MY:{
+    code:"MY", currency:"RM ", locale:"en-MY", scale:0.039, payLabel:"DuitNow", payKey:"upi",
+    taxLabel:"SST only when an SST number is set", taxShort:"SST",
+    cafe:{name:"OrdenZ Demo", addr:"Kuala Lumpur, Malaysia", gstin:"SST sample", fssai:"SSM sample"},
+    languages:[{id:"en",primary:true},{id:"ms",primary:true},{id:"zh",primary:false},{id:"ta",primary:false}],
+    offers:[{label:"Latte + Croissant",display:"RM 12.90"},{label:"Kaapi + Brownie",display:"RM 8.90"}],
+    langLine:"English · Bahasa Melayu"
+  }
+};
+let countryCode = "IN";
+function pack(){ return PACKS[countryCode] || PACKS.IN; }
+let CAFE = Object.assign({}, PACKS.IN.cafe);
+function applyCountryPack(code, opts){
+  if(code!=="IN"&&code!=="MY") return;
+  countryCode = code;
+  CAFE = Object.assign({}, pack().cafe);
+  document.documentElement.dataset.country = code;
+  const ids = pack().languages.map(l=>l.id);
+  if(typeof K!=="undefined" && K && !ids.includes(K.lang)) K.lang = (pack().languages.find(l=>l.primary)||pack().languages[0]||{id:"en"}).id;
+  if(!(opts&&opts.silent) && typeof render==="function" && S) render();
+}
 
 /* Menu laid out like international coffee chains: Small/Regular/Large, milk choices,
    extra shots, syrups, toppings. Base recipes are for a Small; the Size choice adds the cup and extra milk/coffee. */
@@ -379,7 +409,16 @@ const T = {
       token:"உங்கள் டோக்கன்",watch:"திரையை பாருங்கள். தயாரானதும் உங்கள் எண் அழைக்கப்படும்.",
       paycounter:"கவுண்டரில் பணம் செலுத்தி இந்த டோக்கனை காட்டவும்.",neworder:"புதிய ஆர்டர்",
       soldout:"தீர்ந்துவிட்டது",gst:"5% GST உட்பட",upsellT:"இதையும் சேர்க்கலாமா?",nothanks:"வேண்டாம், தொடரவும்",
-      empty:"ஆர்டர் காலியாக உள்ளது",startover:"மீண்டும் தொடங்க",qty:"அளவு",options:"விருப்பங்கள்"}
+      empty:"ஆர்டர் காலியாக உள்ளது",startover:"மீண்டும் தொடங்க",qty:"அளவு",options:"விருப்பங்கள்"},
+  ms:{welcome:"Selamat datang ke",touch:"Sentuh untuk order",dine:"Makan sini",take:"Bungkus",how:"Di mana anda mahu makan hari ini?",
+      review:"Semak order",items:"item",add:"Tambah ke order",cancel:"Batal",total:"Jumlah",pay:"Bayar sekarang",
+      upi:"Bayar dengan DuitNow",cash:"Bayar tunai di kaunter",yourorder:"Order anda",back:"Kembali ke menu",
+      scan:"Imbas dengan mana-mana app DuitNow",waiting:"Menunggu bayaran",simulate:"Simulasi bayaran (demo)",
+      token:"Nombor token anda",watch:"Tengok skrin. Kami akan panggil nombor anda bila siap.",
+      paycounter:"Sila bayar di kaunter dan tunjukkan token ini.",neworder:"Order baru",
+      soldout:"HABIS",gst:"SST hanya bila nombor SST diset",upsellT:"Nak tambah ini?",nothanks:"Tidak, teruskan",
+      empty:"Order kosong",startover:"Mula semula",qty:"Kuantiti",options:"Pilihan"},
+  zh:{}, hi:{}, ml:{}
 };
 
 /* ---------- icons (simple line art, currentColor) ---------- */
@@ -404,7 +443,15 @@ const ICON = {
    ========================================================= */
 const LS_KEY = "ordenz-demo-v1";
 let S = null;
-const rupee = n => "₹" + Math.round(n).toLocaleString("en-IN");
+function money(n){
+  const p = pack();
+  if(p.code==="MY"){
+    const v = Math.round(Number(n) * p.scale * 100) / 100;
+    return "RM " + v.toLocaleString(p.locale,{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  return "₹" + Math.round(Number(n)).toLocaleString(p.locale);
+}
+const rupee = money;
 const clone = o => JSON.parse(JSON.stringify(o));
 function todayKey(){ const d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
 
@@ -465,7 +512,7 @@ window.addEventListener("storage", e=>{ if(e.key===LS_KEY) reloadFromStorage(); 
 const itemDef = id => MENU0.find(m=>m.id===id);
 const itemState = id => S.menu.find(m=>m.id===id);
 const ingById = id => S.ing.find(i=>i.id===id);
-const nm = (o,lang) => (lang==="ta" && o.ta) ? o.ta : o.en;
+const nm = (o,lang) => (lang && o[lang]) ? o[lang] : o.en;
 function priceOf(id){ return itemState(id).price; }
 function addonsFor(item){ return groupsFor(item).flatMap(g=>g.options); }
 function addonDef(item, aid){ return ADDON_INDEX[aid]; }
@@ -574,10 +621,18 @@ function render(fromSync){
    ========================================================= */
 const K = {step:"attract", lang:"en", type:"dine", cat:"hot", cart:[], upsellShown:false, lastOrder:null, payTimer:null, idle:Date.now()};
 function kioskReset(){ clearInterval(K.payTimer); Object.assign(K,{step:"attract",type:"dine",cat:"hot",cart:[],upsellShown:false,lastOrder:null}); }
-function t(k){ return T[K.lang][k]; }
+function t(k){
+  if(k==="upi") return countryCode==="MY" ? (T[K.lang]&&T[K.lang].upi) || "Pay with DuitNow" : (T[K.lang]&&T[K.lang][k]) || T.en[k];
+  if(k==="scan") return countryCode==="MY" ? ((T[K.lang]&&T[K.lang].scan) || "Scan with any DuitNow app") : (T[K.lang]&&T[K.lang][k]) || T.en[k];
+  if(k==="gst") return pack().taxLabel;
+  return (T[K.lang]&&T[K.lang][k]) || T.en[k] || k;
+}
 function cartCount(){ return K.cart.reduce((s,l)=>s+l.qty,0); }
 function cartTotal(){ return K.cart.reduce((s,l)=>s+linePrice(l),0); }
-function langSwitch(){ return `<div class="langsw" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="${K.lang==="en"}">English</button><button type="button" data-lang="ta" aria-pressed="${K.lang==="ta"}">தமிழ்</button></div>`; }
+function langSwitch(){
+  const langs = pack().languages;
+  return `<div class="langsw" role="group" aria-label="Language">${langs.map(l=>`<button type="button" data-lang="${l.id}" aria-pressed="${K.lang===l.id}">${esc(LANG_LABEL[l.id]||l.id)}</button>`).join("")}</div>`;
+}
 
 function renderKiosk(fromSync){
   if(fromSync && (K.step==="pay")) return; // don't disturb a payment in progress
@@ -588,7 +643,7 @@ function renderKiosk(fromSync){
       <div><div class="label">${t("welcome")}</div><h1>${esc(CAFE.name)}</h1>
       <div class="sub">Espresso bar · frappés · bakery · sandwiches</div>
       <div class="touch">${t("touch")}</div>
-      <div class="offer"><div>Latte + Croissant <b>₹329</b></div><div>Kaapi + Brownie <b>₹219</b></div><div>English · தமிழ்</div></div>
+      <div class="offer">${pack().offers.map(o=>`<div>${esc(o.label)} <b>${esc(o.display)}</b></div>`).join("")}<div>${esc(pack().langLine)}</div><div><b>${esc(pack().payLabel)}</b></div></div>
       </div></div></div>`;
   } else if(K.step==="type"){
     html = `<div class="kiosk"><div class="k-head"><h2>${t("how")}</h2>${langSwitch()}</div>
@@ -628,7 +683,7 @@ function renderKiosk(fromSync){
         <button class="btn btn-cta" type="button" id="kUpi" ${cartCount()?"":"disabled"}>${t("upi")}</button></div></div>`;
   } else if(K.step==="pay"){
     html = `<div class="kiosk"><div class="k-head"><h2>${t("pay")}</h2>${langSwitch()}</div><div class="k-pay"><div class="paycard">
-      <div class="label">${t("scan")}</div><canvas id="qr" width="232" height="232" aria-label="Demo UPI QR code"></canvas>
+      <div class="label">${t("scan")}</div><canvas id="qr" width="232" height="232" aria-label="Demo ${esc(pack().payLabel)} QR code"></canvas>
       <div class="amt num">${rupee(cartTotal())}</div><div style="color:var(--muted)">${esc(CAFE.name)} · demo QR, not a real payment</div>
       <div class="progress" aria-hidden="true"><i id="payProg"></i></div><div id="payMsg" style="font-weight:600">${t("waiting")}…</div>
       <div class="row-end" style="justify-content:center"><button class="btn btn-soft" type="button" id="kPayBack">${t("back")}</button><button class="btn btn-primary" type="button" id="kSim">${t("simulate")}</button></div>
@@ -638,7 +693,7 @@ function renderKiosk(fromSync){
     html = `<div class="kiosk"><div class="k-done"><div style="display:flex;flex-direction:column;gap:14px;align-items:center">
       <div class="label">${t("token")}</div><div class="tokenbig num">${o.token}</div>
       <p style="font-size:20px;max-width:30ch;margin:0">${o.status==="awaiting"?t("paycounter"):t("watch")}</p>
-      <p style="color:var(--muted);margin:0" class="num">${rupee(o.total)} · ${o.payment==="upi"?"UPI":"Cash at counter"}</p>
+      <p style="color:var(--muted);margin:0" class="num">${money(o.total)} · ${o.payment==="upi"?pack().payLabel:"Cash at counter"}</p>
       <button class="btn btn-cta" type="button" id="kNew">${t("neworder")}</button></div></div></div>`;
   }
   main.innerHTML = html + exit;
@@ -753,7 +808,7 @@ function renderCounter(){
       ${disc?`<div class="row"><span>Discount</span><span class="num">−${rupee(disc)}</span></div>`:""}
       <div class="row"><span>Includes GST 5%</span><span class="num">${rupee(tot-tot/1.05)}</span></div>
       <div class="row big"><span>Total</span><span class="num">${rupee(tot)}</span></div>
-      <div class="paybtns"><button class="btn btn-primary" type="button" data-cpay="cash" ${C.lines.length?"":"disabled"}>Cash</button><button class="btn btn-primary" type="button" data-cpay="upi" ${C.lines.length?"":"disabled"}>UPI</button><button class="btn btn-primary" type="button" data-cpay="card" ${C.lines.length?"":"disabled"}>Card</button></div>
+      <div class="paybtns"><button class="btn btn-primary" type="button" data-cpay="cash" ${C.lines.length?"":"disabled"}>Cash</button><button class="btn btn-primary" type="button" data-cpay="upi" ${C.lines.length?"":"disabled"}>${esc(pack().payLabel)}</button><button class="btn btn-primary" type="button" data-cpay="card" ${C.lines.length?"":"disabled"}>Card</button></div>
       ${C.lines.length?`<button class="btn btn-soft" type="button" id="cClear">Clear bill</button>`:""}
     </div></aside></div>`;
   const sIn=document.getElementById("cSearch"); sIn.addEventListener("input",()=>{ C.q=sIn.value; const pos=sIn.selectionStart; renderCounter(); const n=document.getElementById("cSearch"); n.focus(); try{n.setSelectionRange(pos,pos);}catch(e){} });
@@ -782,8 +837,8 @@ function showReceipt(o){
     <div class="r"><span>Taxable value</span><span>${taxable.toFixed(2)}</span></div>
     <div class="r"><span>CGST 2.5%</span><span>${(gst/2).toFixed(2)}</span></div>
     <div class="r"><span>SGST 2.5%</span><span>${(gst/2).toFixed(2)}</span></div><hr>
-    <div class="r"><b>TOTAL</b><b>₹${o.total.toFixed(2)}</b></div>
-    <div class="r"><span>Paid by</span><span>${o.payment.toUpperCase()}</span></div><hr><div class="c">Thank you! Visit again.</div></div>
+    <div class="r"><b>TOTAL</b><b>${money(o.total)}</b></div>
+    <div class="r"><span>Paid by</span><span>${o.payment==="upi"?pack().payLabel:o.payment.toUpperCase()}</span></div><hr><div class="c">Thank you! Visit again.</div></div>
     <p style="margin:0;color:var(--muted);font-size:13px">On a real counter this prints on a thermal printer and can be sent to the customer on WhatsApp.</p>
     <div class="row-end"><button class="btn btn-soft" type="button" id="waBill">Send on WhatsApp</button><button class="btn btn-primary" type="button" data-close>Next bill</button></div>`);
   document.getElementById("waBill").onclick=()=>toast("Demo: bill would be sent to the customer's WhatsApp");
@@ -887,9 +942,9 @@ ${lows.length?"Reorder: "+lows.map(i=>i.name).join(", "):"Stock: all good"}`;
     </div>
     <div class="grid2">
       <div class="panel"><h2>How customers paid</h2>
-        <div class="split" role="img" aria-label="UPI ${pct(pay.upi,sales)}%, cash ${pct(pay.cash,sales)}%, card ${pct(pay.card,sales)}%">
+        <div class="split" role="img" aria-label="${esc(pack().payLabel)} ${pct(pay.upi,sales)}%, cash ${pct(pay.cash,sales)}%, card ${pct(pay.card,sales)}%">
           <i style="width:${pct(pay.upi,sales)}%;background:var(--accent)"></i><i style="width:${pct(pay.cash,sales)}%;background:var(--saffron)"></i><i style="width:${pct(pay.card,sales)}%;background:var(--muted)"></i></div>
-        <div class="legend"><span><i style="background:var(--accent)"></i>UPI ${rupee(pay.upi)} (${pct(pay.upi,sales)}%)</span><span><i style="background:var(--saffron)"></i>Cash ${rupee(pay.cash)} (${pct(pay.cash,sales)}%)</span><span><i style="background:var(--muted)"></i>Card ${rupee(pay.card)} (${pct(pay.card,sales)}%)</span></div>
+        <div class="legend"><span><i style="background:var(--accent)"></i>${esc(pack().payLabel)} ${money(pay.upi)} (${pct(pay.upi,sales)}%)</span><span><i style="background:var(--saffron)"></i>Cash ${money(pay.cash)} (${pct(pay.cash,sales)}%)</span><span><i style="background:var(--muted)"></i>Card ${money(pay.card)} (${pct(pay.card,sales)}%)</span></div>
         <h2 style="margin-top:22px">Stock alerts</h2>
         ${lows.length?lows.map(i=>`<div class="alert-row"><span class="nm">${esc(i.name)}</span><span class="num" style="color:var(--muted)">${fmtQty(i.stock,i.unit)} left</span>${statusPill(stockStatus(i))}</div>`).join(""):'<p style="color:var(--muted);margin:0">All ingredients above reorder level.</p>'}
       </div>
@@ -922,6 +977,34 @@ function drawHourChart(data){
    Boot
    ========================================================= */
 try{ if(window.self!==window.top) document.documentElement.classList.add("embedded"); }catch(e){ document.documentElement.classList.add("embedded"); }
+function guessCountry(){
+  try{
+    const saved = localStorage.getItem("ordenz-country");
+    if(saved==="IN"||saved==="MY") return saved;
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    if(tz==="Asia/Kolkata"||tz==="Asia/Calcutta") return "IN";
+    if(tz==="Asia/Kuala_Lumpur"||tz==="Asia/Kuching") return "MY";
+  }catch(e){}
+  return "MY";
+}
+function applyThemeFromHost(theme){
+  if(theme!=="light"&&theme!=="dark") return;
+  // Token TV / board stays dark via --board-* tokens; other screens follow site theme.
+  document.documentElement.dataset.theme = theme;
+  try{ localStorage.setItem("ordenz.theme", theme); }catch(e){}
+  if(typeof render==="function") render();
+}
+window.addEventListener("message", (ev)=>{
+  const data = ev && ev.data;
+  if(!data || typeof data!=="object") return;
+  if(data.type==="ordenz-country") applyCountryPack(data.country);
+  if(data.type==="ordenz-theme") applyThemeFromHost(data.theme);
+});
+try{
+  const hostTheme = localStorage.getItem("ordenz.theme");
+  if(hostTheme==="light"||hostTheme==="dark") document.documentElement.dataset.theme = hostTheme;
+}catch(e){}
+applyCountryPack(guessCountry(), {silent:true});
 load();
 view = readHash();
 if(!location.hash){ try{ const v=localStorage.getItem(LS_KEY+"-view"); if(v && VIEWS.some(x=>x.id===v)) view=v; }catch(e){} }

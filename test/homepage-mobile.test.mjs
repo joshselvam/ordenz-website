@@ -32,7 +32,7 @@ test("phone header uses a forest-mint menu button and keeps every public link", 
 
 test("phone hero stacks in one column and keeps the slideshow inside the viewport", () => {
   const css = read("src/assets/site.css");
-  const twoCol = css.lastIndexOf("grid-template-columns:minmax(360px,.58fr) minmax(0,2fr)");
+  const twoCol = css.lastIndexOf("grid-template-columns:minmax(200px,.34fr) minmax(0,2.6fr);grid-template-rows:minmax(0,1fr) auto");
   const phoneCol = css.lastIndexOf("@media (max-width:880px)");
   const oneCol = css.lastIndexOf("grid-template-columns:1fr");
   assert.ok(twoCol > 0, "desktop two-column hero is still defined");
@@ -54,10 +54,11 @@ test("phone and desktop keep the storefront beside the headline, not below the s
   assert.match(home, /width="244"/);
   assert.match(home, /height="194"/);
   assert.doesNotMatch(home, /hero-art has-video"[\s\S]*class="cafe-photo"/);
-  assert.match(css, /\.hero-title\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(110px,150px\)/);
+  assert.match(css, /\.hero-title\{[^}]*grid-template-columns:minmax\(0,1fr\) minmax\(88px,120px\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-title\{[^}]*minmax\(88px,28%\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.cafe-photo\{[^}]*max-width:128px/);
   assert.match(css, /\.cafe-photo\{[^}]*object-fit:contain/);
+  assert.match(css, /\.cafe-photo\{[^}]*max-width:120px/);
   assert.doesNotMatch(css, /\.cafe-photo\{[^}]*grid-row:2/);
   assert.doesNotMatch(css, /\.hero-title\{[^}]*overflow/);
 });
@@ -72,7 +73,7 @@ test("Hero slideshow has no botanical cafe strip; stage and video grow larger", 
   assert.doesNotMatch(home, /id="heroShow"[\s\S]*botanical-cafe\.webp/);
   assert.doesNotMatch(home, /Open the browser preview/);
   assert.doesNotMatch(css, /\.hero-art\.has-video \.show-cafe\{/);
-  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*min-height:min\(88svh,860px\)/);
+  assert.match(css, /\.hero-art\.has-video \.show\{[^}]*min-height:min\(68svh,620px\)/);
   assert.match(css, /\.hero-art\.has-video \.promo\{[^}]*min-height:min\(72svh,760px\)/);
   assert.match(css, /@media \(max-width:880px\)\{[\s\S]*\.hero-art\.has-video \.show\{[^}]*height:auto/);
   assert.match(home, /id="show-guest"[\s\S]*guest\.webp/);
