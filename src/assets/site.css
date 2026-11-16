@@ -613,7 +613,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero.cim-hero .hero-features{grid-column:1 / -1;grid-row:3;padding:0;min-width:0;align-self:start}
 /* Wide screens (features rail visible): copy | reports | demo screen, the screen sitting beside the rail. */
 @media (min-width:1400px){
-  .hero.cim-hero .wrap{grid-template-columns:260px 260px minmax(0,922px);grid-template-rows:auto auto;justify-content:end}
+  .hero.cim-hero .wrap{grid-template-columns:minmax(260px,1fr) 260px minmax(0,922px);grid-template-rows:auto auto;justify-content:end}
   .hero.cim-hero .hero-copy{grid-column:1;grid-row:1}
   .hero.cim-hero .hero-reports{grid-column:2;grid-row:1;width:260px}
   .hero.cim-hero .hero-art{grid-column:3;grid-row:1}
@@ -625,11 +625,11 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-title{display:grid;grid-template-columns:minmax(0,1fr) minmax(88px,120px);gap:8px 12px;align-items:center;margin-top:6px;min-width:0}
 .hero-title h1{margin:0;min-width:0}
 .hero.cim-hero h1{font-size:clamp(26px,2.5vw,36px);line-height:1.05}
-.hero.cim-hero .lead{font-size:13.5px;line-height:1.4;max-width:none;margin-top:0!important}
+.hero.cim-hero .lead{font-size:15.5px;line-height:1.45;max-width:none;margin-top:0!important}
 .hero.cim-hero .actions{margin-top:0;gap:6px;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;width:100%}
-.hero.cim-hero .actions .btn{min-width:0;justify-content:center;text-align:center;padding:7px 8px;font-size:12px;line-height:1.2;white-space:normal}
+.hero.cim-hero .actions .btn{min-width:0;justify-content:center;text-align:center;padding:9px 8px;font-size:14px;line-height:1.2;white-space:normal}
 .hero.cim-hero .actions .btn:last-child:nth-child(odd){grid-column:1 / -1}
-.hero.cim-hero .hero-footnote{margin-top:0!important;font-size:11px;line-height:1.35;max-width:none;color:var(--ink-2)}
+.hero.cim-hero .hero-footnote{margin-top:0!important;font-size:13px;line-height:1.4;max-width:none;color:var(--ink-2)}
 .cafe-photo{width:100%;max-width:120px;height:auto;aspect-ratio:244/194;object-fit:contain;object-position:center;justify-self:end;min-width:0}
 .hero-reports{
   position:relative;z-index:1;top:auto;right:auto;left:auto;
