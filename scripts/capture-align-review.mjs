@@ -53,14 +53,22 @@ for (const width of widths) {
       if (b.reports.r > b.show.x) issues.push("reports overlap screen");
       if (b.reports.h < 220) issues.push("reports panel too short (" + b.reports.h + "px)");
     }
+    // Wide (rail visible): copy | reports | screen. Narrower: copy above reports | screen.
+    const threeCol = b.reports && b.brand && b.reports.x > b.brand.x + 100;
+    const colX = b.brand ? b.brand.x : b.reports?.x;
+    const colR = threeCol ? b.reports.x - 12 : b.reports?.r;
     for (const k of ["title", "eyebrow", "lead", "actions"]) {
-      if (b[k] && b.reports && !near(b[k].x, b.reports.x)) issues.push(k + " not on left column edge");
-      if (b[k] && b.reports && b[k].r > b.reports.r + 2) issues.push(k + " wider than left column");
+      if (b[k] && colX != null && !near(b[k].x, colX)) issues.push(k + " not on left column edge");
+      if (b[k] && colR != null && b[k].r > colR + 2) issues.push(k + " wider than its column");
     }
-    if (b.actions && b.reports && b.actions.b > b.reports.y) issues.push("copy runs into reports");
-    if (b.strip && b.reports && b.show && (!near(b.strip.x, b.reports.x) || !near(b.strip.r, b.show.r))) issues.push("strip not spanning reports→preview");
+    if (threeCol) {
+      if (b.show.x - b.reports.r > 20) issues.push("reports not directly left of screen");
+      if (!near(b.reports.y, b.show.y)) issues.push("reports/screen tops differ");
+    } else if (b.actions && b.reports && b.actions.b > b.reports.y) issues.push("copy runs into reports");
+    if (b.strip && b.show && colX != null && (!near(b.strip.x, colX) || !near(b.strip.r, b.show.r))) issues.push("strip not spanning left column→screen");
     const railGap = b.rail && b.rail.w < 20 ? 6 : 12;
     if (b.rail && b.show && b.rail.x - b.show.r < railGap) issues.push("rail too close to preview");
+    if (b.rail && b.rail.w > 100 && b.show && b.rail.x - b.show.r > 24) issues.push("screen not next to features rail (" + (b.rail.x - b.show.r) + "px gap)");
     return { b, cardImgs, issues };
   });
   const missing = [];

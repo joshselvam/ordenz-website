@@ -263,6 +263,12 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-rail-shot--product\{[^}]*object-fit:contain/);
   assert.match(h,/guest-screen-rail-my\.webp" width="420" height="236"/);
   assert.match(c,/\.hero\.cim-hero > \.wrap\{[^}]*width:calc\(100% - 234px - 44px\)/);
+  // With the features rail visible: copy | reports | screen, pushed right so the screen meets the rail.
+  const wide = c.slice(c.indexOf("grid-template-columns:260px 260px minmax(0,922px)"));
+  assert.match(wide,/^grid-template-columns:260px 260px minmax\(0,922px\);grid-template-rows:auto auto;justify-content:end/);
+  assert.match(wide,/\.hero-reports\{grid-column:2;grid-row:1;width:260px\}/);
+  assert.match(wide,/\.hero-art\{grid-column:3;grid-row:1\}/);
+  assert.match(c,/@media \(min-width:1101px\) and \(max-width:1599px\)\{\s*\.hero-features-list small\{display:none\}/);
   assert.match(h,/class="hero-side"/);
   assert.doesNotMatch(h,/hero-preview[\s\S]{0,80}hero-reports/);
   assert.doesNotMatch(c,/\.hero-art\.has-video \.show-cafe\{/);
