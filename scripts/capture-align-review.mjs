@@ -7,73 +7,71 @@ const outDir = path.resolve(
 );
 fs.mkdirSync(outDir, { recursive: true });
 
+const widths = (process.env.WIDTHS || "1920,1680,1440").split(",").map(Number);
+const country = process.env.COUNTRY || "MY";
 const browser = await puppeteer.launch({
   executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   headless: "new",
-  defaultViewport: { width: 1680, height: 1100, deviceScaleFactor: 1 },
   args: ["--no-sandbox", "--disable-dev-shm-usage"],
 });
-const page = await browser.newPage();
-await page.goto("http://127.0.0.1:8765/", { waitUntil: "networkidle0", timeout: 60000 });
-await page.waitForSelector(".hero.cim-hero", { timeout: 15000 });
-await new Promise((r) => setTimeout(r, 1000));
 
-const metrics = await page.evaluate(() => {
-  const box = (el) => {
-    if (!el) return null;
-    const r = el.getBoundingClientRect();
-    return { x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height), bottom: Math.round(r.bottom), right: Math.round(r.right) };
-  };
-  const side = document.querySelector(".hero-side");
-  const copy = document.querySelector(".hero-copy");
-  const reports = document.querySelector(".hero-reports");
-  const art = document.querySelector(".hero-art");
-  const show = document.querySelector(".hero-art .show");
-  const strip = document.querySelector(".hero-features-list");
-  const rail = document.querySelector(".hero-rail--features");
-  const wrap = document.querySelector(".hero.cim-hero .wrap");
-  const items = [...document.querySelectorAll(".hero-features-list li")].map((li) => {
-    const r = li.getBoundingClientRect();
-    const label = (li.innerText || "").replace(/\s+/g, " ").trim();
-    return { label, x: Math.round(r.x), w: Math.round(r.width), h: Math.round(r.height) };
+let failed = false;
+for (const width of widths) {
+  const page = await browser.newPage();
+  await page.setViewport({ width, height: 1000, deviceScaleFactor: 1 });
+  await page.evaluateOnNewDocument((c) => localStorage.setItem("ordenz.country", c), country);
+  await page.goto("http://127.0.0.1:8765/", { waitUntil: "networkidle0", timeout: 60000 });
+  await page.waitForSelector(".hero.cim-hero");
+  await new Promise((r) => setTimeout(r, 800));
+
+  const m = await page.evaluate(() => {
+    const box = (sel) => {
+      const el = document.querySelector(sel);
+      if (!el || getComputedStyle(el).display === "none") return null;
+      const r = el.getBoundingClientRect();
+      return { x: Math.round(r.left), y: Math.round(r.top), w: Math.round(r.width), h: Math.round(r.height), r: Math.round(r.right), b: Math.round(r.bottom) };
+    };
+    const b = {
+      brand: box(".hero-copy > .brand-row"),
+      eyebrow: box(".hero-copy > .eyebrow"),
+      title: box(".hero-copy > .hero-title"),
+      lead: box(".hero-copy > .lead"),
+      actions: box(".hero-copy > .actions"),
+      reports: box(".hero-reports"),
+      show: box(".hero-art .show"),
+      strip: box(".hero-features-list"),
+      rail: box(".hero-rail--features"),
+    };
+    const cardImgs = [...document.querySelectorAll(".hero-features-photo--card, .hero-rail-shot--product")]
+      .filter((el) => getComputedStyle(el).display !== "none")
+      .map((el) => ({ src: el.getAttribute("src"), loaded: el.complete && el.naturalWidth > 0 }));
+    const issues = [];
+    const near = (a, c, tol = 2) => Math.abs(a - c) <= tol;
+    if (b.reports && b.show) {
+      if (!near(b.reports.y, b.show.y)) issues.push("reports/preview tops differ");
+      if (!near(b.reports.b, b.show.b)) issues.push("reports/preview bottoms differ");
+      if (b.reports.r > b.show.x) issues.push("reports overlap preview");
+    }
+    if (b.title && b.reports && !near(b.title.x, b.reports.x)) issues.push("headline not on reports column edge");
+    if (b.lead && b.show && !near(b.lead.x, b.show.x)) issues.push("lead not on preview column edge");
+    if (b.eyebrow && b.show && !near(b.eyebrow.x, b.show.x)) issues.push("eyebrow not on preview column edge");
+    if (b.strip && b.reports && b.show && (!near(b.strip.x, b.reports.x) || !near(b.strip.r, b.show.r))) issues.push("strip not spanning reports→preview");
+    const railGap = b.rail && b.rail.w < 20 ? 6 : 12;
+    if (b.rail && b.show && b.rail.x - b.show.r < railGap) issues.push("rail too close to preview");
+    return { b, cardImgs, issues };
   });
-  const sb = box(side);
-  const ab = box(art);
-  const rb = box(reports);
-  const pb = box(document.querySelector(".hero-preview"));
-  let overlap = false;
-  if (rb && pb) {
-    overlap = !(rb.x + rb.w <= pb.x || pb.x + pb.w <= rb.x || rb.y + rb.h <= pb.y || pb.y + pb.h <= rb.y);
+  const missing = [];
+  for (const { src } of m.cardImgs) {
+    const res = await page.evaluate(async (s) => (await fetch(s)).status, src);
+    if (res !== 200) missing.push(src);
   }
-  return {
-    wrap: box(wrap),
-    side: sb,
-    copy: box(copy),
-    reports: rb,
-    art: ab,
-    show: box(show),
-    preview: pb,
-    strip: box(strip),
-    rail: box(rail),
-    overlap,
-    sideVsArtBottomDelta: sb && ab ? sb.bottom - ab.bottom : null,
-    stripItems: items,
-    issues: [
-      sb && ab && Math.abs(sb.x + sb.w + 16 - ab.x) > 24 ? "side/art column gap uneven" : null,
-      sb && ab && sb.bottom - ab.bottom > 120 ? "left column much taller than preview" : null,
-      rb && pb && overlap ? "reports overlap preview" : null,
-      items.some((i) => i.w < 70) ? "strip cells too narrow" : null,
-      items.some((i) => i.h > 90) ? "strip cells uneven height / wrapping" : null,
-    ].filter(Boolean),
-  };
-});
+  if (missing.length) m.issues.push("card terminal image missing: " + missing.join(", "));
 
-const heroPath = path.join(outDir, "align-review-hero.png");
-const stripPath = path.join(outDir, "align-review-strip.png");
-const hero = await page.$(".hero.cim-hero");
-if (hero) await hero.screenshot({ path: heroPath });
-const strip = await page.$(".hero-features-list");
-if (strip) await strip.screenshot({ path: stripPath });
-
-console.log(JSON.stringify({ metrics, heroPath, stripPath }, null, 2));
+  const shot = path.join(outDir, `align-review-${width}.png`);
+  await page.screenshot({ path: shot, clip: { x: 0, y: 0, width, height: Math.min(1000, (m.b.strip?.b || 1000) + 16) } });
+  console.log(width, JSON.stringify({ issues: m.issues, b: m.b, cardImgs: m.cardImgs }));
+  if (m.issues.length) failed = true;
+  await page.close();
+}
 await browser.close();
+process.exit(failed ? 1 : 0);

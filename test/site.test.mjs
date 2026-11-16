@@ -251,8 +251,14 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-width:922px/);
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-height:804px/);
   assert.match(c,/\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:cover/);
-  assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px minmax\(0,1fr\)/);
+  assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px minmax\(0,922px\)[^}]*justify-content:center/);
   assert.match(c,/\.hero\.cim-hero \.hero-side\{[^}]*display:contents/);
+  // Copy band shares the reports | preview columns so headline, lead and strip line up.
+  assert.match(c,/\.hero\.cim-hero \.hero-copy\{[^}]*grid-template-columns:300px minmax\(0,1fr\)[^}]*grid-template-areas:"brand eyebrow" "title lead" "title actions" "title foot"/);
+  assert.match(c,/\.hero\.cim-hero \.hero-reports\{[^}]*max-height:804px/);
+  assert.match(c,/\.hero-rail-shot--product\{[^}]*object-fit:contain/);
+  assert.match(h,/card-terminal-rail-my\.webp" width="420" height="236"/);
+  assert.match(c,/\.hero\.cim-hero > \.wrap\{[^}]*width:calc\(100% - 234px - 44px\)/);
   assert.match(h,/class="hero-side"/);
   assert.doesNotMatch(h,/hero-preview[\s\S]{0,80}hero-reports/);
   assert.doesNotMatch(c,/\.hero-art\.has-video \.show-cafe\{/);
