@@ -1,5 +1,6 @@
 dist/
 dist-old-*/
+.dist-tmp-*
 .build.lock
 scripts/_capture/
 node_modules/

@@ -15,7 +15,10 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const src = path.join(here, "src");
-const out = path.join(here, "dist");
+const finalOut = path.join(here, "dist");
+// Build into a private staging folder, then swap onto dist so parallel test readers
+// keep a complete tree until the publish moment (see .build.lock below).
+const out = path.join(here, `.dist-tmp-${process.pid}`);
 const cfg = JSON.parse(fs.readFileSync(path.join(here, "site.config.json"), "utf8"));
 cfg.siteUrl = String(process.env.SITE_URL || cfg.siteUrl || "").replace(/\/+$/, "");
 if (!cfg.siteUrl) throw new Error("Set siteUrl in site.config.json (or SITE_URL) so canonical links, the sitemap and share images use the real address");
@@ -93,7 +96,7 @@ const releaseBuildLock = () => {
 };
 process.once("exit", releaseBuildLock);
 
-// Retry: another process can still hold files briefly while we clear dist.
+// Clear any leftover staging dir for this pid, then build into it.
 for (let i = 0; ; i++) {
   try {
     fs.rmSync(out, { recursive: true, force: true });
@@ -241,4 +244,16 @@ if (!cfg.demoUrl) warn.push("No live demo server yet: set \"demoUrl\" in site.co
 if (cfg.playUrl && !/^https:\/\/play\.google\.com\/store\/apps\/details\?id=[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+$/.test(cfg.playUrl)) throw new Error("playUrl must be a Google Play app link: https://play.google.com/store/apps/details?id=<package>");
 if (!cfg.playUrl) warn.push("No Google Play link yet: the OrdenZ page shows \"Book a demo\" instead of the Play badge");
 warn.forEach((w) => console.warn("note:", w));
+
+// Publish: replace dist only after the staging tree is complete.
+for (let i = 0; ; i++) {
+  try {
+    fs.rmSync(finalOut, { recursive: true, force: true });
+    break;
+  } catch (e) {
+    if (i >= 8) throw e;
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 40 * (i + 1));
+  }
+}
+fs.renameSync(out, finalOut);
 console.log(`Built ${pages.length} pages into dist`);
