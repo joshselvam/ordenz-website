@@ -20,6 +20,8 @@ The offline sample (`/demo/preview/`) is `src/demo/index.html`, a limited standa
 |---|---|---|
 | Home | `src/index.html` | OrdenZ and its products |
 | OrdenZ | `src/features.html` | Features (kiosk in eight languages, voice, UPI, kitchen, printing, offline, stock, owner dashboard, team roles, marketing; Pro: recipes, Intake, bulk & catering, TableTurn, day book), plans, FAQ, contact |
+| Malaysia Ads LP | `src/my-pos.html` | `/my/pos/` — Ring up a bill / Tap to bill for Google Ads (MY) |
+| India Ads LP | `src/in-pos.html` | `/in/pos/` — Ring up a bill / Tap to bill for Google Ads (IN) |
 | Live demo | `src/demo.html` | Opens the live demo server as any role (or the browser preview until `demoUrl` is set) |
 | Browser preview | `src/demo/index.html` | The server-free kiosk and counter preview, copied from `docs/index.html` in the OrdenZ repo |
 | Guide | `src/help.html` | Step-by-step help with pictures, filtered by role and searchable. Update it with every new feature |
@@ -48,7 +50,12 @@ Edit `site.config.json` and push. Empty settings are left out of the pages.
 | `siteUrl` | The site's address (used for search engines and link previews) |
 | `legalName`, `legalRegistration`, `legalIncorporated` | Malaysia platform company on privacy, terms and footer |
 | `legalNameIn`, `legalNoteIn` | India approved company name (incorporation in progress; no CIN) |
-| `adsTagId`, `adsConvSignupClickLabel`, `adsConvDemoLabel` | Optional Google Ads tag for `/my/pos/` only. Leave empty until you have real IDs — empty means no tag script and no CSP widen. Signup-click and demo-submit labels fire website conversions; the real **account signup** conversion still needs a separate `ordenz-app` PR to keep `gclid` through app signup. |
+| `adsTagId`, `adsConvSignupClickLabel`, `adsConvDemoLabel` | Optional Google Ads tag for `/my/pos/` and `/in/pos/`. Leave empty until you have real IDs — empty means no tag script and no CSP widen. Signup-click and demo-submit labels fire website conversions; the real **account signup** conversion still needs a separate `ordenz-app` PR to keep `gclid` through app signup. |
+
+## Roadmap (website / growth)
+
+- **India Ads LP** `/in/pos/` — in progress on this branch (mirror of Malaysia `/my/pos/` with ₹, GST, UPI).
+- **Google Ads campaigns** (later) — separate Search campaigns geo-targeted to Malaysia → Final URL `/my/pos/` and India → Final URL `/in/pos/`; negatives for postal “POS”; conversion via `adsTagId` when IDs are set. Do not launch spend until both LPs are live and Search Console indexing is requested.
 
 ## Preview on your computer
 

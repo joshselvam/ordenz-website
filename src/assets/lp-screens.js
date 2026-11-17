@@ -1,4 +1,4 @@
-// Progressive enhancement: five-screen tabs on /my/pos/.
+// Progressive enhancement: five-screen tabs on country Ads LPs (/my/pos/, /in/pos/).
 (function () {
   var root = document.getElementById("lpScreens");
   if (!root) return;

@@ -1,0 +1,220 @@
+{{> head}}
+<script>try{localStorage.setItem("ordenz-country","IN");document.documentElement.dataset.country="IN"}catch(e){}</script>
+<header class="top lp-top"><div class="wrap">
+  <a class="brand" href="/"><img src="/assets/brand/ordenz-mark.svg" alt="">{{company}}</a>
+  <nav class="nav lp-nav" aria-label="Landing">
+    <a class="btn btn-ghost" href="#price">Pricing</a>
+    {{#if appUrl}}<a class="btn btn-primary js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free trial</a>{{/if}}
+  </nav>
+</div></header>
+<main id="main" class="lp-my lp-ring lp-in"
+  {{#if adsTagId}}data-ads-tag="{{adsTagId}}" data-ads-conv-signup="{{adsConvSignupClickLabel}}" data-ads-conv-demo="{{adsConvDemoLabel}}"{{/if}}>
+
+<section class="lp-hero lp-hero-ring" aria-label="Ring up a bill">
+  <div class="wrap lp-hero-inner">
+    <div class="lp-hero-copy">
+      <p class="brand-mark">OrdenZ</p>
+      <p class="lp-hero-pill">PROMO · INDIA</p>
+      <h1>Ring up a bill.</h1>
+      <p class="lead">Tap a sample menu, see GST and UPI the way Indian cafes run it — then start free from {{priceStarterIn}} / month list price.</p>
+      <div class="actions lp-hero-actions">
+        {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free trial</a>{{/if}}
+        {{#if whatsapp}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberIN}}?text=Hi%20OrdenZ%2C%20I%20want%20an%20India%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp us</a>{{/if}}
+      </div>
+      <p class="hero-footnote">30-day Pro trial from the first real bill, or from day 15. Open with email.</p>
+    </div>
+
+    <div class="lp-demo-card" id="demo-lead">
+      <p class="lp-demo-live"><span class="lp-demo-dot" aria-hidden="true"></span> Try a free demo</p>
+      <h2 class="lp-demo-title">What's your cafe name?</h2>
+      <form class="lp-demo-form" action="/demo/" method="get" id="lpDemoForm" data-utm-pass>
+        <label class="lp-demo-label" for="lpCafeName">Cafe or F&amp;B name</label>
+        <input id="lpCafeName" name="cafe" type="text" maxlength="40" placeholder="Your cafe name" autocomplete="organization">
+        <button type="submit" class="btn btn-cta lp-demo-continue">Continue</button>
+      </form>
+      <p class="lp-demo-note">Opens the OrdenZ demo in your browser.</p>
+    </div>
+
+    <div class="lp-hero-aside" id="lpBill" data-lp-bill>
+      <div class="lp-bill" aria-label="Sample counter bill">
+        <div class="lp-bill-head">
+          <p class="lp-bill-kicker">Counter sample</p>
+          <h2>Tap to bill</h2>
+          <p class="lp-bill-note">Demo seed prices in paise. GST on · service off · UPI.</p>
+        </div>
+        <div class="lp-bill-menu" data-lp-bill-menu role="group" aria-label="Sample menu">
+          <noscript>
+            <p>Filter Coffee ₹40.00 · Masala Chai ₹30.00 · Butter Croissant ₹80.00 · Chicken Sandwich ₹120.00 · Chocolate Brownie ₹90.00</p>
+          </noscript>
+        </div>
+        <div class="lp-bill-panel">
+          <div class="lp-bill-lines" data-lp-bill-lines>
+            <div class="lp-bill-line"><span>2× Filter Coffee</span><span>₹80.00</span></div>
+            <div class="lp-bill-line"><span>1× Chicken Sandwich</span><span>₹120.00</span></div>
+          </div>
+          <dl class="lp-bill-totals">
+            <div><dt>Subtotal</dt><dd data-lp-bill-subtotal>₹200.00</dd></div>
+            <div data-lp-bill-service-row hidden><dt>Service</dt><dd data-lp-bill-service>₹0.00</dd></div>
+            <div data-lp-bill-gst-row><dt>GST 5%</dt><dd data-lp-bill-gst>₹10.00</dd></div>
+            <div class="lp-bill-total"><dt>Total</dt><dd data-lp-bill-total>₹210.00</dd></div>
+          </dl>
+          <p class="lp-bill-pay" data-lp-bill-pay>UPI</p>
+          <div class="lp-bill-tools" role="group" aria-label="Bill options">
+            <button type="button" class="btn btn-ghost" data-lp-bill-toggle="gst">Toggle GST</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-toggle="service">Toggle service</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-toggle="pay-cash">Cash</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-toggle="pay-upi">UPI</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-reset>Reset sample</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-clear>Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-trust" aria-label="India trust points">
+  <div class="wrap">
+    <ul class="lp-trust-list">
+      <li><strong>{{priceStarterIn}} / month</strong> Starter · {{priceProIn}} Pro <span class="muted">software list prices</span></li>
+      <li><strong>30-day Pro trial</strong> — open with email</li>
+      <li><strong>Offline counter</strong> on Starter and Pro</li>
+      <li><strong>UPI QR</strong> when a payment gateway is connected</li>
+      <li><strong>GST on bills</strong> after you add a GSTIN <span class="muted">5% for most cafes</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="lp-price" id="price" aria-label="India pricing steps">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">IN pricing</p>
+      <h2>Clear steps. Honest list prices.</h2>
+      <p class="lead">Start free. Upgrade when the counter gets busy. Yearly is 12 months for the price of 10.</p>
+    </div>
+    <ol class="lp-price-steps">
+      <li>
+        <h3>Free</h3>
+        <p>1 paired device · 50 orders/day. Set up free. Practice bills keep the trial window open.</p>
+      </li>
+      <li>
+        <h3>Starter · {{priceStarterIn}}</h3>
+        <p>Offline counter billing, stock, up to 5 paired devices. Software list price.</p>
+      </li>
+      <li>
+        <h3>Pro · {{priceProIn}}</h3>
+        <p>30-day Pro trial from the first real bill, or from day 15. Then continue on Free, Starter or Pro.</p>
+      </li>
+    </ol>
+    <ul class="lp-price-notes">
+      <li>GST on cafe bills only after the cafe adds a GSTIN (rate set in House; 5% for most cafes).</li>
+      <li>UPI QR needs a connected payment gateway in the app.</li>
+      <li>Delivery intake for Swiggy and Zomato is on the roadmap — OrdenZ already tracks app payouts when you take those orders.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="lp-screens" aria-label="Five cafe screens">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">In the cafe</p>
+      <h2>Five screens. One shift.</h2>
+      <p class="lead">Real OrdenZ screens for India. Self-order kiosk and Guest QR use the languages your cafe enables in House.</p>
+    </div>
+    <div class="lp-screen-tabs" id="lpScreens">
+      <div class="lp-screen-nav" role="tablist" aria-label="Choose a screen">
+        <button type="button" role="tab" id="tab-counter" aria-controls="panel-counter" aria-selected="true" data-screen="counter">Counter</button>
+        <button type="button" role="tab" id="tab-guest" aria-controls="panel-guest" aria-selected="false" data-screen="guest">Guest</button>
+        <button type="button" role="tab" id="tab-kiosk" aria-controls="panel-kiosk" aria-selected="false" data-screen="kiosk">Kiosk</button>
+        <button type="button" role="tab" id="tab-offline" aria-controls="panel-offline" aria-selected="false" data-screen="offline">Offline</button>
+        <button type="button" role="tab" id="tab-upi" aria-controls="panel-upi" aria-selected="false" data-screen="upi">UPI</button>
+      </div>
+      <div class="lp-screen-panels">
+        <div class="lp-screen-panel" role="tabpanel" id="panel-counter" aria-labelledby="tab-counter">
+          <img src="/assets/img/counter.webp" width="1440" height="810" alt="OrdenZ Counter for India with menu grid, bill and rupee prices" fetchpriority="high">
+          <p>Counter — menu, bill and pay on Android tablets.</p>
+        </div>
+        <div class="lp-screen-panel" role="tabpanel" id="panel-guest" aria-labelledby="tab-guest" hidden>
+          <img src="/assets/img/guest.webp" width="1440" height="810" alt="OrdenZ Guest tablet with open bill in rupees" loading="lazy">
+          <p>Guest tablet — the bill facing the guest.</p>
+        </div>
+        <div class="lp-screen-panel" role="tabpanel" id="panel-kiosk" aria-labelledby="tab-kiosk" hidden>
+          <img src="/assets/img/kiosk-hindi.webp" width="1440" height="810" alt="OrdenZ self-order kiosk with Hindi menu names" loading="lazy">
+          <p>Self-order kiosk — languages your cafe turns on in House.</p>
+        </div>
+        <div class="lp-screen-panel" role="tabpanel" id="panel-offline" aria-labelledby="tab-offline" hidden>
+          <img src="/assets/img/offline.webp" width="1440" height="810" alt="OrdenZ offline counter billing screen" loading="lazy">
+          <p>Offline counter on Starter and Pro — receipts still print.</p>
+        </div>
+        <div class="lp-screen-panel" role="tabpanel" id="panel-upi" aria-labelledby="tab-upi" hidden>
+          <img src="/assets/img/pay-upi-qr.webp" width="1440" height="810" alt="UPI QR payment on OrdenZ" loading="lazy">
+          <p>UPI QR when a payment gateway is connected.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-faq" id="faq" aria-label="India FAQ">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">FAQ</p>
+      <h2>Straight answers for Indian cafes</h2>
+    </div>
+    <div class="lp-faq-list">
+      <details>
+        <summary>How does the Pro trial work?</summary>
+        <p>Set up free. 30 days of Pro from the first real bill, or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders/day) unless you pick Starter or Pro. Practice bills keep the trial window open. Yearly is 12 months for the price of 10.</p>
+      </details>
+      <details>
+        <summary>What are the India list prices?</summary>
+        <p>Starter {{priceStarterIn}} / month and Pro {{priceProIn}} / month. These are software list prices from config.</p>
+      </details>
+      <details>
+        <summary>Does offline counter work?</summary>
+        <p>Offline counter billing is on Starter and Pro. Free needs a connection. UPI and table QR always need internet.</p>
+      </details>
+      <details>
+        <summary>How does UPI work?</summary>
+        <p>UPI QR needs a connected payment gateway in the app. Cash and card stay the exact amount on the bill.</p>
+      </details>
+      <details>
+        <summary>When is GST charged on cafe bills?</summary>
+        <p>GST appears on cafe bills after you add a GSTIN in House and set the rate (5% for most cafes). Until then OrdenZ prints plain bills.</p>
+      </details>
+      <details>
+        <summary>What about the India company?</summary>
+        <p>{{legalNameIn}} — {{legalNoteIn}}</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="lp-final" id="contact" aria-label="Start on OrdenZ">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Ready to ring up real bills?</h2>
+      <p class="lead">Create your cafe in the app, or message the India line for a walk-through with your own menu.</p>
+      <div class="actions">
+        {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free trial</a>{{/if}}
+        {{#if whatsapp}}<a class="btn btn-wa js-utm" href="https://wa.me/{{waNumberIN}}?text=Hi%20OrdenZ%2C%20I%20found%20you%20on%20Google%20for%20cafe%20POS%20India." rel="noopener" data-utm-pass data-utm-wa>Chat on WhatsApp</a>{{/if}}
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="lp-sticky" role="region" aria-label="Quick actions">
+  {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free</a>{{/if}}
+  {{#if whatsapp}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberIN}}?text=Hi%20OrdenZ%2C%20I%20want%20an%20India%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp</a>{{/if}}
+</div>
+
+<script type="module" src="/assets/lp-bill-in.mjs"></script>
+<script src="/assets/lp-screens.js" defer></script>
+<script src="/assets/lp-utm.js" defer></script>
+{{#if adsTagId}}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{adsTagId}}"></script>
+<script src="/assets/lp-ads.js" defer></script>
+{{/if}}
+{{> footer}}
