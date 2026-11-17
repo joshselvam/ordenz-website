@@ -1080,10 +1080,23 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .lp-bill-pay{margin:0;font:700 13px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .lp-bill-tools{display:flex;flex-wrap:wrap;gap:8px}
 .lp-bill-tools .btn{padding:8px 12px;font-size:13px}
-.lp-dark-strip{background:var(--deep);color:#E7EEEA;border-block:1px solid color-mix(in srgb,var(--deep) 80%,#fff)}
-.lp-dark-list{list-style:none;margin:0;padding:26px 0;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:baseline;font-size:15px;color:#B2C0B9}
-.lp-dark-list strong{color:#FFFCF5;font-weight:700}
-.lp-dark-list .muted{color:#8FA399}
+/* Trust strip: same saffron rail language as homepage .hero-features-list, on a deep band. */
+.lp-trust{background:var(--deep);padding:22px 0;border-block:1px solid color-mix(in srgb,var(--deep) 80%,#fff)}
+.lp-trust-list{
+  list-style:none;margin:0;padding:0 6px;display:flex;flex-wrap:nowrap;align-items:stretch;
+  justify-content:flex-start;gap:0;overflow-x:auto;scrollbar-width:thin;
+  scrollbar-color:color-mix(in srgb,#0B110F 45%,var(--saffron)) transparent;
+  background:var(--saffron);color:var(--saffron-ink);border:0;border-radius:999px;
+  box-shadow:0 10px 24px #0B110F33;min-height:56px
+}
+.lp-trust-list li{
+  min-width:0;flex:1 0 auto;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 6px;
+  text-align:center;padding:12px 14px;color:var(--saffron-ink);font:700 12px/1.25 var(--body);
+  border-right:1px solid color-mix(in srgb,#0B110F 22%,transparent);box-sizing:border-box;white-space:nowrap
+}
+.lp-trust-list li:last-child{border-right:0}
+.lp-trust-list strong{color:var(--saffron-ink);font-weight:800}
+.lp-trust-list .muted{color:color-mix(in srgb,var(--saffron-ink) 78%,#0B110F);font-weight:600}
 .lp-price{padding:72px 0;background:var(--band)}
 .lp-price-steps{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;counter-reset:lpstep}
 .lp-price-steps li{
@@ -1132,7 +1145,13 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .lp-hero-ring{min-height:0}
   .lp-hero-inner{padding:32px 0 28px}
   .lp-bill-menu{grid-template-columns:1fr}
-  .lp-dark-list{padding:18px 0;gap:10px 16px;font-size:14px}
+  .lp-trust{padding:16px 0}
+  .lp-trust-list{flex-wrap:wrap;border-radius:20px;padding:4px}
+  .lp-trust-list li{
+    flex:1 1 calc(50% - 8px);justify-content:flex-start;text-align:left;white-space:normal;
+    border-right:0;border-bottom:1px solid color-mix(in srgb,#0B110F 18%,transparent);padding:10px 12px;font-size:12px
+  }
+  .lp-trust-list li:last-child{border-bottom:0}
   .lp-price,.lp-screens,.lp-faq{padding:52px 0}
   .lp-final{padding-bottom:110px}
   .lp-sticky{display:flex}

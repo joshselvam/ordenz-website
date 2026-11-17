@@ -21,7 +21,11 @@ test("MY ads LP is ring-up-a-bill with honest claims and config prices only", ()
   assert.match(h, /\{\{priceStarterMy\}\}/);
   assert.match(h, /\{\{priceProMy\}\}/);
   assert.doesNotMatch(h, /RM97|RM197/);
+  assert.match(h, /class="lp-trust"/);
+  assert.match(h, /class="lp-trust-list"/);
+  assert.doesNotMatch(h, /lp-dark-strip|lp-dark-list/);
   assert.match(h, /30-day Pro trial/);
+  assert.match(h, /open with email/);
   assert.match(h, /first real bill/);
   assert.match(h, /day 15/);
   assert.match(h, /12 months for the price of 10/);
@@ -32,6 +36,7 @@ test("MY ads LP is ring-up-a-bill with honest claims and config prices only", ()
   assert.match(h, /SST 6%/);
   assert.match(h, /MyInvois files/);
   assert.match(h, /paid extra/);
+  assert.match(h, /software list prices/);
   assert.match(h, /id="lpBill"/);
   assert.match(h, /id="lpDemoForm"/);
   assert.match(h, /maxlength="40"/);
@@ -99,6 +104,15 @@ test("lp-utm.js forces MY and keeps gclid/gbraid/wbraid + utm_* through CTAs and
   assert.doesNotMatch(waFn, /gclid|gbraid|wbraid/);
   assert.match(waFn, /utm_campaign/);
   assert.doesNotMatch(j, /gtag|google-analytics|AW-|GTM-|facebook|pixel|places\.googleapis/i);
+});
+
+test("MY ads LP trust strip uses saffron pill-rail theme like homepage feature rail", () => {
+  const c = read("src/assets/site.css");
+  assert.match(c, /\.lp-trust-list\{[^}]*var\(--saffron\)/);
+  assert.match(c, /\.lp-trust-list li\{[^}]*var\(--saffron-ink\)/);
+  assert.match(c, /\.lp-trust-list\{[^}]*border-radius:999px/);
+  assert.match(c, /\.lp-trust-list li\{[^}]*border-right:1px solid/);
+  assert.doesNotMatch(c, /\.lp-dark-strip|\.lp-dark-list/);
 });
 
 test("build registers /my/pos/ ring-up meta and list prices from site.config", () => {
