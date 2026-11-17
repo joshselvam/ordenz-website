@@ -643,8 +643,22 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
     grid-template-columns:minmax(300px,380px) minmax(0,922px);gap:12px 20px;justify-content:center;
   }
   .hero.cim-hero .hero-reports{
-    width:100%;align-self:stretch;height:auto;max-height:none;min-height:280px;contain:size;
+    width:100%;align-self:stretch;height:auto;max-height:none;min-height:220px;contain:size;
   }
+  /* Both columns end on the same line: the demo stretches to the copy + reports height when the
+     window is short, and the reports fill down to the demo when the window is tall. */
+  .hero.cim-hero .hero-art{align-self:stretch}
+  .hero.cim-hero .hero-art.has-video .show{
+    align-self:stretch;height:auto;max-height:none;
+    min-height:min(804px, calc(100svh - var(--header-offset,68px) - 140px));
+  }
+}
+/* Short laptop windows (≤820px tall): tighter copy and a shorter reports minimum so the
+   feature strip stays in the first screen. */
+@media (min-width:1101px) and (max-width:1839px) and (max-height:820px){
+  .hero.cim-hero .hero-copy{gap:6px}
+  .hero.cim-hero .actions .btn{padding:7px 8px}
+  .hero.cim-hero .hero-reports{min-height:150px}
 }
 /* Wide monitors only (features rail visible): copy | reports | demo beside the rail.
    Typography / button stretch overrides live AFTER the base .hero.cim-hero rules below so they win. */
