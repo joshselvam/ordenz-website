@@ -86,9 +86,18 @@
     document.dispatchEvent(new CustomEvent(EVENT, { detail: { country: code } }));
   }
 
+  function lockedCountry() {
+    var p = location.pathname || "";
+    if (p.indexOf("/in/pos") === 0) return "IN";
+    if (p.indexOf("/my/pos") === 0) return "MY";
+    return null;
+  }
+
   window.OrdenzCountry = { get: country, set: function (c) { apply(c, true); }, guess: guess };
 
-  apply(country(), !readSaved());
+  // Ads Final URLs keep their geo lock even if localStorage still has the other country.
+  var locked = lockedCountry();
+  apply(locked || country(), locked ? true : !readSaved());
 
   function wire() {
     syncWhatsApp(country());
