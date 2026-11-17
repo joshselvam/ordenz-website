@@ -1030,7 +1030,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 }
 .lp-demo-live{margin:0;display:flex;align-items:center;gap:8px;font:700 15px/1.2 var(--body);color:var(--ink)}
 .lp-demo-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
-.lp-demo-card h3{margin:4px 0 0;font-size:22px}
+.lp-demo-title{margin:4px 0 0;font-size:22px;font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.15}
 .lp-demo-form{margin-top:8px;display:grid;gap:10px}
 .lp-demo-label{font:600 13px/1.2 var(--body);color:var(--ink)}
 .lp-demo-form input{
