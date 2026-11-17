@@ -15,7 +15,9 @@ test("MY ads LP is ring-up-a-bill with honest claims and config prices only", ()
   assert.match(h, /class="lp-my lp-ring"/);
   assert.match(h, /Ring up a bill/);
   assert.match(h, /brand-mark[^>]*>OrdenZ</);
-  assert.match(h, /Cafe POS · Built for Malaysia/);
+  assert.match(h, /class="lp-hero-pill">PROMO · MALAYSIA</);
+  assert.match(h, /lp-hero-pill[\s\S]{0,80}<h1>/);
+  assert.doesNotMatch(h, /Cafe POS · Built for Malaysia/);
   assert.match(h, /\{\{priceStarterMy\}\}/);
   assert.match(h, /\{\{priceProMy\}\}/);
   assert.doesNotMatch(h, /RM97|RM197/);
