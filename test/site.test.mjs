@@ -225,7 +225,11 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/Grab · foodpanda · ShopeeFood/);
   assert.match(c,/\.hero-rail--features\{/);
   assert.match(c,/\.hero-rail-features\{[^}]*hero-rail-rise/);
-  assert.match(c,/@media \(min-width:1400px\)\{[^}]*width:234px/);
+  // Full features rail only at 1840+ — 881–1839 (laptops, 1680–1728 screens) stays two-pane + mint spine.
+  assert.match(c,/@media \(min-width:1840px\)\{[^}]*width:234px/);
+  assert.match(c,/@media \(min-width:881px\) and \(max-width:1839px\)/);
+  assert.match(c,/@media \(min-width:1101px\) and \(max-width:1839px\)\{\s*\.hero\.cim-hero \.wrap\{[^}]*minmax\(300px,380px\)/);
+  assert.match(c,/@media \(min-width:881px\) and \(max-width:1100px\)\{\s*\.hero\.cim-hero \.hero-side\{flex-direction:row/);
   assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px[^}]*grid-template-rows:auto minmax\(0,1fr\) auto/);
   assert.match(c,/\.hero-reports\{/);
   assert.match(c,/\.hero-features-list\{[^}]*var\(--saffron\)/);
@@ -252,7 +256,7 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*grid-row:1/);
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-width:922px/);
   assert.match(c,/\.hero-art\.has-video \.show\{[^}]*max-height:804px/);
-  assert.match(c,/\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:cover/);
+  assert.match(c,/\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:contain/);
   assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px minmax\(0,922px\)[^}]*justify-content:center/);
   assert.match(c,/\.hero\.cim-hero \.hero-side\{[^}]*display:contents/);
   // Copy sits above the reports in the left column; the demo screen spans both rows on the right.
@@ -271,7 +275,7 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(wide,/\.hero-art\{grid-column:3;grid-row:1/);
   // Wide-screen title/lead/button overrides must come AFTER the base .hero.cim-hero h1 rule.
   const baseH1 = c.indexOf(".hero.cim-hero h1{font-size:clamp(26px,2.5vw,36px)");
-  const wideH1 = c.indexOf(".hero.cim-hero h1{font-size:clamp(34px,2.95vw,58px)", baseH1);
+  const wideH1 = c.indexOf(".hero.cim-hero h1{font-size:clamp(30px,1.75vw,36px)", baseH1);
   assert.ok(baseH1 >= 0 && wideH1 > baseH1, "desktop h1 override must follow base h1");
   assert.match(c,/@media \(min-width:1101px\) and \(max-width:1599px\)\{\s*\.hero-features-list small\{display:none\}/);
   // Light/dark hero chrome tokens: cream panels in light, charcoal restored in dark (no image filters).
