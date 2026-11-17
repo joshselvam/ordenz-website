@@ -33,7 +33,15 @@ test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   assert.match(h, /open with email/);
   assert.doesNotMatch(h, /LHDN e-Invoicing ready|20,?000\+ businesses|55% off|Get a free demo|Google Places|powered by Google/i);
   assert.doesNotMatch(h, /4\.7 on Google|Trusted by \d/);
-  assert.doesNotMatch(h, /\bcheap\b|hardware theatre|not postal|does not log in|no card|No invented|unlike StoreHub|don't|never\b|Offline sample|Limited features|simulated payments/i);
+  assert.doesNotMatch(h, /\bcheap\b|hardware theatre|not postal|does not log in|no card|No invented|unlike StoreHub|don't|never\b|Offline sample|Limited features|simulated payments|Wi-?Fi drop|Sold out drops off/i);
+  assert.match(h, /keep taking bills offline/);
+  assert.match(h, /lp-why-strip/);
+  assert.match(h, /lp-proof-stats/);
+  assert.match(h, /kiosk languages, one tap to switch/);
+  assert.match(h, /Eight screens\. One cafe\./);
+  assert.match(h, /kitchen\.webp/);
+  assert.match(h, /token-screen-my\.webp/);
+  assert.match(h, /Stock stays current/);
   assert.match(h, /data-utm-pass/);
   assert.match(h, /lp-utm\.js/);
   assert.match(h, /ordenz-country","MY"/);
