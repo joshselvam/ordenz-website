@@ -48,6 +48,7 @@ Edit `site.config.json` and push. Empty settings are left out of the pages.
 | `siteUrl` | The site's address (used for search engines and link previews) |
 | `legalName`, `legalRegistration`, `legalIncorporated` | Malaysia platform company on privacy, terms and footer |
 | `legalNameIn`, `legalNoteIn` | India approved company name (incorporation in progress; no CIN) |
+| `adsTagId`, `adsConvSignupClickLabel`, `adsConvDemoLabel` | Optional Google Ads tag for `/my/pos/` only. Leave empty until you have real IDs — empty means no tag script and no CSP widen. Signup-click and demo-submit labels fire website conversions; the real **account signup** conversion still needs a separate `ordenz-app` PR to keep `gclid` through app signup. |
 
 ## Preview on your computer
 

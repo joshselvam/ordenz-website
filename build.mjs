@@ -31,6 +31,20 @@ cfg.waNumberIN = waDigits(cfg.whatsapp);
 cfg.waNumberMY = waDigits(cfg.whatsappMY) || cfg.waNumberIN;
 cfg.waLink = cfg.whatsapp ? `https://wa.me/${cfg.waNumberIN}` : "";
 cfg.contactLink = cfg.email ? `mailto:${cfg.email}` : cfg.waLink || "#contact";
+// Malaysia ads LP price labels (list prices from site.config — do not invent amounts)
+const myMonthly = cfg.pricing?.MY?.monthly || {};
+if (!Number.isSafeInteger(myMonthly.starter) || !Number.isSafeInteger(myMonthly.pro)) {
+  throw new Error("Malaysia Starter and Pro monthly list prices must be set in site.config.json");
+}
+cfg.priceStarterMy = `RM${myMonthly.starter}`;
+cfg.priceProMy = `RM${myMonthly.pro}`;
+// Optional Google Ads conversion tag for /my/pos/ only — leave empty until real IDs are set.
+cfg.adsTagId = String(cfg.adsTagId || "").trim();
+cfg.adsConvSignupClickLabel = String(cfg.adsConvSignupClickLabel || "").trim();
+cfg.adsConvDemoLabel = String(cfg.adsConvDemoLabel || "").trim();
+if (cfg.adsTagId && !/^AW-\d+$/.test(cfg.adsTagId)) {
+  throw new Error('adsTagId must be empty or a Google Ads tag like "AW-123456789"');
+}
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const partial = (name) => fs.readFileSync(path.join(src, "_partials", name + ".html"), "utf8");
@@ -70,6 +84,7 @@ const pages = [
   { file: "demo.html", out: "demo/index.html", path: "/demo/", title: cfg.demoUrl ? "Cafe POS live demo | OrdenZ" : "Cafe POS demo (browser preview) | OrdenZ", desc: cfg.demoUrl ? "Explore real cafe workflows with an isolated sample account and role-specific screens." : "Try a limited kiosk, counter, kitchen and token browser preview with simulated payments." },
   { file: "help.html", out: "guide/index.html", path: "/guide/", title: "OrdenZ cafe POS guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
   { file: "start-a-cafe.html", out: "start-a-cafe/index.html", path: "/start-a-cafe/", title: "Start a cafe in India or Malaysia: licences, tax and equipment", desc: "A plain guide to opening a cafe: FSSAI, GST and trade licences in India; SSM, council licence, food handler course and SST in Malaysia; equipment, menu pricing and your first week." },
+  { file: "my-pos.html", out: "my/pos/index.html", path: "/my/pos/", title: "Cafe POS Malaysia | Ring up a bill | OrdenZ", desc: `Ring up a sample bill on OrdenZ: Malaysia cafe POS from ${cfg.priceStarterMy} / month, 30-day Pro trial, offline counter, self-order, and DuitNow via approved Fiuu when connected.` },
   { file: "terms.html", out: "terms/index.html", path: "/terms/", title: "Terms of service", desc: "The agreement between your cafe and OrdenZ: plans, payments, your data and your responsibilities." },
   { file: "support.html", out: "support/index.html", path: "/support/", title: "Help and support", desc: "How to reach the OrdenZ team: the Feedback button in the app, email, reply times and what to do if the internet is down." },
   { file: "privacy.html", out: "privacy/index.html", path: "/privacy/", title: "Privacy policy", desc: "What OrdenZ handles, why, and who sees it." },
@@ -143,7 +158,7 @@ for (const p of pages) {
     .replace(/<!-- LIVE_DEMO_ONLY_START -->([\s\S]*?)<!-- LIVE_DEMO_ONLY_END -->/g, (_,body)=>cfg.demoUrl?body:"")
     .replace("<!-- REGIONAL_PRICING -->",renderPricing(cfg.pricing,cfg.contactLink,cfg.appUrl));
   let html = render(source, { pageTitle: p.title, pageDesc: p.desc, pagePath: p.path, canonical: cfg.siteUrl + p.path });
-  const faq = (p.file === "features.html" || p.file === "start-a-cafe.html") ? faqJsonLd(html) : null;
+  const faq = (p.file === "features.html" || p.file === "start-a-cafe.html" || p.file === "my-pos.html") ? faqJsonLd(html) : null;
   html = withJsonLd(html, faq);
   fs.mkdirSync(path.dirname(path.join(out, p.out)), { recursive: true });
   fs.writeFileSync(path.join(out, p.out), html);
@@ -154,7 +169,29 @@ if (fs.existsSync(demo)) collectScripts(fs.readFileSync(demo, "utf8"));
 cfg.cspScriptHashes = [...inlineScripts].map((s) => `'sha256-${crypto.createHash("sha256").update(s).digest("base64")}'`).join(" ");
 
 copyDir(path.join(src, "assets"), path.join(out, "assets"));
-for (const f of ["_headers", "_redirects", "robots.txt"]) fs.writeFileSync(path.join(out, f), render(fs.readFileSync(path.join(src, f), "utf8"), {}).replace(/&#39;|&apos;/g, "'"));
+for (const f of ["_headers", "_redirects", "robots.txt"]) {
+  let text = render(fs.readFileSync(path.join(src, f), "utf8"), {}).replace(/&#39;|&apos;/g, "'");
+  if (f === "_headers" && cfg.adsTagId) {
+    // Widen CSP only for /my/pos/ when a real Ads tag is configured — never invent hosts site-wide.
+    const adsCsp = [
+      "default-src 'self'",
+      `script-src 'self' ${cfg.cspScriptHashes} https://www.googletagmanager.com`,
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com",
+      "img-src 'self' data: https://www.google.com https://www.google.com.my https://www.googleadservices.com https://googleads.g.doubleclick.net",
+      `connect-src 'self' ${cfg.appOrigin} https://www.google.com https://www.google.com.my https://www.googleadservices.com https://www.googletagmanager.com https://googleads.g.doubleclick.net`,
+      "media-src 'self'",
+      "frame-src 'self' https://www.youtube-nocookie.com",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'self'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+    text += `\n\n/my/pos/\n  Content-Security-Policy: ${adsCsp}\n/my/pos/*\n  Content-Security-Policy: ${adsCsp}\n`;
+  }
+  fs.writeFileSync(path.join(out, f), text);
+}
 fs.writeFileSync(path.join(out, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.filter((p) => p.path !== "/404").map((p) => `  <url><loc>${cfg.siteUrl}${p.path}</loc></url>`).join("\n")}

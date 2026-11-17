@@ -1,5 +1,6 @@
 /privacy.html          /privacy/          301
 /delete-account.html   /delete-account/   301
+/my/pos                /my/pos/           301
 # The site's old OrderNest addresses, kept working for old links and search results
 /ordernest                  /features/        301
 /ordernest/                 /features/        301
