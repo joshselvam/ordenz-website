@@ -1,4 +1,4 @@
-// Malaysia Google Ads / SEO landing page at /my/pos/ (Option B — price-led MY)
+// Malaysia Google Ads / SEO landing page at /my/pos/ (Option B — price-led MY + demo/slideshow/tour)
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -18,6 +18,9 @@ test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   assert.match(h, /Start free trial/);
   assert.match(h, /\{\{appUrl\}\}/);
   assert.match(h, /counter-my\.webp/);
+  assert.match(h, /guest-my\.webp/);
+  assert.match(h, /showcase-my\.webp/);
+  assert.match(h, /token-screen-my\.webp/);
   assert.match(h, /kiosk-malay\.webp/);
   assert.match(h, /offline-my\.webp/);
   assert.match(h, /pay-duitnow-qr\.webp/);
@@ -30,11 +33,32 @@ test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   assert.match(h, /open with email/);
   assert.doesNotMatch(h, /LHDN e-Invoicing ready|20,?000\+ businesses|55% off|Get a free demo|Google Places|powered by Google/i);
   assert.doesNotMatch(h, /4\.7 on Google|Trusted by \d/);
-  assert.doesNotMatch(h, /\bcheap\b|hardware theatre|not postal|does not log in|no card|No invented|unlike StoreHub|don't|never\b/i);
+  assert.doesNotMatch(h, /\bcheap\b|hardware theatre|not postal|does not log in|no card|No invented|unlike StoreHub|don't|never\b|Offline sample|Limited features|simulated payments/i);
   assert.match(h, /data-utm-pass/);
   assert.match(h, /lp-utm\.js/);
   assert.match(h, /ordenz-country","MY"/);
   assert.match(h, /wa\.me\/\{\{waNumberMY\}\}/);
+});
+
+test('MY ads LP wires real Counter slideshow, live demo and 45-second tour', () => {
+  const h = read('src/my-pos.html');
+  assert.match(h, /id="heroShow"/);
+  assert.match(h, /id="show-counter"/);
+  assert.match(h, /data-scene="counter"/);
+  assert.match(h, /href="\/demo\/"/);
+  assert.match(h, /Try the live demo/);
+  assert.match(h, /href="\/demo\/preview\/#kiosk"/);
+  assert.match(h, /Open kiosk preview/);
+  assert.match(h, /id="promoVideo"/);
+  assert.match(h, /ordenz-one-day-v3\.mp4/);
+  assert.match(h, /ordenz-one-day-v3\.webm/);
+  assert.match(h, /ordenz-one-day-v3\.jpg/);
+  assert.match(h, /Watch the 45-second tour|Play the 45-second tour/);
+  assert.match(h, /data-youtube="\{\{youtubeId\}\}"/);
+  assert.match(h, /id="promoDialog"/);
+  assert.match(h, /promo--tour/);
+  assert.ok(fs.existsSync(path.join(root, 'src/assets/img/counter-my.webp')));
+  assert.ok(fs.existsSync(path.join(root, 'src/assets/video/ordenz-one-day-v3.mp4')));
 });
 
 test('lp-utm.js forces MY and forwards utm_* without inventing tracking pixels', () => {
@@ -61,6 +85,7 @@ test('build registers /my/pos/ with ads meta and list prices from site.config', 
   assert.doesNotMatch(b, /Not Pos Malaysia postage/);
   assert.equal(cfg.pricing.MY.monthly.starter, 97);
   assert.equal(cfg.pricing.MY.monthly.pro, 197);
+  assert.match(cfg.youtubeId || '', /^[A-Za-z0-9_-]{11}$/);
 });
 
 test('built /my/pos/ page, sitemap, robots and redirects stay consistent', () => {
@@ -75,15 +100,20 @@ test('built /my/pos/ page, sitemap, robots and redirects stay consistent', () =>
   assert.match(page, /RM97/);
   assert.match(page, /RM197/);
   assert.match(page, /lp-price-best/);
+  assert.match(page, /id="heroShow"/);
+  assert.match(page, /counter-my\.webp/);
+  assert.match(page, /Try the live demo/);
+  assert.match(page, /ordenz-one-day-v3\.mp4/);
   assert.match(page, /href="https:\/\/app\.ordenz\.com"/);
   assert.match(page, /wa\.me\/601116441186/);
   assert.match(page, /SoftwareApplication/);
   assert.match(page, /Organization/);
-  assert.doesNotMatch(page, /LHDN e-Invoicing ready|20,?000\+|Not Pos Malaysia postage/i);
+  assert.doesNotMatch(page, /LHDN e-Invoicing ready|20,?000\+|Not Pos Malaysia postage|Offline sample/i);
   const map = read('dist/sitemap.xml');
   assert.match(map, /https:\/\/www\.ordenz\.com\/my\/pos\//);
   const robots = read('dist/robots.txt');
   assert.match(robots, /Sitemap: https:\/\/www\.ordenz\.com\/sitemap\.xml/);
   assert.match(read('dist/_redirects'), /\/my\/pos\s+\/my\/pos\/\s+301/);
   assert.ok(fs.existsSync(path.join(root, 'dist/assets/lp-utm.js')));
+  assert.ok(fs.existsSync(path.join(root, 'dist/assets/video/ordenz-one-day-v3.mp4')));
 });

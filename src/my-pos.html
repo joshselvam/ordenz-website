@@ -34,10 +34,56 @@
       </div>
       <p class="hero-footnote">Set up free. 30 days of Pro from the first real bill, or from day 15. Then continue on Free (1 paired device, 50 orders/day), or choose Starter or Pro.</p>
     </div>
-    <figure class="lp-hero-product">
-      <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="OrdenZ counter on a tablet with ringgit prices and DuitNow payment">
-      <figcaption>Counter · kiosk · kitchen on Android tablets</figcaption>
-    </figure>
+
+    <div class="lp-product-stage">
+      <div class="show lp-show" id="heroShow" aria-roledescription="carousel" aria-label="OrdenZ cafe screens">
+        <div class="show-stage lp-show-stage">
+          <div class="show-slide is-on" id="show-counter" aria-label="Counter, 1 of 4">
+            <figure class="lp-hero-product">
+              <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="OrdenZ Counter for Malaysia: menu grid, bill sidebar, ringgit prices and DuitNow" fetchpriority="high">
+              <figcaption>Counter — menu, bill and DuitNow on Android tablets</figcaption>
+            </figure>
+          </div>
+          <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
+            <figure class="lp-hero-product">
+              <img src="/assets/img/guest-my.webp" width="1440" height="810" alt="OrdenZ Guest tablet with Showcase and open bill in ringgit" loading="lazy">
+              <figcaption>Guest tablet — bill facing the guest</figcaption>
+            </figure>
+          </div>
+          <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
+            <figure class="lp-hero-product">
+              <img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="OrdenZ Showcase menu board for a Malaysian cafe" loading="lazy">
+              <figcaption>Showcase — menu facing the street</figcaption>
+            </figure>
+          </div>
+          <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
+            <figure class="lp-hero-product">
+              <img src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="OrdenZ Token screen with preparation and ready tokens in English, Malay and Chinese" loading="lazy">
+              <figcaption>Token screen — ready for collection</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="show-nav lp-show-nav" role="tablist" aria-label="Choose a screen">
+          <button class="show-dot" type="button" data-scene="counter" aria-controls="show-counter" aria-current="true">Counter</button>
+          <button class="show-dot" type="button" data-scene="guest" aria-controls="show-guest">Guest</button>
+          <button class="show-dot" type="button" data-scene="showcase" aria-controls="show-showcase">Showcase</button>
+          <button class="show-dot" type="button" data-scene="token" aria-controls="show-token">Token</button>
+        </div>
+      </div>
+
+      <div class="lp-media" aria-label="Demo and tour">
+        <a class="btn btn-primary" href="/demo/">Try the live demo</a>
+        <a class="btn btn-ghost" href="/demo/preview/#kiosk">Open kiosk preview</a>
+        <figure class="promo promo--tour lp-tour" data-youtube="{{youtubeId}}" data-youtube-in="{{youtubeIdIn}}">
+          <video id="promoVideo" muted loop playsinline preload="none" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 45-second narrated tour with captions">
+            <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
+            <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
+          </video>
+          <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch the 45-second tour</button>
+          <span class="promo-badge">45-second tour</span>
+        </figure>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -95,7 +141,7 @@
     </ul>
     <div class="actions" style="justify-content:center;margin-top:28px">
       {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
-      <a class="btn btn-ghost" href="/demo/">Try the demo</a>
+      <a class="btn btn-ghost" href="/demo/">Try the live demo</a>
       <a class="btn btn-ghost" href="/start-a-cafe/">Malaysia cafe starter guide</a>
     </div>
   </div>
@@ -114,6 +160,7 @@
     </div>
   </div>
 </section>
+{{#if youtubeId}}<dialog class="promo-dialog" id="promoDialog" aria-label="OrdenZ tour on YouTube"><button type="button" class="promo-close" id="promoClose" aria-label="Close">&times;</button><div class="promo-frame" id="promoFrame"></div></dialog>{{/if}}
 </main>
 <script src="/assets/lp-utm.js" defer></script>
 {{> footer}}
