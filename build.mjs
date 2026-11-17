@@ -71,7 +71,29 @@ function copyDir(from, to) {
   }
 }
 
-// Retry: parallel tests each call build.mjs and can race on Windows/CI clearing dist.
+// Parallel tests each spawn build.mjs; serialize so one run does not wipe dist mid-copy.
+const lockPath = path.join(here, ".build.lock");
+let lockFd;
+for (let i = 0; ; i++) {
+  try {
+    lockFd = fs.openSync(lockPath, "wx");
+    break;
+  } catch (e) {
+    if (e.code !== "EEXIST") throw e;
+    try {
+      if (Date.now() - fs.statSync(lockPath).mtimeMs > 60_000) fs.unlinkSync(lockPath);
+    } catch {}
+    if (i >= 120) throw new Error("build.mjs: timed out waiting for .build.lock (parallel tests)");
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 50);
+  }
+}
+const releaseBuildLock = () => {
+  try { fs.closeSync(lockFd); } catch {}
+  try { fs.unlinkSync(lockPath); } catch {}
+};
+process.once("exit", releaseBuildLock);
+
+// Retry: another process can still hold files briefly while we clear dist.
 for (let i = 0; ; i++) {
   try {
     fs.rmSync(out, { recursive: true, force: true });

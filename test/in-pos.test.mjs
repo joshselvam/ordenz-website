@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { execFileSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, "..");
@@ -47,7 +47,8 @@ test("build registers /in/pos/ with India list prices from site.config", () => {
 });
 
 test("built /in/pos/ page, sitemap and assets stay consistent", () => {
-  execFileSync(process.execPath, ["build.mjs"], { cwd: root, stdio: "pipe" });
+  const r = spawnSync(process.execPath, ["build.mjs"], { cwd: root, encoding: "utf8" });
+  assert.equal(r.status, 0, r.stderr || r.stdout);
   const page = read("dist/in/pos/index.html");
   const sitemap = read("dist/sitemap.xml");
   assert.match(page, /Cafe POS India \| Ring up a bill/);
