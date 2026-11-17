@@ -20,11 +20,23 @@ test("India Ads LP source locks IN country and uses India WhatsApp", () => {
   assert.match(h, /\{\{priceProIn\}\}/);
   assert.match(h, /wa\.me\/\{\{waNumberIN\}\}/);
   assert.match(h, /lp-bill-in\.mjs/);
+  assert.match(h, /lp-utm\.js/);
   assert.match(h, /pay-upi-qr\.webp/);
   assert.match(h, /Toggle GST/);
   assert.doesNotMatch(h, /DuitNow|SST 6%|MyInvois|waNumberMY|priceStarterMy/);
   assert.match(h, /\{\{legalNameIn\}\}/);
   assert.match(h, /\{\{legalNoteIn\}\}/);
+});
+
+test("Ads LP head + lp-utm lock country from Final URL path", () => {
+  const head = read("src/_partials/head.html");
+  assert.match(head, /\/in\/pos/);
+  assert.match(head, /\/my\/pos/);
+  const utm = read("src/assets/lp-utm.js");
+  assert.match(utm, /forceCountry/);
+  assert.match(utm, /indexOf\("\/in\/pos"\)/);
+  assert.match(utm, /"IN"/);
+  assert.match(utm, /"MY"/);
 });
 
 test("India Ads LP FAQ stays honest on GSTIN and company status", () => {

@@ -1,10 +1,12 @@
 // Preserve Google Ads click IDs + UTMs into trial CTAs, the demo form, and WhatsApp (campaign/source only).
-// Forces Malaysia country on this dedicated landing page. First-touch values live in sessionStorage.
+// Forces the Ads Final URL country: /in/pos/ → IN, /my/pos/ → MY. First-touch values live in sessionStorage.
 (function () {
   var KEY = "ordenz-country";
+  var path = location.pathname || "";
+  var forceCountry = path.indexOf("/in/pos") === 0 ? "IN" : "MY";
   try {
-    localStorage.setItem(KEY, "MY");
-    document.documentElement.dataset.country = "MY";
+    localStorage.setItem(KEY, forceCountry);
+    document.documentElement.dataset.country = forceCountry;
   } catch (e) {}
 
   var STORE = "ordenz-lp-ads";

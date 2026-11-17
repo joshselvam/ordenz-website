@@ -95,9 +95,12 @@ test("five-screen tabs use real MY screenshots without slideshow/video chrome", 
   assert.ok(fs.existsSync(path.join(root, "src/assets/lp-screens.js")));
 });
 
-test("lp-utm.js forces MY and keeps gclid/gbraid/wbraid + utm_* through CTAs and the demo form", () => {
+test("lp-utm.js forces Final URL country (IN or MY) and keeps gclid/gbraid/wbraid + utm_* through CTAs and the demo form", () => {
   const j = read("src/assets/lp-utm.js");
   assert.match(j, /ordenz-country/);
+  assert.match(j, /\/in\/pos/);
+  assert.match(j, /forceCountry/);
+  assert.match(j, /["']IN["']/);
   assert.match(j, /["']MY["']/);
   assert.match(j, /gclid/);
   assert.match(j, /gbraid/);

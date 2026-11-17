@@ -18,7 +18,8 @@ jobs:
       - name: Build
         run: node build.mjs
       - name: Test
-        run: node --test test/*.test.mjs
+        # Serial: several tests spawn build.mjs and read dist; parallel runs race on wipe/swap.
+        run: node --test --test-concurrency=1 test/*.test.mjs
       - name: App alignment when sibling app is checked out
         run: |
           if [ -d ../Ordernest-pos-AI/server ]; then
