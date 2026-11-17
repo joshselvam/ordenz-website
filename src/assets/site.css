@@ -433,7 +433,9 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
    Decorative only (aria-hidden). Mid widths get a mint spine so the stage does not float empty. */
 .hero.cim-hero{position:relative;isolation:isolate}
 .hero-rail{display:none;pointer-events:none}
-@media (min-width:881px) and (max-width:1399px){
+/* Mid widths (laptops ~1100–1679): keep copy|reports + demo, mint spine only.
+   Full features rail needs ~1680+ or copy/reports/demo get crushed beside the 234px rail. */
+@media (min-width:881px) and (max-width:1679px){
   .hero-rail{
     display:flex;position:absolute;z-index:2;top:10px;bottom:12px;right:10px;left:auto;
     width:10px;padding:0;box-sizing:border-box;justify-content:center;align-items:stretch;
@@ -446,7 +448,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .hero-rail-kicker,.hero-rail-stream{display:none}
   .hero.cim-hero > .wrap{position:relative;z-index:1;width:calc(100% - 44px);max-width:none;margin:0 28px 0 16px;padding-right:0}
 }
-@media (min-width:1400px){
+@media (min-width:1680px){
   /* Portrait features rail (~234×808) — Token TV rise pattern, feature cards. */
   .hero-rail{
     display:flex;position:absolute;z-index:2;top:10px;bottom:auto;right:12px;left:auto;
@@ -489,7 +491,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   }
   @keyframes hero-rail-rise{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 }
-@media (min-width:1400px) and (prefers-reduced-motion:reduce){
+@media (min-width:1680px) and (prefers-reduced-motion:reduce){
   .hero-rail-features{animation:none}
 }
 @media (max-width:880px){
@@ -633,9 +635,21 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 }
 .hero.cim-hero .hero-art{grid-column:2;grid-row:1 / 3;align-self:start;justify-self:stretch;width:100%;max-width:922px}
 .hero.cim-hero .hero-features{grid-column:1 / -1;grid-row:3;padding:0;min-width:0;align-self:start}
-/* Wide screens (features rail visible): copy | reports | demo screen, the screen sitting beside the rail.
+/* Laptops / mid desktops: two panes + saffron strip — match reports height to the demo stage. */
+@media (min-width:1101px) and (max-width:1679px){
+  .hero.cim-hero .wrap{
+    grid-template-columns:minmax(280px,320px) minmax(0,922px);gap:12px 20px;justify-content:center;
+  }
+  .hero.cim-hero .hero-reports{
+    width:100%;
+    height:min(692px, calc(100svh - var(--header-offset,68px) - 140px));
+    max-height:min(692px, calc(100svh - var(--header-offset,68px) - 140px));
+    contain:strict;
+  }
+}
+/* Wide monitors only (features rail visible): copy | reports | demo beside the rail.
    Typography / button stretch overrides live AFTER the base .hero.cim-hero rules below so they win. */
-@media (min-width:1400px){
+@media (min-width:1680px){
   .hero.cim-hero .wrap{grid-template-columns:max(260px,min(368px,calc(100% - 1214px))) 260px minmax(0,922px);grid-template-rows:auto auto;justify-content:end;align-items:start}
   .hero.cim-hero .hero-copy{grid-column:1;grid-row:1;align-self:start}
   /* Match the demo .show height so a tall copy column cannot stretch reports past the screen. */
@@ -660,8 +674,8 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero.cim-hero .actions .btn:last-child:nth-child(odd){grid-column:1 / -1}
 .hero.cim-hero .hero-footnote{margin-top:0!important;font-size:13px;line-height:1.4;max-width:none;color:var(--ink-2)}
 .cafe-photo{width:100%;max-width:120px;height:auto;aspect-ratio:244/194;object-fit:contain;object-position:center;justify-self:end;min-width:0}
-/* Desktop stretch copy: must follow base .hero.cim-hero title/lead/button/footnote rules. */
-@media (min-width:1400px){
+/* Desktop stretch copy (wide monitors with features rail): must follow base .hero.cim-hero rules. */
+@media (min-width:1680px){
   .hero.cim-hero .hero-copy{gap:clamp(12px,2.4vh,26px);padding:4px clamp(0px,0.8vw,14px) 0}
   .hero.cim-hero .hero-title{grid-template-columns:minmax(0,1fr) minmax(96px,44%);gap:8px 10px}
   .hero.cim-hero .cafe-photo{max-width:160px}

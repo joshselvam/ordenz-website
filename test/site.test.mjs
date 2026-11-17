@@ -225,7 +225,10 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.match(h,/Grab · foodpanda · ShopeeFood/);
   assert.match(c,/\.hero-rail--features\{/);
   assert.match(c,/\.hero-rail-features\{[^}]*hero-rail-rise/);
-  assert.match(c,/@media \(min-width:1400px\)\{[^}]*width:234px/);
+  // Full features rail only at 1680+ — 1400–1679 (typical laptop) stays mid two-pane + mint spine.
+  assert.match(c,/@media \(min-width:1680px\)\{[^}]*width:234px/);
+  assert.match(c,/@media \(min-width:881px\) and \(max-width:1679px\)/);
+  assert.match(c,/@media \(min-width:1101px\) and \(max-width:1679px\)\{\s*\.hero\.cim-hero \.wrap\{[^}]*minmax\(280px,320px\)/);
   assert.match(c,/\.hero\.cim-hero \.wrap\{[^}]*300px[^}]*grid-template-rows:auto minmax\(0,1fr\) auto/);
   assert.match(c,/\.hero-reports\{/);
   assert.match(c,/\.hero-features-list\{[^}]*var\(--saffron\)/);
