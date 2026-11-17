@@ -96,8 +96,8 @@ test("Guest, Showcase and Token slides use the latest country screenshots", () =
   assert.match(home, /In preparation/);
   assert.match(home, /Ready for collection/);
   assert.doesNotMatch(home, /option-b-drink|token-board-fill\.gif|swap after pick|shot-swap/);
-  assert.match(css, /\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:cover/);
-  assert.match(css, /\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-position:left center/);
+  assert.match(css, /\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-fit:contain/);
+  assert.match(css, /\.hero-art\.has-video \.show-slide \.live-shot\{[^}]*object-position:center/);
   assert.doesNotMatch(home, /ZUS|AEON/i);
 });
 

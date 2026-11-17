@@ -646,7 +646,6 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
     width:100%;align-self:stretch;height:auto;max-height:none;min-height:280px;contain:size;
   }
 }
-
 /* Wide monitors only (features rail visible): copy | reports | demo beside the rail.
    Typography / button stretch overrides live AFTER the base .hero.cim-hero rules below so they win. */
 @media (min-width:1840px){
@@ -677,9 +676,10 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 /* Desktop stretch copy (wide monitors with features rail): must follow base .hero.cim-hero rules. */
 @media (min-width:1840px){
   .hero.cim-hero .hero-copy{gap:clamp(12px,2.4vh,26px);padding:4px clamp(0px,0.8vw,14px) 0}
-  .hero.cim-hero .hero-title{grid-template-columns:minmax(0,1fr) minmax(96px,44%);gap:8px 10px}
-  .hero.cim-hero .cafe-photo{max-width:160px}
-  .hero.cim-hero h1{font-size:clamp(34px,2.95vw,58px);line-height:1.02}
+  .hero.cim-hero .hero-title{grid-template-columns:minmax(0,1fr) minmax(88px,30%);gap:8px 10px}
+  .hero.cim-hero .cafe-photo{max-width:132px}
+  /* Copy column is at most 368px here: size the title to the column so it stays on two lines. */
+  .hero.cim-hero h1{font-size:clamp(30px,1.75vw,36px);line-height:1.04}
   .hero.cim-hero .lead{font-size:clamp(15px,0.9vw,17px);line-height:1.5}
   .hero.cim-hero .actions{gap:12px}
   .hero.cim-hero .actions .btn{min-height:clamp(46px,7vh,68px);padding:10px 14px;font-size:clamp(13.5px,0.8vw,15px)}
@@ -834,7 +834,10 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-art.has-video .token-num{color:#F0B13D;font-size:clamp(22px,3.2vw,32px)}
 .hero-art.has-video .token-ready{color:#FFE7A3;font-size:18px}
 .hero-art.has-video .scene-guest,.hero-art.has-video .scene-token{place-items:stretch;align-items:stretch;padding:0}
-.hero-art.has-video .token-gif,.hero-art.has-video .show-slide .live-shot{display:block;width:100%;height:100%;min-height:0;object-fit:cover;object-position:left center;border-radius:0;background:#07110E}
+/* Screenshot slides are 16:9; the stage follows the window height, so show the whole screenshot
+   (contain) instead of cropping its top/bottom on short laptop screens or its sides on tall ones. */
+.hero-art.has-video .token-gif,.hero-art.has-video .show-slide .live-shot{display:block;width:100%;height:100%;min-height:0;object-fit:contain;object-position:center;border-radius:0;background:transparent}
+.hero-art.has-video #show-guest .scene,.hero-art.has-video #show-token .scene{background:#07110E}
 .guest-face{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:8px;min-width:0;min-height:0;height:100%}
 .guest-ads,.guest-bill{min-width:0;min-height:0;background:#10241C;border-radius:12px;padding:10px;color:#FFF8EA;display:flex;flex-direction:column;gap:6px}
 .guest-ads-flag{margin:0;font:700 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#2EE6C7}
