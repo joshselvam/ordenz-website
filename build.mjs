@@ -255,5 +255,24 @@ for (let i = 0; ; i++) {
     Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 40 * (i + 1));
   }
 }
-fs.renameSync(out, finalOut);
+for (let i = 0; ; i++) {
+  try {
+    fs.renameSync(out, finalOut);
+    break;
+  } catch (e) {
+    // Windows can EPERM rename when antivirus or a reader holds dist; fall back to copy.
+    if (e.code === "EPERM" || e.code === "EACCES" || e.code === "EXDEV") {
+      try {
+        fs.cpSync(out, finalOut, { recursive: true, force: true });
+        fs.rmSync(out, { recursive: true, force: true });
+        break;
+      } catch (e2) {
+        if (i >= 8) throw e2;
+      }
+    } else if (i >= 8) {
+      throw e;
+    }
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 40 * (i + 1));
+  }
+}
 console.log(`Built ${pages.length} pages into dist`);
