@@ -39,6 +39,9 @@ test("MY ads LP is ring-up-a-bill with honest claims and config prices only", ()
   assert.match(h, /software list prices/);
   assert.match(h, /id="lpBill"/);
   assert.match(h, /id="lpDemoForm"/);
+  assert.match(h, /id="demo-lead"/);
+  // Demo card sits as a centered hero column (sibling of copy + bill), not nested under copy.
+  assert.match(h, /lp-hero-copy[\s\S]*?<\/div>\s*<div class="lp-demo-card" id="demo-lead">/);
   assert.match(h, /maxlength="40"/);
   assert.match(h, /id="price"/);
   assert.match(h, /id="faq"/);
