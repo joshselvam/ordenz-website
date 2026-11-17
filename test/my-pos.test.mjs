@@ -34,6 +34,15 @@ test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   assert.match(h, /approved Fiuu merchant/);
   assert.match(h, /MyInvois files/);
   assert.match(h, /open with email/);
+  assert.match(h, /lp-convert/);
+  assert.match(h, /Promo · Malaysia/);
+  assert.match(h, /30 days of Pro, free\./);
+  assert.match(h, /Then from \{\{priceStarterMy\}\} \/ month/);
+  assert.match(h, /Try a free demo/);
+  assert.match(h, /What's your cafe name\?/);
+  assert.match(h, /id="lpDemoForm"/);
+  assert.match(h, /action="\/demo\/"/);
+  assert.match(h, /My cafe is new/);
   assert.doesNotMatch(h, /LHDN e-Invoicing ready|20,?000\+ businesses|55% off|Get a free demo|Google Places|powered by Google/i);
   assert.doesNotMatch(h, /4\.7 on Google|Trusted by \d/);
   assert.doesNotMatch(h, /\bcheap\b|hardware theatre|not postal|does not log in|no card|No invented|unlike StoreHub|don't|never\b|Offline sample|Limited features|simulated payments|Wi-?Fi drop|Sold out drops off/i);
@@ -90,7 +99,8 @@ test('lp-utm.js forces MY and forwards utm_* without inventing tracking pixels',
   assert.match(j, /utm_medium/);
   assert.match(j, /utm_campaign/);
   assert.match(j, /data-utm-pass/);
-  assert.doesNotMatch(j, /gtag|google-analytics|G-[A-Z0-9]|facebook|pixel/i);
+  assert.match(j, /form\[data-utm-pass\]/);
+  assert.doesNotMatch(j, /gtag|google-analytics|G-[A-Z0-9]|facebook|pixel|places\.googleapis|maps\.googleapis/i);
 });
 
 test('build registers /my/pos/ with ads meta and list prices from site.config', () => {

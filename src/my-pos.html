@@ -87,6 +87,35 @@
   </div>
 </section>
 
+<section class="lp-convert" id="demo-lead" aria-label="Malaysia promo and demo">
+  <div class="wrap lp-convert-inner">
+    <div class="lp-convert-copy">
+      <p class="lp-promo-badge">Promo · Malaysia</p>
+      <h2>30 days of Pro, free.<br><span class="lp-convert-accent">Then from {{priceStarterMy}} / month.</span></h2>
+      <p class="lead">Starter {{priceStarterMy}} · Pro {{priceProMy}} list prices. Open with email. Software cafes run on tablets — try the live demo, then start your cafe.</p>
+      <ul class="lp-convert-points">
+        <li><strong>30-day Pro trial</strong> from the first real bill, or from day 15</li>
+        <li><strong>Yearly</strong> is 12 months for the price of 10</li>
+        <li><strong>Offline counter</strong> on Starter and Pro</li>
+      </ul>
+    </div>
+    <div class="lp-demo-card">
+      <p class="lp-demo-live"><span class="lp-demo-dot" aria-hidden="true"></span> Try a free demo</p>
+      <p class="lp-demo-step">Step 1 of 2</p>
+      <h3>What's your cafe name?</h3>
+      <form class="lp-demo-form" action="/demo/" method="get" id="lpDemoForm" data-utm-pass>
+        <label class="lp-demo-label" for="lpCafeName">Cafe or F&amp;B name</label>
+        <input id="lpCafeName" name="cafe" type="text" maxlength="80" placeholder="Search your cafe name" autocomplete="organization">
+        <button type="submit" class="btn btn-cta lp-demo-continue">Continue</button>
+      </form>
+      <p class="lp-demo-or"><span>or</span></p>
+      {{#if appUrl}}<a class="btn btn-ghost lp-demo-new js-utm" href="{{appUrl}}" data-utm-pass>My cafe is new</a>{{/if}}
+      {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20demo%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp a walkthrough</a>{{/if}}
+      <p class="lp-demo-note">Step 2 opens the live demo. Your name helps us greet you on WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
 <section class="lp-trust" aria-label="Malaysia trust points">
   <div class="wrap">
     <ul class="lp-trust-list">

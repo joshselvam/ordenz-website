@@ -56,4 +56,21 @@
     if (!href) continue;
     a.setAttribute("href", a.hasAttribute("data-utm-wa") ? withWaText(href) : withUtm(href));
   }
+
+  // Demo lead form on /my/pos/: keep cafe name + append utm_* to /demo/
+  var forms = document.querySelectorAll("form[data-utm-pass]");
+  for (var f = 0; f < forms.length; f++) {
+    (function (form) {
+      form.addEventListener("submit", function () {
+        try {
+          var action = form.getAttribute("action") || "/demo/";
+          var u = new URL(action, location.origin);
+          Object.keys(utm).forEach(function (k) {
+            if (!u.searchParams.has(k)) u.searchParams.set(k, utm[k]);
+          });
+          form.setAttribute("action", u.pathname + u.search);
+        } catch (e) {}
+      });
+    })(forms[f]);
+  }
 })();
