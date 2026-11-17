@@ -1,5 +1,5 @@
-// Preserve Google Ads / SEO UTM params into trial and WhatsApp CTAs on /my/pos/.
-// Forces Malaysia country on this dedicated landing page.
+// Preserve Google Ads click IDs + UTMs into trial CTAs, the demo form, and WhatsApp (campaign/source only).
+// Forces Malaysia country on this dedicated landing page. First-touch values live in sessionStorage.
 (function () {
   var KEY = "ordenz-country";
   try {
@@ -7,24 +7,63 @@
     document.documentElement.dataset.country = "MY";
   } catch (e) {}
 
-  var params;
-  try {
-    params = new URLSearchParams(location.search);
-  } catch (e) {
-    return;
-  }
-  var utm = {};
-  ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach(function (k) {
-    var v = params.get(k);
-    if (v) utm[k] = String(v).slice(0, 120);
-  });
-  if (!Object.keys(utm).length) return;
+  var STORE = "ordenz-lp-ads";
+  var TRACK_KEYS = ["gclid", "gbraid", "wbraid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+  var MAX = 120;
 
-  function withUtm(href) {
+  function clip(v) {
+    return String(v || "").slice(0, MAX);
+  }
+
+  function fromUrl() {
+    var out = {};
+    try {
+      var params = new URLSearchParams(location.search);
+      TRACK_KEYS.forEach(function (k) {
+        var v = params.get(k);
+        if (v) out[k] = clip(v);
+      });
+    } catch (e) {}
+    return out;
+  }
+
+  function loadStore() {
+    try {
+      var raw = sessionStorage.getItem(STORE);
+      if (!raw) return {};
+      var o = JSON.parse(raw);
+      if (!o || typeof o !== "object") return {};
+      var clean = {};
+      TRACK_KEYS.forEach(function (k) {
+        if (o[k]) clean[k] = clip(o[k]);
+      });
+      return clean;
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveStore(obj) {
+    try {
+      sessionStorage.setItem(STORE, JSON.stringify(obj));
+    } catch (e) {}
+  }
+
+  // First-touch: keep values already in the session; only fill keys that are still empty.
+  var stored = loadStore();
+  var url = fromUrl();
+  var track = {};
+  TRACK_KEYS.forEach(function (k) {
+    if (stored[k]) track[k] = stored[k];
+    else if (url[k]) track[k] = url[k];
+  });
+  if (Object.keys(track).length) saveStore(track);
+
+  function withTrack(href) {
     try {
       var u = new URL(href, location.origin);
-      Object.keys(utm).forEach(function (k) {
-        if (!u.searchParams.has(k)) u.searchParams.set(k, utm[k]);
+      TRACK_KEYS.forEach(function (k) {
+        if (track[k] && !u.searchParams.has(k)) u.searchParams.set(k, track[k]);
       });
       return u.toString();
     } catch (e) {
@@ -33,12 +72,12 @@
   }
 
   function withWaText(href) {
-    // Keep UTM in the prefilled WhatsApp message only — wa.me ignores unknown query keys.
+    // Campaign/source in the prefilled message only — never gclid / gbraid / wbraid.
     try {
       var u = new URL(href, location.origin);
       var bits = [];
-      if (utm.utm_campaign) bits.push("campaign " + utm.utm_campaign);
-      if (utm.utm_source) bits.push("via " + utm.utm_source);
+      if (track.utm_campaign) bits.push("campaign " + track.utm_campaign);
+      if (track.utm_source) bits.push("via " + track.utm_source);
       if (!bits.length) return href;
       var extra = " (" + bits.join(", ") + ")";
       var text = u.searchParams.get("text") || "";
@@ -54,19 +93,39 @@
     var a = links[i];
     var href = a.getAttribute("href");
     if (!href) continue;
-    a.setAttribute("href", a.hasAttribute("data-utm-wa") ? withWaText(href) : withUtm(href));
+    a.setAttribute("href", a.hasAttribute("data-utm-wa") ? withWaText(href) : withTrack(href));
   }
 
-  // Demo lead form on /my/pos/: keep cafe name + append utm_* to /demo/
+  // Demo form: hidden inputs so method=GET keeps params even when the action query is dropped.
+  function syncHidden(form) {
+    TRACK_KEYS.forEach(function (k) {
+      var existing = form.querySelector('input[type="hidden"][data-lp-track="' + k + '"]');
+      if (!track[k]) {
+        if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+        return;
+      }
+      if (!existing) {
+        existing = document.createElement("input");
+        existing.type = "hidden";
+        existing.name = k;
+        existing.setAttribute("data-lp-track", k);
+        form.appendChild(existing);
+      }
+      existing.value = track[k];
+    });
+  }
+
   var forms = document.querySelectorAll("form[data-utm-pass]");
   for (var f = 0; f < forms.length; f++) {
     (function (form) {
+      syncHidden(form);
       form.addEventListener("submit", function () {
+        syncHidden(form);
         try {
           var action = form.getAttribute("action") || "/demo/";
           var u = new URL(action, location.origin);
-          Object.keys(utm).forEach(function (k) {
-            if (!u.searchParams.has(k)) u.searchParams.set(k, utm[k]);
+          TRACK_KEYS.forEach(function (k) {
+            if (track[k] && !u.searchParams.has(k)) u.searchParams.set(k, track[k]);
           });
           form.setAttribute("action", u.pathname + u.search);
         } catch (e) {}

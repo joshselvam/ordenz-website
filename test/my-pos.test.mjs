@@ -104,16 +104,38 @@ test('MY ads LP wires real Counter slideshow, live demo and 45-second tour', () 
   assert.ok(fs.existsSync(path.join(root, 'src/assets/video/ordenz-one-day-v3.mp4')));
 });
 
-test('lp-utm.js forces MY and forwards utm_* without inventing tracking pixels', () => {
+test('lp-utm.js forces MY and keeps gclid/gbraid/wbraid + utm_* through CTAs and the demo form', () => {
   const j = read('src/assets/lp-utm.js');
   assert.match(j, /ordenz-country/);
   assert.match(j, /["']MY["']/);
+  assert.match(j, /gclid/);
+  assert.match(j, /gbraid/);
+  assert.match(j, /wbraid/);
   assert.match(j, /utm_source/);
   assert.match(j, /utm_medium/);
   assert.match(j, /utm_campaign/);
+  assert.match(j, /utm_term/);
+  assert.match(j, /utm_content/);
+  assert.match(j, /sessionStorage/);
+  assert.match(j, /slice\(0,\s*MAX\)|slice\(0,\s*120\)/);
   assert.match(j, /data-utm-pass/);
   assert.match(j, /form\[data-utm-pass\]/);
-  assert.doesNotMatch(j, /gtag|google-analytics|G-[A-Z0-9]|facebook|pixel|places\.googleapis|maps\.googleapis/i);
+  assert.match(j, /type="hidden"|type='hidden'/);
+  assert.match(j, /#lpDemoForm|lpDemoForm|data-lp-track/);
+  assert.match(j, /never gclid|never gclid \/ gbraid|Campaign\/source/i);
+  assert.ok(
+    j.includes('utm_campaign') && j.includes('utm_source') && /data-utm-wa/.test(j) || /withWaText/.test(j),
+    'WhatsApp path keeps campaign/source in text'
+  );
+  assert.doesNotMatch(j, /gtag|google-analytics|AW-|GTM-|facebook|pixel|places\.googleapis|maps\.googleapis/i);
+  // WhatsApp helper must not append click ids into the prefilled message (ignore comments).
+  const waFn = j.slice(j.indexOf('function withWaText'), j.indexOf('var links'))
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\/\/.*$/gm, '');
+  assert.doesNotMatch(waFn, /gclid|gbraid|wbraid/);
+  assert.match(waFn, /utm_campaign/);
+  assert.match(waFn, /utm_source/);
+  assert.doesNotMatch(waFn, /bits\.push\([^)]*gclid|searchParams\.set\([^)]*gclid/i);
 });
 
 test('build registers /my/pos/ with ads meta and list prices from site.config', () => {
