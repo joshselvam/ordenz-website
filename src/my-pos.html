@@ -15,103 +15,90 @@
       <p class="brand-mark" aria-hidden="true">OrdenZ</p>
       <h1>MY prices you can see.<br>Software cafes actually run.</h1>
       <p class="lead">Self-order QR, offline counter billing, and DuitNow when your merchant is connected. Ringgit prices for Malaysian cafes and F&amp;B.</p>
-      <div class="lp-price-row" aria-label="Malaysia list prices">
-        <div class="lp-price">
-          <div class="lp-price-plan">Starter</div>
-          <div class="lp-price-amt">{{priceStarterMy}} <span>/ mo</span></div>
-          <div class="lp-price-hint">Offline counter · software list price</div>
+
+      <div class="lp-promo" aria-label="Malaysia promo">
+        <p class="lp-promo-badge">Promo · Malaysia</p>
+        <h2>30 days of Pro, free.<br><span class="lp-convert-accent">Then from {{priceStarterMy}} / month.</span></h2>
+        <p class="lead">Starter {{priceStarterMy}} · Pro {{priceProMy}} list prices. Open with email. Software cafes run on tablets — try the live demo, then start your cafe.</p>
+        <ul class="lp-convert-points">
+          <li><strong>30-day Pro trial</strong> from the first real bill, or from day 15</li>
+          <li><strong>Yearly</strong> is 12 months for the price of 10</li>
+          <li><strong>Offline counter</strong> on Starter and Pro</li>
+        </ul>
+        <div class="actions">
+          {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
+          <a class="btn btn-ghost" href="/features/#pricing">See MY pricing</a>
+          {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp us</a>{{/if}}
         </div>
-        <div class="lp-price lp-price-best">
-          <div class="lp-price-plan">Pro</div>
-          <div class="lp-price-amt">{{priceProMy}} <span>/ mo</span></div>
-          <div class="lp-price-hint">30-day Pro trial included</div>
-        </div>
+        <p class="hero-footnote">Set up free. 30 days of Pro from the first real bill, or from day 15. Then continue on Free (1 paired device, 50 orders/day), or choose Starter or Pro.</p>
       </div>
-      <div class="actions">
-        {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
-        <a class="btn btn-ghost" href="/features/#pricing">See MY pricing</a>
-        {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp us</a>{{/if}}
-      </div>
-      <p class="hero-footnote">Set up free. 30 days of Pro from the first real bill, or from day 15. Then continue on Free (1 paired device, 50 orders/day), or choose Starter or Pro.</p>
     </div>
 
-    <div class="lp-product-stage">
-      <div class="show lp-show" id="heroShow" aria-roledescription="carousel" aria-label="OrdenZ cafe screens">
-        <div class="show-stage lp-show-stage">
-          <div class="show-slide is-on" id="show-counter" aria-label="Counter, 1 of 4">
-            <figure class="lp-hero-product">
-              <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="OrdenZ Counter for Malaysia: menu grid, bill sidebar, ringgit prices and DuitNow" fetchpriority="high">
-              <figcaption>Counter — menu, bill and DuitNow on Android tablets</figcaption>
-            </figure>
-          </div>
-          <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
-            <figure class="lp-hero-product">
-              <img src="/assets/img/guest-my.webp" width="1440" height="810" alt="OrdenZ Guest tablet with Showcase and open bill in ringgit" loading="lazy">
-              <figcaption>Guest tablet — bill facing the guest</figcaption>
-            </figure>
-          </div>
-          <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
-            <figure class="lp-hero-product">
-              <img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="OrdenZ Showcase menu board for a Malaysian cafe" loading="lazy">
-              <figcaption>Showcase — menu facing the street</figcaption>
-            </figure>
-          </div>
-          <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
-            <figure class="lp-hero-product">
-              <img src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="OrdenZ Token screen with preparation and ready tokens in English, Malay and Chinese" loading="lazy">
-              <figcaption>Token screen — ready for collection</figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="show-nav lp-show-nav" role="tablist" aria-label="Choose a screen">
-          <button class="show-dot" type="button" data-scene="counter" aria-controls="show-counter" aria-current="true">Counter</button>
-          <button class="show-dot" type="button" data-scene="guest" aria-controls="show-guest">Guest</button>
-          <button class="show-dot" type="button" data-scene="showcase" aria-controls="show-showcase">Showcase</button>
-          <button class="show-dot" type="button" data-scene="token" aria-controls="show-token">Token</button>
-        </div>
+    <div class="lp-hero-aside">
+      <div class="lp-demo-card" id="demo-lead">
+        <p class="lp-demo-live"><span class="lp-demo-dot" aria-hidden="true"></span> Try a free demo</p>
+        <p class="lp-demo-step">Step 1 of 2</p>
+        <h3>What's your cafe name?</h3>
+        <form class="lp-demo-form" action="/demo/" method="get" id="lpDemoForm" data-utm-pass>
+          <label class="lp-demo-label" for="lpCafeName">Cafe or F&amp;B name</label>
+          <input id="lpCafeName" name="cafe" type="text" maxlength="80" placeholder="Search your cafe name" autocomplete="organization">
+          <button type="submit" class="btn btn-cta lp-demo-continue">Continue</button>
+        </form>
+        <p class="lp-demo-or"><span>or</span></p>
+        {{#if appUrl}}<a class="btn btn-ghost lp-demo-new js-utm" href="{{appUrl}}" data-utm-pass>My cafe is new</a>{{/if}}
+        {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20demo%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp a walkthrough</a>{{/if}}
+        <p class="lp-demo-note">Step 2 opens the live demo. Your name helps us greet you on WhatsApp.</p>
       </div>
 
-      <div class="lp-media" aria-label="Demo and tour">
-        <a class="btn btn-primary" href="/demo/">Try the live demo</a>
-        <a class="btn btn-ghost" href="/demo/preview/#kiosk">Open kiosk preview</a>
-        <figure class="promo promo--tour lp-tour" data-youtube="{{youtubeId}}" data-youtube-in="{{youtubeIdIn}}">
-          <video id="promoVideo" muted loop playsinline preload="none" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 45-second narrated tour with captions">
-            <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
-            <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
-          </video>
-          <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch the 45-second tour</button>
-          <span class="promo-badge">45-second tour</span>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="lp-product-stage">
+        <div class="show lp-show" id="heroShow" aria-roledescription="carousel" aria-label="OrdenZ cafe screens">
+          <div class="show-stage lp-show-stage">
+            <div class="show-slide is-on" id="show-counter" aria-label="Counter, 1 of 4">
+              <figure class="lp-hero-product">
+                <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="OrdenZ Counter for Malaysia: menu grid, bill sidebar, ringgit prices and DuitNow" fetchpriority="high">
+                <figcaption>Counter — menu, bill and DuitNow on Android tablets</figcaption>
+              </figure>
+            </div>
+            <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
+              <figure class="lp-hero-product">
+                <img src="/assets/img/guest-my.webp" width="1440" height="810" alt="OrdenZ Guest tablet with Showcase and open bill in ringgit" loading="lazy">
+                <figcaption>Guest tablet — bill facing the guest</figcaption>
+              </figure>
+            </div>
+            <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
+              <figure class="lp-hero-product">
+                <img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="OrdenZ Showcase menu board for a Malaysian cafe" loading="lazy">
+                <figcaption>Showcase — menu facing the street</figcaption>
+              </figure>
+            </div>
+            <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
+              <figure class="lp-hero-product">
+                <img src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="OrdenZ Token screen with preparation and ready tokens in English, Malay and Chinese" loading="lazy">
+                <figcaption>Token screen — ready for collection</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="show-nav lp-show-nav" role="tablist" aria-label="Choose a screen">
+            <button class="show-dot" type="button" data-scene="counter" aria-controls="show-counter" aria-current="true">Counter</button>
+            <button class="show-dot" type="button" data-scene="guest" aria-controls="show-guest">Guest</button>
+            <button class="show-dot" type="button" data-scene="showcase" aria-controls="show-showcase">Showcase</button>
+            <button class="show-dot" type="button" data-scene="token" aria-controls="show-token">Token</button>
+          </div>
+        </div>
 
-<section class="lp-convert" id="demo-lead" aria-label="Malaysia promo and demo">
-  <div class="wrap lp-convert-inner">
-    <div class="lp-convert-copy">
-      <p class="lp-promo-badge">Promo · Malaysia</p>
-      <h2>30 days of Pro, free.<br><span class="lp-convert-accent">Then from {{priceStarterMy}} / month.</span></h2>
-      <p class="lead">Starter {{priceStarterMy}} · Pro {{priceProMy}} list prices. Open with email. Software cafes run on tablets — try the live demo, then start your cafe.</p>
-      <ul class="lp-convert-points">
-        <li><strong>30-day Pro trial</strong> from the first real bill, or from day 15</li>
-        <li><strong>Yearly</strong> is 12 months for the price of 10</li>
-        <li><strong>Offline counter</strong> on Starter and Pro</li>
-      </ul>
-    </div>
-    <div class="lp-demo-card">
-      <p class="lp-demo-live"><span class="lp-demo-dot" aria-hidden="true"></span> Try a free demo</p>
-      <p class="lp-demo-step">Step 1 of 2</p>
-      <h3>What's your cafe name?</h3>
-      <form class="lp-demo-form" action="/demo/" method="get" id="lpDemoForm" data-utm-pass>
-        <label class="lp-demo-label" for="lpCafeName">Cafe or F&amp;B name</label>
-        <input id="lpCafeName" name="cafe" type="text" maxlength="80" placeholder="Search your cafe name" autocomplete="organization">
-        <button type="submit" class="btn btn-cta lp-demo-continue">Continue</button>
-      </form>
-      <p class="lp-demo-or"><span>or</span></p>
-      {{#if appUrl}}<a class="btn btn-ghost lp-demo-new js-utm" href="{{appUrl}}" data-utm-pass>My cafe is new</a>{{/if}}
-      {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20demo%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp a walkthrough</a>{{/if}}
-      <p class="lp-demo-note">Step 2 opens the live demo. Your name helps us greet you on WhatsApp.</p>
+        <div class="lp-media" aria-label="Demo and tour">
+          <a class="btn btn-primary" href="/demo/">Try the live demo</a>
+          <a class="btn btn-ghost" href="/demo/preview/#kiosk">Open kiosk preview</a>
+          <figure class="promo promo--tour lp-tour" data-youtube="{{youtubeId}}" data-youtube-in="{{youtubeIdIn}}">
+            <video id="promoVideo" muted loop playsinline preload="none" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 45-second narrated tour with captions">
+              <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
+              <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
+            </video>
+            <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch the 45-second tour</button>
+            <span class="promo-badge">45-second tour</span>
+          </figure>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -150,6 +137,11 @@
         <img src="/assets/img/pay-duitnow-qr.webp" width="1440" height="810" alt="DuitNow QR payment on OrdenZ" loading="lazy">
         <h3>DuitNow &amp; SST when you add them</h3>
         <p>Ringgit prices. SST 6% after you add an SST number. Automatic DuitNow QR with an approved Fiuu merchant.</p>
+      </article>
+      <article class="lp-why-delivery">
+        <img src="/assets/img/delivery-payouts-my.webp" width="1660" height="916" alt="GrabFood and foodpanda delivery sales in RM with commission and payouts on OrdenZ Reports" loading="lazy">
+        <h3>Delivery apps cafes already use</h3>
+        <p>GrabFood, foodpanda and ShopeeFood. Type the bill at the counter, or take live orders when a partner webhook is connected. Reports show commission and payouts.</p>
       </article>
     </div>
   </div>

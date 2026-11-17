@@ -27,14 +27,17 @@ test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   assert.match(h, /kiosk-malay\.webp/);
   assert.match(h, /offline-my\.webp/);
   assert.match(h, /pay-duitnow-qr\.webp/);
-  assert.match(h, /lp-price-row/);
+  assert.match(h, /delivery-payouts-my\.webp/);
+  assert.match(h, /GrabFood, foodpanda and ShopeeFood/);
+  assert.match(h, /Delivery apps cafes already use/);
+  assert.doesNotMatch(h, /lp-price-row|lp-price-best/);
+  assert.match(h, /lp-promo/);
   assert.match(h, /\{\{priceStarterMy\}\}/);
   assert.match(h, /\{\{priceProMy\}\}/);
   assert.match(h, /30-day Pro trial/);
   assert.match(h, /approved Fiuu merchant/);
   assert.match(h, /MyInvois files/);
-  assert.match(h, /open with email/);
-  assert.match(h, /lp-convert/);
+  assert.match(h, /open with email/i);
   assert.match(h, /Promo · Malaysia/);
   assert.match(h, /30 days of Pro, free\./);
   assert.match(h, /Then from \{\{priceStarterMy\}\} \/ month/);
@@ -43,6 +46,8 @@ test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   assert.match(h, /id="lpDemoForm"/);
   assert.match(h, /action="\/demo\/"/);
   assert.match(h, /My cafe is new/);
+  assert.match(h, /See MY pricing/);
+  assert.match(h, /WhatsApp us/);
   assert.doesNotMatch(h, /LHDN e-Invoicing ready|20,?000\+ businesses|55% off|Get a free demo|Google Places|powered by Google/i);
   assert.doesNotMatch(h, /4\.7 on Google|Trusted by \d/);
   assert.doesNotMatch(h, /\bcheap\b|hardware theatre|not postal|does not log in|no card|No invented|unlike StoreHub|don't|never\b|Offline sample|Limited features|simulated payments|Wi-?Fi drop|Sold out drops off/i);
@@ -60,14 +65,21 @@ test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   assert.match(h, /wa\.me\/\{\{waNumberMY\}\}/);
 });
 
-test('MY ads LP product stage uses the 749×604 Showcase frame size', () => {
+test('MY ads LP puts demo card above the 749×604 product stage and pairs promo', () => {
+  const h = read('src/my-pos.html');
+  const demoAt = h.indexOf('id="demo-lead"');
+  const stageAt = h.indexOf('lp-product-stage');
+  const promoAt = h.indexOf('class="lp-promo"');
+  assert.ok(demoAt > 0 && stageAt > demoAt, 'demo card must appear before product stage');
+  assert.ok(promoAt > 0, 'promo block present');
+  assert.match(h, /lp-hero-aside/);
+  assert.doesNotMatch(h, /lp-convert-inner|class="lp-convert"/);
   const css = read('src/assets/site.css');
   assert.match(css, /\.lp-product-stage\{[^}]*max-width:749px/);
   assert.match(css, /\.lp-product-stage\{[^}]*aspect-ratio:749\/604/);
   assert.match(css, /\.lp-product-stage\{[^}]*max-height:604px/);
-  const h = read('src/my-pos.html');
+  assert.match(css, /\.lp-hero-aside\{/);
   assert.match(h, /showcase-my\.webp/);
-  assert.match(h, /lp-product-stage/);
 });
 
 test('MY ads LP wires real Counter slideshow, live demo and 45-second tour', () => {
@@ -88,6 +100,7 @@ test('MY ads LP wires real Counter slideshow, live demo and 45-second tour', () 
   assert.match(h, /id="promoDialog"/);
   assert.match(h, /promo--tour/);
   assert.ok(fs.existsSync(path.join(root, 'src/assets/img/counter-my.webp')));
+  assert.ok(fs.existsSync(path.join(root, 'src/assets/img/delivery-payouts-my.webp')));
   assert.ok(fs.existsSync(path.join(root, 'src/assets/video/ordenz-one-day-v3.mp4')));
 });
 
@@ -135,9 +148,14 @@ test('built /my/pos/ page, sitemap, robots and redirects stay consistent', () =>
   assert.doesNotMatch(page, /Clear MY pricing|Real cafe software/);
   assert.match(page, /RM97/);
   assert.match(page, /RM197/);
-  assert.match(page, /lp-price-best/);
+  assert.match(page, /lp-promo/);
+  assert.doesNotMatch(page, /lp-price-best|lp-price-row/);
+  assert.match(page, /id="demo-lead"/);
   assert.match(page, /id="heroShow"/);
+  assert.ok(page.indexOf('id="demo-lead"') < page.indexOf('lp-product-stage'));
   assert.match(page, /counter-my\.webp/);
+  assert.match(page, /delivery-payouts-my\.webp/);
+  assert.match(page, /GrabFood, foodpanda and ShopeeFood/);
   assert.match(page, /Try the live demo/);
   assert.match(page, /ordenz-one-day-v3\.mp4/);
   assert.match(page, /href="https:\/\/app\.ordenz\.com"/);
