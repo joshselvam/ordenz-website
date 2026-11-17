@@ -1004,6 +1004,11 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 /* Malaysia Google Ads LP (/my/pos/) — ring-up-a-bill redesign */
 .lp-top .lp-nav{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .lp-top .lp-nav .btn{padding:9px 16px;font-size:16px}
+.lp-top .lp-nav .btn-ghost{background:transparent;color:var(--ink-2);border:1px solid var(--line-strong)}
+.lp-top .lp-nav .btn-ghost:hover{background:var(--soft);color:var(--ink)}
+.lp-top .lp-nav .btn-primary{background:var(--green);color:var(--on-green);border:1px solid var(--green)}
+.lp-sticky .btn-cta{background:var(--saffron);color:var(--saffron-ink)}
+.lp-sticky .btn-ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line-strong)}
 .lp-my .muted{color:var(--muted);font-weight:500}
 .lp-hero-ring{
   position:relative;isolation:isolate;overflow:clip;min-height:min(88vh,860px);display:flex;align-items:stretch;
@@ -1116,7 +1121,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .lp-sticky .btn{flex:1 1 0;justify-content:center;max-width:220px;min-height:44px}
 @media (max-width:960px){
   .lp-hero-inner{grid-template-columns:1fr;padding:48px 0 40px;gap:24px}
-  .lp-hero-aside{order:-1;justify-self:stretch;width:100%}
+  .lp-hero-aside{justify-self:stretch;width:100%}
   .lp-price-steps{grid-template-columns:1fr}
 }
 @media (max-width:640px){
