@@ -49,6 +49,11 @@ test("MY ads LP is ring-up-a-bill with honest claims and config prices only", ()
   assert.match(h, /lp-sticky/);
   assert.match(h, /languages your cafe (enables|turns on)/i);
   assert.doesNotMatch(h, /lp-promo|lp-price-row|lp-proof-stats|id="spotlight"|heroShow|promoVideo|ordenz-one-day|Open kiosk preview|Try the live demo|Eight screens|lp-why-strip|GrabFood/);
+  // Old hero promo block (screenshot duplicate) must stay gone — trust strip + ring-up hero remain.
+  assert.doesNotMatch(h, /30 days of Pro, free/);
+  assert.doesNotMatch(h, /Then from \{\{priceStarterMy\}\} \/ month/);
+  assert.doesNotMatch(h, /Software cafes run on tablets/);
+  assert.doesNotMatch(h, /list prices\. Open with email/);
   assert.doesNotMatch(h, /LHDN e-Invoicing ready|20,?000\+ businesses|55% off|Google Places|4\.7 on Google|Trusted by \d/i);
   assert.doesNotMatch(h, /\bcheap\b|hardware theatre|no card|unlike StoreHub/i);
 });
@@ -144,6 +149,10 @@ test("built /my/pos/ page, sitemap, robots, security headers and assets stay con
   assert.match(page, /id="faq"/);
   assert.match(page, /FAQPage|Question/);
   assert.doesNotMatch(page, /heroShow|promoVideo|lp-promo|spotlight/i);
+  assert.doesNotMatch(page, /30 days of Pro, free/);
+  assert.doesNotMatch(page, /Then from RM97 \/ month/);
+  assert.doesNotMatch(page, /Software cafes run on tablets/);
+  assert.doesNotMatch(page, /Starter RM97 · Pro RM197 list prices\. Open with email/);
   assert.doesNotMatch(page, /lp-ads\.js|googletagmanager/);
   assert.match(page, /href="https:\/\/app\.ordenz\.com"/);
   assert.match(page, /wa\.me\/601116441186/);
