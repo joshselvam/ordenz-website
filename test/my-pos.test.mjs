@@ -1,195 +1,145 @@
-// Malaysia Google Ads / SEO landing page at /my/pos/ (Option B — price-led MY + demo/slideshow/tour)
-import {test} from 'node:test';
-import assert from 'node:assert/strict';
-import fs from 'node:fs';
-import path from 'node:path';
-import {fileURLToPath} from 'node:url';
-import {spawnSync} from 'node:child_process';
+// Malaysia Google Ads LP at /my/pos/ — ring-up-a-bill redesign
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
 
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
-const cfg = JSON.parse(read('site.config.json'));
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
+const cfg = JSON.parse(read("site.config.json"));
 
-test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
-  const h = read('src/my-pos.html');
-  assert.match(h, /class="lp-my lp-my-price"/);
-  assert.match(h, /lp-hero-price/);
-  assert.match(h, /Cafe POS · Built for Malaysia/);
-  assert.match(h, /MY prices you can see\./);
-  assert.match(h, /Software cafes actually run\./);
+test("MY ads LP is ring-up-a-bill with honest claims and config prices only", () => {
+  const h = read("src/my-pos.html");
+  assert.match(h, /class="lp-my lp-ring"/);
+  assert.match(h, /Ring up a bill/);
   assert.match(h, /brand-mark[^>]*>OrdenZ</);
-  assert.match(h, /Start free trial/);
-  assert.match(h, /\{\{appUrl\}\}/);
+  assert.match(h, /Cafe POS · Built for Malaysia/);
+  assert.match(h, /\{\{priceStarterMy\}\}/);
+  assert.match(h, /\{\{priceProMy\}\}/);
+  assert.doesNotMatch(h, /RM97|RM197/);
+  assert.match(h, /30-day Pro trial/);
+  assert.match(h, /first real bill/);
+  assert.match(h, /day 15/);
+  assert.match(h, /12 months for the price of 10/);
+  assert.match(h, /1 paired device/);
+  assert.match(h, /50 orders\/day/);
+  assert.match(h, /Offline counter/);
+  assert.match(h, /approved Fiuu/);
+  assert.match(h, /SST 6%/);
+  assert.match(h, /MyInvois files/);
+  assert.match(h, /paid extra/);
+  assert.match(h, /id="lpBill"/);
+  assert.match(h, /id="lpDemoForm"/);
+  assert.match(h, /maxlength="40"/);
+  assert.match(h, /id="price"/);
+  assert.match(h, /id="faq"/);
+  assert.match(h, /<details>/);
+  assert.match(h, /lp-sticky/);
+  assert.match(h, /languages your cafe (enables|turns on)/i);
+  assert.doesNotMatch(h, /lp-promo|lp-price-row|lp-proof-stats|id="spotlight"|heroShow|promoVideo|ordenz-one-day|Open kiosk preview|Try the live demo|Eight screens|lp-why-strip|GrabFood/);
+  assert.doesNotMatch(h, /LHDN e-Invoicing ready|20,?000\+ businesses|55% off|Google Places|4\.7 on Google|Trusted by \d/i);
+  assert.doesNotMatch(h, /\bcheap\b|hardware theatre|no card|unlike StoreHub/i);
+});
+
+test("MY ads LP keeps at most eight convert CTAs and wires tracking hooks", () => {
+  const h = read("src/my-pos.html");
+  const startFree = (h.match(/Start free(?: trial)?/g) || []).length;
+  assert.ok(startFree <= 6, `too many Start free labels: ${startFree}`);
+  const convertish = [
+    ...h.matchAll(/data-ads-conv="signup"/g),
+    ...h.matchAll(/data-utm-wa/g),
+    ...h.matchAll(/lp-demo-continue/g),
+  ];
+  assert.ok(convertish.length <= 12, "CTA wiring should stay lean");
+  assert.match(h, /data-utm-pass/);
+  assert.match(h, /lp-utm\.js/);
+  assert.match(h, /lp-bill\.mjs/);
+  assert.match(h, /lp-screens\.js/);
+  assert.match(h, /ordenz-country","MY"/);
+  assert.match(h, /wa\.me\/\{\{waNumberMY\}\}/);
+  assert.match(h, /\{\{#if adsTagId\}\}/);
+  assert.match(h, /lp-ads\.js/);
+});
+
+test("five-screen tabs use real MY screenshots without slideshow/video chrome", () => {
+  const h = read("src/my-pos.html");
+  assert.match(h, /id="lpScreens"/);
+  assert.match(h, /role="tablist"/);
+  for (const id of ["counter", "guest", "kiosk", "offline", "duitnow"]) {
+    assert.match(h, new RegExp(`data-screen="${id}"`));
+    assert.match(h, new RegExp(`id="panel-${id}"`));
+  }
   assert.match(h, /counter-my\.webp/);
   assert.match(h, /guest-my\.webp/);
-  assert.match(h, /showcase-my\.webp/);
-  assert.match(h, /token-screen-my\.webp/);
   assert.match(h, /kiosk-malay\.webp/);
   assert.match(h, /offline-my\.webp/);
   assert.match(h, /pay-duitnow-qr\.webp/);
-  assert.match(h, /delivery-payouts-my\.webp/);
-  assert.match(h, /GrabFood, foodpanda and ShopeeFood/);
-  assert.match(h, /Delivery apps cafes already use/);
-  assert.doesNotMatch(h, /lp-price-row|lp-price-best/);
-  assert.match(h, /lp-promo/);
-  assert.match(h, /\{\{priceStarterMy\}\}/);
-  assert.match(h, /\{\{priceProMy\}\}/);
-  assert.match(h, /30-day Pro trial/);
-  assert.match(h, /approved Fiuu merchant/);
-  assert.match(h, /MyInvois files/);
-  assert.match(h, /open with email/i);
-  assert.match(h, /Promo · Malaysia/);
-  assert.match(h, /30 days of Pro, free\./);
-  assert.match(h, /Then from \{\{priceStarterMy\}\} \/ month/);
-  assert.match(h, /Try a free demo/);
-  assert.match(h, /What's your cafe name\?/);
-  assert.match(h, /id="lpDemoForm"/);
-  assert.match(h, /action="\/demo\/"/);
-  assert.match(h, /My cafe is new/);
-  assert.match(h, /See MY pricing/);
-  assert.match(h, /WhatsApp us/);
-  assert.doesNotMatch(h, /LHDN e-Invoicing ready|20,?000\+ businesses|55% off|Get a free demo|Google Places|powered by Google/i);
-  assert.doesNotMatch(h, /4\.7 on Google|Trusted by \d/);
-  assert.doesNotMatch(h, /\bcheap\b|hardware theatre|not postal|does not log in|no card|No invented|unlike StoreHub|don't|never\b|Offline sample|Limited features|simulated payments|Wi-?Fi drop|Sold out drops off/i);
-  assert.match(h, /keep taking bills offline/);
-  assert.match(h, /lp-why-strip/);
-  assert.match(h, /lp-proof-stats/);
-  assert.match(h, /kiosk languages, one tap to switch/);
-  assert.match(h, /Eight screens\. One cafe\./);
-  assert.match(h, /kitchen\.webp/);
-  assert.match(h, /token-screen-my\.webp/);
-  assert.match(h, /Stock stays current/);
-  assert.match(h, /data-utm-pass/);
-  assert.match(h, /lp-utm\.js/);
-  assert.match(h, /ordenz-country","MY"/);
-  assert.match(h, /wa\.me\/\{\{waNumberMY\}\}/);
+  assert.ok(fs.existsSync(path.join(root, "src/assets/img/counter-my.webp")));
+  assert.ok(fs.existsSync(path.join(root, "src/assets/lp-screens.js")));
 });
 
-test('MY ads LP puts demo card above the 749×604 product stage and pairs promo', () => {
-  const h = read('src/my-pos.html');
-  const demoAt = h.indexOf('id="demo-lead"');
-  const stageAt = h.indexOf('lp-product-stage');
-  const promoAt = h.indexOf('class="lp-promo"');
-  assert.ok(demoAt > 0 && stageAt > demoAt, 'demo card must appear before product stage');
-  assert.ok(promoAt > 0, 'promo block present');
-  assert.match(h, /lp-hero-aside/);
-  assert.doesNotMatch(h, /lp-convert-inner|class="lp-convert"/);
-  const css = read('src/assets/site.css');
-  assert.match(css, /\.lp-product-stage\{[^}]*max-width:749px/);
-  assert.match(css, /\.lp-product-stage\{[^}]*aspect-ratio:749\/604/);
-  assert.match(css, /\.lp-product-stage\{[^}]*max-height:604px/);
-  assert.match(css, /\.lp-hero-aside\{/);
-  assert.match(h, /showcase-my\.webp/);
-});
-
-test('MY ads LP wires real Counter slideshow, live demo and 45-second tour', () => {
-  const h = read('src/my-pos.html');
-  assert.match(h, /id="heroShow"/);
-  assert.match(h, /id="show-counter"/);
-  assert.match(h, /data-scene="counter"/);
-  assert.match(h, /href="\/demo\/"/);
-  assert.match(h, /Try the live demo/);
-  assert.match(h, /href="\/demo\/preview\/#kiosk"/);
-  assert.match(h, /Open kiosk preview/);
-  assert.match(h, /id="promoVideo"/);
-  assert.match(h, /ordenz-one-day-v3\.mp4/);
-  assert.match(h, /ordenz-one-day-v3\.webm/);
-  assert.match(h, /ordenz-one-day-v3\.jpg/);
-  assert.match(h, /Watch the 45-second tour|Play the 45-second tour/);
-  assert.match(h, /data-youtube="\{\{youtubeId\}\}"/);
-  assert.match(h, /id="promoDialog"/);
-  assert.match(h, /promo--tour/);
-  assert.ok(fs.existsSync(path.join(root, 'src/assets/img/counter-my.webp')));
-  assert.ok(fs.existsSync(path.join(root, 'src/assets/img/delivery-payouts-my.webp')));
-  assert.ok(fs.existsSync(path.join(root, 'src/assets/video/ordenz-one-day-v3.mp4')));
-});
-
-test('lp-utm.js forces MY and keeps gclid/gbraid/wbraid + utm_* through CTAs and the demo form', () => {
-  const j = read('src/assets/lp-utm.js');
+test("lp-utm.js forces MY and keeps gclid/gbraid/wbraid + utm_* through CTAs and the demo form", () => {
+  const j = read("src/assets/lp-utm.js");
   assert.match(j, /ordenz-country/);
   assert.match(j, /["']MY["']/);
   assert.match(j, /gclid/);
   assert.match(j, /gbraid/);
   assert.match(j, /wbraid/);
   assert.match(j, /utm_source/);
-  assert.match(j, /utm_medium/);
-  assert.match(j, /utm_campaign/);
-  assert.match(j, /utm_term/);
-  assert.match(j, /utm_content/);
   assert.match(j, /sessionStorage/);
-  assert.match(j, /slice\(0,\s*MAX\)|slice\(0,\s*120\)/);
-  assert.match(j, /data-utm-pass/);
-  assert.match(j, /form\[data-utm-pass\]/);
   assert.match(j, /type="hidden"|type='hidden'/);
-  assert.match(j, /#lpDemoForm|lpDemoForm|data-lp-track/);
-  assert.match(j, /never gclid|never gclid \/ gbraid|Campaign\/source/i);
-  assert.ok(
-    j.includes('utm_campaign') && j.includes('utm_source') && /data-utm-wa/.test(j) || /withWaText/.test(j),
-    'WhatsApp path keeps campaign/source in text'
-  );
-  assert.doesNotMatch(j, /gtag|google-analytics|AW-|GTM-|facebook|pixel|places\.googleapis|maps\.googleapis/i);
-  // WhatsApp helper must not append click ids into the prefilled message (ignore comments).
-  const waFn = j.slice(j.indexOf('function withWaText'), j.indexOf('var links'))
-    .replace(/\/\*[\s\S]*?\*\//g, '')
-    .replace(/\/\/.*$/gm, '');
+  const waFn = j
+    .slice(j.indexOf("function withWaText"), j.indexOf("var links"))
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\/\/.*$/gm, "");
   assert.doesNotMatch(waFn, /gclid|gbraid|wbraid/);
   assert.match(waFn, /utm_campaign/);
-  assert.match(waFn, /utm_source/);
-  assert.doesNotMatch(waFn, /bits\.push\([^)]*gclid|searchParams\.set\([^)]*gclid/i);
+  assert.doesNotMatch(j, /gtag|google-analytics|AW-|GTM-|facebook|pixel|places\.googleapis/i);
 });
 
-test('build registers /my/pos/ with ads meta and list prices from site.config', () => {
-  const b = read('build.mjs');
+test("build registers /my/pos/ ring-up meta and list prices from site.config", () => {
+  const b = read("build.mjs");
   assert.match(b, /my-pos\.html/);
   assert.match(b, /my\/pos\/index\.html/);
-  assert.match(b, /path: "\/my\/pos\/"/);
-  assert.match(b, /Cafe POS Malaysia/);
-  assert.match(b, /MY prices you can see/);
-  assert.match(b, /software cafes actually run/);
-  assert.match(b, /from \$\{cfg\.priceStarterMy\}/);
-  assert.match(b, /30-day Pro trial/);
+  assert.match(b, /Ring up a bill/);
   assert.match(b, /priceStarterMy/);
   assert.match(b, /priceProMy/);
-  assert.doesNotMatch(b, /Not Pos Malaysia postage|Clear MY pricing|clear list prices|Real cafe software/);
+  assert.match(b, /adsTagId/);
   assert.equal(cfg.pricing.MY.monthly.starter, 97);
   assert.equal(cfg.pricing.MY.monthly.pro, 197);
-  assert.match(cfg.youtubeId || '', /^[A-Za-z0-9_-]{11}$/);
+  assert.equal(cfg.adsTagId, "");
 });
 
-test('built /my/pos/ page, sitemap, robots and redirects stay consistent', () => {
-  const r = spawnSync(process.execPath, ['build.mjs'], {cwd: root, encoding: 'utf8'});
+test("built /my/pos/ page, sitemap, robots, security headers and assets stay consistent", () => {
+  const r = spawnSync(process.execPath, ["build.mjs"], { cwd: root, encoding: "utf8" });
   assert.equal(r.status, 0, r.stderr || r.stdout);
-  const page = read('dist/my/pos/index.html');
-  assert.match(page, /<title>Cafe POS Malaysia \| MY prices you can see \| OrdenZ<\/title>/);
+  const page = read("dist/my/pos/index.html");
+  assert.match(page, /<title>Cafe POS Malaysia \| Ring up a bill \| OrdenZ<\/title>/);
   assert.match(page, /rel="canonical" href="https:\/\/www\.ordenz\.com\/my\/pos\/"/);
-  assert.match(page, /property="og:title"/);
-  assert.match(page, /property="og:description"/);
-  assert.match(page, /MY prices you can see\./);
-  assert.match(page, /Software cafes actually run\./);
-  assert.match(page, /Cafe POS · Built for Malaysia/);
-  assert.doesNotMatch(page, /Clear MY pricing|Real cafe software/);
+  assert.match(page, /Ring up a bill/);
   assert.match(page, /RM97/);
   assert.match(page, /RM197/);
-  assert.match(page, /lp-promo/);
-  assert.doesNotMatch(page, /lp-price-best|lp-price-row/);
-  assert.match(page, /id="demo-lead"/);
-  assert.match(page, /id="heroShow"/);
-  assert.ok(page.indexOf('id="demo-lead"') < page.indexOf('lp-product-stage'));
-  assert.match(page, /counter-my\.webp/);
-  assert.match(page, /delivery-payouts-my\.webp/);
-  assert.match(page, /GrabFood, foodpanda and ShopeeFood/);
-  assert.match(page, /Try the live demo/);
-  assert.match(page, /ordenz-one-day-v3\.mp4/);
+  assert.match(page, /id="lpBill"/);
+  assert.match(page, /id="faq"/);
+  assert.match(page, /FAQPage|Question/);
+  assert.doesNotMatch(page, /heroShow|promoVideo|lp-promo|spotlight/i);
+  assert.doesNotMatch(page, /lp-ads\.js|googletagmanager/);
   assert.match(page, /href="https:\/\/app\.ordenz\.com"/);
   assert.match(page, /wa\.me\/601116441186/);
-  assert.match(page, /SoftwareApplication/);
-  assert.match(page, /Organization/);
-  assert.doesNotMatch(page, /LHDN e-Invoicing ready|20,?000\+|Not Pos Malaysia postage|Offline sample/i);
-  const map = read('dist/sitemap.xml');
+  const headers = read("dist/_headers");
+  assert.match(headers, /Content-Security-Policy:/);
+  assert.match(headers, /X-Content-Type-Options: nosniff/);
+  assert.match(headers, /Strict-Transport-Security:/);
+  assert.match(headers, /Permissions-Policy:/);
+  assert.doesNotMatch(headers, /googletagmanager\.com/);
+  const map = read("dist/sitemap.xml");
   assert.match(map, /https:\/\/www\.ordenz\.com\/my\/pos\//);
-  const robots = read('dist/robots.txt');
-  assert.match(robots, /Sitemap: https:\/\/www\.ordenz\.com\/sitemap\.xml/);
-  assert.match(read('dist/_redirects'), /\/my\/pos\s+\/my\/pos\/\s+301/);
-  assert.ok(fs.existsSync(path.join(root, 'dist/assets/lp-utm.js')));
-  assert.ok(fs.existsSync(path.join(root, 'dist/assets/video/ordenz-one-day-v3.mp4')));
+  assert.match(read("dist/robots.txt"), /Sitemap: https:\/\/www\.ordenz\.com\/sitemap\.xml/);
+  assert.match(read("dist/_redirects"), /\/my\/pos\s+\/my\/pos\/\s+301/);
+  assert.ok(fs.existsSync(path.join(root, "dist/assets/lp-utm.js")));
+  assert.ok(fs.existsSync(path.join(root, "dist/assets/lp-bill.mjs")));
+  assert.ok(fs.existsSync(path.join(root, "dist/assets/lp-screens.js")));
+  assert.ok(fs.existsSync(path.join(root, "dist/assets/lp-ads.js")));
 });

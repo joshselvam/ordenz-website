@@ -3,221 +3,222 @@
 <header class="top lp-top"><div class="wrap">
   <a class="brand" href="/"><img src="/assets/brand/ordenz-mark.svg" alt="">{{company}}</a>
   <nav class="nav lp-nav" aria-label="Landing">
-    <a class="btn btn-ghost" href="/features/#pricing">Pricing</a>
-    {{#if appUrl}}<a class="btn btn-primary js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
+    <a class="btn btn-ghost" href="#price">Pricing</a>
+    {{#if appUrl}}<a class="btn btn-primary js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free trial</a>{{/if}}
   </nav>
 </div></header>
-<main id="main" class="lp-my lp-my-price">
-<section class="lp-hero lp-hero-price">
+<main id="main" class="lp-my lp-ring"
+  {{#if adsTagId}}data-ads-tag="{{adsTagId}}" data-ads-conv-signup="{{adsConvSignupClickLabel}}" data-ads-conv-demo="{{adsConvDemoLabel}}"{{/if}}>
+
+<section class="lp-hero lp-hero-ring" aria-label="Ring up a bill">
   <div class="wrap lp-hero-inner">
     <div class="lp-hero-copy">
       <p class="eyebrow">Cafe POS · Built for Malaysia</p>
-      <p class="brand-mark" aria-hidden="true">OrdenZ</p>
-      <h1>MY prices you can see.<br>Software cafes actually run.</h1>
-      <p class="lead">Self-order QR, offline counter billing, and DuitNow when your merchant is connected. Ringgit prices for Malaysian cafes and F&amp;B.</p>
-
-      <div class="lp-promo" aria-label="Malaysia promo">
-        <p class="lp-promo-badge">Promo · Malaysia</p>
-        <h2>30 days of Pro, free.<br><span class="lp-convert-accent">Then from {{priceStarterMy}} / month.</span></h2>
-        <p class="lead">Starter {{priceStarterMy}} · Pro {{priceProMy}} list prices. Open with email. Software cafes run on tablets — try the live demo, then start your cafe.</p>
-        <ul class="lp-convert-points">
-          <li><strong>30-day Pro trial</strong> from the first real bill, or from day 15</li>
-          <li><strong>Yearly</strong> is 12 months for the price of 10</li>
-          <li><strong>Offline counter</strong> on Starter and Pro</li>
-        </ul>
-        <div class="actions">
-          {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
-          <a class="btn btn-ghost" href="/features/#pricing">See MY pricing</a>
-          {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp us</a>{{/if}}
-        </div>
-        <p class="hero-footnote">Set up free. 30 days of Pro from the first real bill, or from day 15. Then continue on Free (1 paired device, 50 orders/day), or choose Starter or Pro.</p>
+      <p class="brand-mark">OrdenZ</p>
+      <h1>Ring up a bill.</h1>
+      <p class="lead">Tap a sample menu, see SST and DuitNow the way Malaysian cafes run it — then start free from {{priceStarterMy}} / month list price.</p>
+      <div class="actions lp-hero-actions">
+        {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free trial</a>{{/if}}
+        {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp us</a>{{/if}}
       </div>
-    </div>
+      <p class="hero-footnote">30-day Pro trial from the first real bill, or from day 15. Open with email. No invented reviews.</p>
 
-    <div class="lp-hero-aside">
       <div class="lp-demo-card" id="demo-lead">
         <p class="lp-demo-live"><span class="lp-demo-dot" aria-hidden="true"></span> Try a free demo</p>
-        <p class="lp-demo-step">Step 1 of 2</p>
         <h3>What's your cafe name?</h3>
         <form class="lp-demo-form" action="/demo/" method="get" id="lpDemoForm" data-utm-pass>
           <label class="lp-demo-label" for="lpCafeName">Cafe or F&amp;B name</label>
-          <input id="lpCafeName" name="cafe" type="text" maxlength="80" placeholder="Search your cafe name" autocomplete="organization">
+          <input id="lpCafeName" name="cafe" type="text" maxlength="40" placeholder="Your cafe name" autocomplete="organization">
           <button type="submit" class="btn btn-cta lp-demo-continue">Continue</button>
         </form>
-        <p class="lp-demo-or"><span>or</span></p>
-        {{#if appUrl}}<a class="btn btn-ghost lp-demo-new js-utm" href="{{appUrl}}" data-utm-pass>My cafe is new</a>{{/if}}
-        {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20demo%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp a walkthrough</a>{{/if}}
-        <p class="lp-demo-note">Step 2 opens the live demo. Your name helps us greet you on WhatsApp.</p>
+        <p class="lp-demo-note">Opens the live demo. Name is shown with textContent only (max 40).</p>
       </div>
+    </div>
 
-      <div class="lp-product-stage">
-        <div class="show lp-show" id="heroShow" aria-roledescription="carousel" aria-label="OrdenZ cafe screens">
-          <div class="show-stage lp-show-stage">
-            <div class="show-slide is-on" id="show-counter" aria-label="Counter, 1 of 4">
-              <figure class="lp-hero-product">
-                <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="OrdenZ Counter for Malaysia: menu grid, bill sidebar, ringgit prices and DuitNow" fetchpriority="high">
-                <figcaption>Counter — menu, bill and DuitNow on Android tablets</figcaption>
-              </figure>
-            </div>
-            <div class="show-slide" id="show-guest" hidden aria-label="Guest tablet, 2 of 4">
-              <figure class="lp-hero-product">
-                <img src="/assets/img/guest-my.webp" width="1440" height="810" alt="OrdenZ Guest tablet with Showcase and open bill in ringgit" loading="lazy">
-                <figcaption>Guest tablet — bill facing the guest</figcaption>
-              </figure>
-            </div>
-            <div class="show-slide" id="show-showcase" hidden aria-label="Showcase, 3 of 4">
-              <figure class="lp-hero-product">
-                <img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="OrdenZ Showcase menu board for a Malaysian cafe" loading="lazy">
-                <figcaption>Showcase — menu facing the street</figcaption>
-              </figure>
-            </div>
-            <div class="show-slide" id="show-token" hidden aria-label="Token screen, 4 of 4">
-              <figure class="lp-hero-product">
-                <img src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="OrdenZ Token screen with preparation and ready tokens in English, Malay and Chinese" loading="lazy">
-                <figcaption>Token screen — ready for collection</figcaption>
-              </figure>
-            </div>
-          </div>
-          <div class="show-nav lp-show-nav" role="tablist" aria-label="Choose a screen">
-            <button class="show-dot" type="button" data-scene="counter" aria-controls="show-counter" aria-current="true">Counter</button>
-            <button class="show-dot" type="button" data-scene="guest" aria-controls="show-guest">Guest</button>
-            <button class="show-dot" type="button" data-scene="showcase" aria-controls="show-showcase">Showcase</button>
-            <button class="show-dot" type="button" data-scene="token" aria-controls="show-token">Token</button>
-          </div>
+    <div class="lp-hero-aside" id="lpBill" data-lp-bill>
+      <div class="lp-bill" aria-label="Sample counter bill">
+        <div class="lp-bill-head">
+          <p class="lp-bill-kicker">Counter sample</p>
+          <h2>Tap to bill</h2>
+          <p class="lp-bill-note">Demo seed prices in sen. SST on · service off · DuitNow.</p>
         </div>
-
-        <div class="lp-media" aria-label="Demo and tour">
-          <a class="btn btn-primary" href="/demo/">Try the live demo</a>
-          <a class="btn btn-ghost" href="/demo/preview/#kiosk">Open kiosk preview</a>
-          <figure class="promo promo--tour lp-tour" data-youtube="{{youtubeId}}" data-youtube-in="{{youtubeIdIn}}">
-            <video id="promoVideo" muted loop playsinline preload="none" poster="/assets/video/ordenz-one-day-v3.jpg" width="1280" height="720" aria-label="One day in a cafe with OrdenZ, a 45-second narrated tour with captions">
-              <source src="/assets/video/ordenz-one-day-v3.mp4" type="video/mp4">
-              <source src="/assets/video/ordenz-one-day-v3.webm" type="video/webm">
-            </video>
-            <button class="promo-sound" type="button" id="promoSound"><span aria-hidden="true">&#9654;</span> Watch the 45-second tour</button>
-            <span class="promo-badge">45-second tour</span>
-          </figure>
+        <div class="lp-bill-menu" data-lp-bill-menu role="group" aria-label="Sample menu">
+          <noscript>
+            <p>Teh Tarik RM3.50 · Kopi O RM2.80 · Kaya Butter Toast RM4.50 · Nasi Lemak RM8.90 · Roti Canai RM2.50</p>
+          </noscript>
+        </div>
+        <div class="lp-bill-panel">
+          <div class="lp-bill-lines" data-lp-bill-lines>
+            <div class="lp-bill-line"><span>2× Teh Tarik</span><span>RM7.00</span></div>
+            <div class="lp-bill-line"><span>1× Nasi Lemak</span><span>RM8.90</span></div>
+          </div>
+          <dl class="lp-bill-totals">
+            <div><dt>Subtotal</dt><dd data-lp-bill-subtotal>RM15.90</dd></div>
+            <div data-lp-bill-service-row hidden><dt>Service</dt><dd data-lp-bill-service>RM0.00</dd></div>
+            <div data-lp-bill-sst-row><dt>SST 6%</dt><dd data-lp-bill-sst>RM0.95</dd></div>
+            <div data-lp-bill-rounding-row hidden><dt>Cash rounding</dt><dd data-lp-bill-rounding>RM0.00</dd></div>
+            <div class="lp-bill-total"><dt>Total</dt><dd data-lp-bill-total>RM16.85</dd></div>
+          </dl>
+          <p class="lp-bill-pay" data-lp-bill-pay>DuitNow</p>
+          <div class="lp-bill-tools" role="group" aria-label="Bill options">
+            <button type="button" class="btn btn-ghost" data-lp-bill-toggle="sst">Toggle SST</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-toggle="service">Toggle service</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-toggle="pay-cash">Cash</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-toggle="pay-duitnow">DuitNow</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-reset>Reset sample</button>
+            <button type="button" class="btn btn-ghost" data-lp-bill-clear>Clear</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="lp-trust" aria-label="Malaysia trust points">
+<section class="lp-dark-strip" aria-label="Malaysia trust points">
   <div class="wrap">
-    <ul class="lp-trust-list">
-      <li><strong>{{priceStarterMy}} / month</strong> Starter · {{priceProMy}} Pro <span class="muted">(software list prices)</span></li>
-      <li><strong>30-day Pro trial</strong> — open with email</li>
+    <ul class="lp-dark-list">
+      <li><strong>{{priceStarterMy}}</strong> Starter · <strong>{{priceProMy}}</strong> Pro <span class="muted">list / month</span></li>
+      <li><strong>30-day Pro trial</strong> from first real bill or day 15</li>
       <li><strong>Offline counter</strong> on Starter and Pro</li>
       <li><strong>DuitNow QR</strong> via approved Fiuu merchant</li>
-      <li><strong>MyInvois files</strong> for your e-invoice provider <span class="muted">(paid extra)</span></li>
+      <li><strong>MyInvois files</strong> paid extra for your provider</li>
     </ul>
   </div>
 </section>
 
-<section class="lp-why lp-why-strip" aria-label="Cafe features">
+<section class="lp-price" id="price" aria-label="Malaysia pricing steps">
   <div class="wrap">
     <div class="center">
-      <div class="eyebrow">Why cafes pick OrdenZ</div>
-      <h2>Self-serve speed on software you run</h2>
-      <p class="lead">Guest QR and kiosk take orders. The counter keeps billing offline. Kitchen and token screens stay in sync.</p>
+      <p class="eyebrow">MY pricing</p>
+      <h2>Clear steps. Honest list prices.</h2>
+      <p class="lead">Prices come from site config — never hardcoded on this page. Yearly is 12 months for the price of 10.</p>
     </div>
-    <div class="lp-why-grid">
-      <article>
-        <img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="Self-order kiosk in Bahasa Melayu" loading="lazy">
-        <h3>Self-order kiosk &amp; Guest QR</h3>
-        <p>English, Malay, Chinese, Tamil and Hindi on the kiosk. Table QR for dine-in on the guest phone.</p>
-      </article>
-      <article>
-        <img src="/assets/img/offline-my.webp" width="1440" height="810" alt="Offline counter billing screen" loading="lazy">
-        <h3>Offline counter billing</h3>
-        <p>Starter and Pro keep taking bills offline. Receipts still print. DuitNow and table QR work online.</p>
-      </article>
-      <article>
-        <img src="/assets/img/pay-duitnow-qr.webp" width="1440" height="810" alt="DuitNow QR payment on OrdenZ" loading="lazy">
-        <h3>DuitNow &amp; SST when you add them</h3>
-        <p>Ringgit prices. SST 6% after you add an SST number. Automatic DuitNow QR with an approved Fiuu merchant.</p>
-      </article>
-      <article class="lp-why-delivery">
-        <img src="/assets/img/delivery-payouts-my.webp" width="1660" height="916" alt="GrabFood and foodpanda delivery sales in RM with commission and payouts on OrdenZ Reports" loading="lazy">
-        <h3>Delivery apps cafes already use</h3>
-        <p>GrabFood, foodpanda and ShopeeFood. Type the bill at the counter, or take live orders when a partner webhook is connected. Reports show commission and payouts.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="lp-proof-stats" aria-label="Malaysia highlights">
-  <div class="wrap">
-    <div class="stats lp-stats">
-      <div class="stat"><b>5</b><span>kiosk languages, one tap to switch</span></div>
-      <div class="stat"><b>8</b><span>ways to sign in: the owner plus 7 staff jobs, including All-rounder, each with a PIN</span></div>
-      <div class="stat"><b>RM</b><span>SST, service charge and 5-sen rounding</span></div>
-      <div class="stat"><b>30 days</b><span>of Pro, free, from your first real bill</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="spot-band lp-spot" id="spotlight">
-  <div class="wrap">
-    <div class="center">
-      <div class="eyebrow">Spotlight</div>
-      <h2 style="margin-top:10px">Eight screens. One cafe.</h2>
-      <p class="lead">Real screens from the app. Same tab names, same colours.</p>
-    </div>
-    <div class="spot-grid lp-spot-grid">
-      <a class="spot spot--wide" data-s="kitchen" href="/features/#kitchen">
-        <img src="/assets/img/kitchen.webp" width="1440" height="810" alt="Kitchen tab: new, preparing and ready tickets" loading="lazy">
-        <div class="spot-copy"><span class="spot-tag">Kitchen · every plan</span><h3>Tickets that move themselves.</h3><p>New → Preparing → Ready → Served. Late ones turn amber, then red.</p></div>
-      </a>
-      <a class="spot" data-s="kitchen" href="/features/#kitchen">
-        <img src="/assets/img/token-screen-my.webp" width="1440" height="810" alt="Token screen: In preparation and Ready for collection in English, Malay and Chinese" loading="lazy">
-        <div class="spot-copy"><span class="spot-tag">Token screen · TV</span><h3>Your number, their language.</h3><p>Follows House languages. Always chimes. Speaks when Speak the token is on.</p></div>
-      </a>
-      <a class="spot" data-s="market" href="/features/#showcase">
-        <img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="Showcase: Cold coffee week special with wait time" loading="lazy">
-        <div class="spot-copy"><span class="spot-tag">Showcase · screen outside</span><h3>A shop window that updates itself.</h3><p>Menu slides stay free. Specials use the yearly Ads add-on. Stock stays current.</p></div>
-      </a>
-    </div>
-    <p class="lp-spot-more"><a href="/features/#spotlight">See every screen on Features</a></p>
-  </div>
-</section>
-
-<section class="lp-proof">
-  <div class="wrap">
-    <div class="center">
-      <div class="eyebrow">Malaysia today</div>
-      <h2>What cafes get on OrdenZ</h2>
-      <p class="lead">Pilot cafes run real software: counter, kiosk, kitchen, reports, and MyInvois ZIP files for your provider.</p>
-    </div>
-    <ul class="lp-proof-list">
-      <li>Choose Malaysia at sign-up: RM prices, SSM on bills, cash rounds to 5 sen</li>
-      <li>Kitchen screen, token TV, Guest tablet, and owner reports from any browser</li>
-      <li>Reports → e-Invoice prepares MyInvois files; submit through your provider</li>
-      <li>Software-first: hardware, migration and training quoted to fit your cafe</li>
+    <ol class="lp-price-steps">
+      <li>
+        <h3>Free</h3>
+        <p>1 paired device · 50 orders/day. Set up free. Practice bills do not start the trial.</p>
+      </li>
+      <li>
+        <h3>Starter · {{priceStarterMy}}</h3>
+        <p>Offline counter billing, stock, up to 5 paired devices. Software list price.</p>
+      </li>
+      <li>
+        <h3>Pro · {{priceProMy}}</h3>
+        <p>30-day Pro trial from the first real bill, or from day 15. Then continue on Free, Starter or Pro.</p>
+      </li>
+    </ol>
+    <ul class="lp-price-notes">
+      <li>SST 6% only after the cafe adds an SST number.</li>
+      <li>DuitNow automatic QR needs an approved Fiuu merchant.</li>
+      <li>MyInvois ZIP files are a paid extra — submit through your provider.</li>
     </ul>
     <div class="actions" style="justify-content:center;margin-top:28px">
-      {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
-      <a class="btn btn-ghost" href="/demo/">Try the live demo</a>
-      <a class="btn btn-ghost" href="/start-a-cafe/">Malaysia cafe starter guide</a>
+      {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free trial</a>{{/if}}
     </div>
   </div>
 </section>
 
-<section id="contact" class="lp-contact">
+<section class="lp-screens" aria-label="Five cafe screens">
   <div class="wrap">
-    <div class="cta">
-      <h2>Ready to run your cafe on OrdenZ?</h2>
-      <p class="lead">Create your cafe account in the app, or message the Malaysia line for a walk-through with your own menu.</p>
-      <div class="actions">
-        {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
-        {{#if whatsappMY}}<a class="btn btn-wa js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20found%20you%20on%20Google%20Ads%20for%20cafe%20POS%20Malaysia." rel="noopener" data-utm-pass data-utm-wa>Chat on WhatsApp</a>{{/if}}
-        {{#if email}}<a class="btn btn-ghost" href="mailto:{{email}}?subject=Cafe%20POS%20Malaysia">Email {{email}}</a>{{/if}}
+    <div class="center">
+      <p class="eyebrow">In the cafe</p>
+      <h2>Five screens. One shift.</h2>
+      <p class="lead">Real OrdenZ screens for Malaysia. Self-order kiosk and Guest QR use the languages your cafe enables in House.</p>
+    </div>
+    <div class="lp-screen-tabs" id="lpScreens">
+      <div class="lp-screen-nav" role="tablist" aria-label="Choose a screen">
+        <button type="button" role="tab" id="tab-counter" aria-controls="panel-counter" aria-selected="true" data-screen="counter">Counter</button>
+        <button type="button" role="tab" id="tab-guest" aria-controls="panel-guest" aria-selected="false" data-screen="guest">Guest</button>
+        <button type="button" role="tab" id="tab-kiosk" aria-controls="panel-kiosk" aria-selected="false" data-screen="kiosk">Kiosk</button>
+        <button type="button" role="tab" id="tab-offline" aria-controls="panel-offline" aria-selected="false" data-screen="offline">Offline</button>
+        <button type="button" role="tab" id="tab-duitnow" aria-controls="panel-duitnow" aria-selected="false" data-screen="duitnow">DuitNow</button>
+      </div>
+      <div class="lp-screen-panels">
+        <div class="lp-screen-panel" role="tabpanel" id="panel-counter" aria-labelledby="tab-counter">
+          <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="OrdenZ Counter for Malaysia with menu grid, bill and ringgit prices" fetchpriority="high">
+          <p>Counter — menu, bill and pay on Android tablets.</p>
+        </div>
+        <div class="lp-screen-panel" role="tabpanel" id="panel-guest" aria-labelledby="tab-guest" hidden>
+          <img src="/assets/img/guest-my.webp" width="1440" height="810" alt="OrdenZ Guest tablet with open bill in ringgit" loading="lazy">
+          <p>Guest tablet — the bill facing the guest.</p>
+        </div>
+        <div class="lp-screen-panel" role="tabpanel" id="panel-kiosk" aria-labelledby="tab-kiosk" hidden>
+          <img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="OrdenZ self-order kiosk in Bahasa Melayu" loading="lazy">
+          <p>Self-order kiosk — languages your cafe turns on in House.</p>
+        </div>
+        <div class="lp-screen-panel" role="tabpanel" id="panel-offline" aria-labelledby="tab-offline" hidden>
+          <img src="/assets/img/offline-my.webp" width="1440" height="810" alt="OrdenZ offline counter billing screen" loading="lazy">
+          <p>Offline counter on Starter and Pro — receipts still print.</p>
+        </div>
+        <div class="lp-screen-panel" role="tabpanel" id="panel-duitnow" aria-labelledby="tab-duitnow" hidden>
+          <img src="/assets/img/pay-duitnow-qr.webp" width="1440" height="810" alt="DuitNow QR payment on OrdenZ" loading="lazy">
+          <p>DuitNow QR via an approved Fiuu merchant.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
-{{#if youtubeId}}<dialog class="promo-dialog" id="promoDialog" aria-label="OrdenZ tour on YouTube"><button type="button" class="promo-close" id="promoClose" aria-label="Close">&times;</button><div class="promo-frame" id="promoFrame"></div></dialog>{{/if}}
+
+<section class="lp-faq" id="faq" aria-label="Malaysia FAQ">
+  <div class="wrap">
+    <div class="center">
+      <p class="eyebrow">FAQ</p>
+      <h2>Straight answers for MY cafes</h2>
+    </div>
+    <div class="lp-faq-list">
+      <details>
+        <summary>How does the Pro trial work?</summary>
+        <p>Set up free. 30 days of Pro from the first real bill, or from day 15 if you have not billed yet. Then Free (1 paired device, 50 orders/day) unless you pick Starter or Pro. Practice bills do not start the trial. Yearly is 12 months for the price of 10.</p>
+      </details>
+      <details>
+        <summary>What are the Malaysia list prices?</summary>
+        <p>Starter {{priceStarterMy}} / month and Pro {{priceProMy}} / month. These are software list prices from config. Malaysia billing is settled by invoice.</p>
+      </details>
+      <details>
+        <summary>Does offline counter work?</summary>
+        <p>Offline counter billing is on Starter and Pro. Free needs a connection. DuitNow and table QR always need internet.</p>
+      </details>
+      <details>
+        <summary>How does DuitNow work?</summary>
+        <p>Automatic DuitNow QR needs an approved Fiuu Offline Payment merchant. Cash rounds to 5 sen; DuitNow and card stay the exact amount.</p>
+      </details>
+      <details>
+        <summary>When is SST charged?</summary>
+        <p>SST 6% only after the cafe adds an SST number. Leave it empty and OrdenZ prints bills without tax until then.</p>
+      </details>
+      <details>
+        <summary>What about MyInvois?</summary>
+        <p>Reports → e-Invoice prepares MyInvois files for your provider. That pack is a paid extra. OrdenZ does not log in to MyInvois for you.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="lp-final" id="contact" aria-label="Start on OrdenZ">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Ready to ring up real bills?</h2>
+      <p class="lead">Create your cafe in the app, or message the Malaysia line for a walk-through with your own menu.</p>
+      <div class="actions">
+        {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free trial</a>{{/if}}
+        {{#if whatsappMY}}<a class="btn btn-wa js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20found%20you%20on%20Google%20Ads%20for%20cafe%20POS%20Malaysia." rel="noopener" data-utm-pass data-utm-wa>Chat on WhatsApp</a>{{/if}}
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
+
+<div class="lp-sticky" role="region" aria-label="Quick actions">
+  {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass data-ads-conv="signup">Start free</a>{{/if}}
+  {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp</a>{{/if}}
+</div>
+
+<script type="module" src="/assets/lp-bill.mjs"></script>
+<script src="/assets/lp-screens.js" defer></script>
 <script src="/assets/lp-utm.js" defer></script>
+{{#if adsTagId}}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{adsTagId}}"></script>
+<script src="/assets/lp-ads.js" defer></script>
+{{/if}}
 {{> footer}}
