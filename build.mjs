@@ -31,6 +31,13 @@ cfg.waNumberIN = waDigits(cfg.whatsapp);
 cfg.waNumberMY = waDigits(cfg.whatsappMY) || cfg.waNumberIN;
 cfg.waLink = cfg.whatsapp ? `https://wa.me/${cfg.waNumberIN}` : "";
 cfg.contactLink = cfg.email ? `mailto:${cfg.email}` : cfg.waLink || "#contact";
+// Malaysia ads LP price labels (list prices from site.config — do not invent amounts)
+const myMonthly = cfg.pricing?.MY?.monthly || {};
+if (!Number.isSafeInteger(myMonthly.starter) || !Number.isSafeInteger(myMonthly.pro)) {
+  throw new Error("Malaysia Starter and Pro monthly list prices must be set in site.config.json");
+}
+cfg.priceStarterMy = `RM${myMonthly.starter}`;
+cfg.priceProMy = `RM${myMonthly.pro}`;
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const partial = (name) => fs.readFileSync(path.join(src, "_partials", name + ".html"), "utf8");
@@ -70,6 +77,7 @@ const pages = [
   { file: "demo.html", out: "demo/index.html", path: "/demo/", title: cfg.demoUrl ? "Cafe POS live demo | OrdenZ" : "Cafe POS demo (browser preview) | OrdenZ", desc: cfg.demoUrl ? "Explore real cafe workflows with an isolated sample account and role-specific screens." : "Try a limited kiosk, counter, kitchen and token browser preview with simulated payments." },
   { file: "help.html", out: "guide/index.html", path: "/guide/", title: "OrdenZ cafe POS guide", desc: "Step-by-step guide to OrdenZ with pictures: setting up, the kiosk, counter, kitchen, tables, stock, suppliers, team roles and reports." },
   { file: "start-a-cafe.html", out: "start-a-cafe/index.html", path: "/start-a-cafe/", title: "Start a cafe in India or Malaysia: licences, tax and equipment", desc: "A plain guide to opening a cafe: FSSAI, GST and trade licences in India; SSM, council licence, food handler course and SST in Malaysia; equipment, menu pricing and your first week." },
+  { file: "my-pos.html", out: "my/pos/index.html", path: "/my/pos/", title: "Cafe POS Malaysia | F&B self-order kiosk | OrdenZ", desc: `OrdenZ cafe POS for Malaysia: counter, self-order kiosk, kitchen screen, offline billing, DuitNow when connected, and ringgit list prices from ${cfg.priceStarterMy} / month. Not Pos Malaysia postage.` },
   { file: "terms.html", out: "terms/index.html", path: "/terms/", title: "Terms of service", desc: "The agreement between your cafe and OrdenZ: plans, payments, your data and your responsibilities." },
   { file: "support.html", out: "support/index.html", path: "/support/", title: "Help and support", desc: "How to reach the OrdenZ team: the Feedback button in the app, email, reply times and what to do if the internet is down." },
   { file: "privacy.html", out: "privacy/index.html", path: "/privacy/", title: "Privacy policy", desc: "What OrdenZ handles, why, and who sees it." },

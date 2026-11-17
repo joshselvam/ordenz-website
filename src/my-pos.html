@@ -1,0 +1,110 @@
+{{> head}}
+<script>try{localStorage.setItem("ordenz-country","MY");document.documentElement.dataset.country="MY"}catch(e){}</script>
+<header class="top lp-top"><div class="wrap">
+  <a class="brand" href="/"><img src="/assets/brand/ordenz-mark.svg" alt="">{{company}}</a>
+  <nav class="nav lp-nav" aria-label="Landing">
+    <a class="btn btn-ghost" href="/features/#pricing">Pricing</a>
+    {{#if appUrl}}<a class="btn btn-primary js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
+  </nav>
+</div></header>
+<main id="main" class="lp-my">
+<section class="lp-hero">
+  <div class="lp-hero-bg" aria-hidden="true">
+    <img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="" fetchpriority="high">
+  </div>
+  <div class="wrap lp-hero-inner">
+    <div class="lp-hero-copy">
+      <p class="brand-mark" aria-hidden="true">OrdenZ</p>
+      <p class="eyebrow">Cafe &amp; F&amp;B POS · Malaysia</p>
+      <h1>Cafe POS for Malaysia — counter, kiosk and kitchen</h1>
+      <p class="lead">Self-order QR, offline counter billing, DuitNow when your merchant is connected, and ringgit prices. Built for small cafes — not postal Pos Malaysia.</p>
+      <div class="actions">
+        {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
+        {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp us</a>{{/if}}
+        <a class="btn btn-ghost" href="/features/#pricing">See MY pricing</a>
+      </div>
+      <p class="hero-footnote">Set up free. 30 days of Pro from the first real bill, or from day 15. Then Free (1 paired device, 50 orders/day) unless you pick Starter or Pro.</p>
+    </div>
+    <figure class="lp-hero-product">
+      <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="OrdenZ counter on a tablet with ringgit prices and DuitNow payment">
+      <figcaption>Counter · kiosk · kitchen on cheap Android tablets</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="lp-trust" aria-label="Malaysia trust points">
+  <div class="wrap">
+    <ul class="lp-trust-list">
+      <li><strong>From {{priceStarterMy}} / month</strong> Starter · {{priceProMy}} Pro <span class="muted">(software list prices)</span></li>
+      <li><strong>30-day Pro trial</strong> — no card to start</li>
+      <li><strong>Offline counter</strong> on Starter and Pro</li>
+      <li><strong>DuitNow QR</strong> via approved Fiuu merchant</li>
+      <li><strong>MyInvois files</strong> for your e-invoice provider <span class="muted">(paid extra · OrdenZ does not log in as the taxpayer)</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band lp-why">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Why cafes pick OrdenZ</div>
+      <h2>Self-serve speed, not hardware theatre</h2>
+      <p class="lead">Guest QR and kiosk take orders. The counter keeps billing when Wi‑Fi drops. Kitchen and token screens stay in sync.</p>
+    </div>
+    <div class="lp-why-grid">
+      <article>
+        <img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="Self-order kiosk in Bahasa Melayu" loading="lazy">
+        <h3>Self-order kiosk &amp; Guest QR</h3>
+        <p>English, Malay, Chinese, Tamil and Hindi on the kiosk until you untick them. Table QR for dine-in without an app.</p>
+      </article>
+      <article>
+        <img src="/assets/img/offline-my.webp" width="1440" height="810" alt="Offline counter billing screen" loading="lazy">
+        <h3>Offline counter billing</h3>
+        <p>Starter and Pro keep taking bills when the line drops. Receipts still print. DuitNow and table QR need internet.</p>
+      </article>
+      <article>
+        <img src="/assets/img/pay-duitnow-qr.webp" width="1440" height="810" alt="DuitNow QR payment on OrdenZ" loading="lazy">
+        <h3>DuitNow &amp; SST when ready</h3>
+        <p>Ringgit prices. SST 6% only after you add an SST number. Automatic DuitNow QR needs an approved Fiuu merchant.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="lp-proof">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Honest claims</div>
+      <h2>What we ship for Malaysia today</h2>
+      <p class="lead">No invented customer counts or “LHDN ready” badges. Pilot cafes get real software: counter, kiosk, kitchen, reports, and MyInvois ZIP via your provider.</p>
+    </div>
+    <ul class="lp-proof-list">
+      <li>Choose Malaysia at sign-up: RM prices, SSM on bills, cash rounds to 5 sen</li>
+      <li>Kitchen screen, token TV, Guest tablet, and owner reports from any browser</li>
+      <li>Reports → e-Invoice prepares MyInvois files; submit through your provider</li>
+      <li>Hardware, migration and training are quoted separately — software-first</li>
+    </ul>
+    <div class="actions" style="justify-content:center;margin-top:28px">
+      {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
+      <a class="btn btn-ghost" href="/demo/">Try the demo</a>
+      <a class="btn btn-ghost" href="/start-a-cafe/">Malaysia cafe starter guide</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="lp-contact">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Ready to run your cafe on OrdenZ?</h2>
+      <p class="lead">Create your cafe account in the app, or message the Malaysia line for a walk-through with your own menu.</p>
+      <div class="actions">
+        {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
+        {{#if whatsappMY}}<a class="btn btn-wa js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20found%20you%20on%20Google%20Ads%20for%20cafe%20POS%20Malaysia." rel="noopener" data-utm-pass data-utm-wa>Chat on WhatsApp</a>{{/if}}
+        {{#if email}}<a class="btn btn-ghost" href="mailto:{{email}}?subject=Cafe%20POS%20Malaysia">Email {{email}}</a>{{/if}}
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<script src="/assets/lp-utm.js" defer></script>
+{{> footer}}
