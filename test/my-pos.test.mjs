@@ -48,6 +48,16 @@ test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   assert.match(h, /wa\.me\/\{\{waNumberMY\}\}/);
 });
 
+test('MY ads LP product stage uses the 749×604 Showcase frame size', () => {
+  const css = read('src/assets/site.css');
+  assert.match(css, /\.lp-product-stage\{[^}]*max-width:749px/);
+  assert.match(css, /\.lp-product-stage\{[^}]*aspect-ratio:749\/604/);
+  assert.match(css, /\.lp-product-stage\{[^}]*max-height:604px/);
+  const h = read('src/my-pos.html');
+  assert.match(h, /showcase-my\.webp/);
+  assert.match(h, /lp-product-stage/);
+});
+
 test('MY ads LP wires real Counter slideshow, live demo and 45-second tour', () => {
   const h = read('src/my-pos.html');
   assert.match(h, /id="heroShow"/);

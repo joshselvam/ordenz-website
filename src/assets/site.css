@@ -1020,20 +1020,34 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .lp-price-hint{margin-top:6px;font-size:13px;color:var(--ink-2)}
 .lp-hero-copy .actions{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
 .lp-hero-copy .hero-footnote{margin-top:14px;color:var(--muted);font-size:14px;max-width:52ch}
-.lp-product-stage{display:flex;flex-direction:column;gap:14px;min-width:0}
-.lp-show{margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
-.lp-show-stage{position:relative;background:color-mix(in srgb,var(--green-soft) 55%,var(--soft))}
-.lp-hero-product{margin:0;border:0;border-radius:0;overflow:hidden;background:transparent}
-.lp-hero-product img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top center;display:block}
-.lp-hero-product figcaption{padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink-2);background:var(--soft)}
-.lp-show-nav{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-top:1px solid var(--line);background:var(--surface)}
+/* Hero product frame: 749×604 Showcase composition (Joshua Ads LP) */
+.lp-product-stage{
+  display:flex;flex-direction:column;gap:10px;min-width:0;
+  width:min(100%,749px);max-width:749px;aspect-ratio:749/604;max-height:604px;
+  justify-self:end
+}
+.lp-show{
+  margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface);
+  flex:1 1 auto;min-height:0;display:flex;flex-direction:column
+}
+.lp-show-stage{
+  position:relative;flex:1 1 auto;min-height:0;
+  background:color-mix(in srgb,var(--green-soft) 55%,var(--soft));
+  display:flex;flex-direction:column
+}
+.lp-show-stage .show-slide{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+.lp-show-stage .show-slide[hidden]{display:none}
+.lp-hero-product{margin:0;border:0;border-radius:0;overflow:hidden;background:transparent;flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+.lp-hero-product img{width:100%;flex:1 1 auto;min-height:0;height:100%;object-fit:cover;object-position:top center;display:block}
+.lp-hero-product figcaption{flex:none;padding:10px 14px;font-size:13px;font-weight:600;color:var(--ink-2);background:var(--soft)}
+.lp-show-nav{flex:none;display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;border-top:1px solid var(--line);background:var(--surface)}
 .lp-show-nav .show-dot{
   appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);
   font:700 13px/1.2 var(--body);padding:8px 12px;border-radius:999px;cursor:pointer
 }
 .lp-show-nav .show-dot[aria-current="true"]{background:var(--green);border-color:var(--green);color:var(--on-green)}
 .lp-show-nav .show-dot:focus-visible{outline:3px solid var(--saffron);outline-offset:2px}
-.lp-media{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.lp-media{flex:none;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .lp-media .lp-tour{
   display:inline-flex;align-items:center;gap:8px;margin:0;padding:0;border:0;background:transparent;
   position:relative;min-height:0
@@ -1085,7 +1099,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .lp-contact .cta{margin:0}
 @media (max-width:960px){
   .lp-hero-inner{grid-template-columns:1fr;padding:48px 0 40px;gap:28px}
-  .lp-product-stage{order:2}
+  .lp-product-stage{order:2;justify-self:stretch;margin-inline:auto}
   .lp-why-grid{grid-template-columns:1fr;gap:22px}
   .lp-price-row{max-width:none}
   .lp-spot-grid{grid-template-columns:1fr}
@@ -1094,6 +1108,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .lp-hero-price{min-height:0}
   .lp-hero-inner{padding:36px 0 32px}
   .lp-price-amt{font-size:24px}
+  .lp-product-stage{max-height:none;width:100%}
   .lp-trust-list{padding:18px 0;gap:10px 16px;font-size:14px}
   .lp-why-strip{padding:48px 0}
   .lp-proof{padding:56px 0}
