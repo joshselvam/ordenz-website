@@ -7,27 +7,36 @@
     {{#if appUrl}}<a class="btn btn-primary js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
   </nav>
 </div></header>
-<main id="main" class="lp-my">
-<section class="lp-hero">
-  <div class="lp-hero-bg" aria-hidden="true">
-    <img src="/assets/img/showcase-my.webp" width="1440" height="810" alt="" fetchpriority="high">
-  </div>
+<main id="main" class="lp-my lp-my-price">
+<section class="lp-hero lp-hero-price">
   <div class="wrap lp-hero-inner">
     <div class="lp-hero-copy">
-      <p class="brand-mark" aria-hidden="true">OrdenZ</p>
       <p class="eyebrow">Cafe &amp; F&amp;B POS · Malaysia</p>
-      <h1>Cafe POS for Malaysia — counter, kiosk and kitchen</h1>
-      <p class="lead">Self-order QR, offline counter billing, DuitNow when your merchant is connected, and ringgit prices. Built for small cafes — not postal Pos Malaysia.</p>
+      <p class="brand-mark" aria-hidden="true">OrdenZ</p>
+      <h1>Clear MY pricing. Real cafe software.</h1>
+      <p class="lead">Self-order QR, offline counter billing, and DuitNow when your merchant is connected. Ringgit prices for Malaysian cafes and F&amp;B.</p>
+      <div class="lp-price-row" aria-label="Malaysia list prices">
+        <div class="lp-price">
+          <div class="lp-price-plan">Starter</div>
+          <div class="lp-price-amt">{{priceStarterMy}} <span>/ mo</span></div>
+          <div class="lp-price-hint">Offline counter · software list price</div>
+        </div>
+        <div class="lp-price lp-price-best">
+          <div class="lp-price-plan">Pro</div>
+          <div class="lp-price-amt">{{priceProMy}} <span>/ mo</span></div>
+          <div class="lp-price-hint">30-day Pro trial included</div>
+        </div>
+      </div>
       <div class="actions">
         {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}
-        {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp us</a>{{/if}}
         <a class="btn btn-ghost" href="/features/#pricing">See MY pricing</a>
+        {{#if whatsappMY}}<a class="btn btn-ghost js-utm" href="https://wa.me/{{waNumberMY}}?text=Hi%20OrdenZ%2C%20I%20want%20a%20Malaysia%20cafe%20POS%20walk-through." rel="noopener" data-utm-pass data-utm-wa>WhatsApp us</a>{{/if}}
       </div>
-      <p class="hero-footnote">Set up free. 30 days of Pro from the first real bill, or from day 15. Then Free (1 paired device, 50 orders/day) unless you pick Starter or Pro.</p>
+      <p class="hero-footnote">Set up free. 30 days of Pro from the first real bill, or from day 15. Then continue on Free (1 paired device, 50 orders/day), or choose Starter or Pro.</p>
     </div>
     <figure class="lp-hero-product">
       <img src="/assets/img/counter-my.webp" width="1440" height="810" alt="OrdenZ counter on a tablet with ringgit prices and DuitNow payment">
-      <figcaption>Counter · kiosk · kitchen on cheap Android tablets</figcaption>
+      <figcaption>Counter · kiosk · kitchen on Android tablets</figcaption>
     </figure>
   </div>
 </section>
@@ -35,11 +44,11 @@
 <section class="lp-trust" aria-label="Malaysia trust points">
   <div class="wrap">
     <ul class="lp-trust-list">
-      <li><strong>From {{priceStarterMy}} / month</strong> Starter · {{priceProMy}} Pro <span class="muted">(software list prices)</span></li>
-      <li><strong>30-day Pro trial</strong> — no card to start</li>
+      <li><strong>{{priceStarterMy}} / month</strong> Starter · {{priceProMy}} Pro <span class="muted">(software list prices)</span></li>
+      <li><strong>30-day Pro trial</strong> — open with email</li>
       <li><strong>Offline counter</strong> on Starter and Pro</li>
       <li><strong>DuitNow QR</strong> via approved Fiuu merchant</li>
-      <li><strong>MyInvois files</strong> for your e-invoice provider <span class="muted">(paid extra · OrdenZ does not log in as the taxpayer)</span></li>
+      <li><strong>MyInvois files</strong> for your e-invoice provider <span class="muted">(paid extra)</span></li>
     </ul>
   </div>
 </section>
@@ -48,24 +57,24 @@
   <div class="wrap">
     <div class="center">
       <div class="eyebrow">Why cafes pick OrdenZ</div>
-      <h2>Self-serve speed, not hardware theatre</h2>
-      <p class="lead">Guest QR and kiosk take orders. The counter keeps billing when Wi‑Fi drops. Kitchen and token screens stay in sync.</p>
+      <h2>Self-serve speed on software you run</h2>
+      <p class="lead">Guest QR and kiosk take orders. The counter keeps billing through a Wi‑Fi drop. Kitchen and token screens stay in sync.</p>
     </div>
     <div class="lp-why-grid">
       <article>
         <img src="/assets/img/kiosk-malay.webp" width="1440" height="810" alt="Self-order kiosk in Bahasa Melayu" loading="lazy">
         <h3>Self-order kiosk &amp; Guest QR</h3>
-        <p>English, Malay, Chinese, Tamil and Hindi on the kiosk until you untick them. Table QR for dine-in without an app.</p>
+        <p>English, Malay, Chinese, Tamil and Hindi on the kiosk. Table QR for dine-in on the guest phone.</p>
       </article>
       <article>
         <img src="/assets/img/offline-my.webp" width="1440" height="810" alt="Offline counter billing screen" loading="lazy">
         <h3>Offline counter billing</h3>
-        <p>Starter and Pro keep taking bills when the line drops. Receipts still print. DuitNow and table QR need internet.</p>
+        <p>Starter and Pro keep taking bills through a Wi‑Fi drop. Receipts still print. DuitNow and table QR work online.</p>
       </article>
       <article>
         <img src="/assets/img/pay-duitnow-qr.webp" width="1440" height="810" alt="DuitNow QR payment on OrdenZ" loading="lazy">
-        <h3>DuitNow &amp; SST when ready</h3>
-        <p>Ringgit prices. SST 6% only after you add an SST number. Automatic DuitNow QR needs an approved Fiuu merchant.</p>
+        <h3>DuitNow &amp; SST when you add them</h3>
+        <p>Ringgit prices. SST 6% after you add an SST number. Automatic DuitNow QR with an approved Fiuu merchant.</p>
       </article>
     </div>
   </div>
@@ -74,15 +83,15 @@
 <section class="lp-proof">
   <div class="wrap">
     <div class="center">
-      <div class="eyebrow">Honest claims</div>
-      <h2>What we ship for Malaysia today</h2>
-      <p class="lead">No invented customer counts or “LHDN ready” badges. Pilot cafes get real software: counter, kiosk, kitchen, reports, and MyInvois ZIP via your provider.</p>
+      <div class="eyebrow">Malaysia today</div>
+      <h2>What cafes get on OrdenZ</h2>
+      <p class="lead">Pilot cafes run real software: counter, kiosk, kitchen, reports, and MyInvois ZIP files for your provider.</p>
     </div>
     <ul class="lp-proof-list">
       <li>Choose Malaysia at sign-up: RM prices, SSM on bills, cash rounds to 5 sen</li>
       <li>Kitchen screen, token TV, Guest tablet, and owner reports from any browser</li>
       <li>Reports → e-Invoice prepares MyInvois files; submit through your provider</li>
-      <li>Hardware, migration and training are quoted separately — software-first</li>
+      <li>Software-first: hardware, migration and training quoted to fit your cafe</li>
     </ul>
     <div class="actions" style="justify-content:center;margin-top:28px">
       {{#if appUrl}}<a class="btn btn-cta js-utm" href="{{appUrl}}" data-utm-pass>Start free trial</a>{{/if}}

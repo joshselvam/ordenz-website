@@ -1001,23 +1001,29 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   background:#07110E;border-color:#3A4D43;box-shadow:0 14px 32px #0B110F66;
 }
 
-/* Malaysia Google Ads / SEO landing page (/my/pos/) — OrdenZ brand, conversion-focused */
+/* Malaysia Google Ads / SEO landing page (/my/pos/) — Option B price-led MY */
 .lp-top .lp-nav{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .lp-top .lp-nav .btn{padding:9px 16px;font-size:16px}
 .lp-my .muted{color:var(--muted);font-weight:500}
-.lp-hero{position:relative;isolation:isolate;overflow:clip;min-height:min(92vh,860px);display:flex;align-items:stretch;background:linear-gradient(165deg,var(--soft) 0%,var(--paper) 48%,var(--cta) 100%)}
-.lp-hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-.lp-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:.22;filter:saturate(.9)}
-.lp-hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,color-mix(in srgb,var(--paper) 92%,transparent) 0%,color-mix(in srgb,var(--paper) 78%,transparent) 42%,color-mix(in srgb,var(--soft) 35%,transparent) 100%)}
-.lp-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;padding:72px 0 64px;width:calc(100% - 40px);max-width:1920px;margin:0 auto}
-.lp-hero-copy .brand-mark{font:800 clamp(34px,5vw,56px)/1 var(--display);color:var(--green);letter-spacing:-.03em;margin:0 0 8px}
-.lp-hero-copy h1{margin-top:10px;max-width:18ch}
-.lp-hero-copy .lead{margin-top:16px;max-width:48ch}
-.lp-hero-copy .actions{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
-.lp-hero-copy .hero-footnote{margin-top:16px;color:var(--muted);font-size:15px;max-width:52ch}
-.lp-hero-product{margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line-strong);box-shadow:var(--shadow);background:var(--surface)}
+.lp-hero-price{position:relative;isolation:isolate;overflow:clip;min-height:min(88vh,820px);display:flex;align-items:stretch;background:var(--paper)}
+.lp-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px;align-items:center;padding:64px 0 56px;width:calc(100% - 40px);max-width:1920px;margin:0 auto}
+.lp-hero-copy .eyebrow{margin:0}
+.lp-hero-copy .brand-mark{font:800 clamp(36px,5vw,52px)/1 var(--display);color:var(--green);letter-spacing:-.03em;margin:10px 0 0}
+.lp-hero-copy h1{margin-top:14px;max-width:16ch}
+.lp-hero-copy .lead{margin-top:14px;max-width:46ch}
+.lp-price-row{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:440px}
+.lp-price{padding:14px 14px 12px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.lp-price-best{border-color:var(--green);background:color-mix(in srgb,var(--green-soft) 70%,var(--surface))}
+.lp-price-plan{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.lp-price-amt{margin-top:4px;font:800 28px/1.1 var(--display);color:var(--ink);letter-spacing:-.02em}
+.lp-price-amt span{font-size:14px;font-weight:600;color:var(--muted)}
+.lp-price-hint{margin-top:6px;font-size:13px;color:var(--ink-2)}
+.lp-hero-copy .actions{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+.lp-hero-copy .hero-footnote{margin-top:14px;color:var(--muted);font-size:14px;max-width:52ch}
+.lp-hero-product{margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line-strong);background:var(--surface)}
 .lp-hero-product img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top center}
 .lp-hero-product figcaption{padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink-2);background:var(--soft)}
+.lp-hero-price .lp-hero-product{background:linear-gradient(160deg,var(--green-soft),var(--soft));border-color:var(--line)}
 .lp-trust{border-bottom:1px solid var(--line);background:var(--surface)}
 .lp-trust-list{list-style:none;margin:0;padding:22px 0;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;font-size:15px;color:var(--ink-2)}
 .lp-trust-list li{margin:0}
@@ -1035,10 +1041,12 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   .lp-hero-inner{grid-template-columns:1fr;padding:48px 0 40px;gap:28px}
   .lp-hero-product{order:2}
   .lp-why-grid{grid-template-columns:1fr;gap:22px}
+  .lp-price-row{max-width:none}
 }
 @media (max-width:640px){
-  .lp-hero{min-height:0}
+  .lp-hero-price{min-height:0}
   .lp-hero-inner{padding:36px 0 32px}
+  .lp-price-amt{font-size:24px}
   .lp-trust-list{padding:18px 0;gap:10px 16px;font-size:14px}
   .lp-proof{padding:56px 0}
 }

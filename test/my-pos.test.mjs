@@ -1,4 +1,4 @@
-// Malaysia Google Ads / SEO landing page at /my/pos/
+// Malaysia Google Ads / SEO landing page at /my/pos/ (Option B — price-led MY)
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -10,25 +10,27 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 const cfg = JSON.parse(read('site.config.json'));
 
-test('MY ads LP source targets cafe POS Malaysia with honest claims only', () => {
+test('MY ads LP is price-led Option B with honest, affirmative copy', () => {
   const h = read('src/my-pos.html');
-  assert.match(h, /class="lp-my"/);
-  assert.match(h, /Cafe POS for Malaysia/);
-  assert.match(h, /Not Pos Malaysia|not postal Pos Malaysia/i);
+  assert.match(h, /class="lp-my lp-my-price"/);
+  assert.match(h, /lp-hero-price/);
+  assert.match(h, /Clear MY pricing\. Real cafe software\./);
   assert.match(h, /Start free trial/);
   assert.match(h, /\{\{appUrl\}\}/);
   assert.match(h, /counter-my\.webp/);
   assert.match(h, /kiosk-malay\.webp/);
   assert.match(h, /offline-my\.webp/);
   assert.match(h, /pay-duitnow-qr\.webp/);
+  assert.match(h, /lp-price-row/);
   assert.match(h, /\{\{priceStarterMy\}\}/);
   assert.match(h, /\{\{priceProMy\}\}/);
   assert.match(h, /30-day Pro trial/);
   assert.match(h, /approved Fiuu merchant/);
   assert.match(h, /MyInvois files/);
-  assert.match(h, /does not log in as the taxpayer/);
+  assert.match(h, /open with email/);
   assert.doesNotMatch(h, /LHDN e-Invoicing ready|20,?000\+ businesses|55% off|Get a free demo|Google Places|powered by Google/i);
   assert.doesNotMatch(h, /4\.7 on Google|Trusted by \d/);
+  assert.doesNotMatch(h, /\bcheap\b|hardware theatre|not postal|does not log in|no card|No invented|unlike StoreHub|don't|never\b/i);
   assert.match(h, /data-utm-pass/);
   assert.match(h, /lp-utm\.js/);
   assert.match(h, /ordenz-country","MY"/);
@@ -52,10 +54,11 @@ test('build registers /my/pos/ with ads meta and list prices from site.config', 
   assert.match(b, /my\/pos\/index\.html/);
   assert.match(b, /path: "\/my\/pos\/"/);
   assert.match(b, /Cafe POS Malaysia/);
-  assert.match(b, /Not Pos Malaysia postage/);
+  assert.match(b, /clear list prices from \$\{cfg\.priceStarterMy\}/);
+  assert.match(b, /30-day Pro trial/);
   assert.match(b, /priceStarterMy/);
   assert.match(b, /priceProMy/);
-  assert.match(b, /from \$\{cfg\.priceStarterMy\}/);
+  assert.doesNotMatch(b, /Not Pos Malaysia postage/);
   assert.equal(cfg.pricing.MY.monthly.starter, 97);
   assert.equal(cfg.pricing.MY.monthly.pro, 197);
 });
@@ -68,13 +71,15 @@ test('built /my/pos/ page, sitemap, robots and redirects stay consistent', () =>
   assert.match(page, /rel="canonical" href="https:\/\/www\.ordenz\.com\/my\/pos\/"/);
   assert.match(page, /property="og:title"/);
   assert.match(page, /property="og:description"/);
-  assert.match(page, /From RM97 \/ month/);
-  assert.match(page, /RM197 Pro/);
+  assert.match(page, /Clear MY pricing/);
+  assert.match(page, /RM97/);
+  assert.match(page, /RM197/);
+  assert.match(page, /lp-price-best/);
   assert.match(page, /href="https:\/\/app\.ordenz\.com"/);
   assert.match(page, /wa\.me\/601116441186/);
   assert.match(page, /SoftwareApplication/);
   assert.match(page, /Organization/);
-  assert.doesNotMatch(page, /LHDN e-Invoicing ready|20,?000\+/i);
+  assert.doesNotMatch(page, /LHDN e-Invoicing ready|20,?000\+|Not Pos Malaysia postage/i);
   const map = read('dist/sitemap.xml');
   assert.match(map, /https:\/\/www\.ordenz\.com\/my\/pos\//);
   const robots = read('dist/robots.txt');
