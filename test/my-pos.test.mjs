@@ -40,7 +40,7 @@ test("MY ads LP is ring-up-a-bill with honest claims and config prices only", ()
   assert.match(h, /id="lpBill"/);
   assert.match(h, /id="lpDemoForm"/);
   assert.match(h, /id="demo-lead"/);
-  // Demo card sits as a centered hero column (sibling of copy + bill), not nested under copy.
+  // Demo card is a hero grid item (sibling of copy + bill), not nested inside the copy block.
   assert.match(h, /lp-hero-copy[\s\S]*?<\/div>\s*<div class="lp-demo-card" id="demo-lead">/);
   assert.match(h, /maxlength="40"/);
   assert.match(h, /id="price"/);
@@ -121,6 +121,17 @@ test("MY ads LP trust strip uses saffron pill-rail theme like homepage feature r
   assert.match(c, /\.lp-trust-list\{[^}]*border-radius:999px/);
   assert.match(c, /\.lp-trust-list li\{[^}]*border-right:1px solid/);
   assert.doesNotMatch(c, /\.lp-dark-strip|\.lp-dark-list/);
+});
+
+test("MY ads LP uses a compact promo layout and shows no developer notes", () => {
+  const c = read("src/assets/site.css");
+  assert.match(c, /\.lp-my \.wrap,\.lp-top \.wrap\{max-width:1200px\}/);
+  assert.doesNotMatch(c, /\.lp-hero-ring\{[^}]*min-height/);
+  assert.match(c, /\.lp-hero-inner\{[^}]*grid-template-areas:"copy bill" "demo bill"/);
+  assert.match(c, /\.lp-hero-inner\{[^}]*max-width:1200px/);
+  assert.match(c, /\.lp-trust-list li\{[^}]*flex:1 1 0/);
+  const h = read("src/my-pos.html");
+  assert.doesNotMatch(h, /textContent|hardcoded|site config|invented/i);
 });
 
 test("build registers /my/pos/ ring-up meta and list prices from site.config", () => {
