@@ -38,6 +38,13 @@ if (!Number.isSafeInteger(myMonthly.starter) || !Number.isSafeInteger(myMonthly.
 }
 cfg.priceStarterMy = `RM${myMonthly.starter}`;
 cfg.priceProMy = `RM${myMonthly.pro}`;
+// Optional Google Ads conversion tag for /my/pos/ only — leave empty until real IDs are set.
+cfg.adsTagId = String(cfg.adsTagId || "").trim();
+cfg.adsConvSignupClickLabel = String(cfg.adsConvSignupClickLabel || "").trim();
+cfg.adsConvDemoLabel = String(cfg.adsConvDemoLabel || "").trim();
+if (cfg.adsTagId && !/^AW-\d+$/.test(cfg.adsTagId)) {
+  throw new Error('adsTagId must be empty or a Google Ads tag like "AW-123456789"');
+}
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const partial = (name) => fs.readFileSync(path.join(src, "_partials", name + ".html"), "utf8");
@@ -151,7 +158,7 @@ for (const p of pages) {
     .replace(/<!-- LIVE_DEMO_ONLY_START -->([\s\S]*?)<!-- LIVE_DEMO_ONLY_END -->/g, (_,body)=>cfg.demoUrl?body:"")
     .replace("<!-- REGIONAL_PRICING -->",renderPricing(cfg.pricing,cfg.contactLink,cfg.appUrl));
   let html = render(source, { pageTitle: p.title, pageDesc: p.desc, pagePath: p.path, canonical: cfg.siteUrl + p.path });
-  const faq = (p.file === "features.html" || p.file === "start-a-cafe.html") ? faqJsonLd(html) : null;
+  const faq = (p.file === "features.html" || p.file === "start-a-cafe.html" || p.file === "my-pos.html") ? faqJsonLd(html) : null;
   html = withJsonLd(html, faq);
   fs.mkdirSync(path.dirname(path.join(out, p.out)), { recursive: true });
   fs.writeFileSync(path.join(out, p.out), html);
@@ -162,7 +169,29 @@ if (fs.existsSync(demo)) collectScripts(fs.readFileSync(demo, "utf8"));
 cfg.cspScriptHashes = [...inlineScripts].map((s) => `'sha256-${crypto.createHash("sha256").update(s).digest("base64")}'`).join(" ");
 
 copyDir(path.join(src, "assets"), path.join(out, "assets"));
-for (const f of ["_headers", "_redirects", "robots.txt"]) fs.writeFileSync(path.join(out, f), render(fs.readFileSync(path.join(src, f), "utf8"), {}).replace(/&#39;|&apos;/g, "'"));
+for (const f of ["_headers", "_redirects", "robots.txt"]) {
+  let text = render(fs.readFileSync(path.join(src, f), "utf8"), {}).replace(/&#39;|&apos;/g, "'");
+  if (f === "_headers" && cfg.adsTagId) {
+    // Widen CSP only for /my/pos/ when a real Ads tag is configured — never invent hosts site-wide.
+    const adsCsp = [
+      "default-src 'self'",
+      `script-src 'self' ${cfg.cspScriptHashes} https://www.googletagmanager.com`,
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com",
+      "img-src 'self' data: https://www.google.com https://www.google.com.my https://www.googleadservices.com https://googleads.g.doubleclick.net",
+      `connect-src 'self' ${cfg.appOrigin} https://www.google.com https://www.google.com.my https://www.googleadservices.com https://www.googletagmanager.com https://googleads.g.doubleclick.net`,
+      "media-src 'self'",
+      "frame-src 'self' https://www.youtube-nocookie.com",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'self'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+    text += `\n\n/my/pos/\n  Content-Security-Policy: ${adsCsp}\n/my/pos/*\n  Content-Security-Policy: ${adsCsp}\n`;
+  }
+  fs.writeFileSync(path.join(out, f), text);
+}
 fs.writeFileSync(path.join(out, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.filter((p) => p.path !== "/404").map((p) => `  <url><loc>${cfg.siteUrl}${p.path}</loc></url>`).join("\n")}
