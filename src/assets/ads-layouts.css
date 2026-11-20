@@ -13,13 +13,13 @@
 .ad-stage{background:#07110E;color:#FFF8EA;border-radius:22px;border:1px solid #3A4D43;overflow:hidden;padding:10px;min-height:280px}
 .ad-stage .guest-face{height:auto;min-height:240px}
 .ad-stage .guest-ads,.ad-stage .guest-bill{background:#10241C}
-.ad-stage .bill-top{color:#2EE6C7}
+.ad-stage .bill-top{color:var(--brand-saffron)}
 .ad-stage .bill-row,.ad-stage .bill-tax,.ad-stage .loyalty,.ad-stage .scene-kicker,.ad-stage .bill-opts{color:#FFF8EA}
 .ad-stage .bill-row b{color:#F0B13D}
 .ad-stage .food-shot{min-height:120px}
 .ad-dots{display:none;gap:6px;margin:0;justify-content:center}
 .ad-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,248,234,.28)}
-.ad-dots i.is-on{background:#2EE6C7}
+.ad-dots i.is-on{background:var(--brand-saffron)}
 .ad-cap{margin:12px 0 0;color:var(--ink-2);font:600 15px/1.4 var(--body)}
 
 /* L1. Ads left, bill right — live Guest slide. */
