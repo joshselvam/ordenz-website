@@ -1,0 +1,77 @@
+/* OrdenZ brand tokens: the one source of colours, type, corners, spacing and touch size
+   for the app (server/public) and the website (ordenz-website copies this file as is).
+   Direction: Option B "Counter first" (docs/ui-direction.md).
+   - Saffron is the main pay action; green is every other action.
+   - All 7 section colours stay, used for the tab and pill only.
+   - Hind Madurai for body text, Bricolage Grotesque for headings and money.
+   - Till touch targets are 48px.
+   Change a value here only, and run server/test/brand-tokens.test.js (contrast and light/dark parity).
+   Do not add colours, font sizes or corner sizes anywhere else. */
+
+:root{
+  /* Surfaces and text */
+  --bg:#F2F4F1; --surface:#FFFFFF; --surface-2:#E8EDE9; --line:#CFD8D2; --line-strong:#B4C2BA;
+  --ink:#0F1A16; --ink-2:#33433C; --muted:#4E5F57;
+
+  /* Actions */
+  --accent:#0B4A3B; --accent-ink:#FFFFFF; --accent-soft:#DCEBE5;
+  --pay:#F0B13D; --pay-ink:#2A1900; --pay-soft:#FBEBCB;
+  --focus:#9A5B00;
+
+  /* Status */
+  --good:#1B6E3D; --good-soft:#DDF1E4;
+  --warn:#8F5600; --warn-soft:#FBEBD0;
+  --bad:#B0302A; --bad-soft:#F8DEDB;
+
+  /* Sections: tab underline and pill only, never large fills */
+  --sec-floor:#0E5B49; --sec-sales:#1F5FA8; --sec-kitchen:#A4431F; --sec-stock:#7A5A12;
+  --sec-market:#6B3FA0; --sec-devices:#0B6B7A; --sec-account:#46564F; --sec-ink:#FFFFFF;
+
+  /* Fixed brand colours for guest-facing screens (customer display, token board, TV).
+     They look the same in light and dark, so they are not redefined below. */
+  --brand-green:#0E5B49; --brand-green-deep:#08382D; --brand-night:#04201A;
+  --brand-cream:#FFF6E8; --brand-cream-line:#E0D0B0;
+  --brand-ink:#14211C; --brand-ink-2:#3D4A44; --brand-saffron:#F0B13D;
+
+  /* Type */
+  --f-display:"Bricolage Grotesque","Hind Madurai",system-ui,sans-serif;
+  --f-body:"Hind Madurai",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --fs-xs:12px; --fs-sm:14px; --fs-md:16px; --fs-lg:18px; --fs-xl:22px; --fs-2xl:28px; --fs-3xl:36px;
+  --lh-tight:1.15; --lh-body:1.5;
+
+  /* Shape and space */
+  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-pill:999px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px;
+  --tap:48px;
+  --shadow:0 1px 2px rgba(15,26,22,.06),0 6px 20px rgba(15,26,22,.06);
+}
+
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A0F0D; --surface:#131B18; --surface-2:#1B2622; --line:#2C3A34; --line-strong:#3E5047;
+  --ink:#F1F5F3; --ink-2:#C6D2CC; --muted:#A7B7AF;
+  --accent:#4CC2A0; --accent-ink:#03201A; --accent-soft:#16352D;
+  --pay:#F5BC4F; --pay-ink:#231500; --pay-soft:#3A2C12;
+  --focus:#F5BC4F;
+  --good:#5FD08F; --good-soft:#163222;
+  --warn:#F0B45A; --warn-soft:#382A12;
+  --bad:#F27A6E; --bad-soft:#3A1A17;
+  --sec-floor:#3DB291; --sec-sales:#7FB2F0; --sec-kitchen:#F08C66; --sec-stock:#E3B54F;
+  --sec-market:#BFA0EE; --sec-devices:#5CC8D6; --sec-account:#A9B8B1; --sec-ink:#0B110F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  color-scheme:dark;
+}}
+
+:root[data-theme="dark"]{
+  --bg:#0A0F0D; --surface:#131B18; --surface-2:#1B2622; --line:#2C3A34; --line-strong:#3E5047;
+  --ink:#F1F5F3; --ink-2:#C6D2CC; --muted:#A7B7AF;
+  --accent:#4CC2A0; --accent-ink:#03201A; --accent-soft:#16352D;
+  --pay:#F5BC4F; --pay-ink:#231500; --pay-soft:#3A2C12;
+  --focus:#F5BC4F;
+  --good:#5FD08F; --good-soft:#163222;
+  --warn:#F0B45A; --warn-soft:#382A12;
+  --bad:#F27A6E; --bad-soft:#3A1A17;
+  --sec-floor:#3DB291; --sec-sales:#7FB2F0; --sec-kitchen:#F08C66; --sec-stock:#E3B54F;
+  --sec-market:#BFA0EE; --sec-devices:#5CC8D6; --sec-account:#A9B8B1; --sec-ink:#0B110F;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  color-scheme:dark;
+}

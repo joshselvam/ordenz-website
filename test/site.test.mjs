@@ -307,7 +307,7 @@ test('the home hero slideshow has four scenes and the video tag does not autopla
   assert.doesNotMatch(h,/hero-preview[\s\S]{0,80}hero-reports/);
   assert.doesNotMatch(c,/\.hero-art\.has-video \.show-cafe\{/);
   assert.match(c,/\.hero-art\.has-video \.token-num\{[^}]*#F0B13D/);
-  assert.match(c,/#2EE6C7/);
+  assert.match(c,/var\(--brand-saffron\)/); // hero accent is saffron (app docs/ui-direction.md), not the old teal
   assert.doesNotMatch(c,/\.hero-art\.has-video:after\{display:none\}/);
   assert.doesNotMatch(c,/height:58%|height:42%|width:72%/);
   assert.doesNotMatch(h,/dual display|two monitors|PC \+/i);

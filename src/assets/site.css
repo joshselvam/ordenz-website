@@ -1,21 +1,18 @@
-/* Colours follow the OrdenZ app: light by default, dark when the visitor's system is dark, and the
-   header button overrides either (saved in localStorage as "ordenz.theme"). Components use tokens only. */
-/* Colours are the OrdenZ app's own (server/public/css/app.css): the same light and dark palettes, and the same
-   colour for each part of the cafe (sales blue, floor green, kitchen terracotta, stock ochre, marketing purple,
-   devices teal, account slate). Light by default, dark when the visitor's system is dark, and the header button
-   overrides either (saved as "ordenz.theme", the same key the app uses). Components use these tokens only. */
+/* Colours, fonts and corners come from brand-tokens.css, an exact copy of the app's file (see docs/ui-direction.md
+   in the app repo). Light by default, dark when the visitor's system is dark, and the header button overrides either
+   (saved as "ordenz.theme", the same key the app uses). Each part of the cafe keeps the app's colour. Use tokens only. */
 :root{
-  --paper:#FFFCF5; --surface:#FFFFFF; --soft:#EEF5EF; --line:#D7E4DA; --line-strong:#B9CBB8;
-  --ink:#14211C; --ink-2:#46564F; --muted:#596E62;
-  --green:#0E5B49; --on-green:#FFFFFF; --green-soft:#DCEBE5; --deep:#08392E;
-  --saffron:#F0B13D; --saffron-ink:#2A1900; --gold:#F2C46D;
-  --eyebrow:#4F6544; --notice:#8A5A12; --focus:#9D6145;
-  --hero-glow:#E4EBD8; --dots:#897C5812; --top:#FFFCF5F2; --band:#F4F7F1; --footer:#F2F2EA; --cta:#E6ECDD;
-  --s-sales:#1F5FA8; --s-floor:#0E5B49; --s-kitchen:#A4431F; --s-stock:#7A5A12; --s-market:#6B3FA0; --s-devices:#0B6B7A; --s-account:#46564F;
-  --s-ink:#FFFFFF;
-  --display:"Bricolage Grotesque","Hind Madurai",system-ui,sans-serif;
-  --body:"Hind Madurai",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --r:20px; --shadow:0 2px 4px #173C300A,0 8px 24px #173C3010;
+  /* Shared OrdenZ tokens (brand-tokens.css, loaded first, same file as the app). Site names point at them. */
+  --paper:var(--bg); --soft:var(--surface-2);
+  --green:var(--accent); --on-green:var(--accent-ink); --green-soft:var(--accent-soft); --deep:#08392E;
+  --saffron:var(--pay); --saffron-ink:var(--pay-ink); --gold:#F2C46D;
+  --eyebrow:#4F6544; --notice:#8A5A12;
+  --hero-glow:#E4EBD8; --dots:#897C5812; --top:color-mix(in srgb,var(--bg) 95%,transparent); --band:#F4F7F1; --footer:#F2F2EA; --cta:#E6ECDD;
+  --s-sales:var(--sec-sales); --s-floor:var(--sec-floor); --s-kitchen:var(--sec-kitchen); --s-stock:var(--sec-stock); --s-market:var(--sec-market); --s-devices:var(--sec-devices); --s-account:var(--sec-account);
+  --s-ink:var(--sec-ink);
+  --display:var(--f-display);
+  --body:var(--f-body);
+  --r:var(--r-lg);
   /* Homepage hero chrome (reports / demo shell / features rail) — light cream panels. */
   --hero-chrome:#FFFEFB; --hero-chrome-line:#D8E1D5; --hero-chrome-ink:#1B4332;
   --hero-chrome-soft:#EDF2E8; --hero-chrome-shadow:0 14px 32px #1B433218,0 2px 6px #1B433212;
@@ -27,37 +24,29 @@
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0B110F; --surface:#18221E; --soft:#22312A; --line:#3A4D43; --line-strong:#4B6356;
-  --ink:#E7EEEA; --ink-2:#B2C0B9; --muted:#A0B3A8;
-  --green:#3DB291; --on-green:#04201A; --green-soft:#16352D; --deep:#0B110F;
-  --eyebrow:#9BC28E; --notice:#F2C46D; --focus:#E8A07E;
-  --hero-glow:#16352D; --dots:#FFFFFF08; --top:#0B110FF2; --band:#121A17; --footer:#0F1714; --cta:#16352D;
-  --s-sales:#7FB2F0; --s-floor:#3DB291; --s-kitchen:#F08C66; --s-stock:#E3B54F; --s-market:#BFA0EE; --s-devices:#5CC8D6; --s-account:#A9B8B1;
-  --s-ink:#0B110F;
+  --deep:#0B110F;
+  --eyebrow:#9BC28E; --notice:#F2C46D;
+  --hero-glow:#16352D; --dots:#FFFFFF08; --band:#121A17; --footer:#0F1714; --cta:#16352D;
   --hero-chrome:#0B110F; --hero-chrome-line:#3A4D43; --hero-chrome-ink:#FFFCF5;
   --hero-chrome-soft:#1B4332; --hero-chrome-shadow:0 14px 32px #0B110F66;
   --hero-chrome-kicker:#C8E6C9; --hero-rail-kicker:#F0B13D;
-  --hero-chrome-card:#1B4332; --hero-chrome-card-line:color-mix(in srgb,#2EE6C7 28%,#1B4332);
+  --hero-chrome-card:#1B4332; --hero-chrome-card-line:color-mix(in srgb,var(--brand-saffron) 28%,#1B4332);
   --hero-chrome-caption-bg:#1B4332; --hero-chrome-caption-ink:#FFFCF5;
   --hero-chrome-tab-ink:rgba(255,248,234,.72); --hero-chrome-tab-line:rgba(255,248,234,.28);
-  --hero-chrome-tab-on-bg:#2EE6C7; --hero-chrome-tab-on-ink:#04221C;
-  --shadow:0 2px 4px #0005,0 10px 26px #0004; color-scheme:dark}}
+  --hero-chrome-tab-on-bg:var(--brand-saffron); --hero-chrome-tab-on-ink:#2A1900;
+  color-scheme:dark}}
 :root[data-theme="dark"]{
-  --paper:#0B110F; --surface:#18221E; --soft:#22312A; --line:#3A4D43; --line-strong:#4B6356;
-  --ink:#E7EEEA; --ink-2:#B2C0B9; --muted:#A0B3A8;
-  --green:#3DB291; --on-green:#04201A; --green-soft:#16352D; --deep:#0B110F;
-  --eyebrow:#9BC28E; --notice:#F2C46D; --focus:#E8A07E;
-  --hero-glow:#16352D; --dots:#FFFFFF08; --top:#0B110FF2; --band:#121A17; --footer:#0F1714; --cta:#16352D;
-  --s-sales:#7FB2F0; --s-floor:#3DB291; --s-kitchen:#F08C66; --s-stock:#E3B54F; --s-market:#BFA0EE; --s-devices:#5CC8D6; --s-account:#A9B8B1;
-  --s-ink:#0B110F;
+  --deep:#0B110F;
+  --eyebrow:#9BC28E; --notice:#F2C46D;
+  --hero-glow:#16352D; --dots:#FFFFFF08; --band:#121A17; --footer:#0F1714; --cta:#16352D;
   --hero-chrome:#0B110F; --hero-chrome-line:#3A4D43; --hero-chrome-ink:#FFFCF5;
   --hero-chrome-soft:#1B4332; --hero-chrome-shadow:0 14px 32px #0B110F66;
   --hero-chrome-kicker:#C8E6C9; --hero-rail-kicker:#F0B13D;
-  --hero-chrome-card:#1B4332; --hero-chrome-card-line:color-mix(in srgb,#2EE6C7 28%,#1B4332);
+  --hero-chrome-card:#1B4332; --hero-chrome-card-line:color-mix(in srgb,var(--brand-saffron) 28%,#1B4332);
   --hero-chrome-caption-bg:#1B4332; --hero-chrome-caption-ink:#FFFCF5;
   --hero-chrome-tab-ink:rgba(255,248,234,.72); --hero-chrome-tab-line:rgba(255,248,234,.28);
-  --hero-chrome-tab-on-bg:#2EE6C7; --hero-chrome-tab-on-ink:#04221C;
-  --shadow:0 2px 4px #0005,0 10px 26px #0004; color-scheme:dark}
+  --hero-chrome-tab-on-bg:var(--brand-saffron); --hero-chrome-tab-on-ink:#2A1900;
+  color-scheme:dark}
 /* A part of the cafe, as in the app: set data-s on a block and it takes that colour */
 [data-s="sales"]{--s:var(--s-sales)}[data-s="floor"]{--s:var(--s-floor)}[data-s="kitchen"]{--s:var(--s-kitchen)}[data-s="stock"]{--s:var(--s-stock)}
 [data-s="market"]{--s:var(--s-market)}[data-s="devices"]{--s:var(--s-devices)}[data-s="account"]{--s:var(--s-account)}
@@ -442,7 +431,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   }
   .hero-rail-glass{
     width:100%;min-height:0;height:100%;border-radius:999px;border:0;padding:0;overflow:hidden;
-    background:linear-gradient(180deg,#2EE6C7 0%,#0E5B49 55%,#F0B13D 100%);
+    background:linear-gradient(180deg,var(--brand-saffron) 0%,#0E5B49 55%,#F0B13D 100%);
     box-shadow:0 10px 24px #0E5B4933;
   }
   .hero-rail-kicker,.hero-rail-stream{display:none}
@@ -505,7 +494,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .cim-chapter p{color:var(--ink-2);font-size:15px;line-height:1.35}
 .cim-token-flash{height:140px;border-radius:12px;display:grid;place-content:center;gap:4px;background:linear-gradient(160deg,#07110E,#10241C);color:#FFF8EA;text-align:center}
 .cim-token-flash span{font:800 56px/1 var(--display);color:#F0B13D}
-.cim-token-flash small{font:700 14px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:#2EE6C7}
+.cim-token-flash small{font:700 14px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-saffron)}
 .cim-day .moment p{font-size:15px;line-height:1.4}
 .cim-product-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
 .cim-product{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--s,var(--green));border-radius:18px;padding:20px;min-width:0;transition:transform .2s ease,border-color .2s ease}
@@ -854,19 +843,19 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-art.has-video #show-guest .scene,.hero-art.has-video #show-token .scene{background:#07110E}
 .guest-face{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:8px;min-width:0;min-height:0;height:100%}
 .guest-ads,.guest-bill{min-width:0;min-height:0;background:#10241C;border-radius:12px;padding:10px;color:#FFF8EA;display:flex;flex-direction:column;gap:6px}
-.guest-ads-flag{margin:0;font:700 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:#2EE6C7}
+.guest-ads-flag{margin:0;font:700 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--brand-saffron)}
 .food-shot{display:block;flex:1;min-height:72px;width:100%;border-radius:10px;object-fit:cover;object-position:center;background:#0E5B49}
 .guest-ads-line{margin:0;font:800 16px/1.2 var(--display);color:#FFF8EA}
 .guest-ads-note{margin:0;font:600 12px/1.35 var(--body);color:rgba(255,248,234,.72)}
 .bill-opts{margin:0;font-size:13px;color:rgba(255,248,234,.72)}
 .token-board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;min-width:0;min-height:0;height:100%}
 .token-col{min-width:0;background:#10241C;border-radius:12px;padding:10px;color:#FFF8EA}
-.token-col-h{margin:0 0 8px;color:#2EE6C7;font:700 12px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase}
+.token-col-h{margin:0 0 8px;color:var(--brand-saffron);font:700 12px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase}
 .token-col ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .token-col li{min-height:34px;border-radius:8px;border:1px dashed rgba(255,248,234,.22);display:grid;place-items:center}
-.token-col li.is-on{border-style:solid;border-color:#2EE6C7;background:#0E5B49}
-.token-col-ready li.is-on{background:#2EE6C7;border-color:#2EE6C7;color:#04221C}
-.token-col-ready li.is-on b{color:#04221C}
+.token-col li.is-on{border-style:solid;border-color:var(--brand-saffron);background:#0E5B49}
+.token-col-ready li.is-on{background:var(--brand-saffron);border-color:var(--brand-saffron);color:var(--pay-ink)}
+.token-col-ready li.is-on b{color:var(--pay-ink)}
 .hero-art.has-video .show-nav{flex:none;flex-shrink:0;background:var(--hero-chrome-soft);padding:8px}
 .hero-art.has-video .show-dot{color:var(--hero-chrome-tab-ink);border-color:var(--hero-chrome-tab-line);min-height:46px;font-size:16px}
 .hero-art.has-video .show-dot[aria-current="true"]{background:var(--hero-chrome-tab-on-bg);color:var(--hero-chrome-tab-on-ink);border-color:var(--hero-chrome-tab-on-bg)}
@@ -885,12 +874,12 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 .hero-art.has-video .token-col li{min-height:clamp(48px,7vh,72px)}
 .hero-art.has-video .token-num{font-size:clamp(36px,5vw,64px)}
 .hero-art.has-video .guest-ads .food-shot{min-height:min(36svh,320px)}
-.hero-art.has-video .bill-top{color:#2EE6C7}
+.hero-art.has-video .bill-top{color:var(--brand-saffron)}
 .hero-art.has-video .bill-row,.hero-art.has-video .bill-tax,.hero-art.has-video .loyalty,.hero-art.has-video .scene-meta,.hero-art.has-video .scene-kicker{color:#FFF8EA}
 .hero-art.has-video .bill-row{font-size:clamp(16px,1.5vw,22px)}
 .hero-art.has-video .bill-row b{color:#F0B13D}
 .hero-art.has-video .dish{color:#FFF8EA;font-size:clamp(34px,4.2vw,64px);line-height:1.05}
-.hero-art.has-video .scene-kicker{font-size:clamp(12px,1.1vw,16px);color:#2EE6C7}
+.hero-art.has-video .scene-kicker{font-size:clamp(12px,1.1vw,16px);color:var(--brand-saffron)}
 .hero-art.has-video .scene-meta{font-size:clamp(15px,1.35vw,20px)}
 .hero-art.has-video .food-photo{
   width:100%;height:auto;aspect-ratio:1;max-height:min(52svh,520px);
@@ -1011,7 +1000,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
   }
   :root:not([data-theme="light"]) .hero-rail-glass,
   :root:not([data-theme="light"]) .hero-rail-glass--features{
-    box-shadow:0 18px 40px #0B110F66,inset 0 1px 0 #2EE6C722;
+    box-shadow:0 18px 40px #0B110F66,inset 0 1px 0 color-mix(in srgb,var(--brand-saffron) 13%,transparent);
   }
   :root:not([data-theme="light"]) .hero-rail-features li{
     box-shadow:0 10px 22px #04221C44;
@@ -1030,7 +1019,7 @@ a.try:hover{transform:translateY(-2px);border-color:var(--s)}
 }
 :root[data-theme="dark"] .hero-rail-glass,
 :root[data-theme="dark"] .hero-rail-glass--features{
-  box-shadow:0 18px 40px #0B110F66,inset 0 1px 0 #2EE6C722;
+  box-shadow:0 18px 40px #0B110F66,inset 0 1px 0 color-mix(in srgb,var(--brand-saffron) 13%,transparent);
 }
 :root[data-theme="dark"] .hero-rail-features li{box-shadow:0 10px 22px #04221C44}
 :root[data-theme="dark"] .hero-reports-shots li{box-shadow:0 8px 18px #04221C44}
