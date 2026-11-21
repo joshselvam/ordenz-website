@@ -32,15 +32,23 @@
   --brand-green:#0E5B49; --brand-green-deep:#08382D; --brand-night:#04201A;
   --brand-cream:#FFF6E8; --brand-cream-line:#E0D0B0;
   --brand-ink:#14211C; --brand-ink-2:#3D4A44; --brand-saffron:#F0B13D;
+  /* Decorative latte / ceramic (sign-in scene). Same in light and dark. */
+  --brand-ceramic:#E8DFD2; --brand-ceramic-shade:#C9B9A6; --brand-ceramic-light:#F7F1E8;
+  --brand-crema:#F3E2C4; --brand-crema-dark:#D2B48A; --brand-coffee:#3A2416;
+  --brand-counter:#0A342C;
 
   /* Type */
   --f-display:"Bricolage Grotesque","Hind Madurai",system-ui,sans-serif;
   --f-body:"Hind Madurai",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --fs-xs:12px; --fs-sm:14px; --fs-md:16px; --fs-lg:18px; --fs-xl:22px; --fs-2xl:28px; --fs-3xl:36px;
+  /* TV pairing secondary copy (scales with the TV text root). Not an fs-* scale step. */
+  --tv-fs-hint:.78em;
   --lh-tight:1.15; --lh-body:1.5;
 
   /* Shape and space */
-  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-pill:999px;
+  --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:16px; --r-card:12px; --r-pill:999px;
+  /* TV segmented control / chip corners (em so they track TV text size). */
+  --tv-r-chip:.55em;
   --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px;
   --tap:48px;
   --shadow:0 1px 2px rgba(15,26,22,.06),0 6px 20px rgba(15,26,22,.06);

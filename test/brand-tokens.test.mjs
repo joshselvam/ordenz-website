@@ -7,7 +7,7 @@ import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 
-const TOKENS_SHA256 = "f13b75dd9669fb69d9f6fee8fc6e0d5a65d056650ff6d6b0b1dc64ea2f5ed415";
+const TOKENS_SHA256 = "89e0fd597ca2ab107f5ef13d4cd02bd1be82a46c05b6ca86f97b62aa9f7cd8b6";
 const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
 const tokens = read("src/assets/brand-tokens.css");
 
